@@ -12,8 +12,7 @@ website:
      - contexte.qmd
      - modelesansmigrationass.qmd
      - modeleavecmigrationass.qmd
-     - modelsimpleaug.qmd
-     - modelcomplaug.qmd
+     - modelaug.qmd
      - modfinal.qmd
      - conclusion.qmd
      - ref.qmd

@@ -1,0 +1,3 @@
+---
+title: Modèle complet avec proies structurées et prédateurs
+---

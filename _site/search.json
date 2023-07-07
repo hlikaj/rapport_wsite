@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Rapport de stage 2023",
+    "section": "",
+    "text": "Les prochaines pages regroupent mes travaux à l’INRAE Sophia-Antipolis lors de mon stage de L2 du 22/06/2023 au 21/07/23 sous la tutelle de Ludovic Mailleret dans l’équipe M2P2.\nLe but de ce stage était de modéliser un augmentorium pour la lutte biologique.\nPour cela nous nous baserons sur des modèles de dynamique des populations.\nLe rapport se structure ainsi :\n\nUne partie contexte afin de poser un cadre biologique à notre modélisation.\nUne partie sur l’équation logistique à deux structures dont on fera une analyse rapide.\nUne partie sur l’équation logistique à deux structures avec migration assymétrique qui décrit plus précisément notre situation biologique.\nUne partie sur un modèle d’augmentorium simplifié partant sur le principe que l’effet des parasites est le même entre les deux structures.\nUne partie sur un modèle d’augmentorium complet qui permet par exemple de considérer que l’effet des parasites est différent entre les structures.\nUne partie sur le modèle final, qui permet de considérer que la mixité des parasites est imparfaite entre les deux structures.\n\nEnfin, nous discuterons de l’efficacité théorique de l’augmentorium en conclusion.\nTous les articles utilisés sont ici.\n\nPour plus d’informations, voyez ici."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "À propos",
+    "section": "",
+    "text": "Ce site a été généré grâce à Github.\nCes pages ont été générées avec Quarto, Jupyter et Python (version 3.10.10).\nLes principaux modules utilisés sont NumPy, Matplotlib, SciPy et Plotly.\nQuelques animations ont été réalisées sous Geogebra."
+  },
+  {
+    "objectID": "contexte.html",
+    "href": "contexte.html",
+    "title": "Contexte",
+    "section": "",
+    "text": "L’augmentorium est un outil ressemblant à une tente que l’on met dans les cultures afin d’y entreposer des fruits ou des légumes attaqués par des ravageurs.\n\nDescription de la structure\n\n\n\n\nAugmentorium en culture; Photo: J-P Deguine, Cirad\n\n\n\nL’augmentorium possède une ouverture pour entreposer les fruits et une grille afin de libérer les parasites à ces ravageurs (plus petits).\nL’augmentorium peut être enterré, afin de préserver d’une sortie des larves de ravageurs par le bas.\nOn observe aussi sur les modèles de plus haute génération des sas ou bien le déplacement de la grille à l’opposé de l’ouverture.\n\n\nAvantage biologique\nCette méthode, prophylactique, permet de concentrer les ravageurs dans un espace clos presque sans migration vers l’extérieur.\nEn effet, la taille des mailles de la grille permet de cloisonner près de 100% des ravageurs et libérer jusqu’à 98% des parasites (Deguine et al., 2011).\nAinsi, cette méthode permet à la fois de casser le cycle de reproduction des ravageurs mais aussi d’augmenter le ratio parasites"
+  }
+]

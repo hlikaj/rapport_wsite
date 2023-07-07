@@ -1,0 +1,3 @@
+---
+title: Modèle proies-prédateurs structuré
+---

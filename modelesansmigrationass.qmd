@@ -1,0 +1,348 @@
+---
+title: Modèle logistique structuré avec migration symétrique
+---
+---
+
+*Modules à importer :*
+
+```{python}
+#| code-fold: True
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+from matplotlib import cm
+import plotly.express as px
+```
+
+## Définition du modèle
+
+On pose le modèle suivant :
+$$ 
+\left\{\begin{array}{l}
+\dot x = r_xx\left(1-\frac{x}{K_x}\right)+\beta(y-x)\\
+\dot y = r_yy\left(1-\frac{y}{K_y}\right)+\beta(x-y).
+\end{array}\right.
+$$ {#eq-modsmig}
+
+avec :   
+$x$ la population dans la culture,  
+$y$ la population dans l'augmentorium,  
+$r_x$ et $r_y$ le taux de croissance dans la culture et dans l'augmentorium,  
+$K_x$ et $K_y$ les capacités biotiques de la culture de de l'augmentorium,  
+$\beta$ la force de migration entre les structures. 
+
+### Hypothèses propre à l'augmentorium
+
+Nous le savons, l'augmentorium fournit aux ravageurs une structure bénéfique à leur croissance. Ainsi, nous supposerons que $r_x < r_y$.  
+
+En fonction de la culture qu'on va considérer on peut avoir $K_x>K_y$ et inversement.   
+En effet, si la culture est remontante, ie qu'elle produit tout au long de l'année, les apports de fruits dans l'augmentorium ne seront jamais excessifs par rapport au nombre de fruits à l'extérieur, impliquant une capacité maximale plus forte pour la culture ($K_x>K_y$).  
+Par contre si la culture est non-remontante on aura énormément de fruits dans la structure sur une courte période impliquant une possible capacité maximale plus forte pour la structure ($K_x<K_y$).
+
+## Dynamique du modèle
+
+On va tracer la dynamique de la population en fonction du temps pour se faire une première idée de comment se comporte la population.
+
+On définit le modèle sous [Python](https://www.python.org/) :
+
+```{python}
+def aug(etat,t,param):
+    rx,ry,Kx,Ky,b=param
+    x,y=etat
+    s=[rx*x*(1-x/Kx)+b*(y-x),ry*y*(1-y/Ky)+b*(x-y)]
+    return s 
+```
+
+On va utiliser `odeint` de `Scipy` afin de simuler une solution en fonction du temps. 
+Il faut donc définir un temps d'intégration, des conditions initiales et les paramètres du modèle : 
+
+```{python}
+## Temps d'intégration:
+ti = np.arange(0,10,0.01)
+
+## Etats initiaux:
+x0=2
+y0=0
+e0=[x0,y0]
+
+## Paramètres: 
+rx=0.5
+ry=1
+Kx=2
+Ky=1
+b=1
+param_aug=np.array([rx,ry,Kx,Ky,b])
+
+## Simulation:
+s=odeint(aug,e0,ti,args=(param_aug,))
+```
+
+Maintenant qu'on a la simulation on peut plot la figure avec `matplotlib` :
+
+```{python}
+fig,ax=plt.subplots(1,1,figsize=(7,4))
+fig.suptitle('Dynamique des ravageurs dans le temps')
+ax.plot(ti,s[:,0],color='C1',label='culture')
+ax.plot(ti,s[:,1],color='C0',label='augmentorium')
+
+ax.grid()  #on ajoute la grille
+ax.legend() #on ajoute la légende
+ax.set_xlabel('Temps, t') 
+ax.set_ylabel('Densité de pop.')
+```
+
+
+Cette simulation nous montre une hausse de la population dans l'augmentorium et une baisse de la population dans la culture.  
+Les deux populations atteignent un équilibre qui semble stable (il se maintient dans le temps).  
+
+Dans le cas d'un augmentorium on voit que le simple fait de débarasser les fruits et de les mettre dans un espace séparé de la culture ammène à une baisse de la population de ravageurs dans la culture.
+
+## Plan de phase
+
+### Equilibres et stabilités
+
+Nous allons tracer le plan de phase associé à ce système pour voir les équilibres et leurs stabilités.
+
+A l'équilibre on a par définition $\dot x = 0$ et $\dot y =0$ ce qui donne : 
+
+$$
+\left\{\begin{array}{l}
+\dot x = 0 \Leftrightarrow  y^*=r_xx^*\left(\frac{1}{r_x}-\frac{1}{\beta}+\frac{x^*}{\beta K_x}\right)\\
+\dot y =0 \Leftrightarrow  x^*=r_yy^*\left(\frac{1}{r_y}-\frac{1}{\beta}+\frac{y^*}{\beta K_y}\right)
+\end{array}\right.
+$${#eq-pdpsmig}
+
+Ainsi, les deux isoclines correspondent à des paraboles. Celles-ci se croisent trivialement en $(0,0)$ et dans le quadrant positif en $(x^*,y^*)$. 
+
+Pour calculer $(x^*,y^*)$ on va utiliser l'expression des paraboles en [2](#eq-pdpsmig), ce qui donne, après simplifications, un polynôme de degré 4 : 
+
+$$ 
+y\left(r_xr_y\left[\frac{1}{\beta}\left(\frac{1}{\beta}-\frac{1}{r_x}-\frac{1}{r_y}\right)+\frac{1}{r_xr_y}\right]-1\right)+\\\\
+\frac{y^2r_xr_y}{\beta}\left[\frac{1}{K_y}\left(\frac{1}{r_x}-\frac{1}{\beta}\right)+\frac{1}{K_x}\left(\frac{1}{r_y}-\frac{2}{\beta}+\frac{r_y}{\beta^2}\right)\right]+\\\\
+\frac{2y^3r_xr_y}{\beta^2 K_xK_y}\left(1-\frac{r_y}{\beta}\right)+
+\frac{y^4r_xr_y^2}{\beta^3K_y^2K_x} = 0
+$${#eq-polsmig}
+
+Ce polynôme est résoluble via `numpy` pour obtenir $y^*$:
+
+```{python}
+## On défnit un monome y, un polynôme p et on prend ses solutions:
+y=np.polynomial.Polynomial([0,1])
+
+pol = y*(rx*ry*((1/b)*((1/b)-(1/rx)-(1/ry))+1/(rx*ry))-1)+(y**2)*((rx*ry)/b)*((1/Ky)*((1/rx)-(1/b))+(1/Kx)*((1/ry)-(2/b)+(ry/(b**2))))+2*(y**3)*((rx*ry)/((b**2)*Kx*Ky))*(1-(ry/b))+(y**4)*((rx*(ry**2))/((b**3)*(Ky**2)*Kx))
+
+## Solution qu'on obtient avec un masque booléen:
+sol = pol.roots()[(np.isreal(pol.roots())) 
+            *(pol.roots() > 0)]
+yeq=sol[0].real
+```
+
+On déduit $x^*$ via sa définition par le [système](eq-pdpsmig):
+
+```{python}
+xeq=(ry*yeq*((1/ry)-(1/b)+(yeq/(b*Ky)))).real
+```
+
+Avec la valeur des équilibres on va maintenant tracer le plan de phase : 
+
+```{python}
+fig,ax=plt.subplots(1,1)
+fig.suptitle('Plan de phase du système')
+
+## Isocline nulles:
+xt=np.arange(-10,10,0.01)
+## Pour xdot = 0:
+ax.plot(xt,xt*(1/b)*(rx*((xt/Kx)-1)+b),color='C2',label='$\dot x=0$')
+ax.plot(np.zeros_like(xt),xt,color='0.8',markersize=6)
+
+## Pour ydot = 0:
+ax.plot(xt*(1/b)*(ry*((xt/Ky)-1)+b),xt,color='C3',label='$\dot y=0$')
+ax.plot(xt,np.zeros_like(xt),color='0.8',markersize=6)
+
+## On réduit la vue à ce qui nous intéresse:
+ax.set_xlim(left=-1,right=3)
+ax.set_ylim(top=3,bottom=-1)
+
+## On nomme les axes:
+ax.set_xlabel('$x$',fontsize='12')
+ax.set_ylabel('$y$',fontsize='12')
+
+## On plot les deux équilibres:
+ax.plot(xeq.real,yeq.real,label='$(x^*_1,y^*_1)$',marker='.',markersize=6,color='k')
+ax.plot(0,0,label='$(0,0)$',marker='.',markersize=6,color='k')
+
+## Localisation de la légende:
+ax.legend(loc='upper left')
+
+## Ajout du champ de vecteur via la fonction quiver :
+xg=np.arange(0,5,0.6)
+yg=np.arange(0,5,0.6)
+X,Y=np.meshgrid(xg,yg)
+
+dx,dy=aug([X,Y],0,param_aug)
+ax.quiver(X,Y,dx,dy,angles='xy',color='grey',scale=80,width=0.003)
+```
+
+Comme dit plus haut on a bien un croisement dans le quadrant positif qui correspond à l'équilibre. 
+
+Les paraboles, en fonction des valeurs de leurs racines, peuvent croiser de différentes manières les axes des abssices et des ordonnées.  
+Le plan de phase peut donc présenter plusieurs profils, autre que 
+celui tracé ici. Néanmoins, le croisement des paraboles est toujours présent quelque soit le profil.
+
+En faisant apparaître le champ de vecteur on peut déduire que l'équilibre en $(0,0)$ est instable et l'équilibre en $(x^*,y^*)$ est stable.
+
+#### Stabilité mathématique des équilibres
+
+Il est clair que $(0,0)$ est instable et $(x^*,y^*)$ est stable (par le champ de vecteur). Mathématiquement : 
+$$ 
+\mathbb{J}=\left[\begin{array}{cc} 
+\ r_x-\frac{2r_xx}{K_x}-\beta & \beta \\
+\ \beta & r_y -\frac{2r_yy}{K_y}-\beta
+\end{array}\right]
+$$
+
+et donc pour $(0,0)$:  
+
+$$
+\mathbb{J_{\vec{0}}}=\left[\begin{array}{cc}\\
+\ r_x-\beta & \beta \\
+\ \beta & r_y -\beta
+\end{array}\right]
+$$
+$$
+\Leftrightarrow
+$$
+$$
+\sigma_\mathbb{J} = (\lambda_1 = \frac{r_x+r_y-2\beta-2\beta\sqrt{\frac{(r_x-r_y)^2}{4\beta^2}+1}}{2},\lambda_2=\frac{r_x+r_y-2\beta+2\beta\sqrt{\frac{(r_x-r_y)^2}{4\beta^2}+1}}{2})
+$$
+
+et on a ainsi,
+
+$$
+\lambda_2 > 0
+$$
+
+Donc $(0,0)$ est bien instable, $\forall (x_0,y_0) \in \mathbb{R^2_+}$.
+et pour $(x^*,y^*)$ après simplification (et en abandonnant les * par comodité) : 
+
+$$ \mathbb{J_{x^*,y^*}} = \left[\begin{array}{cc} \\
+\ -\frac{\beta y}{x}-\frac{r_xx}{K_x} & \beta \\
+\ \beta & -\frac{\beta x}{y}-\frac{r_yy}{K_y}
+\end{array}\right]
+$$
+
+Il est alors facile de vérifier que la trace de cette matrice est négative pour tout $(x_0,y_0)$ et que le déterminant est positif pour tout $(x_0,y_0)$.
+Ainsi, $(x^*,y^*)$ est bien stable, $\forall (x_0,y_0) \in \mathbb{R^2_+}$.
+
+### Analyse du plan de phase
+
+On remarque que l'équilibre atteint n'est pas sur la droite $x^*+y^*=K_x+K_y$ , ceci implique que la structuration de l'espace perturbe les équilibres qui auraient dû être la somme des équilires des deux régions (la logistique tend vers la capacité maximale à l'équilibre).   
+Si la somme des équilibres est plus grande que $K_x+K_y$ on dit que le système subit une inflation.
+
+Plus généralement, on peut montrer qu'en cas de mixité parfaite entre les deux patchs ($\beta \to \infty$) on a :
+
+$$
+x^*+y^* = K_x + K_y + (K_x-K_y)\frac{r_xK_y-r_yK_x}{r_xK_y+r_yK_x}
+$${#eq-inf}
+
+Ce qui montre que en général on a pas $x^*+y^* = K_x + K_x$. De plus par [4](#eq-inf), si $K_y<K_x$ (culture remontante) et si $r_xK_y<r_yK_x$ alors $x^*+y^* < K_x+K_y$ ce qui nous intéresse particulièrement pour la lutte biologique (et inversement pour les cultures non remontantes).  
+
+De plus, en faisant $x^* + y^*$ on a (en abandonnant les étoiles par commodité):
+$$ 
+r_xx\left(1-\frac{x}{K_x}\right)+r_yy\left(1-\frac{y}{K_y}\right) = 0 
+$${#eq-ell}
+
+Autrement dit les points d'équilibres vivent sur une ellipse (si on ne modifie que $\beta$ ), qu'on va tracer avec `contour` :
+
+```{python}
+xg2=np.arange(-5,5,0.01)
+yg2=np.arange(-5,5,0.01)
+X2,Y2=np.meshgrid(xg2,yg2)
+
+X=rx*X2*(1-X2/Kx)
+Y=ry*Y2*(1-Y2/Ky)
+ax.contour(X2,Y2,(X+Y),[0],colors='C1')
+ax.plot(0,0,color='C1',label='Ellipse des solutions')
+
+## Localisation de la légende:
+ax.legend(loc='lower left',fontsize = 8)
+
+## On place les différents points d'intérêts...
+xv=np.arange(0,10)
+ax.plot(0,Ky,marker='.',markersize=7,color='k')
+ax.plot(Kx,0,marker='.',markersize=7,color='k')
+ax.plot(Kx,Ky,marker='.',markersize=6,color='k')
+
+##...et on les relie aux axes:
+xc=np.arange(0,Kx,0.01)
+ax.plot(xc,Ky*np.ones_like(xc),linestyle='dashed',color='k',linewidth=0.5)
+yc=np.arange(0,Ky,0.01)
+ax.plot(Kx*np.ones_like(yc),yc,linestyle='dashed',color='k',linewidth=0.5)
+
+#On nomme les points:
+ax.text(-0.2,Ky,'$K_y$')
+ax.text(Kx,-0.2,'$K_x$')
+
+#On place les points d'équilibres :
+ys=np.arange(0,yeq,0.01)
+xs=np.arange(0,xeq,0.01)
+ax.plot(xeq*np.ones_like(ys),ys,linestyle='dashed',color='k',linewidth=0.5)
+ax.plot(xs,yeq*np.ones_like(xs),linestyle='dashed',color='k',linewidth=0.5)
+ax.text(-0.2,yeq,'$y^*$')
+ax.text(xeq,-0.2,'$x^*$')
+
+display(fig)
+```
+
+#### a) Première condition à un système défaltioniste 
+On remarque que le point $(K_x,K_y)$ est en permanence sur la droite $K_x+K_y$ qui coupe en permanence l'ellipse sauf pour une situation où la droite $K_x+K_y$ est tangente à l'ellipse.  
+Ce cas nous intéresse car il rend compte d'un système entièrement déflationiste.  
+
+
+L'ellipse, d'équation $f(x,y)=r_xx\left(1-\frac{x}{K_x}\right)+r_yy\left(1-\frac{y}{K_y}\right) = 0$  , peut être vue comme la ligne de niveau de $f$ en $0$. 
+
+Ainsi, une équation de la tangente au point $(x_0,y_0)$ serait donnée par:   
+$$
+\frac{\partial f}{\partial x}(x_0,y_0)(x-x_0)+ \frac{\partial f}{\partial y}(x_0,y_0)(y-y_0) = 0
+$${#eq-eqa}
+
+Dans le cas où $(x_0=K_x , y_0=K_y)$ on a alors $y=-\frac{r_x}{r_y}\left(x-K_x\right) + K_y$ équation de la tangente au point $(K_x,K_y)$.
+
+Pour que le système soit déflationiste on veut que cette équation ait une pente de $-1$ afin d'avoir l'équation de la droite $K_x+K_y$ et garantir la déflation. Ainsi on veut que $r_x=r_y$. 
+
+Donc : si $r_x=r_y$ on a [1)](#eq-modsmig) qui est déflationiste quelque soit le taux de migration.
+
+#### b) Deuxième condition à un système déflationiste
+
+Si on trace la parabole définie par $\dot x = 0$ quand $\beta \to \infty$ alors on peut prédire quand le système est déflationiste. 
+En effet, il faut alors que la pente de la parabole en l'infini soit plus grande que la pente de la parabole en $\beta = 0$.
+Par définition de [2)](#eq-pdpsmig) on a quand $\beta \to \infty$,     $y^* = x^*$. La pente quand $\beta = 0$ est $\frac{K_y}{K_x}$. 
+
+Si on a $r_x < r_y$ et $K_x>K_y$ on aura tout le temps un modèle déflationiste pour les ravageurs.
+
+Ceci est intéressant pour l'augmentorium, si on a la capacité de l'augmentorium qui est plus faible que celle de la culture alors le système est toujours négatif pour la population totale de ravageurs. 
+
+On peut aussi voir graphiquement que dans ce cas là on a toujours $x^* < K_x$, c'est ce que l'on cherche à obtenir.
+
+## Animation 
+
+Pour mieux comprendre comment se déplace le système en fonction des paramètres :
+
+```{python}
+#| code-fold: True
+#Technique pour utiliser une fenêtre geogebra:
+import IPython.display as display
+fig01 = """
+<iframe width="700" height="550" src="https://www.geogebra.org/classic/ajaycvqe" style="border: 1px solid black"></iframe>
+"""
+display.HTML(fig01)
+```
+  
+    
+ &nbsp;     
+
+[Passons](modeleavecmigrationass.qmd) mainenant à un modèle qui prend en compte que les migrations peuvent êtres assymétriques.
+
+---
+
+*Cette analyse s'appuie sur celle effectuée par [R.Arditi et al.](https://doi.org/10.1016/j.tpb.2015.10.001) en 2015 et a été retravaillée pour coller au modèle de l'augmentorium.*

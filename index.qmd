@@ -1,0 +1,37 @@
+---
+title: "Présentation"
+lang: fr
+---
+
+Les prochaines pages regroupent mes travaux à l'[INRAE](https://www6.paca.inrae.fr/institut-sophia-agrobiotech/) Sophia-Antipolis lors de mon stage de L2 du 22/06/2023 au 21/07/23 sous la tutelle de Ludovic Mailleret dans l'équipe [M2P2](https://www6.paca.inrae.fr/institut-sophia-agrobiotech_eng/Research-teams/M2P2).  
+
+Le but de ce stage était de modéliser un augmentorium pour la lutte biologique.  
+
+Pour cela nous nous baserons sur des modèles de [dynamique des populations](https://en.wikipedia.org/wiki/Population_dynamics).   
+
+Le rapport se structure ainsi :
+
+- Une partie [contexte](contexte.qmd) afin de poser un cadre biologique à notre modélisation.
+
+- Une partie sur l'équation logistique  à [deux structures](modelesansmigrationass.qmd) dont on fera une analyse rapide.
+
+- Une partie sur l'équation logistique  à deux structures avec [migration assymétrique](modeleavecmigrationass.qmd) qui décrit plus précisément notre situation biologique.
+
+- Une partie sur un [modèle d'augmentorium simplifié](modelsimpleaug.qmd) partant sur le principe que l'effet des parasites est le même entre les deux structures.
+
+- Une partie sur un [modèle d'augmentorium complet](modelcomplaug.qmd) qui permet par exemple de considérer que l'effet des parasites est différent entre les structures.
+
+- Une partie sur le [modèle final](modfinal.qmd), qui permet de considérer que la mixité des parasites est imparfaite entre les deux structures.
+
+
+Enfin, nous discuterons de l'efficacité théorique de l'augmentorium en [conclusion](conclusion.qmd).
+
+
+Tous les articles utilisés sont [ici](ref.qmd).
+
+## Remerciements {.appendix}
+Je tiens à remercier Ludovic Mailleret et son équipe pour m'avoir gentillement acuelli et fait confiance. Merci spécialement à Ludovic qui m'a beaucoup supporté et qui a pris de son temps pour m'aider.  
+&nbsp;
+---
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://upload.wikimedia.org/wikipedia/fr/archive/2/2a/20210420122444%21Logo-INRAE_Transparent.svg){ width=20% }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://upload.wikimedia.org/wikipedia/commons/4/4f/Logo_universit%C3%A9_c%C3%B4te_azur.png){ width=30% }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://www.cnrs.fr/themes/custom/cnrs/logo-footer.svg){ width=25% } 

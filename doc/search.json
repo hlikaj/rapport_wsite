@@ -18,7 +18,7 @@
     "href": "index.html",
     "title": "Présentation",
     "section": "",
-    "text": "Les prochaines pages regroupent mes travaux à l’INRAE Sophia-Antipolis lors de mon stage de L2 du 22/06/2023 au 21/07/23 sous la tutelle de Ludovic Mailleret dans l’équipe M2P2.\nLe but de ce stage était de modéliser un augmentorium pour la lutte biologique.\nPour cela nous nous baserons sur des modèles de dynamique des populations.\nLe rapport se structure ainsi :\nEnfin, nous discuterons de l’efficacité théorique de l’augmentorium en conclusion.\nTous les articles utilisés sont ici."
+    "text": "Les prochaines pages regroupent mes travaux à l’INRAE Sophia-Antipolis lors de mon stage de L2 du 22/06/2023 au 21/07/23 sous la tutelle de Ludovic Mailleret dans l’équipe M2P2.\nLe but de ce stage était de modéliser un augmentorium pour la lutte biologique.\nPour cela nous nous baserons sur des modèles de dynamique des populations.\nLe rapport se structure ainsi :\nUne partie sur l’équation logistique à deux structures dont on fera une analyse rapide et qui servira à poser les bases sur la partie Python (qui sera moins détaillée dans la suite des parties).\nEnfin, nous discuterons de l’efficacité théorique de l’augmentorium en conclusion.\nTous les articles utilisés sont ici."
   },
   {
     "objectID": "conclusion.html",

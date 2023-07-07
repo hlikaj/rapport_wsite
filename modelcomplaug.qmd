@@ -1,3 +1,179 @@
 ---
-title: Modèle complet avec proies structurées et prédateurs
+title: Modèle avec proies structurées et prédateurs
 ---
+
+*Modules à importer :*
+
+```{python}
+#| code-fold: True
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import odeint
+from matplotlib import cm
+import plotly.express as px
+```
+
+## Définition du modèle 
+
+Ce modèle est un modèle de prédation de Lotka-Volterra où les proies se répartissent en deux structures et les prédateurs diffusent librement entre les deux strcutures.  
+
+Nous partirons pour être plus général du postulat que la prédation et les naissances sont diférentielles entre les structures mais certaines analyses se baseront sur une égalité des naissances par exemple.  
+
+Nous considérons le modèle suivant : 
+
+$$ \left\{\begin{array}{l}
+\dot x = r_xx\left(1-\frac{x}{K_x}\right)+\beta\left(\frac{y}{\gamma_y}-\frac{x}{\gamma_x}\right)-p_xxz \\
+\dot y = r_yy\left(1-\frac{y}{K_y}\right)+\beta\left(\frac{x}{\gamma_x}-\frac{y}{\gamma_y}\right)-p_yyz \\
+\dot z = z\left(n_xx+n_yy - m\right)
+\end{array}\right.
+$$
+
+avec:  
+- $r_x$ le taux de croissance de x dans la culture,  
+- $r_y$ le taux de croissance de y dans l'augmentorium,  
+- $K_x$ la capacité maximale de la culture,  
+- $K_y$ la capacité maximale de l'augmentorium,  
+- $\beta$ la force de migration,  
+- $\gamma_x$ le taux d'assymétrie de la migration culture vers augmentorium,  
+- $\gamma_y$ le taux d'assymétrie de la migration augmentorium vers culture,  
+- $p_x,p_y$ la prédation de $z$ sur $x$ ou $y$,  
+- $n_x,n_y$ le taux de conversion proie prédateur dans la culture ou l'augmentorium (naissance due à la prédation),  
+- $m$ la mortalité des prédateurs $z$.
+
+On a donc maintenant un espace structuré en deux zones, s'échangeant assymétriquement de la population (qui grandit logisitiquement), le tout controlé par une population de prédateurs ne chassant et ne se reproduisant pas de la même manière dans les deux zones. 
+
+### Nouvelles hypothèses : 
+
+On pose $p_y > p_x$ et  $n_y>n_x$.
+
+En effet l'augmentorium est un lieu propice au développement des individus que ce soit les parasites ou les ravageurs.   
+Ainsi la prédation exercé sur les ravageurs est plus forte dans l'augmentorium et les naissances des prédateurs sont plus fortes dans l'augmentorium que dans la culture.
+
+## Dynamique des populations
+
+On va encore une fois simuler comment se comporte les trois populations en fonction du temps.  
+Le code commenté est acessible dans la boite cachée ci dessous:
+
+```{python}
+#| code-fold: true
+#Définition du modèle avec prédateurs:
+def a(etat,t,param):
+    x,y,z=etat
+    rx,Kx,ry,Ky,gx,gy,b,px,py,nx,ny,m = param
+    xdot,ydot,zdot=[rx*x*(1-x/Kx)+b*(y/gy-x/gx)-px*z*x,ry*y*(1-y/Ky)+b*(x/gx-y/gy)-py*y*z,z*(nx*x+ny*y-m)]
+    return [xdot,ydot,zdot]
+
+#Paramètres Simulation 1 : 
+rx1=0.5
+ry1=1
+Kx1=2
+Ky1=1
+gx1=0.5
+gy1=3
+b1=1
+px1=0.5
+py1=1
+nx1=0.5
+ny1=1
+m1=0.5
+
+param_a1=np.array([rx1,Kx1,ry1,Ky1,gx1,gy1,b1,px1,py1,nx1,ny1,m1])
+
+#Paramètres Simulation 2: 
+rx2=0.5
+ry2=1
+Kx2=2
+Ky2=1
+gx2=0.5
+gy2=3
+b2=1
+px2=0.5
+py2=1
+nx2=0.5
+ny2=1
+m2=2
+
+param_a2=np.array([rx2,Kx2,ry2,Ky2,gx2,gy2,b2,px2,py2,nx2,ny2,m2])
+
+#Temps d'intégration 1,2:
+t3=np.arange(0,200,0.01)
+t4=np.arange(0,50,0.01)
+
+#Condition initiale de 1,2:
+x0=2
+y0=0
+z0=0.5
+c0=np.array([x0,y0,z0])
+
+#Simulation 1,2:
+s3=odeint(a,c0,t3,args=(param_a1,))
+s4=odeint(a,c0,t4,args=(param_a2,))
+
+#Plot de la figure: 
+fig,ax = plt.subplots(1,2,figsize=(14,5))
+fig.suptitle('Simulation du modèle d\'augmentorium')
+plt.subplots_adjust(hspace=0.4)
+
+#Plot de l'axe 1:
+ax[0].plot(t3,s3[:,0],color='C0',label='Ravageur dans la culture')
+ax[0].plot(t3,s3[:,1],color='C1',label='Ravageur dans l\'augmentorium')
+ax[0].plot(t3,s3[:,2],color='C6',label='Prédateurs totaux')
+
+#Plot de l'axe 2:
+ax[1].plot(t4,s4[:,0],color='C0',label='Ravageur dans la culture')
+ax[1].plot(t4,s4[:,1],color='C1',label='Ravageur dans l\'augmentorium')
+ax[1].plot(t4,s4[:,2],color='C6',label='Prédateurs totaux')
+
+
+#Légendes et titres:
+ax[0].set_ylabel('Population, x,y,z')
+ax[0].legend(fontsize=8)
+ax[0].grid()
+ax[0].set_xlabel('Temps, t')
+ax[0].set_ylim(top=2,bottom=-0.05)
+ax[0].set_title('Coexistence des trois populations',fontsize=7.5)
+
+ax[1].set_xlabel('Temps, t')
+ax[1].set_ylabel('Population, x,y,z')
+ax[1].legend(fontsize=8)
+ax[1].grid()
+ax[1].set_ylim(top=2,bottom=-0.05)
+
+ax[1].set_title('Disparition des parasites, maintien des ravageurs',fontsize=7.5)
+```
+
+Les profils de dynamique se répartissent en deux grandes catégories. Ceux où la population de prédateurs survit et celle où elle disparaît. Il semble donc il y a voir deux équilibres stables dans ce système.  
+
+Pour de faibles temps t on observe des oscillations à la Lotka-Volterra.  
+
+Le profil de la dynamique de la population sans prédateurs est similaire au modèle avec seulement les proies et la migration assymétrique. On verra dans la suite que ces deux modèles sont complètement confondus (sans prédateurs). 
+
+## Plan de phase
+
+Pour tracer le plan de phase on pose toutes les variations égales à $0$ (situation d'équilibre) :   
+
+$$
+\left\{\begin{array}{l}
+0 = r_xx\left(1-\frac{x}{K_x}\right)+\beta\left(\frac{y}{\gamma_y}-\frac{x}{\gamma_x}\right)-p_xxz \\
+0 = r_yy\left(1-\frac{y}{K_y}\right)+\beta\left(\frac{x}{\gamma_x}-\frac{y}{\gamma_y}\right)-p_yyz \\
+0 = z\left(n_xx+n_yy - m\right)
+\end{array}\right.
+$$
+qui devient :  
+$$
+\left\{\begin{array}{l}
+z_1 = \frac{r_x}{p_x}\left(1-\frac{x}{K_x}\right)+\frac{\beta}{p_xx}\left(\frac{y}{\gamma_y}-\frac{x}{\gamma_x}\right)\\
+z_2 = \frac{r_y}{p_y}\left(1-\frac{y}{K_y}\right)+\frac{\beta}{p_yy}\left(\frac{x}{\gamma_x}-\frac{y}{\gamma_y}\right)\\
+z=0 \lor n_xx+n_yy=m
+\end{array}\right.
+$$  
+On se retrouve avec deux surfaces et deux plans dont les intersections seront les équilibres. Voyons ceci avec une animation :
+
+```{python}
+import IPython.display as display
+fig01 = """
+<iframe width="600" height="500" src="https://www.geogebra.org/classic/bw3wqnzg" style="border: 1px solid black"></iframe>
+"""
+display.HTML(fig01)
+```
+

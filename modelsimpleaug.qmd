@@ -1,3 +1,0 @@
----
-title: Modèle simplifié avec proies structurées et prédateurs
----

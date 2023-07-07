@@ -708,7 +708,7 @@ Donc si le taux de fuite est très mal géré l'augmentorium peut être négatif
 
 ## Conclusion
 
-Ce modèle considère uniquement la population de ravageurs. Or, la méthode de l'augmentorium repose énormément sur l'action des parasites on va donc considérer [maintenant](modelsimpleaug.qmd) un modèle qui prend en compte ces parasites.
+Ce modèle considère uniquement la population de ravageurs. Or, la méthode de l'augmentorium repose énormément sur l'action des parasites on va donc considérer [maintenant](modelaug.qmd) un modèle qui prend en compte ces parasites.
 
 ---
 

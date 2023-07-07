@@ -23,6 +23,7 @@ website:
 
 format:
   html:
+    scroll_to_top: true
     theme: pulse
     css: styles.css
     toc: true

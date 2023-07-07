@@ -13,11 +13,13 @@ Le rapport se structure ainsi :
 
 - Une partie [contexte](contexte.qmd) afin de poser un cadre biologique à notre modélisation.
 
-- Une partie sur l'équation logistique  à [deux structures](modelesansmigrationass.qmd) dont on fera une analyse rapide et qui servira à poser les bases sur la partie Python (qui sera moins détaillée dans la suite des parties).
+- Une partie sur l'équation logistique  à [deux structures](modelesansmigrationass.qmd) dont on fera une analyse rapide et qui servira à poser les bases sur la partie Python (qui sera moins détaillée dans la suite des parties)
 
 - Une partie sur l'équation logistique  à deux structures avec [migration assymétrique](modeleavecmigrationass.qmd) qui décrit plus précisément notre situation biologique.
 
-- Une partie sur un [modèle d'augmentorium complet](modelcomplaug.qmd) prenant en compte l'effet des prédateurs aux ravageurs.
+- Une partie sur un [modèle d'augmentorium simplifié](modelsimpleaug.qmd) partant sur le principe que l'effet des parasites est le même entre les deux structures.
+
+- Une partie sur un [modèle d'augmentorium complet](modelcomplaug.qmd) qui permet par exemple de considérer que l'effet des parasites est différent entre les structures.
 
 - Une partie sur le [modèle final](modfinal.qmd), qui permet de considérer que la mixité des parasites est imparfaite entre les deux structures.
 

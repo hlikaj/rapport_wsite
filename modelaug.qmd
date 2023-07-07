@@ -1,7 +1,6 @@
 ---
 title: Modèle avec proies structurées et prédateurs
 ---
-
 *Modules à importer :*
 
 ```{python}

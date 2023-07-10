@@ -41,7 +41,7 @@ avec:
 
 On a donc maintenant un espace structuré en deux zones, s'échangeant assymétriquement de la population (qui grandit logisitiquement), le tout controlé par une population de prédateurs ne chassant et ne se reproduisant pas de la même manière dans les deux zones. 
 
-### Nouvelles hypothèses : 
+### Nouvelles hypothèses 
 
 On pose $p_y > p_x$ et  $n_y>n_x$.
 

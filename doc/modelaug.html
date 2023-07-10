@@ -126,9 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Rapport de stage
-      </li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./modelaug.html">Modèle avec proies structurées et prédateurs</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -178,11 +176,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
 </li>
         <li class="sidebar-item">
- <span class="menu-text">modelsimpleaug.qmd</span>
-  </li>
-        <li class="sidebar-item">
- <span class="menu-text">modelcomplaug.qmd</span>
-  </li>
+  <div class="sidebar-item-container"> 
+  <a href="./modelaug.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Modèle avec proies structurées et prédateurs</span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modfinal.html" class="sidebar-item-text sidebar-link">
@@ -213,7 +211,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#définition-du-modèle" id="toc-définition-du-modèle" class="nav-link active" data-scroll-target="#définition-du-modèle">Définition du modèle</a>
   <ul class="collapse">
-  <li><a href="#nouvelles-hypothèses" id="toc-nouvelles-hypothèses" class="nav-link" data-scroll-target="#nouvelles-hypothèses">Nouvelles hypothèses :</a></li>
+  <li><a href="#nouvelles-hypothèses" id="toc-nouvelles-hypothèses" class="nav-link" data-scroll-target="#nouvelles-hypothèses">Nouvelles hypothèses</a></li>
   </ul></li>
   <li><a href="#dynamique-des-populations" id="toc-dynamique-des-populations" class="nav-link" data-scroll-target="#dynamique-des-populations">Dynamique des populations</a></li>
   <li><a href="#plan-de-phase" id="toc-plan-de-phase" class="nav-link" data-scroll-target="#plan-de-phase">Plan de phase</a></li>
@@ -275,7 +273,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 - <span class="math inline">m</span> la mortalité des prédateurs <span class="math inline">z</span>.</p>
 <p>On a donc maintenant un espace structuré en deux zones, s’échangeant assymétriquement de la population (qui grandit logisitiquement), le tout controlé par une population de prédateurs ne chassant et ne se reproduisant pas de la même manière dans les deux zones.</p>
 <section id="nouvelles-hypothèses" class="level3">
-<h3 class="anchored" data-anchor-id="nouvelles-hypothèses">Nouvelles hypothèses :</h3>
+<h3 class="anchored" data-anchor-id="nouvelles-hypothèses">Nouvelles hypothèses</h3>
 <p>On pose <span class="math inline">p_y &gt; p_x</span> et <span class="math inline">n_y&gt;n_x</span>.</p>
 <p>En effet l’augmentorium est un lieu propice au développement des individus que ce soit les parasites ou les ravageurs.<br>
 Ainsi la prédation exercé sur les ravageurs est plus forte dans l’augmentorium et les naissances des prédateurs sont plus fortes dans l’augmentorium que dans la culture.</p>
@@ -405,12 +403,12 @@ On se retrouve avec deux surfaces et deux plans dont les intersections seront le
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> IPython.display <span class="im">as</span> display</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fig01 <span class="op">=</span> <span class="st">"""</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;iframe width="600" height="500" src="https://www.geogebra.org/classic/bw3wqnzg" style="border: 1px solid black"&gt;&lt;/iframe&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;iframe width="700" height="550" src="https://www.geogebra.org/classic/bw3wqnzg" style="border: 1px solid black"&gt;&lt;/iframe&gt;</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>display.HTML(fig01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 
-<iframe width="600" height="500" src="https://www.geogebra.org/classic/bw3wqnzg" style="border: 1px solid black"></iframe>
+<iframe width="700" height="550" src="https://www.geogebra.org/classic/bw3wqnzg" style="border: 1px solid black"></iframe>
 </div>
 </div>
 
@@ -747,7 +745,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-43"><a href="#cb5-43" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-44"><a href="#cb5-44" aria-hidden="true" tabindex="-1"></a>On a donc maintenant un espace structuré en deux zones, s'échangeant assymétriquement de la population (qui grandit logisitiquement), le tout controlé par une population de prédateurs ne chassant et ne se reproduisant pas de la même manière dans les deux zones. </span>
 <span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="fu">### Nouvelles hypothèses : </span></span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true" tabindex="-1"></a><span class="fu">### Nouvelles hypothèses </span></span>
 <span id="cb5-47"><a href="#cb5-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-48"><a href="#cb5-48" aria-hidden="true" tabindex="-1"></a>On pose $p_y &gt; p_x$ et  $n_y&gt;n_x$.</span>
 <span id="cb5-49"><a href="#cb5-49" aria-hidden="true" tabindex="-1"></a></span>
@@ -877,7 +875,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-177"><a href="#cb5-177" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
 <span id="cb5-178"><a href="#cb5-178" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> IPython.display <span class="im">as</span> display</span>
 <span id="cb5-179"><a href="#cb5-179" aria-hidden="true" tabindex="-1"></a>fig01 <span class="op">=</span> <span class="st">"""</span></span>
-<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;iframe width="600" height="500" src="https://www.geogebra.org/classic/bw3wqnzg" style="border: 1px solid black"&gt;&lt;/iframe&gt;</span></span>
+<span id="cb5-180"><a href="#cb5-180" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;iframe width="700" height="550" src="https://www.geogebra.org/classic/bw3wqnzg" style="border: 1px solid black"&gt;&lt;/iframe&gt;</span></span>
 <span id="cb5-181"><a href="#cb5-181" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
 <span id="cb5-182"><a href="#cb5-182" aria-hidden="true" tabindex="-1"></a>display.HTML(fig01)</span>
 <span id="cb5-183"><a href="#cb5-183" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>

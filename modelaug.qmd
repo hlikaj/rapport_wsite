@@ -176,3 +176,9 @@ fig01 = """
 display.HTML(fig01)
 ```
 
+En vert on a l'intersection entre la surface définie par $\dot x =0$ et les plans $z=0$ et $n_xx+n_yy=m$.  
+En rouge on a l'intersection entre la surface définie par $\dot y =0$ et les plans $z=0$ et $n_xx+n_yy=m$.
+
+On a donc que l'intersetion des courbes vertes et rouges sont les équilibres. Il est facile de voir qu'il n'en existe que trois différents dont un seul correspond à la coexistence des trois populations.  
+
+Pour $z=0$ on observe le même plan de phase que précedemment, l'équilibre est donc stable. 

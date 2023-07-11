@@ -2,3 +2,15 @@
 title: Modèle proies-prédateurs structuré
 ---
 
+## Définition du modèle
+
+Dans ce modèle on va considérer 4 populations correspondant aux proies et aux prédateurs dans l'augmentorium et dans la culture.  
+Voici le modèle :
+
+$$ \left\{\begin{array}{l}
+\dot x = r_xx\left(1-\frac{x}{K_x}\right)+\beta\left(\frac{y}{\gamma_y}-\frac{x}{\gamma_x}\right)-p_xxz_1 \\
+\dot y = r_yy\left(1-\frac{y}{K_y}\right)+\beta\left(\frac{x}{\gamma_x}-\frac{y}{\gamma_y}\right)-p_yyz_2 \\
+\dot z_1 = z_1\left(n_xx - m_1 \right) + \delta\left(\frac{z_2}{\mu _2}-\frac{z_1}{\mu _1}\right) \\
+\dot z_2 = z_2\left(n_yy - m_2 \right) + \delta\left(\frac{z_1}{\mu _1}-\frac{z_2}{\mu _2}\right)
+\end{array}\right.
+$$ {#eq-model}

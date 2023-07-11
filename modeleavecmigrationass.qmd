@@ -24,13 +24,13 @@ $$
 \end{array}\right.
 $$ {#eq-modamig}
 
-avec :
-$x$ la population dans la culture,  
-$y$ la population dans l'augmentorium,  
-$r_x$ et $r_y$ le taux de croissance dans la culture et dans l'augmentorium,  
-$K_x$ et $K_y$ les capacités biotiques de la culture de de l'augmentorium,  
-$\beta$ la force de migration entre les structures,
-et enfin $\gamma_x,\gamma_y$ caractérisant l'assymétrie entre la migration.
+avec :  
+- $x$ la population dans la culture,  
+- $y$ la population dans l'augmentorium,  
+- $r_x$ et $r_y$ le taux de croissance dans la culture et dans l'augmentorium,  
+- $K_x$ et $K_y$ les capacités biotiques de la culture de de l'augmentorium,  
+- $\beta$ la force de migration entre les structures,
+- $\gamma_x$ et $\gamma_y$ caractérisant l'assymétrie entre la migration.
 
 ### Nouvelles hypothèses
 
@@ -246,7 +246,7 @@ Pour calculer l'équilibre on procède de la même manière que dans la premièr
 $$
 \frac{r_xr_y\gamma_x\gamma_y}{\beta}-\gamma_yr_y-\gamma_xr_x +\\ y\left[\frac{r_y\gamma_y}{K_y}-\frac{r_xr_y\gamma_x\gamma_y}{\beta K_y}+ \frac{r_xr_y^2\gamma_x^2\gamma_y}{\beta^2K_x}+\frac{r_x\gamma_x^2}{\gamma_yK_x}-\frac{2r_xr_y\gamma_x^2}{\beta K_x}   \right] +\\
 \frac{2r_yr_x\gamma_xy^2}{\beta K_xK_y}\left(1-\frac{r_y\gamma_y}{\beta}\right) + \frac{r_xr_y^2\gamma_x^2\gamma_yy^3}{\beta^2K_xK_y^2} = 0
-$$
+$${#eq-pol}
 
 Ce polynôme est résoluble par `numpy` similairement à la première partie :
 
@@ -393,9 +393,9 @@ Autrement dit, **si** $\frac{\gamma_y}{\gamma_x}>\frac{K_y}{K_x}$ alors on a tou
     Le point $D$ est défini par :
     $D=\left(\frac{r_yK_x(K_x+K_y)}{r_xK_y+r_yK_x} , \frac{r_xK_y(K_x+K_y)}{r_xKy+r_yK_x}\right)$  
   
-    Ainsi, quand $\beta$ augmente le point d'équilibre se déplace entre A et C. On voit donc que l'équilibre peut soit être tout le   temps déflationiste si C est avant A (point précédent) sur l'ellipse soit être constamment inflationiste si C est entre A et D soit être les deux   si C est après D.
+    Ainsi, quand $\beta$ augmente le point d'équilibre se déplace entre $A$ et $C$. On voit donc que l'équilibre peut soit être tout le temps déflationiste si $C$ est avant $A$ (point précédent) sur l'ellipse soit être constamment inflationiste si $C$ est entre $A$ et $D$ soit être les deux si $C$ est après $D$.
   
-    Voyons ceci en terme de coefficient de droite, on a alors les exactes mêmes conditions mais sur les pentes des droites passant  par ces points, qu'on peut calculer.
+    Voyons ceci en terme de coefficient de droite, on a alors les exactes mêmes conditions mais sur les pentes des droites passant par ces points, qu'on peut calculer.
     On a déja par le premier point la condition sur les paramètres pour avoir le système déflationiste.
   
 **Si** $\frac{\gamma_y}{\gamma_x} < \frac{r_xK_y}{r_yK_x}$ alors on a des équilibres à la fois inflationiste et déflationiste. En effet ceci traduit que C est après D, graphiquement on voit que l'équilibre est au début au dessus de la droite cyan et à la fin en dessous (après avoir passé D).   
@@ -409,7 +409,7 @@ Autrement dit, **si** $\frac{\gamma_y}{\gamma_x}>\frac{K_y}{K_x}$ alors on a tou
 ---
 
 Maintenant si on prend $r_x>r_y$ on a un autre cas qui apparaît.   
-En effet, et on le voit bien sur l'animation, on peut alors avoir C entre D et A avec C plus haut que A et ainsi on peut avoir un cas où le système est complètement inflationiste avec des valeurs de la somme des équilibres plus grands que C.
+En effet, et on le voit bien sur l'animation, on peut alors avoir $C$ entre $D$ et $A$ avec $C$ plus haut que $A$ et ainsi on peut avoir un cas où le système est complètement inflationiste avec des valeurs de la somme des équilibres plus grands que $C$.
 Cette situation ne nous intéresse que peu car ce n'est pas un cas qui est biologiquement réaliste.
 
 ##### Preuves: 
@@ -427,7 +427,7 @@ Cette situation ne nous intéresse que peu car ce n'est pas un cas qui est biolo
 - Point $D$:
   On fait la même que précédemment. La droite des capacités est définie par $y= -x +K_x+K_y$ qu'on remplace dans l'expression de l'ellipse pour trouver la première coordonnée (après simplifacation). La deuxième est déduite de la la première grâce à l'expression de la droite. 
   
-Pour les conditions sur les équilibres on se rappelle que la pente de  la parabole en $\beta = +\infty$ est définie par $\frac{\gamma_y}{\gamma_x}$.   
+Pour les conditions sur les équilibres on se rappelle que la pente de la parabole en $\beta = +\infty$ est définie par $\frac{\gamma_y}{\gamma_x}$.   
 Ainsi, quand cette pente est inférieure à celle de la droite passant par le point $D$ (qui a une pente de $\frac{r_xK_y}{r_yK_x}$) on a soit déflationiste soit inflationiste. 
 On a donc pour condition $\frac{\gamma_y}{\gamma_x} < \frac{r_xK_y}{r_yK_x}$.  
   

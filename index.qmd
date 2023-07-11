@@ -3,7 +3,7 @@ title: "Présentation"
 lang: fr
 ---
 
-Les prochaines pages regroupent mes travaux à l'[INRAE](https://www6.paca.inrae.fr/institut-sophia-agrobiotech/) Sophia-Antipolis lors de mon stage de L2 du 22/06/2023 au 21/07/23 sous la tutelle de Ludovic Mailleret dans l'équipe [M2P2](https://www6.paca.inrae.fr/institut-sophia-agrobiotech_eng/Research-teams/M2P2).  
+Les prochaines pages regroupent mes travaux à l'[INRAE](https://www6.paca.inrae.fr/institut-sophia-agrobiotech/) Sophia-Antipolis lors de mon stage de L2 du 22/05/2023 au 21/07/23 sous la tutelle de Ludovic Mailleret dans l'équipe [M2P2](https://www6.paca.inrae.fr/institut-sophia-agrobiotech_eng/Research-teams/M2P2).  
 
 Le but de ce stage était de modéliser un augmentorium pour la lutte biologique.  
 

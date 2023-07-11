@@ -270,11 +270,12 @@ Ainsi, il s’établit une migration assymétrique entre les deux structures qu�
 \dot y = r_yy(1-\frac{y}{K_y})+\beta\left(\frac{x}{\gamma_x}-\frac{y}{\gamma_y}\right)
 \end{array}\right.
 \tag{1}</span></span></p>
-<p>avec : <span class="math inline">x</span> la population dans la culture,<br>
-<span class="math inline">y</span> la population dans l’augmentorium,<br>
-<span class="math inline">r_x</span> et <span class="math inline">r_y</span> le taux de croissance dans la culture et dans l’augmentorium,<br>
-<span class="math inline">K_x</span> et <span class="math inline">K_y</span> les capacités biotiques de la culture de de l’augmentorium,<br>
-<span class="math inline">\beta</span> la force de migration entre les structures, et enfin <span class="math inline">\gamma_x,\gamma_y</span> caractérisant l’assymétrie entre la migration.</p>
+<p>avec :<br>
+- <span class="math inline">x</span> la population dans la culture,<br>
+- <span class="math inline">y</span> la population dans l’augmentorium,<br>
+- <span class="math inline">r_x</span> et <span class="math inline">r_y</span> le taux de croissance dans la culture et dans l’augmentorium,<br>
+- <span class="math inline">K_x</span> et <span class="math inline">K_y</span> les capacités biotiques de la culture de de l’augmentorium,<br>
+- <span class="math inline">\beta</span> la force de migration entre les structures, - <span class="math inline">\gamma_x</span> et <span class="math inline">\gamma_y</span> caractérisant l’assymétrie entre la migration.</p>
 <section id="nouvelles-hypothèses" class="level3">
 <h3 class="anchored" data-anchor-id="nouvelles-hypothèses">Nouvelles hypothèses</h3>
 <p>En plus des hypothèses faites <a href="./modelesansmigrationass.html">avant</a> on peut aussi dire que le taux de fuite des ravageurs (<span class="math inline">\frac{1}{\gamma_y}</span>) se doit d’être beaucoup plus petit que le taux de migration (<span class="math inline">\frac{1}{\gamma_x}</span>).<br>
@@ -487,7 +488,7 @@ En fonction des racines des paraboles on va avoir des plans de phases différent
 <span id="cb6-118"><a href="#cb6-118" aria-hidden="true" tabindex="-1"></a>ax4.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>&lt;matplotlib.legend.Legend at 0x7f909e47e170&gt;</code></pre>
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f932c4b2890&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="modeleavecmigrationass_files/figure-html/cell-6-output-2.png" width="740" height="396"></p>
@@ -496,10 +497,10 @@ En fonction des racines des paraboles on va avoir des plans de phases différent
 <p>En fonction des valeurs de <span class="math inline">\beta</span> on observe des profils différents de plan de phase. Pour mieux le visualiser on pourra utiliser l’animation <a href="https://www.geogebra.org/">Geogebra</a> mise à disposition à la fin de l’analyse.</p>
 <p>D’après le champ de vecteurs on voit clairement que l’équilibre en <span class="math inline">(0,0)</span> est instable et l’équilibre <span class="math inline">(x^*,y^*)</span>. est stable.</p>
 <p>Pour calculer l’équilibre on procède de la même manière que dans la première partie, c’est à dire le croisement des deux paraboles qui s’obtient en résolvant le polynôme suivant :</p>
-<p><span class="math display">
+<p><span id="eq-pol"><span class="math display">
 \frac{r_xr_y\gamma_x\gamma_y}{\beta}-\gamma_yr_y-\gamma_xr_x +\\ y\left[\frac{r_y\gamma_y}{K_y}-\frac{r_xr_y\gamma_x\gamma_y}{\beta K_y}+ \frac{r_xr_y^2\gamma_x^2\gamma_y}{\beta^2K_x}+\frac{r_x\gamma_x^2}{\gamma_yK_x}-\frac{2r_xr_y\gamma_x^2}{\beta K_x}   \right] +\\
 \frac{2r_yr_x\gamma_xy^2}{\beta K_xK_y}\left(1-\frac{r_y\gamma_y}{\beta}\right) + \frac{r_xr_y^2\gamma_x^2\gamma_yy^3}{\beta^2K_xK_y^2} = 0
-</span></p>
+\tag{3}</span></span></p>
 <p>Ce polynôme est résoluble par <code>numpy</code> similairement à la première partie :</p>
 <div class="cell" data-execution_count="6">
 <details>
@@ -618,7 +619,7 @@ Enfin on trace la parabole donnée par <span class="math inline">\dot x =0</span
 <span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a>ax2.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>&lt;matplotlib.legend.Legend at 0x7f909e355960&gt;</code></pre>
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f92eb95d960&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="modeleavecmigrationass_files/figure-html/cell-8-output-2.png" width="911" height="563"></p>
@@ -638,7 +639,7 @@ Enfin on trace la parabole donnée par <span class="math inline">\dot x =0</span
 <p>Le point <span class="math inline">C</span> est défini par : <span class="math inline">C=\left(\frac{\left(\frac{\gamma_x}{\gamma_y}\right)r_x + r_y}{\left(\frac{\gamma_x}{\gamma_y}\right)\frac{r_x}{K_x}+\left(\frac{\gamma_y}{\gamma_x}\right)\frac{r_y}{K_y}} , \frac{\left(\frac{\gamma_y}{\gamma_x}\right)r_y + r_x}{\left(\frac{\gamma_x}{\gamma_y}\right)\frac{r_x}{K_x}+\left(\frac{\gamma_y}{\gamma_x}\right)\frac{r_y}{K_y}} \right)</span></p>
 <p>Maintenant notons <span class="math inline">D</span> la valeur de l’intersection entre le droite des capacités et l’ellipse.</p>
 <p>Le point <span class="math inline">D</span> est défini par : <span class="math inline">D=\left(\frac{r_yK_x(K_x+K_y)}{r_xK_y+r_yK_x} , \frac{r_xK_y(K_x+K_y)}{r_xKy+r_yK_x}\right)</span></p>
-<p>Ainsi, quand <span class="math inline">\beta</span> augmente le point d’équilibre se déplace entre A et C. On voit donc que l’équilibre peut soit être tout le temps déflationiste si C est avant A (point précédent) sur l’ellipse soit être constamment inflationiste si C est entre A et D soit être les deux si C est après D.</p>
+<p>Ainsi, quand <span class="math inline">\beta</span> augmente le point d’équilibre se déplace entre <span class="math inline">A</span> et <span class="math inline">C</span>. On voit donc que l’équilibre peut soit être tout le temps déflationiste si <span class="math inline">C</span> est avant <span class="math inline">A</span> (point précédent) sur l’ellipse soit être constamment inflationiste si <span class="math inline">C</span> est entre <span class="math inline">A</span> et <span class="math inline">D</span> soit être les deux si <span class="math inline">C</span> est après <span class="math inline">D</span>.</p>
 <p>Voyons ceci en terme de coefficient de droite, on a alors les exactes mêmes conditions mais sur les pentes des droites passant par ces points, qu’on peut calculer. On a déja par le premier point la condition sur les paramètres pour avoir le système déflationiste.</p></li>
 </ul>
 <p><strong>Si</strong> <span class="math inline">\frac{\gamma_y}{\gamma_x} &lt; \frac{r_xK_y}{r_yK_x}</span> alors on a des équilibres à la fois inflationiste et déflationiste. En effet ceci traduit que C est après D, graphiquement on voit que l’équilibre est au début au dessus de la droite cyan et à la fin en dessous (après avoir passé D).</p>
@@ -649,7 +650,7 @@ Enfin on trace la parabole donnée par <span class="math inline">\dot x =0</span
 </ul>
 <hr>
 <p>Maintenant si on prend <span class="math inline">r_x&gt;r_y</span> on a un autre cas qui apparaît.<br>
-En effet, et on le voit bien sur l’animation, on peut alors avoir C entre D et A avec C plus haut que A et ainsi on peut avoir un cas où le système est complètement inflationiste avec des valeurs de la somme des équilibres plus grands que C. Cette situation ne nous intéresse que peu car ce n’est pas un cas qui est biologiquement réaliste.</p>
+En effet, et on le voit bien sur l’animation, on peut alors avoir <span class="math inline">C</span> entre <span class="math inline">D</span> et <span class="math inline">A</span> avec <span class="math inline">C</span> plus haut que <span class="math inline">A</span> et ainsi on peut avoir un cas où le système est complètement inflationiste avec des valeurs de la somme des équilibres plus grands que <span class="math inline">C</span>. Cette situation ne nous intéresse que peu car ce n’est pas un cas qui est biologiquement réaliste.</p>
 <section id="preuves" class="level5">
 <h5 class="anchored" data-anchor-id="preuves">Preuves:</h5>
 <ul>
@@ -869,7 +870,7 @@ On a donc en permanence dans les cultures la condition <span class="math inline"
 <span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>ax1.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>&lt;matplotlib.legend.Legend at 0x7f9097a1acb0&gt;</code></pre>
+<pre><code>&lt;matplotlib.legend.Legend at 0x7f92e5012cb0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="modeleavecmigrationass_files/figure-html/cell-13-output-2.png" width="736" height="372"></p>
@@ -1272,13 +1273,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-26"><a href="#cb20-26" aria-hidden="true" tabindex="-1"></a>\end{array}\right.</span>
 <span id="cb20-27"><a href="#cb20-27" aria-hidden="true" tabindex="-1"></a>$$ {#eq-modamig}</span>
 <span id="cb20-28"><a href="#cb20-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>avec :</span>
-<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a>$x$ la population dans la culture,  </span>
-<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a>$y$ la population dans l'augmentorium,  </span>
-<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a>$r_x$ et $r_y$ le taux de croissance dans la culture et dans l'augmentorium,  </span>
-<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a>$K_x$ et $K_y$ les capacités biotiques de la culture de de l'augmentorium,  </span>
-<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a>$\beta$ la force de migration entre les structures,</span>
-<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a>et enfin $\gamma_x,\gamma_y$ caractérisant l'assymétrie entre la migration.</span>
+<span id="cb20-29"><a href="#cb20-29" aria-hidden="true" tabindex="-1"></a>avec :  </span>
+<span id="cb20-30"><a href="#cb20-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$x$ la population dans la culture,  </span>
+<span id="cb20-31"><a href="#cb20-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$y$ la population dans l'augmentorium,  </span>
+<span id="cb20-32"><a href="#cb20-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$r_x$ et $r_y$ le taux de croissance dans la culture et dans l'augmentorium,  </span>
+<span id="cb20-33"><a href="#cb20-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$K_x$ et $K_y$ les capacités biotiques de la culture de de l'augmentorium,  </span>
+<span id="cb20-34"><a href="#cb20-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\beta$ la force de migration entre les structures,</span>
+<span id="cb20-35"><a href="#cb20-35" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$\gamma_x$ et $\gamma_y$ caractérisant l'assymétrie entre la migration.</span>
 <span id="cb20-36"><a href="#cb20-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-37"><a href="#cb20-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### Nouvelles hypothèses</span></span>
 <span id="cb20-38"><a href="#cb20-38" aria-hidden="true" tabindex="-1"></a></span>
@@ -1494,7 +1495,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-256"><a href="#cb20-256" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb20-257"><a href="#cb20-257" aria-hidden="true" tabindex="-1"></a>\frac{r_xr_y\gamma_x\gamma_y}{\beta}-\gamma_yr_y-\gamma_xr_x +<span class="sc">\\</span> y\left<span class="co">[</span><span class="ot">\frac{r_y\gamma_y}{K_y}-\frac{r_xr_y\gamma_x\gamma_y}{\beta K_y}+ \frac{r_xr_y^2\gamma_x^2\gamma_y}{\beta^2K_x}+\frac{r_x\gamma_x^2}{\gamma_yK_x}-\frac{2r_xr_y\gamma_x^2}{\beta K_x}   \right</span><span class="co">]</span> +<span class="sc">\\</span></span>
 <span id="cb20-258"><a href="#cb20-258" aria-hidden="true" tabindex="-1"></a>\frac{2r_yr_x\gamma_xy^2}{\beta K_xK_y}\left(1-\frac{r_y\gamma_y}{\beta}\right) + \frac{r_xr_y^2\gamma_x^2\gamma_yy^3}{\beta^2K_xK_y^2} = 0</span>
-<span id="cb20-259"><a href="#cb20-259" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb20-259"><a href="#cb20-259" aria-hidden="true" tabindex="-1"></a>$${#eq-pol}</span>
 <span id="cb20-260"><a href="#cb20-260" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-261"><a href="#cb20-261" aria-hidden="true" tabindex="-1"></a>Ce polynôme est résoluble par <span class="in">`numpy`</span> similairement à la première partie :</span>
 <span id="cb20-262"><a href="#cb20-262" aria-hidden="true" tabindex="-1"></a></span>
@@ -1641,9 +1642,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-407"><a href="#cb20-407" aria-hidden="true" tabindex="-1"></a>    Le point $D$ est défini par :</span>
 <span id="cb20-408"><a href="#cb20-408" aria-hidden="true" tabindex="-1"></a>    $D=\left(\frac{r_yK_x(K_x+K_y)}{r_xK_y+r_yK_x} , \frac{r_xK_y(K_x+K_y)}{r_xKy+r_yK_x}\right)$  </span>
 <span id="cb20-409"><a href="#cb20-409" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-410"><a href="#cb20-410" aria-hidden="true" tabindex="-1"></a>    Ainsi, quand $\beta$ augmente le point d'équilibre se déplace entre A et C. On voit donc que l'équilibre peut soit être tout le   temps déflationiste si C est avant A (point précédent) sur l'ellipse soit être constamment inflationiste si C est entre A et D soit être les deux   si C est après D.</span>
+<span id="cb20-410"><a href="#cb20-410" aria-hidden="true" tabindex="-1"></a>    Ainsi, quand $\beta$ augmente le point d'équilibre se déplace entre $A$ et $C$. On voit donc que l'équilibre peut soit être tout le temps déflationiste si $C$ est avant $A$ (point précédent) sur l'ellipse soit être constamment inflationiste si $C$ est entre $A$ et $D$ soit être les deux si $C$ est après $D$.</span>
 <span id="cb20-411"><a href="#cb20-411" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-412"><a href="#cb20-412" aria-hidden="true" tabindex="-1"></a>    Voyons ceci en terme de coefficient de droite, on a alors les exactes mêmes conditions mais sur les pentes des droites passant  par ces points, qu'on peut calculer.</span>
+<span id="cb20-412"><a href="#cb20-412" aria-hidden="true" tabindex="-1"></a>    Voyons ceci en terme de coefficient de droite, on a alors les exactes mêmes conditions mais sur les pentes des droites passant par ces points, qu'on peut calculer.</span>
 <span id="cb20-413"><a href="#cb20-413" aria-hidden="true" tabindex="-1"></a>    On a déja par le premier point la condition sur les paramètres pour avoir le système déflationiste.</span>
 <span id="cb20-414"><a href="#cb20-414" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb20-415"><a href="#cb20-415" aria-hidden="true" tabindex="-1"></a>**Si** $\frac{\gamma_y}{\gamma_x} &lt; \frac{r_xK_y}{r_yK_x}$ alors on a des équilibres à la fois inflationiste et déflationiste. En effet ceci traduit que C est après D, graphiquement on voit que l'équilibre est au début au dessus de la droite cyan et à la fin en dessous (après avoir passé D).   </span>
@@ -1657,7 +1658,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-423"><a href="#cb20-423" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb20-424"><a href="#cb20-424" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-425"><a href="#cb20-425" aria-hidden="true" tabindex="-1"></a>Maintenant si on prend $r_x&gt;r_y$ on a un autre cas qui apparaît.   </span>
-<span id="cb20-426"><a href="#cb20-426" aria-hidden="true" tabindex="-1"></a>En effet, et on le voit bien sur l'animation, on peut alors avoir C entre D et A avec C plus haut que A et ainsi on peut avoir un cas où le système est complètement inflationiste avec des valeurs de la somme des équilibres plus grands que C.</span>
+<span id="cb20-426"><a href="#cb20-426" aria-hidden="true" tabindex="-1"></a>En effet, et on le voit bien sur l'animation, on peut alors avoir $C$ entre $D$ et $A$ avec $C$ plus haut que $A$ et ainsi on peut avoir un cas où le système est complètement inflationiste avec des valeurs de la somme des équilibres plus grands que $C$.</span>
 <span id="cb20-427"><a href="#cb20-427" aria-hidden="true" tabindex="-1"></a>Cette situation ne nous intéresse que peu car ce n'est pas un cas qui est biologiquement réaliste.</span>
 <span id="cb20-428"><a href="#cb20-428" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-429"><a href="#cb20-429" aria-hidden="true" tabindex="-1"></a><span class="fu">##### Preuves: </span></span>
@@ -1675,7 +1676,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb20-441"><a href="#cb20-441" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Point $D$:</span>
 <span id="cb20-442"><a href="#cb20-442" aria-hidden="true" tabindex="-1"></a>  On fait la même que précédemment. La droite des capacités est définie par $y= -x +K_x+K_y$ qu'on remplace dans l'expression de l'ellipse pour trouver la première coordonnée (après simplifacation). La deuxième est déduite de la la première grâce à l'expression de la droite. </span>
 <span id="cb20-443"><a href="#cb20-443" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb20-444"><a href="#cb20-444" aria-hidden="true" tabindex="-1"></a>Pour les conditions sur les équilibres on se rappelle que la pente de  la parabole en $\beta = +\infty$ est définie par $\frac{\gamma_y}{\gamma_x}$.   </span>
+<span id="cb20-444"><a href="#cb20-444" aria-hidden="true" tabindex="-1"></a>Pour les conditions sur les équilibres on se rappelle que la pente de la parabole en $\beta = +\infty$ est définie par $\frac{\gamma_y}{\gamma_x}$.   </span>
 <span id="cb20-445"><a href="#cb20-445" aria-hidden="true" tabindex="-1"></a>Ainsi, quand cette pente est inférieure à celle de la droite passant par le point $D$ (qui a une pente de $\frac{r_xK_y}{r_yK_x}$) on a soit déflationiste soit inflationiste. </span>
 <span id="cb20-446"><a href="#cb20-446" aria-hidden="true" tabindex="-1"></a>On a donc pour condition $\frac{\gamma_y}{\gamma_x} &lt; \frac{r_xK_y}{r_yK_x}$.  </span>
 <span id="cb20-447"><a href="#cb20-447" aria-hidden="true" tabindex="-1"></a>  </span>

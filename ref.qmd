@@ -17,7 +17,7 @@ Voici la liste des références qui m'ont été utiles lors de mon travail :
 
     - Arditi, R., Lobry, C., Sari, T., 2018. Asymmetric dispersal in the multi-patch logistic equation. [Theor. Popul. Biol. 120, 11–15](https://hal.sorbonne-universite.fr/hal-01688305/document).
 
-    - Daozhou Gao, Yuan Lou, 2022, Total biomass of a single population in two-patch environments, [Theor. Popul. Biol. 146, 1-14](https://doi.org/10.1016/j.tpb.2022.05.003).
+    - Daozhou Gao, Yuan Lou, 2022, Total biomass of a single population in two-patch environments. [Theor. Popul. Biol. 146, 1-14](https://doi.org/10.1016/j.tpb.2022.05.003).
 
     - Freedman, H.I., Waltman, P., 1977. Mathematical models of population interactions with dispersal.[SIAM J. Appl. Math. 32 (3), 631–648](https://www.jstor.org/stable/2100350).
 

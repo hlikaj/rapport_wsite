@@ -25,11 +25,11 @@ $$
 $$ {#eq-modsmig}
 
 avec :   
-$x$ la population dans la culture,  
-$y$ la population dans l'augmentorium,  
-$r_x$ et $r_y$ le taux de croissance dans la culture et dans l'augmentorium,  
-$K_x$ et $K_y$ les capacités biotiques de la culture de de l'augmentorium,  
-$\beta$ la force de migration entre les structures. 
+- $x$ la population dans la culture,  
+- $y$ la population dans l'augmentorium,  
+- $r_x$ et $r_y$ le taux de croissance dans la culture et dans l'augmentorium,  
+- $K_x$ et $K_y$ les capacités biotiques de la culture de de l'augmentorium,  
+- $\beta$ la force de migration entre les structures. 
 
 ### Hypothèses propre à l'augmentorium
 
@@ -85,7 +85,7 @@ fig.suptitle('Dynamique des ravageurs dans le temps')
 ax.plot(ti,s[:,0],color='C1',label='culture')
 ax.plot(ti,s[:,1],color='C0',label='augmentorium')
 
-ax.grid()  #on ajoute la grille
+ax.grid() #on ajoute la grille
 ax.legend() #on ajoute la légende
 ax.set_xlabel('Temps, t') 
 ax.set_ylabel('Densité de pop.')
@@ -114,7 +114,7 @@ $${#eq-pdpsmig}
 
 Ainsi, les deux isoclines correspondent à des paraboles. Celles-ci se croisent trivialement en $(0,0)$ et dans le quadrant positif en $(x^*,y^*)$. 
 
-Pour calculer $(x^*,y^*)$ on va utiliser l'expression des paraboles en [2](#eq-pdpsmig), ce qui donne, après simplifications, un polynôme de degré 4 : 
+Pour calculer $(x^*,y^*)$ on va utiliser l'expression des paraboles en ([-@eq-pdpsmig]), ce qui donne, après simplifications, un polynôme de degré 4 : 
 
 $$ 
 y\left(r_xr_y\left[\frac{1}{\beta}\left(\frac{1}{\beta}-\frac{1}{r_x}-\frac{1}{r_y}\right)+\frac{1}{r_xr_y}\right]-1\right)+\\\\
@@ -132,12 +132,11 @@ y=np.polynomial.Polynomial([0,1])
 pol = y*(rx*ry*((1/b)*((1/b)-(1/rx)-(1/ry))+1/(rx*ry))-1)+(y**2)*((rx*ry)/b)*((1/Ky)*((1/rx)-(1/b))+(1/Kx)*((1/ry)-(2/b)+(ry/(b**2))))+2*(y**3)*((rx*ry)/((b**2)*Kx*Ky))*(1-(ry/b))+(y**4)*((rx*(ry**2))/((b**3)*(Ky**2)*Kx))
 
 ## Solution qu'on obtient avec un masque booléen:
-sol = pol.roots()[(np.isreal(pol.roots())) 
-            *(pol.roots() > 0)]
+sol = pol.roots()[(np.isreal(pol.roots()))*(pol.roots() > 0)]
 yeq=sol[0].real
 ```
 
-On déduit $x^*$ via sa définition par le [système](eq-pdpsmig):
+On déduit $x^*$ via sa définition par le [système](#eq-pdpsmig):
 
 ```{python}
 xeq=(ry*yeq*((1/ry)-(1/b)+(yeq/(b*Ky)))).real
@@ -199,7 +198,7 @@ $$
 \ r_x-\frac{2r_xx}{K_x}-\beta & \beta \\
 \ \beta & r_y -\frac{2r_yy}{K_y}-\beta
 \end{array}\right]
-$$
+$${#eq-jacob}
 
 et donc pour $(0,0)$:  
 
@@ -245,7 +244,7 @@ $$
 x^*+y^* = K_x + K_y + (K_x-K_y)\frac{r_xK_y-r_yK_x}{r_xK_y+r_yK_x}
 $${#eq-inf}
 
-Ce qui montre que en général on a pas $x^*+y^* = K_x + K_x$. De plus par [4](#eq-inf), si $K_y<K_x$ (culture remontante) et si $r_xK_y<r_yK_x$ alors $x^*+y^* < K_x+K_y$ ce qui nous intéresse particulièrement pour la lutte biologique (et inversement pour les cultures non remontantes).  
+Ce qui montre que en général on a pas $x^*+y^* = K_x + K_x$. De plus par ([-@eq-inf]), si $K_y<K_x$ (culture remontante) et si $r_xK_y<r_yK_x$ alors $x^*+y^* < K_x+K_y$ ce qui nous intéresse particulièrement pour la lutte biologique (et inversement pour les cultures non remontantes).  
 
 De plus, en faisant $x^* + y^*$ on a (en abandonnant les étoiles par commodité):
 $$ 
@@ -310,13 +309,13 @@ Dans le cas où $(x_0=K_x , y_0=K_y)$ on a alors $y=-\frac{r_x}{r_y}\left(x-K_x\
 
 Pour que le système soit déflationiste on veut que cette équation ait une pente de $-1$ afin d'avoir l'équation de la droite $K_x+K_y$ et garantir la déflation. Ainsi on veut que $r_x=r_y$. 
 
-Donc : si $r_x=r_y$ on a [1)](#eq-modsmig) qui est déflationiste quelque soit le taux de migration.
+Donc : si $r_x=r_y$ on a ([-@eq-modsmig]) qui est déflationiste quelque soit le taux de migration.
 
 #### b) Deuxième condition à un système déflationiste
 
 Si on trace la parabole définie par $\dot x = 0$ quand $\beta \to \infty$ alors on peut prédire quand le système est déflationiste. 
 En effet, il faut alors que la pente de la parabole en l'infini soit plus grande que la pente de la parabole en $\beta = 0$.
-Par définition de [2)](#eq-pdpsmig) on a quand $\beta \to \infty$,     $y^* = x^*$. La pente quand $\beta = 0$ est $\frac{K_y}{K_x}$. 
+Par définition de ([-@eq-pdpsmig]) on a quand $\beta \to \infty$, $y^* = x^*$. La pente quand $\beta = 0$ est $\frac{K_y}{K_x}$. 
 
 Si on a $r_x < r_y$ et $K_x>K_y$ on aura tout le temps un modèle déflationiste pour les ravageurs.
 
@@ -337,7 +336,6 @@ fig01 = """
 """
 display.HTML(fig01)
 ```
-  
     
  &nbsp;     
 

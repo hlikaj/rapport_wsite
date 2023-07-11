@@ -43,7 +43,7 @@ On a donc maintenant un espace structuré en deux zones, s'échangeant assymétr
 
 ### Nouvelles hypothèses 
 
-On pose $p_y > p_x$ et  $n_y>n_x$.
+On pose $p_y > p_x$ et $n_y>n_x$.
 
 En effet l'augmentorium est un lieu propice au développement des individus que ce soit les parasites ou les ravageurs.   
 Ainsi la prédation exercé sur les ravageurs est plus forte dans l'augmentorium et les naissances des prédateurs sont plus fortes dans l'augmentorium que dans la culture.
@@ -153,19 +153,21 @@ Pour tracer le plan de phase on pose toutes les variations égales à $0$ (situa
 
 $$
 \left\{\begin{array}{l}
-0 = r_xx\left(1-\frac{x}{K_x}\right)+\beta\left(\frac{y}{\gamma_y}-\frac{x}{\gamma_x}\right)-p_xxz \\
-0 = r_yy\left(1-\frac{y}{K_y}\right)+\beta\left(\frac{x}{\gamma_x}-\frac{y}{\gamma_y}\right)-p_yyz \\
-0 = z\left(n_xx+n_yy - m\right)
+0 = r_xx^*\left(1-\frac{x^*}{K_x}\right)+\beta\left(\frac{y^*}{\gamma_y}-\frac{x^*}{\gamma_x}\right)-p_xx^*z^* \\
+0 = r_yy^*\left(1-\frac{y^*}{K_y}\right)+\beta\left(\frac{x^*}{\gamma_x}-\frac{y^*}{\gamma_y}\right)-p_yy^*z^* \\
+0 = z^*\left(n_xx^*+n_yy^* - m\right)
 \end{array}\right.
 $${#eq-pdpaug}
+
 qui devient :  
 $$
 \left\{\begin{array}{l}
-z_1 = \frac{r_x}{p_x}\left(1-\frac{x}{K_x}\right)+\frac{\beta}{p_xx}\left(\frac{y}{\gamma_y}-\frac{x}{\gamma_x}\right)\\
-z_2 = \frac{r_y}{p_y}\left(1-\frac{y}{K_y}\right)+\frac{\beta}{p_yy}\left(\frac{x}{\gamma_x}-\frac{y}{\gamma_y}\right)\\
-z=0 \lor n_xx+n_yy=m
+z^* = \frac{r_x}{p_x}\left(1-\frac{x^*}{K_x}\right)+\frac{\beta}{p_xx^*}\left(\frac{y^*}{\gamma_y}-\frac{x^*}{\gamma_x}\right)\\
+z^* = \frac{r_y}{p_y}\left(1-\frac{y^*}{K_y}\right)+\frac{\beta}{p_yy^*}\left(\frac{x^*}{\gamma_x}-\frac{y^*}{\gamma_y}\right)\\
+z^*=0 \lor n_xx^*+n_yy^*=m
 \end{array}\right.
-$$  
+$${#eq-pdpaug2}  
+
 On se retrouve avec deux surfaces et deux plans dont les intersections seront les équilibres. Voyons ceci avec une animation :
 
 ```{python}
@@ -192,7 +194,7 @@ fig2.show()
 
 ### Calcul des équilibres 
 
-Si $z=0$ alors $(1)$ devient:  
+Si $z=0$ alors ([-@eq-modelau]) devient:  
 $$
 \left\{\begin{array}{l}
 \dot x = r_xx(1-\frac{x}{K_x})+\beta\left(\frac{y}{\gamma_y}-\frac{x}{\gamma_x}\right)\\
@@ -208,14 +210,14 @@ Nous allons calculer pour différentes valeurs de $\beta$ les valeurs de l'équi
 
 #### Lorsque $\beta = 0$
 
-$(2)$ devient :
+([-@eq-pdpaug]) devient :
 $$
 \left\{\begin{array}{l}
 0 = r_xx^*\left(1-\frac{x^*}{K_x}\right)-p_xx^*z^* \\
 0 = r_yy^*\left(1-\frac{y^*}{K_y}\right)-p_yy^*z^* \\
 0 = z^*\left(n_xx^*+n_yy^* - m\right)
 \end{array}\right.
-$$
+$${#eq-pdpb0}
 $$
 \Leftrightarrow
 $$
@@ -234,13 +236,14 @@ et donc :
 $$
 x^*=\frac{K_x\left(r_yp_xm+r_xn_yp_yK_y-r_yn_yp_xK_y\right)}{r_xn_yp_yK_y+r_yn_xp_xK_x}
 $$
-On déduit $y^*$ et $z^*$ avec leur définition d'après $(4)$ :
+
+On déduit $y^*$ et $z^*$ avec leur définition d'après ([-@eq-eqpdp]):
 $$
 \left\{\begin{array}{l}
-x^* =  \frac{K_x\left(r_yp_xm+r_xn_yp_yK_y-r_yn_yp_xK_y\right)}{r_xn_yp_yK_y+r_yn_xp_xK_x}\\
-y^* = \frac{K_y\left(r_yn_xp_xK_x+r_xp_ym - r_xn_xp_yK_x\right)}{r_xn_yp_yK_y+r_yn_xp_xK_x}\\
+x^* =  \frac{K_x\left(r_yp_xm+r_xn_yp_yK_y-r_yn_yp_xK_y\right)}{r_xn_yp_yK_y+r_yn_xp_xK_x} \\
+y^* = \frac{K_y\left(r_yn_xp_xK_x+r_xp_ym - r_xn_xp_yK_x\right)}{r_xn_yp_yK_y+r_yn_xp_xK_x} \\
 z^* = r_xr_y\left(\frac{n_xK_x+n_yK_y-m}{r_xn_yp_yK_y+r_yn_xp_xK_x}\right)
-\end{array}\right. \\
+\end{array}\right.
 $${#eq-egaz}
 
 ::: {.callout-warning}
@@ -252,15 +255,15 @@ Pour que ces équilibres soient positifs il faut que :
 
 $$
 -\frac{mr_y}{K_yn_yp_y} < \frac{r_x}{p_x} - \frac{r_y}{p_y} < \frac{mr_x}{K_xn_xp_x}
-$$  
+$${#eq-app1}
 
 et
 
 $$
 n_xK_x+n_yK_y > m 
-$${#eq-app1}
+$${#eq-app2}
 
-On verra dans la suite que la condition $(6)$ est l'invasion des parasites.
+On verra dans la suite que la condition ([-@eq-app2]) est l'invasion des parasites.
 
 #### Lorsque $\beta \ne 0$ et petit
 
@@ -292,7 +295,7 @@ or, d'après la formule de Taylor on a à l'ordre 1 en dimension 4 on a:
 $$
 \mathbb{F\left(\mathcal{x}^*(\beta) , \mathcal{y}^*(\beta) , \mathcal{z}^*(\beta) , \beta\right)}=\mathbb{F\left(\mathcal{x}^*(\mathcal{0}) , \mathcal{y}^*(\mathcal{0}) , \mathcal{z}^*(\mathcal{0}) , \mathcal{0}\right)} + \\ 
 \frac{\partial \mathbb{F}}{\partial \beta}\left(\mathcal{x}^*(\mathcal{0}) , \mathcal{y}^*(\mathcal{0}) , \mathcal{z}^*(\mathcal{0}) , \mathcal{0}\right)\beta + \mathbb{J}\tiny{\mathbb{F\left(\mathcal{x}^*(\mathcal{0}) , \mathcal{y}^*(\mathcal{0}) , \mathcal{z}^*(\mathcal{0}) ,\mathcal{0}\right)}}\small\begin{pmatrix} \mathcal{x}^*(\beta) - \mathcal{x}^*(\mathcal{0}) \\ \mathcal{y}^*(\beta) - \mathcal{y}^*(\mathcal{0}) \\ \mathcal{z}^*(\beta) - \mathcal{z}^*(\mathcal{0}) \end{pmatrix} + o(\beta)
-$$
+$${#eq-taylor}
 $$
 \Leftrightarrow
 $$
@@ -317,7 +320,7 @@ $$
 La jacobienne est donc bien inversible et on peut la calculer (méthode des cofacteurs) ce qui donne : 
 $$
 \mathbb{J^{\mathcal{-1}}}\tiny{\mathbb{F\left(\mathcal{x}^*(\mathcal{0}) , \mathcal{y}^*(\mathcal{0}) , \mathcal{z}^*(\mathcal{0}) ,\mathcal{0}\right)}} =\small \frac{1}{\frac{r_xp_yn_y}{K_x}+\frac{r_yp_xn_x}{K_y}} \begin{pmatrix} -\frac{p_yn_y}{x^*(0)} & \frac{p_xn_y}{y^*(0)} & \frac{r_yp_x}{z^*(0)K_y} \\ \frac{p_yn_x}{x^*(0)} & -\frac{p_xn_x}{y^*(0)} & \frac{r_xp_y}{z^*(0)K_x} \\ -\frac{r_yn_x}{x^*(0)K_y} & -\frac{r_xn_y}{y^*(0)K_x}& -\frac{r_xr_y}{z^*(0)K_xK_y} \end{pmatrix}
-$$
+$${#eq-jacinv}
 
 En mettant en œuvre le calcul on trouve :
 $$
@@ -326,18 +329,18 @@ x^*(\beta) = x^*(0) - \frac{\beta n_yK_xK_y\left(\frac{y^*(0)}{\gamma_y}-\frac{x
 y^*(\beta) = y^*(0) - \frac{\beta n_xK_xK_y\left(\frac{y^*(0)}{\gamma_y}-\frac{x^*(0)}{\gamma_x}\right)\left(\frac{p_y}{x^*(0)}+\frac{p_x}{y^*(0)}\right)}{K_yr_xp_yn_y + K_xr_yp_xn_x} + o(\beta)\\
 z^*(\beta) = z^*(0) - \frac{\beta K_xK_y\left(\frac{y^*(0)}{\gamma_y}-\frac{x^*(0)}{\gamma_x}\right)\left(\frac{r_xn-y}{y^*(0)K_x}-\frac{r_yn_x}{x^*(0)K_y}\right)}{K_yr_xp_yn_y + K_xr_yp_xn_x} + o(\beta)
 \end{array}\right.\\
-$$
+$${#eq-equbpetit}
 
 #### Lorsque $\beta$ est quelconque 
 
-$(2)$ donne, en exprimant $y^*$ en fonction de $x^*$:
+([-@eq-pdpaug]) donne, en exprimant $y^*$ en fonction de $x^*$:
 $$
 \left\{\begin{array}{l}
 z^* =  \frac{r_x}{p_x}\left(1-\frac{x^*}{K_x}\right) + \frac{\beta}{p_x}\left(\frac{m}{n_y\gamma_y x^*}-\frac{n_x}{n_y\gamma_y}-\frac{1}{\gamma_x}\right)   \\
 z^* = \frac{r_y}{p_y}\left(1-\frac{m-n_xx^*}{n_yK_y}\right) + \frac{\beta n_y}{p_y}\left(\frac{x^*}{\gamma_x\left(m-n_xx^*\right)}-\frac{1}{n_y\gamma_y}\right) \\
 y^* =\frac{1}{n_y}\left(m- n_xx^*\right)
 \end{array}\right. 
-$$
+$${#eq-systpdp}
 
 On trouve $x^*$ en faisant l'intersection entre les deux premières équations, on trouve $y^*$ avec la troisième équation et $z^*$ avec la première équation.
 
@@ -392,9 +395,10 @@ Il est intéressant de considérer la somme des équilibre des proies en fonctio
 
 ### Prédation et naissances égales
 
-Dans ce cas $(1)$ devient : 
+Dans ce cas ([-@eq-eq-modelau]) devient : 
 
-$$ \left\{\begin{array}{l}
+$$ 
+\left\{\begin{array}{l}
 \dot x = r_xx\left(1-\frac{x}{K_x}\right)+\beta\left(\frac{y}{\gamma_y}-\frac{x}{\gamma_x}\right)-pxz \\
 \dot y = r_yy\left(1-\frac{y}{K_y}\right)+\beta\left(\frac{x}{\gamma_x}-\frac{y}{\gamma_y}\right)-pyz \\
 \dot z = z\left(n\left(x+y\right) - m\right)
@@ -405,24 +409,25 @@ $$ {#eq-modelaueg}
 
 A l'équilibre, on a : 
 
-$$ \left\{\begin{array}{l}
+$$ 
+\left\{\begin{array}{l}
 0 = r_xx^*\left(1-\frac{x^*}{K_x}\right)+\beta\left(\frac{y^*}{\gamma_y}-\frac{x^*}{\gamma_x}\right)-px^*z^* \\
 0 = r_yy^*\left(1-\frac{y^*}{K_y}\right)+\beta\left(\frac{x^*}{\gamma_x}-\frac{y^*}{\gamma_y}\right)-py^*z^* \\
 x^*+y^* = \frac{m}{n}
 \end{array}\right.
-$$ 
+$${#eq-modelsat}
 
 On voit, avec la troisième équation du système, que la somme des équilibres des proies est toujours égale à $\frac{m}{n}$ quelque soit $\beta$ du moment que les prédateurs sont présents. 
 
 Intuitivement on considère que la présence d'un équilibre des prédateurs positifs (invasion des prédateurs) est soumise à la condition que pour une population aussi petite soit elle de prédateurs ($\beta \to 0$) et pour les proies à l'équilibre on ait un taux de croissance positif pour les prédateurs.  
 Mathématiquement cette assomption est équivalente à la condition, si on note $(x_0^*(\beta),y^*_0(\beta))$ l'équilibre sans prédateurs pour un taux $\beta$, que $x_0^* + y_0^* > \frac{m}{n} \Leftrightarrow \exists z^* \ne 0$. 
 
-Pour $\beta = 0$ on a que s'il existe un équilibre des prédateurs alors on a $K_x+K_y>\frac{m}{n}$ par l'égalité $(5)$. Ceci est donc la condition d'invasion des prédateurs $(6)$ mentionnée plus tôt.  
+Pour $\beta = 0$ on a que s'il existe un équilibre des prédateurs positif alors on a $K_x+K_y>\frac{m}{n}$ par l'égalité ([-@eq-egaz]). Ceci est donc la condition d'invasion des prédateurs ([-@eq-app2]) mentionnée plus tôt.  
 
 
-Si $\beta = \infty$ on va réduire le système $(7)$ en équation de Lotka-Volterra avec croissance logistique. Ainsi la présence d'un équilibre des prédateurs impliquera la condition d'invasion supposée.
+Si $\beta = \infty$ on va réduire le système ([-@eq-modelaueg]) en équation de Lotka-Volterra avec croissance logistique. Ainsi la présence d'un équilibre des prédateurs impliquera la condition d'invasion supposée.
 
-La démarche à partir du système $(7)$ est la suivante :
+La démarche à partir du système ([-@eq-modelaueg]) est la suivante :
 
 $$
 \dot x - \dot y = r_xx^*\left(1-\frac{x^*}{K_x}\right) - r_yy^*\left(1-\frac{y^*}{K_y}\right) + pz\left(y-x\right) -2\beta \left(\frac{x}{\gamma_x}-\frac{y}{\gamma_y}\right)
@@ -455,7 +460,7 @@ $$
 $$
 $$
 \dot N = \left(\frac{r_x\gamma_x+r_y\gamma_y}{\gamma_x+\gamma_y}\right)N\left(1-\frac{\frac{r_x\gamma_x^2}{K_x}+\frac{r_y\gamma_y^2}{K_y}}{(\gamma_x+\gamma_y)^2(r_x\gamma_x+r_y\gamma_y)}N\right)-pzN
-$$
+$${#eq-ndot}
 
 En posant $r_N = \left(\frac{r_x\gamma_x+r_y\gamma_y}{\gamma_x+\gamma_y}\right)$ et $K_N=\frac{(\gamma_x+\gamma_y)^2(r_x\gamma_x+r_y\gamma_y)}{\frac{r_x\gamma_x^2}{K_x}+\frac{r_y\gamma_y^2}{K_y}}$
 le système devient : 
@@ -466,10 +471,10 @@ $$ \left\{\begin{array}{l}
 \end{array}\right.
 $$ {#eq-modelaueg2}
 
-qui est bien un système de L-V  avec croissance logistique.
+qui est bien un système de L-V avec croissance logistique.
 
 Si $\exists z^* > 0$ alors on a $N^*=\frac{m}{n}$.  
-De plus, on a : $pz^* = r_N\left(1-\frac{N^*}{K_N}\right)$ et donc si $z^*>0$ on a  $N^* < K_N$ qui est équivalent à $\frac{m}{n} < K_N$. 
+De plus, on a : $pz^* = r_N\left(1-\frac{N^*}{K_N}\right)$ et donc si $z^*>0$ on a $N^* < K_N$ qui est équivalent à $\frac{m}{n} < K_N$. 
 
 Si on considère le système précédent sans prédateurs on a : 
 
@@ -505,7 +510,7 @@ $$
 
 L'intuition biologique est donc confirmée par des preuves mathématiques.  
 
-On va donc tracer les graphes de la somme des équilibres du système $(1)$ avec et sans prédateurs et constater cette saturation à \frac{m}{n} lorsque la condition $x_0^* + y_0^* > \frac{m}{n}$ est validée.
+On va donc tracer les graphes de la somme des équilibres du système ([-@eq-modelau]) avec et sans prédateurs et constater cette saturation à \frac{m}{n} lorsque la condition $x_0^* + y_0^* > \frac{m}{n}$ est validée.
 
 Pour plot on va simuler avec `odeint` pendant un temps assez large pour atteindre l'équilibre :
 ```{python}
@@ -894,8 +899,9 @@ $$
 $$
 qui donne, via la condition $z > 0$, après réarrangement:
 $$
-x^* =  \frac{K_x\left(r_xp_yn_yK_y-r_yp_xn_yK_y+r_yp_xm\right)}{r_xp_yn_yK_y+r_yp_xn_xK_x}
-$$
+x^* = \frac{K_x\left(r_xp_yn_yK_y-r_yp_xn_yK_y+r_yp_xm\right)}{r_xp_yn_yK_y+r_yp_xn_xK_x}
+$${#eq-eqx}
+
 Par l'expression de $z^*$ on a $K_x > x^*$ autrement dit :
 $$
 K_x > \frac{K_x\left(r_xp_yn_yK_y-r_yp_xn_yK_y+r_yp_xm\right)}{r_xp_yn_yK_y+r_yp_xn_xK_x}
@@ -919,7 +925,7 @@ Ainsi la condition $n_xx_0^*(0) + n_yy_0^*(0)>m$ équivaut à $n_xK_x + n_yK_y >
 
 La condition d'un équilibre positif implique bien cette condition d'invasion.
 
-**Pour $\beta =+\infty$,** on va simplifier le système $(1)$.
+**Pour $\beta =+\infty$,** on va simplifier le système ([-@eq-modelau]).
 
 On pose $N = x+y$ et en faisant tendre $\beta \to +\infty$ et en considérant $\dot x - \dot y$ on a forcément $\frac{x}{\gamma_x} = \frac{y}{\gamma_y}$.  
 
@@ -945,13 +951,13 @@ $$
 \dot z = z\left( N \underbrace{\frac{n_x\gamma_x+n_y\gamma_y}{\gamma_x+\gamma_y}}_{n_N} - m\right)
 $$
 
-Le système $(1)$ devient donc pour $\beta \to +\infty$ :
+Le système ([-@eq-modelau]) devient donc pour $\beta \to +\infty$ :
 
 $$ \left\{\begin{array}{l}
 \dot N = r_N N \left(1-\frac{N}{K_N}\right) - p_NzN \\
 \dot z = z\left(n_N N - m\right)
 \end{array}\right.
-$$
+$${#eq-systsimpl}
 
 qui est exactement un système proie-prédateur de Lotka-Volterra.  
 Si $\exists z^* > 0$ on a à la fois $N^*=\frac{m}{n_N}$ et aussi $N^* < K_N$
@@ -975,7 +981,7 @@ $$
 
 Nos intuitions biologiques étant validées mathématiquement pour $\beta = 0$ et $\beta = +\infty$ on peut logiquement se dire que c'est aussi le cas pour un $\beta \in ]0,+\infty]$.
 
-On va simuler numériquement la somme des équilibres des proies du système $(1)$ par la même méthode que précédemment en faisant aussi aparaître la courbe $n_xx^*_0+n_yy^*_0$ et $m$ ainsi que la somme des équilibres des proies du système $(1)$ sans prédateurs pour pouvoir voir quand on a disparition des prédateurs et donc $x^*_0 + y^*_0 = x^*+y^*$.
+On va simuler numériquement la somme des équilibres des proies du système ([-@eq-modelau]) par la même méthode que précédemment en faisant aussi aparaître la courbe $n_xx^*_0+n_yy^*_0$ et $m$ ainsi que la somme des équilibres des proies du système ([-@eq-modelau]) sans prédateurs pour pouvoir voir quand on a disparition des prédateurs et donc $x^*_0 + y^*_0 = x^*+y^*$.
 
 ```{python}
 #| code-fold: true
@@ -1357,3 +1363,8 @@ D'après les graphiques, l'effet de l'augmentorium sur l'équilibre dans la cult
 ## Conclusion
 
 Ce modèle nous permet d'entrevoir mathématiquement pourquoi l'augmentorium est une technique efficace dans les cultures.
+
+
+---
+
+*Notre analyse s'appuie sur un modèle émis par [Freedman et Waltman](http://dx.doi.org/10.1137/0132052) dans leur article de 1977.*  

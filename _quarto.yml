@@ -30,8 +30,14 @@ format:
     code-tools: true
     html-math-method: katex
 
+bibliography: reference.bib
 
 license: CC BY-NC
+
+execute:
+  freeze: auto
+  echo: false
+
 
 
 

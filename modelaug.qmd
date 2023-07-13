@@ -8,7 +8,6 @@ title: Modèle avec proies structurées et prédateurs
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint
-from matplotlib import cm
 import plotly.express as px
 ```
 
@@ -18,7 +17,7 @@ Ce modèle est un modèle de prédation de Lotka-Volterra où les proies se rép
 
 Nous partirons pour être plus général du postulat que la prédation et les naissances sont diférentielles entre les structures mais certaines analyses se baseront sur une égalité des naissances par exemple.  
 
-Nous considérons le modèle suivant : 
+Nous considérons le modèle suivant d'après @freedman1977: 
 
 $$ \left\{\begin{array}{l}
 \dot x = r_xx\left(1-\frac{x}{K_x}\right)+\beta\left(\frac{y}{\gamma_y}-\frac{x}{\gamma_x}\right)-p_xxz \\
@@ -45,7 +44,7 @@ On a donc maintenant un espace structuré en deux zones, s'échangeant assymétr
 
 On pose $p_y > p_x$ et $n_y>n_x$.
 
-En effet l'augmentorium est un lieu propice au développement des individus que ce soit les parasites ou les ravageurs.   
+En effet l'augmentorium est un lieu propice au développement des individus que ce soit les prédateurs ou les ravageurs.   
 Ainsi la prédation exercé sur les ravageurs est plus forte dans l'augmentorium et les naissances des prédateurs sont plus fortes dans l'augmentorium que dans la culture.
 
 ## Dynamique des populations
@@ -138,7 +137,7 @@ ax[1].legend(fontsize=8)
 ax[1].grid()
 ax[1].set_ylim(top=2,bottom=-0.05)
 
-ax[1].set_title('Disparition des parasites, maintien des ravageurs',fontsize=7.5)
+ax[1].set_title('Disparition des prédateurs, maintien des ravageurs',fontsize=7.5)
 ```
 
 Les profils de dynamique se répartissent en deux grandes catégories. Ceux où la population de prédateurs survit et celle où elle disparaît. Il semble donc il y a voir deux équilibres stables dans ce système.  
@@ -247,7 +246,7 @@ z^* = r_xr_y\left(\frac{n_xK_x+n_yK_y-m}{r_xn_yp_yK_y+r_yn_xp_xK_x}\right)
 $${#eq-egaz}
 
 ::: {.callout-warning}
- Le document de Freedman contient deux erreurs, un $B_1$ à la place d'un $\beta_1$ dans l'expression de $y^*$ (respectivement $x_{20}$ dans son article) et un $p_y$ à la place d'un $p_x$ dans l'expression de $z^*$ (respectivement un $\beta_2$ à la place d'un $\beta_1$
+ Le document de @freedman1977 contient deux erreurs, un $B_1$ à la place d'un $\beta_1$ dans l'expression de $y^*$ (respectivement $x_{20}$ dans son article) et un $p_y$ à la place d'un $p_x$ dans l'expression de $z^*$ (respectivement un $\beta_2$ à la place d'un $\beta_1$
  selon ses notations).
 :::
 
@@ -263,7 +262,7 @@ $$
 n_xK_x+n_yK_y > m 
 $${#eq-app2}
 
-On verra dans la suite que la condition ([-@eq-app2]) est l'invasion des parasites.
+On verra dans la suite que la condition ([-@eq-app2]) est l'invasion des prédateurs.
 
 #### Lorsque $\beta \ne 0$ et petit
 
@@ -395,7 +394,7 @@ Il est intéressant de considérer la somme des équilibre des proies en fonctio
 
 ### Prédation et naissances égales
 
-Dans ce cas ([-@eq-eq-modelau]) devient : 
+Dans ce cas ([-@eq-modelau]) devient : 
 
 $$ 
 \left\{\begin{array}{l}
@@ -1364,7 +1363,3 @@ D'après les graphiques, l'effet de l'augmentorium sur l'équilibre dans la cult
 
 Ce modèle nous permet d'entrevoir mathématiquement pourquoi l'augmentorium est une technique efficace dans les cultures.
 
-
----
-
-*Notre analyse s'appuie sur un modèle émis par [Freedman et Waltman](http://dx.doi.org/10.1137/0132052) dans leur article de 1977.*  

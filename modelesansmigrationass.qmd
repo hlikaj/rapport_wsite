@@ -10,14 +10,12 @@ title: Modèle logistique structuré avec migration symétrique
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint
-from matplotlib import cm
-import plotly.express as px
 ```
 
 ## Définition du modèle
 
-On pose le modèle suivant :
-$$ 
+On pose le modèle suivant d'après @arditi2015 :
+$$
 \left\{\begin{array}{l}
 \dot x = r_xx\left(1-\frac{x}{K_x}\right)+\beta(y-x)\\
 \dot y = r_yy\left(1-\frac{y}{K_y}\right)+\beta(x-y).
@@ -28,7 +26,7 @@ avec :
 - $x$ la population dans la culture,  
 - $y$ la population dans l'augmentorium,  
 - $r_x$ et $r_y$ le taux de croissance dans la culture et dans l'augmentorium,  
-- $K_x$ et $K_y$ les capacités biotiques de la culture de de l'augmentorium,  
+- $K_x$ et $K_y$ les capacités biotiques de la culture et de l'augmentorium,  
 - $\beta$ la force de migration entre les structures. 
 
 ### Hypothèses propre à l'augmentorium
@@ -37,7 +35,7 @@ Nous le savons, l'augmentorium fournit aux ravageurs une structure bénéfique �
 
 En fonction de la culture qu'on va considérer on peut avoir $K_x>K_y$ et inversement.   
 En effet, si la culture est remontante, ie qu'elle produit tout au long de l'année, les apports de fruits dans l'augmentorium ne seront jamais excessifs par rapport au nombre de fruits à l'extérieur, impliquant une capacité maximale plus forte pour la culture ($K_x>K_y$).  
-Par contre si la culture est non-remontante on aura énormément de fruits dans la structure sur une courte période impliquant une possible capacité maximale plus forte pour la structure ($K_x<K_y$).
+Par contre si la culture est non-remontante on aura énormément de fruits dans la culture sur une courte période et donc un fort taux de fruits mis dans l'augmentorium impliquant une possible capacité maximale plus forte pour l'augmentorium ($K_y>K_x$).
 
 ## Dynamique du modèle
 
@@ -112,6 +110,8 @@ $$
 \end{array}\right.
 $${#eq-pdpsmig}
 
+avec, $x^*$ et $y^*$ la valeur des équilibres.
+
 Ainsi, les deux isoclines correspondent à des paraboles. Celles-ci se croisent trivialement en $(0,0)$ et dans le quadrant positif en $(x^*,y^*)$. 
 
 Pour calculer $(x^*,y^*)$ on va utiliser l'expression des paraboles en ([-@eq-pdpsmig]), ce qui donne, après simplifications, un polynôme de degré 4 : 
@@ -162,12 +162,16 @@ ax.plot(xt,np.zeros_like(xt),color='0.8',markersize=6)
 ax.set_xlim(left=-1,right=3)
 ax.set_ylim(top=3,bottom=-1)
 
+## On trace la droite la somme des capacités:
+x=np.arange(0,10,0.01)
+ax.plot(x,-x+Kx+Ky,label='$K_x+K_y$',color='0.8')
+
 ## On nomme les axes:
 ax.set_xlabel('$x$',fontsize='12')
 ax.set_ylabel('$y$',fontsize='12')
 
 ## On plot les deux équilibres:
-ax.plot(xeq.real,yeq.real,label='$(x^*_1,y^*_1)$',marker='.',markersize=6,color='k')
+ax.plot(xeq.real,yeq.real,label='$(x^*,y^*)$',marker='.',markersize=6,color='k')
 ax.plot(0,0,label='$(0,0)$',marker='.',markersize=6,color='k')
 
 ## Localisation de la légende:
@@ -182,17 +186,18 @@ dx,dy=aug([X,Y],0,param_aug)
 ax.quiver(X,Y,dx,dy,angles='xy',color='grey',scale=80,width=0.003)
 ```
 
-Comme dit plus haut on a bien un croisement dans le quadrant positif qui correspond à l'équilibre. 
+Comme dit plus haut on a bien un croisement dans le quadrant positif qui correspond à l'équilibre $(x^*,y^*)$. 
 
 Les paraboles, en fonction des valeurs de leurs racines, peuvent croiser de différentes manières les axes des abssices et des ordonnées.  
 Le plan de phase peut donc présenter plusieurs profils, autre que 
-celui tracé ici. Néanmoins, le croisement des paraboles est toujours présent quelque soit le profil.
+celui tracé ici. Néanmoins, le croisement des paraboles dans le quadrant positif (l'équilibre non nul) est toujours présent quelque soit le profil.
 
 En faisant apparaître le champ de vecteur on peut déduire que l'équilibre en $(0,0)$ est instable et l'équilibre en $(x^*,y^*)$ est stable.
 
 #### Stabilité mathématique des équilibres
 
-Il est clair que $(0,0)$ est instable et $(x^*,y^*)$ est stable (par le champ de vecteur). Mathématiquement : 
+Il est clair que $(0,0)$ est instable et $(x^*,y^*)$ est stable (par le champ de vecteur).  
+Mathématiquement considérons la jacobienne de ([-@eq-modsmig]): 
 $$ 
 \mathbb{J}=\left[\begin{array}{cc} 
 \ r_x-\frac{2r_xx}{K_x}-\beta & \beta \\
@@ -221,8 +226,8 @@ $$
 \lambda_2 > 0
 $$
 
-Donc $(0,0)$ est bien instable, $\forall (x_0,y_0) \in \mathbb{R^2_+}$.
-et pour $(x^*,y^*)$ après simplification (et en abandonnant les * par comodité) : 
+Donc $(0,0)$ est bien instable, $\forall (x_0,y_0) \in \mathbb{R^2_+}$.  
+Pour $(x^*,y^*)$ après simplification (et en abandonnant les * par comodité) : 
 
 $$ \mathbb{J_{x^*,y^*}} = \left[\begin{array}{cc} \\
 \ -\frac{\beta y}{x}-\frac{r_xx}{K_x} & \beta \\
@@ -235,8 +240,8 @@ Ainsi, $(x^*,y^*)$ est bien stable, $\forall (x_0,y_0) \in \mathbb{R^2_+}$.
 
 ### Analyse du plan de phase
 
-On remarque que l'équilibre atteint n'est pas sur la droite $x^*+y^*=K_x+K_y$ , ceci implique que la structuration de l'espace perturbe les équilibres qui auraient dû être la somme des équilires des deux régions (la logistique tend vers la capacité maximale à l'équilibre).   
-Si la somme des équilibres est plus grande que $K_x+K_y$ on dit que le système subit une inflation.
+On remarque que l'équilibre atteint n'est pas sur la droite $x^*+y^*=K_x+K_y$ , ceci implique que la structuration de l'espace perturbe les équilibres qui auraient dû être la somme des équilires des deux régions (la logistique tend vers la capacité maximale à l'équilibre).     
+Si la somme des équilibres est plus grande que $K_x+K_y$ on dit que le système subit une inflation (voir [contexte](contexte.qmd)).
 
 Plus généralement, on peut montrer qu'en cas de mixité parfaite entre les deux patchs ($\beta \to \infty$) on a :
 
@@ -244,9 +249,9 @@ $$
 x^*+y^* = K_x + K_y + (K_x-K_y)\frac{r_xK_y-r_yK_x}{r_xK_y+r_yK_x}
 $${#eq-inf}
 
-Ce qui montre que en général on a pas $x^*+y^* = K_x + K_x$. De plus par ([-@eq-inf]), si $K_y<K_x$ (culture remontante) et si $r_xK_y<r_yK_x$ alors $x^*+y^* < K_x+K_y$ ce qui nous intéresse particulièrement pour la lutte biologique (et inversement pour les cultures non remontantes).  
+Ce qui montre qu'en général on a pas $x^*+y^* = K_x + K_x$. De plus par ([-@eq-inf]), si $K_y<K_x$ (culture remontante) et si $r_xK_y<r_yK_x$ alors $x^*+y^* < K_x+K_y$ ce qui nous intéresse particulièrement pour la lutte biologique (et inversement pour les cultures non remontantes).  
 
-De plus, en faisant $x^* + y^*$ on a (en abandonnant les étoiles par commodité):
+De plus, en faisant $\dot x + \dot y = 0$ dans le cas de l'équilibre on a (en abandonnant les étoiles par commodité):
 $$ 
 r_xx\left(1-\frac{x}{K_x}\right)+r_yy\left(1-\frac{y}{K_y}\right) = 0 
 $${#eq-ell}
@@ -293,7 +298,7 @@ ax.text(xeq,-0.2,'$x^*$')
 display(fig)
 ```
 
-#### a) Première condition à un système défaltioniste 
+#### a) Première condition à un système déflationiste 
 On remarque que le point $(K_x,K_y)$ est en permanence sur la droite $K_x+K_y$ qui coupe en permanence l'ellipse sauf pour une situation où la droite $K_x+K_y$ est tangente à l'ellipse.  
 Ce cas nous intéresse car il rend compte d'un système entièrement déflationiste.  
 
@@ -313,9 +318,12 @@ Donc : si $r_x=r_y$ on a ([-@eq-modsmig]) qui est déflationiste quelque soit le
 
 #### b) Deuxième condition à un système déflationiste
 
+On se place avec la condition $r_x<r_y$.  
+
 Si on trace la parabole définie par $\dot x = 0$ quand $\beta \to \infty$ alors on peut prédire quand le système est déflationiste. 
-En effet, il faut alors que la pente de la parabole en l'infini soit plus grande que la pente de la parabole en $\beta = 0$.
-Par définition de ([-@eq-pdpsmig]) on a quand $\beta \to \infty$, $y^* = x^*$. La pente quand $\beta = 0$ est $\frac{K_y}{K_x}$. 
+En effet, il faut alors que la pente de la parabole en l'infini soit plus grande que la pente de la parabole en $\beta = 0$.  
+Par définition de ([-@eq-pdpsmig]) on a quand $\beta \to \infty$, $y^* = x^*$.  
+La pente quand $\beta = 0$ est $\frac{K_y}{K_x}$. 
 
 Si on a $r_x < r_y$ et $K_x>K_y$ on aura tout le temps un modèle déflationiste pour les ravageurs.
 
@@ -341,6 +349,3 @@ display.HTML(fig01)
 
 [Passons](modeleavecmigrationass.qmd) mainenant à un modèle qui prend en compte que les migrations peuvent êtres assymétriques.
 
----
-
-*Cette analyse s'appuie sur celle effectuée par [R.Arditi et al.](https://doi.org/10.1016/j.tpb.2015.10.001) en 2015 et a été retravaillée pour coller au modèle de l'augmentorium.*

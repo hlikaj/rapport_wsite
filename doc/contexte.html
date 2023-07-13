@@ -228,32 +228,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <hr>
-<p>L’augmentorium possède une ouverture pour entreposer les fruits et une grille afin de libérer les parasites à ces ravageurs (plus petits).</p>
+<p>L’augmentorium possède une ouverture pour entreposer les fruits et une grille afin de libérer les prédateurs de ces ravageurs (plus petits).</p>
 <p>L’augmentorium peut être enterré, afin de préserver d’une sortie des larves de ravageurs par le bas.</p>
-<p>On observe aussi sur les modèles de plus haute génération des sas ou bien le déplacement de la grille à l’opposé de l’ouverture.</p>
+<p>On observe aussi sur les modèles de plus haute génération des sas ou bien le déplacement de la grille (et donc de la lumière) à l’opposé de l’ouverture.</p>
 </section>
 <section id="avantage-biologique" class="level3">
 <h3 class="anchored" data-anchor-id="avantage-biologique">Avantage biologique</h3>
 <p>Cette méthode, prophylactique, permet de concentrer les ravageurs dans un espace clos presque sans migration vers l’extérieur.</p>
-<p>En effet, la taille des mailles de la grille permet de cloisonner près de 100% des ravageurs et libérer jusqu’à 98% des parasites (Deguine et al., 2011).</p>
-<p>Ainsi, cette méthode permet à la fois de casser le cycle de reproduction des ravageurs mais aussi d’augmenter le ratio parasites sur ravageurs et enfin de garantir aux ravageurs, et donc aux parasites, un lieu propice à la reproduction.</p>
-<p>Cette méthode s’inscrit dans une démarche de lutte intégrée car elle permet de réduire les pesticides dans les cultures et se sert de l’effet direct de prédation des parasites sur les ravageurs.</p>
+<p>En effet, la taille des mailles de la grille permet de cloisonner près de 100% des ravageurs et libérer jusqu’à 98% des prédateurs (Deguine et al., 2011).</p>
+<p>Ainsi, cette méthode permet à la fois de casser le cycle de reproduction des ravageurs mais aussi d’augmenter le ratio prédateurs sur ravageurs dans les cultures et enfin de garantir aux ravageurs, et donc aux prédateurs, un lieu propice à la reproduction.</p>
+<p>Cette méthode s’inscrit dans une démarche de lutte intégrée car elle permet de réduire les pesticides dans les cultures et se sert de l’effet direct de prédation des prédateurs sur les ravageurs.</p>
 </section>
 <section id="modélisation-utilisée" class="level3">
 <h3 class="anchored" data-anchor-id="modélisation-utilisée">Modélisation utilisée</h3>
 <p>Notre modélisation se fonde sur des modèles de dynamique des populations. Nous nous baserons sur des systèmes d’équations différentielles.</p>
-<p>Les naissances des ravageurs seront simulées par une croissance logsitique (modèle de Verhulst). Une étude de ce modèle est laissée au lecteur <a href="https://fr.wikipedia.org/wiki/Mod%C3%A8le_de_Verhulst">ici</a>.</p>
-<p>Le modèle final est un modèle de <a href="https://fr.wikipedia.org/wiki/%C3%89quations_de_pr%C3%A9dation_de_Lotka-Volterra">proie-prédateur</a> en deux structures avec de la migration assymétrique entre chaque structure.</p>
-<p>Nous allons tout au long de ce rapport suivre une évolution dans les modèles en ajoutant une couche d’informations supplémentaires.</p>
+<p>Les naissances des ravageurs seront simulées par une croissance logistique (modèle de Verhulst). Une étude de ce modèle est laissée au lecteur <a href="https://fr.wikipedia.org/wiki/Mod%C3%A8le_de_Verhulst">ici</a>.</p>
+<p>Le modèle final est un modèle <a href="https://fr.wikipedia.org/wiki/%C3%89quations_de_pr%C3%A9dation_de_Lotka-Volterra">proie-prédateur</a> en deux structures avec de la migration assymétrique entre chaque structure.</p>
+<p>Nous allons tout au long de ce rapport suivre une évolution dans les modèles en les complexifiant peu à peu.</p>
 <p>Les premiers modèles ont déja été <a href="./ref.html">analysés</a>, peu à peu les études se feront de plus en plus rare (ou du moins incomplètes).</p>
-<p>Nous allons commencer avec un modèle de base qui permet de situer la démarche et le type d’analyse possible face à ce genre de modèles.</p>
 </section>
 <section id="notion-dinflation-et-de-déflation" class="level3">
 <h3 class="anchored" data-anchor-id="notion-dinflation-et-de-déflation">Notion d’inflation et de déflation</h3>
 <p>Pour mieux comprendre les analyses faites dans ce rapport il faut comprendre le concept d’inflation d’un système biologique.</p>
-<p>Dans les années 70 certains articles (Freedman et al.&nbsp;1977) mentionnent que lorsqu’on considère un modèle avec deux zones et dans chaque zone une population qui échange avec l’autre librement des éléments, alors la somme des équilibres est le plus souvent différente de celle qu’elle serait si il n’y avait qu’une zone.</p>
-<p>C’est ce qu’on appelle le débat <a href="https://en.wikipedia.org/wiki/SLOSS_debate">SLOSS</a> (Single Large Or Several Large). On dit que qu’une population structurée subit une inflation si la somme de ses équilibres est plus grande que la somme de l’équilibre s’il n’y avait qu’une structure (respectivement déflation).</p>
-<p>L’objectif de l’augmentorium est de provoquer une déflation du système.</p>
+<p>Dans les années 70 certains articles (Freedman et al.&nbsp;1977) mentionnent que lorsqu’on considère un modèle avec deux zones et dans chaque zone une population qui échange avec l’autre librement des individus, alors la somme des équilibres est le plus souvent différente de celle qu’elle serait si il n’y avait qu’une zone.</p>
+<p>C’est ce qu’on appelle le débat <a href="https://en.wikipedia.org/wiki/SLOSS_debate">SLOSS</a> (Single Large Or Several Small). On dit qu’une population structurée est caractérisée par un phénomène d’inflation si la somme de ses équilibres est plus grande que l’équilibre s’il n’y avait qu’une structure (et l’inverse pour la déflation).</p>
+<p>L’objectif de l’augmentorium est de provoquer une déflation du système chez les ravageurs.</p>
+<p>Nous allons commencer avec un modèle de base qui permet de situer la démarche et le type d’analyse possible face à ce genre de modèles.</p>
 <p><a href="./modelesansmigrationass.html">C’est parti !</a></p>
 
 
@@ -560,11 +560,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>L'augmentorium possède une ouverture pour entreposer les fruits et une grille afin de libérer les parasites à ces ravageurs (plus petits). </span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>L'augmentorium possède une ouverture pour entreposer les fruits et une grille afin de libérer les prédateurs de ces ravageurs (plus petits). </span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>L'augmentorium peut être enterré, afin de préserver d'une sortie des larves de ravageurs par le bas.  </span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>On observe aussi sur les modèles de plus haute génération des sas ou bien le déplacement de la grille à l'opposé de l'ouverture.</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>On observe aussi sur les modèles de plus haute génération des sas ou bien le déplacement de la grille (et donc de la lumière) à l'opposé de l'ouverture.</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">### Avantage biologique</span></span>
@@ -572,35 +572,35 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>Cette méthode, prophylactique, permet de concentrer les ravageurs dans un espace clos presque sans migration vers l'extérieur.  </span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>En effet, la taille des mailles de la grille permet de cloisonner près de 100% des ravageurs et libérer jusqu'à 98% des parasites (Deguine et al., 2011).</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>En effet, la taille des mailles de la grille permet de cloisonner près de 100% des ravageurs et libérer jusqu'à 98% des prédateurs (Deguine et al., 2011).</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Ainsi, cette méthode permet à la fois de casser le cycle de reproduction des ravageurs mais aussi d'augmenter le ratio parasites sur ravageurs et enfin de garantir aux ravageurs, et donc aux parasites, un lieu propice à la reproduction.  </span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>Ainsi, cette méthode permet à la fois de casser le cycle de reproduction des ravageurs mais aussi d'augmenter le ratio prédateurs sur ravageurs dans les cultures et enfin de garantir aux ravageurs, et donc aux prédateurs, un lieu propice à la reproduction.  </span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Cette méthode s'inscrit dans une démarche de lutte intégrée car elle permet de réduire les pesticides dans les cultures et se sert de l'effet direct de prédation des parasites sur les ravageurs.  </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Cette méthode s'inscrit dans une démarche de lutte intégrée car elle permet de réduire les pesticides dans les cultures et se sert de l'effet direct de prédation des prédateurs sur les ravageurs.  </span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Modélisation utilisée</span></span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>Notre modélisation se fonde sur des modèles de dynamique des populations. Nous nous baserons sur des systèmes d'équations différentielles. </span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>Les naissances des ravageurs seront simulées par une croissance logsitique (modèle de Verhulst). Une étude de ce modèle est laissée au lecteur <span class="co">[</span><span class="ot">ici</span><span class="co">](https://fr.wikipedia.org/wiki/Mod%C3%A8le_de_Verhulst)</span>.</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>Les naissances des ravageurs seront simulées par une croissance logistique (modèle de Verhulst). Une étude de ce modèle est laissée au lecteur <span class="co">[</span><span class="ot">ici</span><span class="co">](https://fr.wikipedia.org/wiki/Mod%C3%A8le_de_Verhulst)</span>.</span>
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>Le modèle final est un modèle de <span class="co">[</span><span class="ot">proie-prédateur</span><span class="co">](https://fr.wikipedia.org/wiki/%C3%89quations_de_pr%C3%A9dation_de_Lotka-Volterra)</span> en deux structures avec de la migration assymétrique entre chaque structure.</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>Le modèle final est un modèle <span class="co">[</span><span class="ot">proie-prédateur</span><span class="co">](https://fr.wikipedia.org/wiki/%C3%89quations_de_pr%C3%A9dation_de_Lotka-Volterra)</span> en deux structures avec de la migration assymétrique entre chaque structure.</span>
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>Nous allons tout au long de ce rapport suivre une évolution dans les modèles en ajoutant une couche d'informations supplémentaires. </span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>Nous allons tout au long de ce rapport suivre une évolution dans les modèles en les complexifiant peu à peu.</span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>Les premiers modèles ont déja été <span class="co">[</span><span class="ot">analysés</span><span class="co">](ref.qmd)</span>, peu à peu les études se feront de plus en plus rare (ou du moins incomplètes).</span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>Nous allons commencer avec un modèle de base qui permet de situer la démarche et le type d'analyse possible face à ce genre de modèles.</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">### Notion d'inflation et de déflation </span></span>
 <span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">### Notion d'inflation et de déflation </span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>Pour mieux comprendre les analyses faites dans ce rapport il faut comprendre le concept d'inflation d'un système biologique.  </span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>Pour mieux comprendre les analyses faites dans ce rapport il faut comprendre le concept d'inflation d'un système biologique.  </span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>Dans les années 70 certains articles (Freedman et al. 1977) mentionnent que lorsqu'on considère un modèle avec deux zones et dans chaque zone une population qui échange avec l'autre librement des individus, alors la somme des équilibres est le plus souvent différente de celle qu'elle serait si il n'y avait qu'une zone.</span>
 <span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>Dans les années 70 certains articles (Freedman et al. 1977) mentionnent que lorsqu'on considère un modèle avec deux zones et dans chaque zone une population qui échange avec l'autre librement des éléments, alors la somme des équilibres est le plus souvent différente de celle qu'elle serait si il n'y avait qu'une zone.</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>C'est ce qu'on appelle le débat <span class="co">[</span><span class="ot">SLOSS</span><span class="co">](https://en.wikipedia.org/wiki/SLOSS_debate)</span> (Single Large Or Several Small). On dit qu'une population structurée est caractérisée par un phénomène d'inflation si la somme de ses équilibres est plus grande que l'équilibre s'il n'y avait qu'une structure (et l'inverse pour la déflation).</span>
 <span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>C'est ce qu'on appelle le débat <span class="co">[</span><span class="ot">SLOSS</span><span class="co">](https://en.wikipedia.org/wiki/SLOSS_debate)</span> (Single Large Or Several Large). On dit que qu'une population structurée subit une inflation si la somme de ses équilibres est plus grande que la somme de l'équilibre s'il n'y avait qu'une structure (respectivement déflation).</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>L'objectif de l'augmentorium est de provoquer une déflation du système chez les ravageurs.</span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>L'objectif de l'augmentorium est de provoquer une déflation du système.</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>Nous allons commencer avec un modèle de base qui permet de situer la démarche et le type d'analyse possible face à ce genre de modèles.</span>
 <span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">C'est parti !</span><span class="co">](modelesansmigrationass.qmd)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

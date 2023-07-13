@@ -8,14 +8,12 @@ title: Modèle logistique structuré avec migration assymétrique
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.integrate import odeint
-from matplotlib import cm
-import plotly.express as px
 ```
 
 ## Définition du modèle
 
 Le but d'un augmentorium est de confiner les ravageurs dans un espace clos qui ne laisse pas (ou peu) s'échapper ceux-ci.  
-Ainsi, il s'établit une migration assymétrique entre les deux structures qu'on peut modéliser en établissant le modèle suivant : 
+Ainsi, il s'établit une migration assymétrique entre les deux structures qu'on peut modéliser en établissant le modèle suivant d'après @arditi2018 : 
 
 $$ 
 \left\{\begin{array}{l}
@@ -29,8 +27,8 @@ avec :
 - $y$ la population dans l'augmentorium,  
 - $r_x$ et $r_y$ le taux de croissance dans la culture et dans l'augmentorium,  
 - $K_x$ et $K_y$ les capacités biotiques de la culture de de l'augmentorium,  
-- $\beta$ la force de migration entre les structures,
-- $\gamma_x$ et $\gamma_y$ caractérisant l'assymétrie entre la migration.
+- $\beta$ la force de migration entre les structures,  
+- $\gamma_x$ et $\gamma_y$ caractérisant l'assymétrie de  migration.
 
 ### Nouvelles hypothèses
 
@@ -101,7 +99,7 @@ La migration assymétrique vers l'augmentorium semble être bénéfique à la cu
 
 ### Equilibres et leur stabilité 
 
-On a à l'équilibre le système suivant :
+A l'équilibre on a le système suivant :
 
 $$ 
 \left\{\begin{array}{l}
@@ -288,7 +286,7 @@ Enfin on trace la parabole donnée par $\dot x =0$ pour $\beta = 0$ et $\beta = 
 #| code-fold: True
 
 #On crée la figure:
-fig2,ax2=plt.subplots(1,1,figsize=(11,6))
+fig2,ax2=plt.subplots(1,1,figsize=(9,5))
 fig2.suptitle('Plan de phase de la population')
 
 #Plan de phase 1:
@@ -366,7 +364,7 @@ ax2.text(ry*Kx*(Kx+Ky)/(rx*Ky+ry*Kx)-0.1,rx*Ky*(Kx+Ky)/(rx*Ky+ry*Kx)-0.1,'$D$')
 ax2.legend()
 ```
 
-Si $r_x<r_y$, alors :
+Si $r_x<r_y$, alors d'après @arditi2018 :
 
 ---
 
@@ -408,7 +406,7 @@ Autrement dit, **si** $\frac{\gamma_y}{\gamma_x}>\frac{K_y}{K_x}$ alors on a tou
 
 ---
 
-Maintenant si on prend $r_x>r_y$ on a un autre cas qui apparaît.   
+Maintenant si on prend $r_x>r_y$ on a un autre cas qui apparaît d'après @gao2022
 En effet, et on le voit bien sur l'animation, on peut alors avoir $C$ entre $D$ et $A$ avec $C$ plus haut que $A$ et ainsi on peut avoir un cas où le système est complètement inflationiste avec des valeurs de la somme des équilibres plus grands que $C$.
 Cette situation ne nous intéresse que peu car ce n'est pas un cas qui est biologiquement réaliste.
 
@@ -421,11 +419,11 @@ Cette situation ne nous intéresse que peu car ce n'est pas un cas qui est biolo
   
 - Point $C$:  
   La parabole en $\beta = +\infty$
- est définie par $y = \frac{\gamma_y}{\gamma_x}x$ et l'ellipse par $r_xx\left(1-\frac{x}   {K_x}\right) + r_yy\left(1-\frac{y}{K_y}\right) = 0 $. Il suffit de remplacer dans l'expression de l'ellipse la valeur de y donnée par la parabole pour trouver la première coordonnée.   
+ est définie par $y = \frac{\gamma_y}{\gamma_x}x$ et l'ellipse par $r_xx\left(1-\frac{x}   {K_x}\right) + r_yy\left(1-\frac{y}{K_y}\right) = 0$. Il suffit de remplacer dans l'expression de l'ellipse la valeur de y donnée par la parabole pour trouver la première coordonnée.   
   Pour trouver la deuxième on utilise l'expression de la parabole.
 
 - Point $D$:
-  On fait la même que précédemment. La droite des capacités est définie par $y= -x +K_x+K_y$ qu'on remplace dans l'expression de l'ellipse pour trouver la première coordonnée (après simplifacation). La deuxième est déduite de la la première grâce à l'expression de la droite. 
+  On fait la même que précédemment. La droite des capacités est définie par $y= -x +K_x+K_y$ qu'on remplace dans l'expression de l'ellipse pour trouver la première coordonnée (après simplification). La deuxième est déduite de la la première grâce à l'expression de la droite. 
   
 Pour les conditions sur les équilibres on se rappelle que la pente de la parabole en $\beta = +\infty$ est définie par $\frac{\gamma_y}{\gamma_x}$.   
 Ainsi, quand cette pente est inférieure à celle de la droite passant par le point $D$ (qui a une pente de $\frac{r_xK_y}{r_yK_x}$) on a soit déflationiste soit inflationiste. 
@@ -708,8 +706,5 @@ Donc si le taux de fuite est très mal géré l'augmentorium peut être négatif
 
 ## Conclusion
 
-Ce modèle considère uniquement la population de ravageurs. Or, la méthode de l'augmentorium repose énormément sur l'action des parasites on va donc considérer [maintenant](modelaug.qmd) un modèle qui prend en compte ces parasites.
+Ce modèle considère uniquement la population de ravageurs. Or, la méthode de l'augmentorium repose énormément sur l'action des prédateurs on va donc considérer [maintenant](modelaug.qmd) un modèle qui prend en compte ces prédateurs.
 
----
-
-*Cette analyse s'appuie sur celle effectuée par [R.Arditi et al.](https://doi.org/10.1016/j.tpb.2017.12.006) en 2017 et celle de [Gao](https://doi.org/10.1016/j.tpb.2022.05.003) et a été retravaillée pour coller au modèle d'augmentorium.*

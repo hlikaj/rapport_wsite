@@ -215,14 +215,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <p>Les prochaines pages regroupent mes travaux à l’<a href="https://www6.paca.inrae.fr/institut-sophia-agrobiotech/">INRAE</a> Sophia-Antipolis lors de mon stage de L2 du 22/05/2023 au 21/07/23 sous la tutelle de Ludovic Mailleret dans l’équipe <a href="https://www6.paca.inrae.fr/institut-sophia-agrobiotech_eng/Research-teams/M2P2">M2P2</a>.</p>
-<p>Le but de ce stage était de modéliser un augmentorium pour la lutte biologique.</p>
+<p>Le but de ce stage était de modéliser un augmentorium, une structure dans les cultures où l’on met les fruits pourris, pour la lutte biologique.</p>
 <p>Pour cela nous nous baserons sur des modèles de <a href="https://en.wikipedia.org/wiki/Population_dynamics">dynamique des populations</a>.</p>
 <p>Le rapport se structure ainsi :</p>
 <ul>
 <li><p>Une partie <a href="./contexte.html">contexte</a> afin de poser un cadre biologique à notre modélisation.</p></li>
-<li><p>Une partie sur l’équation logistique à <a href="./modelesansmigrationass.html">deux structures</a> dont on fera une analyse rapide et qui servira à poser les bases sur la partie Python (qui sera moins détaillée dans la suite des parties).</p></li>
-<li><p>Une partie sur l’équation logistique à deux structures avec <a href="./modeleavecmigrationass.html">migration assymétrique</a> qui décrit plus précisément notre situation biologique.</p></li>
-<li><p>Une partie sur un <a href="./modelaug.html">modèle d’augmentorium</a> qui permet de prendre en compte la présence de prédateurs aux ravageurs.</p></li>
+<li><p>Une partie sur un <a href="./modelesansmigrationass.html">modèle</a> structuré en espace avec deux classes dont on fera une analyse rapide et qui servira à poser les bases sur la partie Python (qui sera moins détaillée dans la suite des parties).</p></li>
+<li><p>Une partie sur un <a href="./modeleavecmigrationass.html">modèle</a> structuré en espace avec deux classes et avec migration assymétrique qui décrit plus précisément notre situation biologique.</p></li>
+<li><p>Une partie sur un <a href="./modelaug.html">modèle d’augmentorium</a> qui permet de prendre en compte la présence de prédateurs des ravageurs.</p></li>
 <li><p>Une partie sur le <a href="./modfinal.html">modèle final</a>, qui permet de considérer que la mixité des prédateurs est imparfaite entre les deux structures.</p></li>
 </ul>
 <p>Enfin, nous discuterons de l’efficacité théorique de l’augmentorium en <a href="./conclusion.html">conclusion</a>.</p>
@@ -231,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-appendix" class="default"><section id="remerciements" class="level2 appendix"><h2 class="anchored quarto-appendix-heading">Remerciements</h2><div class="quarto-appendix-contents">
 
-<p>Je tiens à remercier Ludovic Mailleret et son équipe pour m’avoir gentillement acuelli et fait confiance. Merci spécialement à Ludovic qui m’a beaucoup supporté et qui a pris de son temps pour m’aider.<br>
+<p>Je tiens à remercier Ludovic Mailleret et son équipe pour m’avoir gentillement accueilli et fait confiance. Merci spécialement à Ludovic qui m’a beaucoup supporté et qui a pris de son temps pour m’aider.<br>
 &nbsp;</p>
 <hr>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://upload.wikimedia.org/wikipedia/fr/archive/2/2a/20210420122444%21Logo-INRAE_Transparent.svg" class="img-fluid" style="width:20.0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Logo_universit%C3%A9_c%C3%B4te_azur.png" class="img-fluid" style="width:30.0%">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://www.cnrs.fr/themes/custom/cnrs/logo-footer.svg" class="img-fluid" style="width:25.0%"></p>
@@ -531,7 +531,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Les prochaines pages regroupent mes travaux à l'<span class="co">[</span><span class="ot">INRAE</span><span class="co">](https://www6.paca.inrae.fr/institut-sophia-agrobiotech/)</span> Sophia-Antipolis lors de mon stage de L2 du 22/05/2023 au 21/07/23 sous la tutelle de Ludovic Mailleret dans l'équipe <span class="co">[</span><span class="ot">M2P2</span><span class="co">](https://www6.paca.inrae.fr/institut-sophia-agrobiotech_eng/Research-teams/M2P2)</span>.  </span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Le but de ce stage était de modéliser un augmentorium pour la lutte biologique.  </span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Le but de ce stage était de modéliser un augmentorium, une structure dans les cultures où l'on met les fruits pourris, pour la lutte biologique.  </span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>Pour cela nous nous baserons sur des modèles de <span class="co">[</span><span class="ot">dynamique des populations</span><span class="co">](https://en.wikipedia.org/wiki/Population_dynamics)</span>.   </span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
@@ -539,11 +539,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Une partie <span class="co">[</span><span class="ot">contexte</span><span class="co">](contexte.qmd)</span> afin de poser un cadre biologique à notre modélisation.</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Une partie sur l'équation logistique  à <span class="co">[</span><span class="ot">deux structures</span><span class="co">](modelesansmigrationass.qmd)</span> dont on fera une analyse rapide et qui servira à poser les bases sur la partie Python (qui sera moins détaillée dans la suite des parties).</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Une partie sur un <span class="co">[</span><span class="ot">modèle</span><span class="co">](modelesansmigrationass.qmd)</span> structuré en espace avec deux classes dont on fera une analyse rapide et qui servira à poser les bases sur la partie Python (qui sera moins détaillée dans la suite des parties).</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Une partie sur l'équation logistique  à deux structures avec <span class="co">[</span><span class="ot">migration assymétrique</span><span class="co">](modeleavecmigrationass.qmd)</span> qui décrit plus précisément notre situation biologique.</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Une partie sur un <span class="co">[</span><span class="ot">modèle</span><span class="co">](modeleavecmigrationass.qmd)</span> structuré en espace avec deux classes et avec migration assymétrique qui décrit plus précisément notre situation biologique.</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Une partie sur un <span class="co">[</span><span class="ot">modèle d'augmentorium</span><span class="co">](modelaug.qmd)</span> qui permet de prendre en compte la présence de prédateurs aux ravageurs.</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Une partie sur un <span class="co">[</span><span class="ot">modèle d'augmentorium</span><span class="co">](modelaug.qmd)</span> qui permet de prendre en compte la présence de prédateurs des ravageurs.</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Une partie sur le <span class="co">[</span><span class="ot">modèle final</span><span class="co">](modfinal.qmd)</span>, qui permet de considérer que la mixité des prédateurs est imparfaite entre les deux structures.</span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
@@ -554,7 +554,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>Tous les articles utilisés sont <span class="co">[</span><span class="ot">ici</span><span class="co">](ref.qmd)</span>.</span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Remerciements {.appendix}</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Je tiens à remercier Ludovic Mailleret et son équipe pour m'avoir gentillement acuelli et fait confiance. Merci spécialement à Ludovic qui m'a beaucoup supporté et qui a pris de son temps pour m'aider.  </span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>Je tiens à remercier Ludovic Mailleret et son équipe pour m'avoir gentillement accueilli et fait confiance. Merci spécialement à Ludovic qui m'a beaucoup supporté et qui a pris de son temps pour m'aider.  </span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="dv">&amp;nbsp;</span></span>
 <span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>---</span>
 <span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a></span>

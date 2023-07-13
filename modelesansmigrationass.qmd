@@ -23,19 +23,11 @@ $$
 $$ {#eq-modsmig}
 
 avec :   
-- $x$ la population dans la culture,  
-- $y$ la population dans l'augmentorium,  
-- $r_x$ et $r_y$ le taux de croissance dans la culture et dans l'augmentorium,  
-- $K_x$ et $K_y$ les capacités biotiques de la culture et de l'augmentorium,  
-- $\beta$ la force de migration entre les structures. 
-
-### Hypothèses propre à l'augmentorium
-
-Nous le savons, l'augmentorium fournit aux ravageurs une structure bénéfique à leur croissance. Ainsi, nous supposerons que $r_x < r_y$.  
-
-En fonction de la culture qu'on va considérer on peut avoir $K_x>K_y$ et inversement.   
-En effet, si la culture est remontante, ie qu'elle produit tout au long de l'année, les apports de fruits dans l'augmentorium ne seront jamais excessifs par rapport au nombre de fruits à l'extérieur, impliquant une capacité maximale plus forte pour la culture ($K_x>K_y$).  
-Par contre si la culture est non-remontante on aura énormément de fruits dans la culture sur une courte période et donc un fort taux de fruits mis dans l'augmentorium impliquant une possible capacité maximale plus forte pour l'augmentorium ($K_y>K_x$).
+- $x$ la population dans la première structure,  
+- $y$ la population dans la seconde structure,  
+- $r_x$ et $r_y$ le taux de croissance dans les deux structures,  
+- $K_x$ et $K_y$ les capacités de charges des deux structures,  
+- $\beta$ la force de migration entre les structures.  
 
 ## Dynamique du modèle
 
@@ -44,10 +36,10 @@ On va tracer la dynamique de la population en fonction du temps pour se faire un
 On définit le modèle sous [Python](https://www.python.org/) :
 
 ```{python}
-def aug(etat,t,param):
-    rx,ry,Kx,Ky,b=param
-    x,y=etat
-    s=[rx*x*(1-x/Kx)+b*(y-x),ry*y*(1-y/Ky)+b*(x-y)]
+def aug(etat, t, param):
+    rx, ry, Kx, Ky, b = param
+    x, y = etat
+    s = [ rx * x * ( 1 - x/Kx ) + b * ( y - x ), ry * y * ( 1 - y/Ky ) + b * ( x - y )]
     return s 
 ```
 
@@ -56,35 +48,38 @@ Il faut donc définir un temps d'intégration, des conditions initiales et les p
 
 ```{python}
 ## Temps d'intégration:
-ti = np.arange(0,10,0.01)
+ti = np.arange(0, 10, 0.01)
 
 ## Etats initiaux:
-x0=2
-y0=0
-e0=[x0,y0]
+x0 = 2
+y0 = 0
+e0 = [x0 ,y0]
 
 ## Paramètres: 
-rx=0.5
-ry=1
-Kx=2
-Ky=1
-b=1
-param_aug=np.array([rx,ry,Kx,Ky,b])
+rx = 0.5
+ry = 1
+Kx = 2
+Ky = 1
+b = 1
+
+param_aug = np.array([rx, ry, Kx, Ky, b])
 
 ## Simulation:
-s=odeint(aug,e0,ti,args=(param_aug,))
+s = odeint(aug, e0, ti, args = (param_aug, ))
 ```
 
 Maintenant qu'on a la simulation on peut plot la figure avec `matplotlib` :
 
 ```{python}
-fig,ax=plt.subplots(1,1,figsize=(7,4))
+fig,ax = plt.subplots( 1, 1, figsize = ( 7, 4 ))
+
 fig.suptitle('Dynamique des ravageurs dans le temps')
-ax.plot(ti,s[:,0],color='C1',label='culture')
-ax.plot(ti,s[:,1],color='C0',label='augmentorium')
+ax.plot( ti, s[ :, 0], color = 'C1', label = 'culture')
+ax.plot( ti, s[ :, 1], color = 'C0', label = 'augmentorium')
 
 ax.grid() #on ajoute la grille
 ax.legend() #on ajoute la légende
+
 ax.set_xlabel('Temps, t') 
 ax.set_ylabel('Densité de pop.')
 ```
@@ -117,8 +112,8 @@ Ainsi, les deux isoclines correspondent à des paraboles. Celles-ci se croisent 
 Pour calculer $(x^*,y^*)$ on va utiliser l'expression des paraboles en ([-@eq-pdpsmig]), ce qui donne, après simplifications, un polynôme de degré 4 : 
 
 $$ 
-y\left(r_xr_y\left[\frac{1}{\beta}\left(\frac{1}{\beta}-\frac{1}{r_x}-\frac{1}{r_y}\right)+\frac{1}{r_xr_y}\right]-1\right)+\\\\
-\frac{y^2r_xr_y}{\beta}\left[\frac{1}{K_y}\left(\frac{1}{r_x}-\frac{1}{\beta}\right)+\frac{1}{K_x}\left(\frac{1}{r_y}-\frac{2}{\beta}+\frac{r_y}{\beta^2}\right)\right]+\\\\
+y\left(r_xr_y\left[\frac{1}{\beta}\left(\frac{1}{\beta}-\frac{1}{r_x}-\frac{1}{r_y}\right)+\frac{1}{r_xr_y}\right]-1\right)+\\[.2cm]
+\frac{y^2r_xr_y}{\beta}\left[\frac{1}{K_y}\left(\frac{1}{r_x}-\frac{1}{\beta}\right)+\frac{1}{K_x}\left(\frac{1}{r_y}-\frac{2}{\beta}+\frac{r_y}{\beta^2}\right)\right]+\\[.2cm]
 \frac{2y^3r_xr_y}{\beta^2 K_xK_y}\left(1-\frac{r_y}{\beta}\right)+
 \frac{y^4r_xr_y^2}{\beta^3K_y^2K_x} = 0
 $${#eq-polsmig}
@@ -127,63 +122,67 @@ Ce polynôme est résoluble via `numpy` pour obtenir $y^*$:
 
 ```{python}
 ## On défnit un monome y, un polynôme p et on prend ses solutions:
-y=np.polynomial.Polynomial([0,1])
+y = np.polynomial.Polynomial([0, 1])
 
-pol = y*(rx*ry*((1/b)*((1/b)-(1/rx)-(1/ry))+1/(rx*ry))-1)+(y**2)*((rx*ry)/b)*((1/Ky)*((1/rx)-(1/b))+(1/Kx)*((1/ry)-(2/b)+(ry/(b**2))))+2*(y**3)*((rx*ry)/((b**2)*Kx*Ky))*(1-(ry/b))+(y**4)*((rx*(ry**2))/((b**3)*(Ky**2)*Kx))
+pol = y * (rx * ry * ((1/b) * ((1/b) - (1/rx) - (1/ry)) + 1/(rx * ry)) - 1) + \
+(y**2) * ((rx*ry)/b) * ((1/Ky) * ((1/rx) - (1/b)) + (1/Kx) * ((1/ry) - (2/b) + (ry/(b**2)))) + \
+2 * (y**3) * ((rx * ry)/((b**2) * Kx * Ky)) * (1 - (ry/b)) + \
+(y**4) * ((rx * (ry**2))/((b**3) * (Ky**2) * Kx))
 
 ## Solution qu'on obtient avec un masque booléen:
-sol = pol.roots()[(np.isreal(pol.roots()))*(pol.roots() > 0)]
+sol = pol.roots()[ (np.isreal( pol.roots() )) * (pol.roots() > 0)]
 yeq=sol[0].real
 ```
 
 On déduit $x^*$ via sa définition par le [système](#eq-pdpsmig):
 
 ```{python}
-xeq=(ry*yeq*((1/ry)-(1/b)+(yeq/(b*Ky)))).real
+xeq = (ry * yeq * ((1/ry) - (1/b) + (yeq/(b * Ky)))).real
 ```
 
 Avec la valeur des équilibres on va maintenant tracer le plan de phase : 
 
 ```{python}
-fig,ax=plt.subplots(1,1)
+fig, ax = plt.subplots(1, 1)
 fig.suptitle('Plan de phase du système')
 
 ## Isocline nulles:
-xt=np.arange(-10,10,0.01)
+xt = np.arange(-10, 10, 0.01)
 ## Pour xdot = 0:
-ax.plot(xt,xt*(1/b)*(rx*((xt/Kx)-1)+b),color='C2',label='$\dot x=0$')
-ax.plot(np.zeros_like(xt),xt,color='0.8',markersize=6)
+ax.plot(xt,xt * (1/b) * (rx * ((xt/Kx) - 1) + b), color = 'C2', label = '$\dot x=0$')
+ax.plot(np.zeros_like(xt), xt, color = '0.8', markersize = 6)
 
 ## Pour ydot = 0:
-ax.plot(xt*(1/b)*(ry*((xt/Ky)-1)+b),xt,color='C3',label='$\dot y=0$')
-ax.plot(xt,np.zeros_like(xt),color='0.8',markersize=6)
+ax.plot(xt * (1/b) * (ry * ((xt/Ky) - 1) + b), xt, color = 'C3', label = '$\dot y=0$')
+ax.plot(xt, np.zeros_like(xt), color = '0.8', markersize = 6)
 
 ## On réduit la vue à ce qui nous intéresse:
-ax.set_xlim(left=-1,right=3)
-ax.set_ylim(top=3,bottom=-1)
+ax.set_xlim(left = -1, right = 3)
+ax.set_ylim(top = 3, bottom = -1)
 
 ## On trace la droite la somme des capacités:
-x=np.arange(0,10,0.01)
-ax.plot(x,-x+Kx+Ky,label='$K_x+K_y$',color='0.8')
+x = np.arange(0, 10, 0.01)
+ax.plot(x, -x + Kx + Ky, label = '$K_x+K_y$', color = '0.8')
 
 ## On nomme les axes:
-ax.set_xlabel('$x$',fontsize='12')
-ax.set_ylabel('$y$',fontsize='12')
+ax.set_xlabel('$x$', fontsize = '12')
+ax.set_ylabel('$y$', fontsize = '12')
 
 ## On plot les deux équilibres:
-ax.plot(xeq.real,yeq.real,label='$(x^*,y^*)$',marker='.',markersize=6,color='k')
-ax.plot(0,0,label='$(0,0)$',marker='.',markersize=6,color='k')
+ax.plot(xeq.real, yeq.real, label = '$(x^*,y^*)$', marker = '.', markersize = 6, color = 'k')
+ax.plot(0, 0, label = '$(0,0)$', marker = '.', markersize = 6, color = 'k')
 
 ## Localisation de la légende:
-ax.legend(loc='upper left')
+ax.legend(loc = 'upper left')
 
 ## Ajout du champ de vecteur via la fonction quiver :
-xg=np.arange(0,5,0.6)
-yg=np.arange(0,5,0.6)
-X,Y=np.meshgrid(xg,yg)
+xg = np.arange(0, 5, 0.6)
+yg = np.arange(0, 5, 0.6)
 
-dx,dy=aug([X,Y],0,param_aug)
-ax.quiver(X,Y,dx,dy,angles='xy',color='grey',scale=80,width=0.003)
+X, Y = np.meshgrid(xg, yg)
+
+dx, dy = aug([X, Y], 0, param_aug)
+ax.quiver(X, Y, dx, dy, angles = 'xy', color = 'grey', scale = 80, width = 0.003)
 ```
 
 Comme dit plus haut on a bien un croisement dans le quadrant positif qui correspond à l'équilibre $(x^*,y^*)$. 
@@ -259,41 +258,48 @@ $${#eq-ell}
 Autrement dit les points d'équilibres vivent sur une ellipse (si on ne modifie que $\beta$ ), qu'on va tracer avec `contour` :
 
 ```{python}
-xg2=np.arange(-5,5,0.01)
-yg2=np.arange(-5,5,0.01)
-X2,Y2=np.meshgrid(xg2,yg2)
+xg2 = np.arange(-5, 5, 0.01)
+yg2 = np.arange(-5, 5, 0.01)
 
-X=rx*X2*(1-X2/Kx)
-Y=ry*Y2*(1-Y2/Ky)
-ax.contour(X2,Y2,(X+Y),[0],colors='C1')
-ax.plot(0,0,color='C1',label='Ellipse des solutions')
+X2, Y2 = np.meshgrid(xg2, yg2)
+
+X = rx * X2 * (1 - X2/Kx)
+Y = ry * Y2 * (1 - Y2/Ky)
+
+ax.contour(X2, Y2, (X + Y), [0], colors = 'C1')
+
+ax.plot(0, 0, color = 'C1', label = 'Ellipse des solutions')
 
 ## Localisation de la légende:
-ax.legend(loc='lower left',fontsize = 8)
+ax.legend(loc = 'lower left', fontsize = 8)
 
 ## On place les différents points d'intérêts...
-xv=np.arange(0,10)
-ax.plot(0,Ky,marker='.',markersize=7,color='k')
-ax.plot(Kx,0,marker='.',markersize=7,color='k')
-ax.plot(Kx,Ky,marker='.',markersize=6,color='k')
+xv = np.arange(0, 10)
+
+ax.plot(0, Ky, marker = '.', markersize = 7, color = 'k')
+ax.plot(Kx, 0, marker = '.', markersize = 7, color = 'k')
+ax.plot(Kx, Ky, marker = '.', markersize = 6, color = 'k')
 
 ##...et on les relie aux axes:
-xc=np.arange(0,Kx,0.01)
-ax.plot(xc,Ky*np.ones_like(xc),linestyle='dashed',color='k',linewidth=0.5)
+xc = np.arange(0, Kx, 0.01)
+ax.plot(xc, Ky * np.ones_like(xc), linestyle = 'dashed', color = 'k', linewidth = 0.5)
+
 yc=np.arange(0,Ky,0.01)
-ax.plot(Kx*np.ones_like(yc),yc,linestyle='dashed',color='k',linewidth=0.5)
+ax.plot(Kx * np.ones_like(yc), yc, linestyle = 'dashed', color = 'k', linewidth = 0.5)
 
 #On nomme les points:
-ax.text(-0.2,Ky,'$K_y$')
-ax.text(Kx,-0.2,'$K_x$')
+ax.text(-0.2, Ky, '$K_y$')
+ax.text(Kx, -0.2, '$K_x$')
 
 #On place les points d'équilibres :
-ys=np.arange(0,yeq,0.01)
-xs=np.arange(0,xeq,0.01)
-ax.plot(xeq*np.ones_like(ys),ys,linestyle='dashed',color='k',linewidth=0.5)
-ax.plot(xs,yeq*np.ones_like(xs),linestyle='dashed',color='k',linewidth=0.5)
-ax.text(-0.2,yeq,'$y^*$')
-ax.text(xeq,-0.2,'$x^*$')
+ys = np.arange(0, yeq, 0.01)
+xs = np.arange(0, xeq, 0.01)
+
+ax.plot(xeq * np.ones_like(ys), ys, linestyle = 'dashed', color = 'k', linewidth = 0.5)
+ax.plot(xs, yeq * np.ones_like(xs), linestyle = 'dashed', color = 'k', linewidth = 0.5)
+
+ax.text(-0.2, yeq, '$y^*$')
+ax.text(xeq, -0.2, '$x^*$')
 
 display(fig)
 ```
@@ -338,9 +344,10 @@ Pour mieux comprendre comment se déplace le système en fonction des paramètre
 ```{python}
 #| code-fold: True
 #Technique pour utiliser une fenêtre geogebra:
+
 import IPython.display as display
 fig01 = """
-<iframe width="700" height="550" src="https://www.geogebra.org/classic/ajaycvqe" style="border: 1px solid black"></iframe>
+<iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/ajaycvqe" style = "border: 1px solid black"></iframe>
 """
 display.HTML(fig01)
 ```

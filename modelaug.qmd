@@ -113,13 +113,13 @@ fig.suptitle('Simulation du modèle d\'augmentorium')
 plt.subplots_adjust(hspace=0.4)
 
 #Plot de l'axe 1:
-ax[0].plot(t3,s3[:,0],color='C0',label='Ravageur dans la culture')
-ax[0].plot(t3,s3[:,1],color='C1',label='Ravageur dans l\'augmentorium')
+ax[0].plot(t3,s3[:,0],color='C0',label='Ravageurs dans la culture')
+ax[0].plot(t3,s3[:,1],color='C1',label='Ravageurs dans l\'augmentorium')
 ax[0].plot(t3,s3[:,2],color='C6',label='Prédateurs totaux')
 
 #Plot de l'axe 2:
-ax[1].plot(t4,s4[:,0],color='C0',label='Ravageur dans la culture')
-ax[1].plot(t4,s4[:,1],color='C1',label='Ravageur dans l\'augmentorium')
+ax[1].plot(t4,s4[:,0],color='C0',label='Ravageurs dans la culture')
+ax[1].plot(t4,s4[:,1],color='C1',label='Ravageurs dans l\'augmentorium')
 ax[1].plot(t4,s4[:,2],color='C6',label='Prédateurs totaux')
 
 

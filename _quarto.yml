@@ -36,7 +36,6 @@ license: CC BY-NC
 
 execute:
   freeze: auto
-  echo: false
 
 
 

@@ -30,9 +30,11 @@ avec :
 - $\beta$ la force de migration entre les structures,  
 - $\gamma_x$ et $\gamma_y$ caractérisant l'assymétrie de  migration.
 
-### Nouvelles hypothèses
+### Nouvelles hypothèses propres à l'augmentorium
 
-En plus des hypothèses faites [avant](modelesansmigrationass.qmd) on peut aussi dire que le taux de fuite des ravageurs ($\frac{1}{\gamma_y}$) se doit d'être beaucoup plus petit que le taux de migration ($\frac{1}{\gamma_x}$).  
+Ce modèle est plus proche de celui d'un augmentorium.  
+Comme les ravageurs se reproduisent mieux dans l'augmentorium que dans la culture on peut dire que $r_x<r_y$.  
+On peut aussi dire que le taux de fuite des ravageurs ($\frac{1}{\gamma_y}$) se doit d'être beaucoup plus petit que le taux de migration ($\frac{1}{\gamma_x}$).  
 On a donc $\gamma_x << \gamma_y$.
 
 ## Dynamique du modèle
@@ -45,7 +47,8 @@ On définit le système sous [Python](https://www.python.org/):
 def aug(etat, t, param):
     rx, ry, Kx, Ky, b, gx, gy = param
     x, y = etat
-    s=[rx * x * (1 - x/Kx) + b * (y/gy - x/gx),ry * y * (1 - y/Ky) + b * (x/gx - y/gy)]
+    s=[rx * x * (1 - x/Kx) + b * (y/gy - x/gx),
+    ry * y * (1 - y/Ky) + b * (x/gx - y/gy)]
     return s
 ```
 
@@ -468,7 +471,8 @@ def aug2(etat, t, param, h):
     rx, ry, Kx, Ky, gx, gy = param
     b = h
     x, y = etat
-    s = [rx * x * (1 - x/Kx) + b * (y/gy - x/gx), ry * y * (1 - y/Ky) + b * (x/gx - y/gy)]
+    s = [rx * x * (1 - x/Kx) + b * (y/gy - x/gx), 
+    ry * y * (1 - y/Ky) + b * (x/gx - y/gy)]
     return s 
 ```
 
@@ -657,7 +661,8 @@ def aug3(etat, t, param, h):
     rx, ry, Kx, Ky, gx, b = param
     gy = h
     x, y = etat
-    s = [rx * x * (1 - x/Kx) + b * (y/gy - x/gx), ry * y * (1 - y/Ky) + b * (x/gx - y/gy)]
+    s = [rx * x * (1 - x/Kx) + b * (y/gy - x/gx), 
+    ry * y * (1 - y/Ky) + b * (x/gx - y/gy)]
     return s 
 
 #Définition des paramètres:

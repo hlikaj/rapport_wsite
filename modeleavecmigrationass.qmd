@@ -269,7 +269,7 @@ $$
 $$
 $$
 -\frac{r_y\gamma_yy^*}{\beta} + \frac{r_y \gamma_y {y^*}^2}{\beta K_y} - \frac{r_x\gamma_xy^*}{\beta} + \frac{r_xr_y\gamma_x \gamma_y y^*}{\beta^2} \\
-- \frac{r_xr_y\gamma_x\gamma_y{y^*}^2}{\beta^2K_y} + \frac{r_x\gamma_x^2{{y^*}^2}}{\beta K_x\gamma_y} - \frac{r_xr_y\gamma_x^2{y^*}^2}{\beta^2K_x} \\
+- \frac{r_xr_y\gamma_x\gamma_y{y^*}^2}{\beta^2K_y} + \frac{r_x\gamma_x^2{y^*}^2}{\beta K_x\gamma_y} - \frac{r_xr_y\gamma_x^2{y^*}^2}{\beta^2K_x} \\
 + 2\frac{r_xr_y\gamma_x^2{y^*}^3}{\beta^2K_xK_y} + \frac{r_xr_y^2\gamma_x^2 \gamma_y {y^*}^2}{\beta^3K_x} - 2\frac{r_xr_y^2\gamma_x^2\gamma_y{y^*}^3}{\beta^3K_xK_y} \\
 + \frac{r_xr_y^2\gamma_x^2\gamma_y{y^*}^4}{\beta^3K_xK_y^2}
 $$

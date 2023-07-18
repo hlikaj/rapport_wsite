@@ -936,7 +936,7 @@ Pour mieux comprendre comment se déplace le système en fonction des paramètre
 
 import IPython.display as display
 fig01 = """
-<iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/ajaycvqe" style = "overflow: hidden border: 1px solid black" scroll="no"></iframe>
+<iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/ajaycvqe" style = "overflow: hidden;border: 1px solid black"  scroll = "no" ></iframe>
 """
 
 display.HTML(fig01)

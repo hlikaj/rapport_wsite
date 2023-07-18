@@ -522,7 +522,7 @@ Ceci donne le résultat.
 #| fig-cap: Animation Geogebra permettant de voir quels paramètres influencent le système.
 import IPython.display as display
 fig01 = """
-<iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/bhhpgtqv" style = " style="overflow: hidden border: 1px solid black" scroll="no"></iframe>
+<iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/bhhpgtqv" style = " style="overflow: hidden border: 1px solid black" scrolling="no"></iframe>
 """
 display.HTML(fig01)
 ```

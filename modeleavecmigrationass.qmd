@@ -431,7 +431,7 @@ ax2.legend();
 
 La première condition d'inflation est exactement la même que dans le modèle précédent et la preuve est en tout point égale (elle repose sur une analyse de l'équation de l'ellipse qui est la même dans les deux modèles). On ne détaillera pas ici cette preuve mais on sait donc que :
 
-Si $r_x = r_y$ alors le système est tout le temps déflationiste.
+**Si $r_x = r_y$ alors le système est tout le temps déflationiste.**
 
 #### b) Deuxième condition de déflation
 
@@ -443,77 +443,22 @@ Il est alors facile de voir que pour cela on veut que la coordonnée en $y$ de $
 
 Pour cela on a besoin de connaître les coordonnées de $A$ et $C$.  
 
+Le point $A$ est défini comme la valeur de l'équilibre sans migration. Il est alors facile de constater que dans ce cas nous sommes face à un système avec une croissance logistique seulement et donc l'équilibre est atteint pour les capacités de charge.  
+On a donc $A = (K_x,K_y)$.
+
+Pour $C$ on sait que c'est l'intersection entre $P_{20}$ et $P_{\infty}$, ainsi comme $P_{20}$ est défini par $x^* = K_x$ et $P_{\infty}$ par $y^* =\frac{\gamma_y}{\gamma_x}x^*$ on a :
+
+$C = (K_x,\frac{\gamma_yK_x}{\gamma_x})$.
+
+La condition mathématique qui en découle est donc que le système est déflationiste si $\frac{\gamma_yK_x}{\gamma_x} > K_y$.
+
+**Si $\frac{\gamma_y}{\gamma_x} > \frac{K_y}{K_x}$ alors le système ([-@eq-modamig]) est toujours déflationiste.**
+
+#### c) Conditions d'inflation et/ou de déflation
+
+Similairement à la première partie on va avoir des conditions sur l'inflation. 
 
 
-
-
-
-
-
-
-- Si on note $A$ l'intersection entre la parabole en $0$ et l'ellipse et $B$ l'intersection entre la parabole en $0$ et en $+\infty$ alors pour que $x^* < K_x$ (ce que l'on veut) il faut que la coordonnée en $y$ de $B$ soit supérieur à celle de $A$.
-
-    Le point $A$ est défini par :
-    $A=(K_x,K_y)$
-
-    Le point $B$ est défini par :
-    $B=\left(K_x,\frac{\gamma_yK_x}{\gamma_x}\right)$
-
-Autrement dit, **si** $\frac{\gamma_y}{\gamma_x}>\frac{K_y}{K_x}$ alors on a toujours l'augmentorium qui est efficace, ie le système est déflationiste quelque soit le taux de migration $\beta$.
-  
-  
----   
-
-- Si on note $C$ l'intersection entre l'ellipse et la parabole en $+\infty$ on a alors la valeur de l'équilibre en $\beta =+\infty$.
-  
-    Le point $C$ est défini par :
-    $C=\left(\frac{\left(\frac{\gamma_x}{\gamma_y}\right)r_x + r_y}{\left(\frac{\gamma_x}{\gamma_y}\right)\frac{r_x}{K_x}+\left(\frac{\gamma_y}{\gamma_x}\right)\frac{r_y}{K_y}} , \frac{\left(\frac{\gamma_y}{\gamma_x}\right)r_y + r_x}{\left(\frac{\gamma_x}{\gamma_y}\right)\frac{r_x}{K_x}+\left(\frac{\gamma_y}{\gamma_x}\right)\frac{r_y}{K_y}} \right)$
-  
-    Maintenant notons $D$ la valeur de l'intersection entre le droite des capacités et l'ellipse.
-  
-    Le point $D$ est défini par :
-    $D=\left(\frac{r_yK_x(K_x+K_y)}{r_xK_y+r_yK_x} , \frac{r_xK_y(K_x+K_y)}{r_xKy+r_yK_x}\right)$  
-  
-    Ainsi, quand $\beta$ augmente le point d'équilibre se déplace entre $A$ et $C$. On voit donc que l'équilibre peut soit être tout le temps déflationiste si $C$ est avant $A$ (point précédent) sur l'ellipse soit être constamment inflationiste si $C$ est entre $A$ et $D$ soit être les deux si $C$ est après $D$.
-  
-    Voyons ceci en terme de coefficient de droite, on a alors les exactes mêmes conditions mais sur les pentes des droites passant par ces points, qu'on peut calculer.
-    On a déja par le premier point la condition sur les paramètres pour avoir le système déflationiste.
-  
-**Si** $\frac{\gamma_y}{\gamma_x} < \frac{r_xK_y}{r_yK_x}$ alors on a des équilibres à la fois inflationiste et déflationiste. En effet ceci traduit que C est après D, graphiquement on voit que l'équilibre est au début au dessus de la droite cyan et à la fin en dessous (après avoir passé D).   
-
-**Si** $\frac{r_xK_y}{r_yK_x} < \frac{\gamma_y}{\gamma_x} < \frac{K_y}{K_x}$ alors les équilibres sont constamment inflationiste. 
-
----
-
--  Enfin on observe que si la droite cyan est tangente à l'ellipse alors on a que le système est constamment déflationiste. Ceci correspond au même calcul que dans la première partie et on trouve que **si** $r_x=r_y$ le système est tout le temps déflationiste pour tout $\beta$.
-
----
-
-Maintenant si on prend $r_x>r_y$ on a un autre cas qui apparaît d'après @gao2022
-En effet, et on le voit bien sur l'animation, on peut alors avoir $C$ entre $D$ et $A$ avec $C$ plus haut que $A$ et ainsi on peut avoir un cas où le système est complètement inflationiste avec des valeurs de la somme des équilibres plus grands que $C$.
-Cette situation ne nous intéresse que peu car ce n'est pas un cas qui est biologiquement réaliste.
-
-##### Preuves: 
-
-- Point $B$:  
-  La première coordonnée est forcément $K_x$ car on considère le croisement avec la parabole en $\beta = 0$.  
-  On sait que la parabole en $\beta = +\infty$ est définie par $y = \frac{\gamma_y}{\gamma_x}x$.  
-  On a le résultat pour $x=K_x$.
-  
-- Point $C$:  
-  La parabole en $\beta = +\infty$
- est définie par $y = \frac{\gamma_y}{\gamma_x}x$ et l'ellipse par $r_xx\left(1-\frac{x}   {K_x}\right) + r_yy\left(1-\frac{y}{K_y}\right) = 0$. Il suffit de remplacer dans l'expression de l'ellipse la valeur de y donnée par la parabole pour trouver la première coordonnée.   
-  Pour trouver la deuxième on utilise l'expression de la parabole.
-
-- Point $D$:
-  On fait la même que précédemment. La droite des capacités est définie par $y= -x +K_x+K_y$ qu'on remplace dans l'expression de l'ellipse pour trouver la première coordonnée (après simplification). La deuxième est déduite de la la première grâce à l'expression de la droite. 
-  
-Pour les conditions sur les équilibres on se rappelle que la pente de la parabole en $\beta = +\infty$ est définie par $\frac{\gamma_y}{\gamma_x}$.   
-Ainsi, quand cette pente est inférieure à celle de la droite passant par le point $D$ (qui a une pente de $\frac{r_xK_y}{r_yK_x}$) on a soit déflationiste soit inflationiste. 
-On a donc pour condition $\frac{\gamma_y}{\gamma_x} < \frac{r_xK_y}{r_yK_x}$.  
-  
-Ensuite pour que le système soit entièrement inflationiste on veut que la pente de $\beta = +\infty$ soit entre celle de la droite passant par $D$ et celle passant par $A$ (première condition détaillée au premier point de l'analyse.) 
-Ceci donne le résultat.
 
 ### Animation
 ```{python}
@@ -522,7 +467,7 @@ Ceci donne le résultat.
 #| fig-cap: Animation Geogebra permettant de voir quels paramètres influencent le système.
 import IPython.display as display
 fig01 = """
-<iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/bhhpgtqv" style = " style="overflow: hidden border: 1px solid black" scrolling="no"></iframe>
+<iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/bhhpgtqv" style = " style="border: 1px solid black"></iframe>
 """
 display.HTML(fig01)
 ```

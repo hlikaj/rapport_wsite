@@ -172,7 +172,7 @@ On se retrouve avec deux surfaces et deux plans dont les intersections seront le
 ```{python}
 import IPython.display as display
 fig01 = """
-<iframe width="700" height="550" src="https://www.geogebra.org/classic/bw3wqnzg" style="overflow: hidden border: 1px solid black" scrolling="no"></iframe>
+<iframe width="700" height="550" src="https://www.geogebra.org/classic/bw3wqnzg" style="border: 1px solid black"></iframe>
 """
 display.HTML(fig01)
 ```

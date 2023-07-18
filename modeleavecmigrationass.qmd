@@ -28,7 +28,7 @@ avec :
 - $r_x$ et $r_y$ le taux de croissance dans la culture et dans l'augmentorium,  
 - $K_x$ et $K_y$ les capacités de charges de la culture de de l'augmentorium,  
 - $\beta$ la force de migration entre les structures,  
-- $\gamma_x$ et $\gamma_y$ caractérisant l'assymétrie de  migration.
+- $\gamma_x$ et $\gamma_y$ caractérisant l'assymétrie de migration.
 
 ### Nouvelles hypothèses propres à l'augmentorium
 
@@ -91,8 +91,8 @@ ax.plot(ti, s[ :, 1], color = 'C0', label = 'augmentorium')
 # Ajout d'élements:
 ax.grid()
 ax.legend()
-ax.set_xlabel('Temps,t')
-ax.set_ylabel('Densité de pop.')
+ax.set_xlabel('Temps, t');
+ax.set_ylabel('Densité de pop.');
 ```
 
 Cette dynamique, comme en première partie, présente un équilibre de maintien de la population.  
@@ -107,14 +107,23 @@ A l'équilibre on a le système suivant :
 
 $$ 
 \left\{\begin{array}{l}
-\dot x = 0 \Leftrightarrow  y^*=\gamma_y\left(\frac{x}{\gamma_x}-\frac{r_xx}{\beta}\left(1-\frac{x}{K_x}\right)\right)\\
-\dot y =0 \Leftrightarrow   x^*=\gamma_x\left(\frac{y}{\gamma_y}-\frac{r_yy}{\beta}\left(1-\frac{y}{K_y}\right)\right)
+\dot x = 0 \Leftrightarrow 0 = r_xx(1-\frac{x}{K_x})+\beta\left(\frac{y}{\gamma_y}-\frac{x}{\gamma_x}\right)\\
+\dot y = 0 \Leftrightarrow 0 = r_yy(1-\frac{y}{K_y})+\beta\left(\frac{x}{\gamma_x}-\frac{y}{\gamma_y}\right)
+\end{array}\right.
+$${#eq-pdpamig0}
+$$
+\Leftrightarrow
+$$
+$$ 
+\left\{\begin{array}{l}
+y^*=\gamma_y\left(\frac{x}{\gamma_x}-\frac{r_xx}{\beta}\left(1-\frac{x}{K_x}\right)\right)\\
+x^*=\gamma_x\left(\frac{y}{\gamma_y}-\frac{r_yy}{\beta}\left(1-\frac{y}{K_y}\right)\right)
 \end{array}\right.
 $${#eq-pdpamig}
 
 On voit tout de suite qu'on a deux paraboles qui se croisent en $(0,0)$ et en $(x^*,y^*)$.  
-On va donc avoir deux équilibres, ceux ci vivent sur une ellipse de même équation qu'en première partie.   
-En effet on peut voir que cette ellipse ne dépend d'aucun des paramètres de migration.  
+On va donc avoir deux équilibres, ceux-ci vivent sur une ellipse de même équation qu'en première partie.   
+
 En fonction des racines des paraboles on va avoir des plans de phases différents qu'on va tracer via les mêmes techniques qu'en première partie :
 
 ```{python}
@@ -123,9 +132,9 @@ En fonction des racines des paraboles on va avoir des plans de phases différent
 fig2, (ax2, ax3, ax4) = plt.subplots(1, 3, figsize = (9, 4))
 
 fig2.suptitle('Plan de phase de la population')
-ax2.set_title('b=1')
-ax3.set_title('b=10')
-ax4.set_title('b=0.1')
+ax2.set_title('β=1')
+ax3.set_title('β=10')
+ax4.set_title('β=0.1')
 
 #Plan de phase 1:#
 # Paramètres: 
@@ -144,19 +153,19 @@ xt = np.arange(-10, 10, 0.01)
 yt = np.arange(-10, 10, 0.01)
 
 #xdot = 0 
-ax2.plot(xt, gy1 * (xt/gx1 - rx1 * xt/b1 * (1 - xt/Kx1)), color = 'C2', label = 'xdot=0')
+ax2.plot(xt, gy1 * (xt/gx1 - rx1 * xt/b1 * (1 - xt/Kx1)), color = 'C2', label = '$\dot x=0$')
 ax2.plot(np.zeros_like(xt), xt, color = 'k', markersize = 6)
 
 #ydot = 0
-ax2.plot(gx1 * (yt/gy1 - ry1 * yt/b1 * (1 - yt/Ky1)), yt, color = 'C3', label = 'ydot=0')
+ax2.plot(gx1 * (yt/gy1 - ry1 * yt/b1 * (1 - yt/Ky1)), yt, color = 'C3', label = '$\dot y=0$')
 ax2.plot(xt, np.zeros_like(xt), color = 'k', markersize = 6)
 
 #Illustration de la figure:
 ax2.set_xlim(left = -0.03, right = 0.5)
 ax2.set_ylim(top = 1.5, bottom = -0.06)
 
-ax2.set_xlabel('Ravageur dans la culture', fontsize = '12')
-ax2.set_ylabel('Ravageur dans l\'augmentorium', fontsize = '12')
+ax2.set_xlabel('Ravageur dans la culture', fontsize = '12');
+ax2.set_ylabel('Ravageur dans l\'augmentorium', fontsize = '12');
 
 #Ajout du champ de vecteur
 xg = np.arange(-0.5, 3, 0.08)
@@ -165,7 +174,7 @@ X, Y = np.meshgrid(xg, yg)
 
 #On utilise quiver:
 dx, dy = aug([X, Y], 0, param_aug1)
-ax2.quiver(X, Y, dx, dy, angles = 'xy', color = 'grey', scale = 15, width = 0.0035)
+ax2.quiver(X, Y, dx, dy, angles = 'xy', color = 'grey', scale = 15, width = 0.0035);
 
 #Plan de phase 2:#
 #Paramètres: 
@@ -181,18 +190,18 @@ param_aug2 = np.array([rx2, ry2, Kx2, Ky2, b2, gx2, gy2])
 
 #Isocline nulles:
 #xdot = 0
-ax3.plot(xt, gy2 * (xt/gx2 - rx2 * xt/b2 * (1 - xt/Kx2)), color = 'C2', label = 'xdot=0')
+ax3.plot(xt, gy2 * (xt/gx2 - rx2 * xt/b2 * (1 - xt/Kx2)), color = 'C2', label = '$\dot x=0$')
 ax3.plot(np.zeros_like(xt), xt, color = 'k', markersize = 6)
 
 #ydot = 0
-ax3.plot(gx2 * (yt/gy2 - ry2 * yt/b2 * (1 - yt/Ky2)), yt, color = 'C3', label = 'ydot=0')
+ax3.plot(gx2 * (yt/gy2 - ry2 * yt/b2 * (1 - yt/Ky2)), yt, color = 'C3', label = '$\dot y=0$')
 ax3.plot(xt, np.zeros_like(xt), color = 'k', markersize = 6)
 
 #Illustration de la figure:
 ax3.set_xlim(left = -0.02, right = 0.35)
 ax3.set_ylim(top = 1.4, bottom = -0.06)
 
-ax3.set_xlabel('Ravageur dans la culture', fontsize = '12')
+ax3.set_xlabel('Ravageur dans la culture', fontsize = '12');
 
 
 #Ajout du champ de vecteur
@@ -203,7 +212,7 @@ X, Y = np.meshgrid(xg, yg)
 
 #On utilise quiver:
 dx, dy = aug([X, Y], 0, param_aug2)
-ax3.quiver(X, Y, dx, dy, angles = 'xy', color = 'grey', scale = 40, width = 0.003)
+ax3.quiver(X, Y, dx, dy, angles = 'xy', color = 'grey', scale = 40, width = 0.003);
 
 #Plan de phase 3:
 #Paramètres: 
@@ -230,7 +239,7 @@ ax4.plot(xt, np.zeros_like(xt), color = 'k', markersize = 6)
 ax4.set_xlim(left = -0.08, right = 1.9)
 ax4.set_ylim(top=1.5, bottom = -0.06)
 
-ax4.set_xlabel('Ravageur dans la culture', fontsize = '12')
+ax4.set_xlabel('Ravageur dans la culture', fontsize = '12');
 
 # Ajout du champ de vecteur
 xg = np.arange(-0.5, 3, 0.18)
@@ -239,21 +248,36 @@ yg = np.arange(-0.5, 3, 0.18)
 X, Y = np.meshgrid(xg, yg)
 
 dx, dy = aug([X, Y], 0, param_aug3)
-ax4.quiver(X, Y, dx, dy, angles = 'xy', color = 'grey', scale = 10, width = 0.0035)
+ax4.quiver(X, Y, dx, dy, angles = 'xy', color = 'grey', scale = 10, width = 0.0035);
 
 #On légende:
-ax4.legend()
+ax4.legend();
 ```
 
-En fonction des valeurs de $\beta$ on observe des profils différents de plan de phase. Pour mieux le visualiser on pourra utiliser l'animation [Geogebra](https://www.geogebra.org/) mise à disposition à la fin de l'analyse.
+En fonction des valeurs de $\beta$ on observe des profils différents de plan de phase. Pour mieux le visualiser on pourra utiliser l'animation [Geogebra](@fig-anim) mise à disposition à la fin de l'analyse.
 
-D'après le champ de vecteurs on voit clairement que l'équilibre en $(0,0)$ est instable et l'équilibre $(x^*,y^*)$. est stable.  
+D'après le champ de vecteurs on voit clairement que l'équilibre en $(0,0)$ est instable et l'équilibre $(x^*,y^*)$ est stable.  
 
-Pour calculer l'équilibre on procède de la même manière que dans la première partie, c'est à dire le croisement des deux paraboles qui s'obtient en résolvant le polynôme suivant : 
+Pour calculer l'équilibre on procède de la même manière que dans la première partie, c'est à dire en croisant les deux paraboles $\dot =0 $ et $\dot y =0$ :
+On a $x^*=\gamma_x\left(\frac{y}{\gamma_y}-\frac{r_yy}{\beta}\left(1-\frac{y}{K_y}\right)\right)$.  
+Donc :
+$$\small
+y^*=\gamma_y\left(\frac{\gamma_x\left(\frac{y}{\gamma_y}-\frac{r_yy}{\beta}\left(1-\frac{y}{K_y}\right)\right)}{\gamma_x}-\frac{r_x\gamma_x\left(\frac{y}{\gamma_y}-\frac{r_yy}{\beta}\left(1-\frac{y}{K_y}\right)\right)}{\beta}\left[1-\frac{\gamma_x\left(\frac{y}{\gamma_y}-\frac{r_yy}{\beta}\left(1-\frac{y}{K_y}\right)\right)}{K_x}\right]\right)
+$$
+$$
+\Leftrightarrow
+$$
+$$
+-\frac{r_y\gamma_yy^*}{\beta} + \frac{r_y \gamma_y {y^*}^2}{\beta K_y} - \frac{r_x\gamma_xy^*}{\beta} + \frac{r_xr_y\gamma_x \gamma_y y^*}{\beta^2} \\
+- \frac{r_xr_y\gamma_x\gamma_y{y^*}^2}{\beta^2K_y} + \frac{r_x\gamma_x^2{{y^*}^2}}{\beta K_x\gamma_y} - \frac{r_xr_y\gamma_x^2{y^*}^2}{\beta^2K_x} \\
++ 2\frac{r_xr_y\gamma_x^2{y^*}^3}{\beta^2K_xK_y} + \frac{r_xr_y^2\gamma_x^2 \gamma_y {y^*}^2}{\beta^3K_x} - 2\frac{r_xr_y^2\gamma_x^2\gamma_y{y^*}^3}{\beta^3K_xK_y} \\
++ \frac{r_xr_y^2\gamma_x^2\gamma_y{y^*}^4}{\beta^3K_xK_y^2}
+$$
 
+Ce qui donne, en mettant les monomes $y^*$ en facteur et en simplifiant ensuite par $\frac{y^*}{\beta}$ :  
 $$
 \frac{r_xr_y\gamma_x\gamma_y}{\beta}-\gamma_yr_y-\gamma_xr_x +\\ y\left[\frac{r_y\gamma_y}{K_y}-\frac{r_xr_y\gamma_x\gamma_y}{\beta K_y}+ \frac{r_xr_y^2\gamma_x^2\gamma_y}{\beta^2K_x}+\frac{r_x\gamma_x^2}{\gamma_yK_x}-\frac{2r_xr_y\gamma_x^2}{\beta K_x}   \right] +\\[.2cm]
-\frac{2r_yr_x\gamma_xy^2}{\beta K_xK_y}\left(1-\frac{r_y\gamma_y}{\beta}\right) + \frac{r_xr_y^2\gamma_x^2\gamma_yy^3}{\beta^2K_xK_y^2} = 0
+\frac{2r_yr_x\gamma_x^2y^2}{\beta K_xK_y}\left(1-\frac{r_y\gamma_y}{\beta}\right) + \frac{r_xr_y^2\gamma_x^2\gamma_yy^3}{\beta^2K_xK_y^2} = 0
 $${#eq-pol}
 
 Ce polynôme est résoluble par `numpy` similairement à la première partie :
@@ -263,20 +287,21 @@ Ce polynôme est résoluble par `numpy` similairement à la première partie :
 # Paramètres pour calculer le polynôme
 rx = 0.5
 ry = 1
-Kx = 2
-Ky = 1
+Kx = 2.5
+Ky = 2
 b = 1
-gx = 1
+gx = 1.5
 gy = 3
+
 #Points d'équilibres, utilisation de numpy : monome, polynome et racines:
 #Calcul:
 #Monome y
 x = np.polynomial.Polynomial([0, 1])
 
 #Polynome :
-pol = -gy * ry - gx * rx + (rx * ry * gx * gy)/b + x * ((ry * gy)/(Ky * b) - (ry * rx * gy * gx)/(b * Ky) + \
+pol = -gy * ry - gx * rx + (rx * ry * gx * gy)/b + x * ((ry * gy)/(Ky) - (ry * rx * gy * gx)/(b * Ky) + \
  rx * ry**2 * gx**2 * gy/(b**2 * Kx) + rx * gx**2/(gy * Kx) - 2 * rx * ry * gx**2/(b * Kx)) + \
- (x**2) * 2 * (ry * rx *gx)/(b * Kx * Ky) * (1 - ry * gy/b) + (x**3) * gy * rx * ((ry * gx)**2)/(b**2 * Kx * Ky**2)
+ (x**2) * 2 * (ry * rx *gx**2)/(b * Kx * Ky) * (1 - ry * gy/b) + (x**3) * gy * rx * ((ry * gx)**2)/(b**2 * Kx * Ky**2)
 
 #Solution
 sol = pol.roots()[ (np.isreal( pol.roots() )) * (pol.roots() > 0)]
@@ -288,10 +313,38 @@ xeq = gx * (yeq/gy - ry * yeq/b * (1 - yeq/Ky))
 
 ### Analyse du plan de phase
 
-On va tracer le plan de phase complet et l'analyser.  
-Pour cela on trace l'ellipse de la même manière que dans la première figure.  
-Ensuite on va tracer la droite correspondant à $K_x+K_y=x^*+y^*$. Ceci va permettre de voir si le système subit une [inflation](contexte.qmd) ou une déflation.  
-Enfin on trace la parabole donnée par $\dot x =0$ pour $\beta = 0$ et $\beta = \infty$.
+On va tracer le plan de phase complet et l'analyser d'après la méthode de @arditi2018 :  
+
+Dans cette analyse on va considérer, sans perte de généralité, que $r_x < r_y$ (on prend l'ellipse dans un seul sens, voir l'[animation](@fig-anim)).
+
+Pour cela on trace l'ellipse de la même manière que dans la première figure, l'équation de cette ellipse n'ayant pas de terme de migration dans le premier modèle elle est la même dans celui-ci aussi.  
+
+Ensuite on va tracer la droite $d$ correspondant à $K_x+K_y=x^*+y^*$ car ceci va permettre de voir si le système subit une [inflation](contexte.qmd) ou une déflation.  
+
+Enfin, similairement à la partie prédédente on va tracer les droites données par $\beta = 0$ et $\beta = +\infty$ dans la parabole définie par $\dot x =0$ (parabole verte sur le plan de phase).  
+Les droites sont différentes du modèle précédent donc on va les recalculer :
+
+Lorsque $\beta = 0$ on a exactement les mêmes deux droites que dans le modèle précédent en $x^* =0$ et en $x^*=K_x$ car le fait que le nouveau modèle ajoute de l'assymétrie dans les migrations est effacé par une migration nulle. On les appelle respectivement $P_{10}$ et $P_{20}$.
+
+Lorsque $\beta = +\infty$ on a d'après ([-@eq-pdpamig]) : 
+$$
+y^* = \frac{\gamma_y}{\gamma_x}x^*
+$$
+
+On appellera cette droite $P_{\infty}$.  
+
+
+Introduisons les mêmes points que précédemment c'est à dire : 
+
+- $A$, l'intersection entre $P_{20}$  et l'ellipse, c'est à dire la valeur de l'équilibre quand $\beta = 0$.
+
+- $B$, l'intersection entre $P_{\infty}$ et l'ellipse, c'est à dire la valeur de l'équilibre quand $\beta = +\infty$.
+
+- $C$, l'intersection entre $P_{20}$ et $P_{\infty}$.
+
+- $D$, l'intersection entre la droite $d$ et l'ellipse qui n'est pas $A$.
+
+Représentons le plan de phase avec ces éléments :
 
 ```{python}
 #| code-fold: True
@@ -300,15 +353,8 @@ Enfin on trace la parabole donnée par $\dot x =0$ pour $\beta = 0$ et $\beta = 
 fig2, ax2 = plt.subplots(1, 1, figsize = (8, 5))
 fig2.suptitle('Plan de phase de la population')
 
-#Plan de phase 1:
-# Paramètres: 
-rx = 0.5
-ry = 1
-Kx = 2
-Ky = 1
-b = 1
-gx = 1
-gy = 3
+#Plan de phase:
+# Paramètres égaux à ceux utilisés pour calculer les équilibres:
 
 param_aug = np.array([rx, ry, Kx, Ky, b, gx, gy])
 
@@ -317,16 +363,17 @@ xt = np.arange(-10, 10, 0.01)
 yt = np.arange(-10, 10, 0.01)
 
 #xdot = 0 
-ax2.plot(xt, gy * (xt/gx - rx * xt/b * (1 - xt/Kx)), color = 'C2', label = '$\dot x=0$')
+ax2.plot(xt, gy * (xt/gx - rx * xt/b * (1 - xt/Kx)), color = 'C2', label = '$\dot x = 0$')
 
 #ydot = 0
-ax2.plot(gx * (yt/gy - ry * yt/b * (1 - yt/Ky)), yt, color = 'C3', label = '$\dot y=0$')
+ax2.plot(gx * (yt/gy - ry * yt/b * (1 - yt/Ky)), yt, color = 'C3', label = '$\dot y = 0$')
 
 #Cadrage:
-ax2.set_xlim(left = -0.50, right = 3)
-ax2.set_ylim(top = 3, bottom = -0.50)
-ax2.set_xlabel('$x$', fontsize = '12')
-ax2.set_ylabel('$y$', fontsize = '12')
+ax2.set_xlim(left = -0.30, right = 4.5)
+ax2.set_ylim(top = 6, bottom = -0.70)
+
+ax2.set_xlabel('$x^*$', fontsize = '12')
+ax2.set_ylabel('$y^*$', fontsize = '12')
 
 #Axe x et y:
 ax2.plot(xt, np.zeros_like(xt), color = 'k', linestyle = 'dashed')
@@ -334,7 +381,7 @@ ax2.plot(np.zeros_like(yt), yt, color = 'k', linestyle = 'dashed')
 
 #Droite capacité:
 x = np.arange(0, 10, 0.01)
-ax2.plot(x, -x + Kx + Ky, label = '$K_x+K_y$', color = 'C9')
+ax2.plot(x, -x + Kx + Ky, label = '$K_x+K_y$', color = "0.8")
 
 #Plot des équilibres:
 ax2.plot(xeq, yeq, label = 'Equilibre stable', marker = '.', markersize = 12)
@@ -351,36 +398,58 @@ ax2.contour(X2, Y2, (X + Y), [0], colors = 'C1')
 ax2.plot(0, 0, color = 'C1', label = 'Ellipse des solutions')
 
 #Parabole xdot=0 b=0:
-ax2.plot(Kx * np.ones_like(xt), xt, color = 'C4', label = 'Parabole b=0')
+ax2.plot(Kx * np.ones_like(xt), xt, color = 'C9', label = 'Parabole β = 0')
+ax2.plot(np.zeros_like(xt), xt, color = 'C9')
 
 #Parabole xdot=0 b=+inf:
-ax2.plot(xt, xt * gy/gx, color = 'C6', label = 'Parabole b=$+\infty$')
+ax2.plot(xt, xt * gy/gx, color = 'C6', label = 'Parabole β = $+\infty$')
 
 #A:
 ax2.plot(Kx, Ky, color = 'black', marker = '.')
 ax2.text(Kx - 0.1, Ky - 0.1, '$A$')
 
-#B:
-ax2.plot(Kx, gy * Kx/gx, color = 'black', marker = '.')
-
 #C:
+ax2.plot(Kx, gy * Kx/gx, color = 'black', marker = '.')
+ax2.text(Kx, gy * Kx/gx - 0.1, 'C')
+
+#B:
 ax2.plot(((gx/gy) * rx + ry)/((gx/gy) * rx/Kx + (gy/gx) * ry/Ky),((gy/gx) * ry + rx)/((gx/gy) * rx/Kx + (gy/gx) * ry/Ky) \
                                         , color = 'black', marker = '.')
 
 ax2.text(((gx/gy) * rx + ry)/((gx/gy) * rx/Kx + (gy/gx) * ry/Ky) - 0.1, ((gy/gx) * ry + rx)/((gx/gy) * rx/Kx + (gy/gx) * ry/Ky) + 0.1 \
-                                        , '$C$')
+                                        , '$B$')
 
 #D:
 ax2.plot(ry * Kx * (Kx + Ky)/(rx * Ky + ry * Kx), rx * Ky * (Kx + Ky)/(rx * Ky + ry * Kx), color = 'black', marker = '.')
 ax2.text(ry * Kx * (Kx + Ky)/(rx * Ky + ry * Kx) - 0.1, rx * Ky * (Kx + Ky)/(rx * Ky + ry * Kx) - 0.1, '$D$')
 
 #Légende:
-ax2.legend()
+ax2.legend();
 ```
 
-Si $r_x<r_y$, alors d'après @arditi2018 :
+#### a) Première condition de déflation
 
----
+La première condition d'inflation est exactement la même que dans le modèle précédent et la preuve est en tout point égale (elle repose sur une analyse de l'équation de l'ellipse qui est la même dans les deux modèles). On ne détaillera pas ici cette preuve mais on sait donc que :
+
+Si $r_x = r_y$ alors le système est tout le temps déflationiste.
+
+#### b) Deuxième condition de déflation
+
+Nous allons faire une preuve graphique de cette condition similaire à l'ancien modèle.  
+
+L'équilibre vit sur l'ellipse et parcourt l'arc orange entre $A$ et $B$ au fur et à mesure que $\beta$ augmente.   
+Ainsi pour avoir déflation on va vouloir avoir cet arc entièrement sous la droite $d$ en gris.  
+Il est alors facile de voir que pour cela on veut que la coordonnée en $y$ de $C$ soit plus grande que celle de $A$ ($C$ est plus haut sur la droite cyan que $A$), entraînant que la coordonnée en $x$ de $B$ est plus petite que celle de $A$ ($B$ se trouve plus à gauche sur l'ellipse que $A$).  
+
+Pour cela on a besoin de connaître les coordonnées de $A$ et $C$.  
+
+
+
+
+
+
+
+
 
 - Si on note $A$ l'intersection entre la parabole en $0$ et l'ellipse et $B$ l'intersection entre la parabole en $0$ et en $+\infty$ alors pour que $x^* < K_x$ (ce que l'on veut) il faut que la coordonnée en $y$ de $B$ soit supérieur à celle de $A$.
 
@@ -453,7 +522,7 @@ Ceci donne le résultat.
 #| fig-cap: Animation Geogebra permettant de voir quels paramètres influencent le système.
 import IPython.display as display
 fig01 = """
-<iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/bhhpgtqv" style = "border: 1px solid black"></iframe>
+<iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/bhhpgtqv" style = " style="overflow: hidden border: 1px solid black" scroll="no"></iframe>
 """
 display.HTML(fig01)
 ```

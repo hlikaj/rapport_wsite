@@ -394,6 +394,8 @@ ax.text(xeq, -0.2, '$x^*$')
 display(fig)
 ```
 
+Les conditions d'inflations et de déflations suivantes proviennent de l'article d'@arditi2018.
+
 #### a) Première condition à un système déflationiste 
 On remarque que le point $(K_x,K_y)$ est en permanence sur la droite $d$ qui coupe en permanence l'ellipse (en deux points) sauf pour une situation où $d$ est tangente à l'ellipse.  
 Ce cas nous intéresse car il rend compte d'un système entièrement déflationiste. Représentons le sur le plan de phase :
@@ -934,7 +936,7 @@ Pour mieux comprendre comment se déplace le système en fonction des paramètre
 
 import IPython.display as display
 fig01 = """
-<iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/ajaycvqe" style = "border: 1px solid black"></iframe>
+<iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/ajaycvqe" style = "overflow: hidden border: 1px solid black" scroll="no"></iframe>
 """
 
 display.HTML(fig01)

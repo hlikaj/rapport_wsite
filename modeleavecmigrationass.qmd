@@ -342,7 +342,7 @@ Introduisons les mêmes points que précédemment c'est à dire :
 
 - $C$, l'intersection entre $P_{20}$ et $P_{\infty}$.
 
-- $D$, l'intersection entre la droite $d$ et l'ellipse qui n'est pas $A$.
+- $D$, l'intersection entre la droite $d$ et l'ellipse qui n'est pas le point $A$.
 
 Représentons le plan de phase avec ces éléments :
 
@@ -384,8 +384,8 @@ x = np.arange(0, 10, 0.01)
 ax2.plot(x, -x + Kx + Ky, label = '$K_x+K_y$', color = "0.8")
 
 #Plot des équilibres:
-ax2.plot(xeq, yeq, label = 'Equilibre stable', marker = '.', markersize = 12)
-ax2.plot(0, 0, label = 'Equilibre Instable', marker = '.', markersize = 12, color = 'C5')
+ax2.plot(xeq, yeq, marker = '.', markersize = 12)
+ax2.plot(0, 0, marker = '.', markersize = 12, color = 'C5')
 
 #Ellipse:
 xg2 = np.arange(-5, 5, 0.01)
@@ -421,10 +421,15 @@ ax2.text(((gx/gy) * rx + ry)/((gx/gy) * rx/Kx + (gy/gx) * ry/Ky) - 0.1, ((gy/gx)
 
 #D:
 ax2.plot(ry * Kx * (Kx + Ky)/(rx * Ky + ry * Kx), rx * Ky * (Kx + Ky)/(rx * Ky + ry * Kx), color = 'black', marker = '.')
-ax2.text(ry * Kx * (Kx + Ky)/(rx * Ky + ry * Kx) - 0.1, rx * Ky * (Kx + Ky)/(rx * Ky + ry * Kx) - 0.1, '$D$')
+ax2.text(ry * Kx * (Kx + Ky)/(rx * Ky + ry * Kx) - 0.1, rx * Ky * (Kx + Ky)/(rx * Ky + ry * Kx) + 0.1, '$D$')
+
+## On place des textes indiquant les trois droites:
+ax2.text(0.1, yeq, "$P_{10}$")
+ax2.text(Kx + 0.05, 4, "$P_{20}$")
+ax2.text(3, 5.5, "$P_\infty$")
 
 #Légende:
-ax2.legend();
+ax2.legend(loc="upper left");
 ```
 
 #### a) Première condition de déflation
@@ -456,9 +461,35 @@ La condition mathématique qui en découle est donc que le système est déflati
 
 #### c) Conditions d'inflation et/ou de déflation
 
-Similairement à la première partie on va avoir des conditions sur l'inflation. 
+Similairement à la première partie on va avoir des conditions sur l'inflation.  
+En effet, on voit bien sur le plan de phase que si $B$ est entre $A$ et $D$ alors l'arc d'ellipse que parcourt les équilibres en fonction de $\beta$ est constamment inflationiste.  
 
+Ainsi on veut que $B$ soit à droite de $A$ ce qui revient à prendre la condition inverse de celle énoncée plus haut (c'est à dire la coordonées $y$ de $C$ plus petite que celle de $A$), c'est à dire $\frac{\gamma_y}{\gamma_x} < \frac{K_y}{K_x}$.  
 
+Ensuite pour avoir $B$ entre $A$ et $D$ on va vouloir que la pente de $P_{\infty}$ soit plus haute que celle de la droite passant par $(0,0)$ et $D$ qu'on appellera $\aleph$.  
+Pour voir ceci on va ajouter la droite $\aleph$ au plan de phase précédent :
+
+```{python}
+#| code-fold: true
+## Ajout de la droite :
+ax2.plot(xt, (rx * Ky)/(ry * Kx) * xt, color = 'C5', label = "Droite א")
+
+ax2.legend(loc="upper left")
+
+display(fig2)
+```
+
+Nous avons calculé dans la partie précédente que $D = (\frac{r_yK_x(K_x+K_y)}{r_xK_y+r_yK_x} , \frac{r_xK_y(K_x+K_y)}{r_xK_y+r_yK_x} )$ ce qui ne change pas dans cette partie car on considère des quantités indépendantes des taux de migration.  
+
+La pente de la droite passant par $D$ et $(0,0)$ est donc égale à $\frac{r_xK_y}{r_yK_x}$ ce qui donne la condition suivante $\frac{\gamma_y}{\gamma_x} > \frac{r_xK_y}{r_yK_x}$.
+
+**Si $\frac{r_xK_y}{r_yK_x} < \frac{\gamma_y}{\gamma_x} < \frac{K_y}{K_x}$ on a un système inflationiste.**
+
+Il est alors aisé de voir que si la pente de $P_{\infty}$ est plus petite que celle de $\aleph$ on a les équilibres qui parcourent d'abord des valeurs au dessus de $d$ puis en dessous (pour aller de $A$ à $C$). 
+
+La condition mathématique est donc la suivante :
+
+**Si $\frac{\gamma_y}{\gamma_x} < \frac{r_xK_y}{r_yK_x}$ alors le système est d'abord inflationiste puis déflationiste.**  
 
 ### Animation
 ```{python}
@@ -524,12 +555,12 @@ gy3 = 1
 param3 = np.array([rx3, ry3, Kx3, Ky3, gx3, gy3])
 
 #4:
-rx4 = 2
-ry4 = 1
-Kx4 = 1
-Ky4 = 1.25
-gx4 = 0.5
-gy4 = 1
+rx4 = 1
+ry4 = 2
+Kx4 = 2
+Ky4 = 1.5
+gx4 = 2
+gy4 = 0.8
 
 param4 = np.array([rx4, ry4, Kx4, Ky4, gx4, gy4])
 
@@ -552,17 +583,17 @@ for i in np.arange(0, 4, 0.01):
     ax.plot(i, s[-1][0] + s[-1][1], marker = '.', color = 'C0') #On plot un point qui correspond à la valeur de la somme des éq. en fonction de beta
     s2 = odeint(aug2, e0, t, args = (param3, i))
     ax2.plot(i, s2[-1][0] + s2[-1][1], marker = '.', color = 'C0')
-    s3 = odeint(aug2, e0, t, args = (param4, i))
-    ax3.plot(i, s3[-1][0] + s3[-1][1], marker = '.', color = 'C0')
-    
-    
-for i in np.arange(0, 4, 0.001):
+
+
+for i in np.arange(0, 10, 0.01):
     s1 = odeint(aug2, e0, t, args = (param2, i))
     ax1.plot(i, s1[-1][0] + s1[-1][1], marker = '.', color = 'C0')
+    s3 = odeint(aug2, e0, t, args = (param4, i))
+    ax3.plot(i, s3[-1][0] + s3[-1][1], marker = '.', color = 'C0')
 
 #Plot de la droite Kx+Ky:    
 xt = np.arange(0, 4, 0.01)
-xt2 = np.arange(0, 4, 0.001)
+xt2 = np.arange(0, 10, 0.001)
 
 ax.plot(xt, (Kx1 + Ky1) * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
 ax.text(3.15, Kx1 + Ky1 - 0.1, '$K_x+K_y$')
@@ -573,7 +604,7 @@ ax1.text(3.10, Kx2 + Ky2 + 0.006, '$K_x+K_y$')
 ax2.plot(xt, (Kx3 + Ky3) * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
 ax2.text(3.12, Kx3 + Ky3 + 0.006, '$K_x+K_y$')
 
-ax3.plot(xt, (Kx4 + Ky4) * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
+ax3.plot(xt2, (Kx4 + Ky4) * np.ones_like(xt2), linestyle = 'dashed', color = 'k', markersize = '6')
 ax3.text(3.12, Kx4 + Ky4 + 0.006, '$K_x+K_y$')
 
 #Légendes:
@@ -588,25 +619,31 @@ ax.plot(0, 0, color = 'C0', label = 'Somme des équilibres')
 ax.legend(bbox_to_anchor = (1.75, -0.65, 0.5, 0.5))
 
 #Titres:
-ax.set_title('Déflation')
-ax1.set_title('Les deux')
-ax2.set_title('Inflation')
-ax3.set_title('Inflation')
+ax.set_title('Déflation');
+ax1.set_title('Les deux');
+ax2.set_title('Inflation');
+ax3.set_title('Inflation');
 ```
 
-On voit donc que la structuration de l'espace peut causer dans plusieurs cas une inflation. C'est ce que l'on souhaite éviter à tout prix avec l'augmentorium.   
+On obtient 4 profils de courbe. Le premier profil montre une déflation du système et a été obtenu pour la condition décrite plus haut de $\frac{\gamma_y}{\gamma_x} > \frac{K_y}{K_x}$.  
 
-Mais, les hypothèses sur l'augmentorium limitent les situations qu'on peut atteindre.   
-En effet, comme $r_x<r_y$ la quatrième situation est impossible. 
-De plus, comme $\gamma_x << \gamma_y$ on a $\frac{\gamma_y}{\gamma_x}>>1$. Et, puisque la capacité K entre l'augmentorium et la culture diffère en fonction des types de cultures mais reste généralement proche entre les deux.   
-Ainsi le rapport entre ces deux capacités est proche de 1 que ce soit inférieurement ou supérieurement.   
-On a donc en permanence dans les cultures la condition $\frac{\gamma_y}{\gamma_x}>\frac{K_y}{K_x}$ ce qui implique une déflation de la somme des équilibres par rapport à la capacité totale.
+Le deuxième profil correspond à une inflation du système puis une déflation quand $\beta$ augmente, cette courbe a bien été obtenue en respectant la condition de $\frac{\gamma_y}{\gamma_x} < \frac{r_xK_y}{r_yK_x}$.  
+
+Les deux derniers profils, correspondant à une inflation permanente du système, sont obtenus en respectant les conditions décrites plus haut. On obtient deux profils différents, un avec une inflation croissante quand $\beta$ augmente et l'autre avec une inflation croissante puis décroissante (et qui atteint un plateau).  
+Ce phénomène se voit graphiquement sur l'animation ou le plan de phase. En effet, on a dans le premier cas 
+$P_{\infty}$ qui coupe l'ellipse dans sa phase montante (l'écart entre l'ellipse et la droite $d$ augmente) alors que dans le second cas $P_{\infty}$ coupe l'ellipse alors que l'écart entre celle-ci et $d$ diminue.
 
 ### Cas de l'augmentorium 
   
-Dans le cas de l'augmentorium il est important de considérer l'équilibre $x^*$ seule par rapport à $K_x$ (sa valeur s'il n'y a pas de migration). En effet même si on a inflation dans le système si $x^*<K_x$ alors on considère l'augmentorium comme efficace.
+Dans le cas de l'augmentorium il est important de considérer l'équilibre $x^*$ seule par rapport à $K_x$ (sa valeur s'il n'y a pas de migration).  
+En effet même si on a inflation dans le système, si $x^*<K_x$ alors on considère l'augmentorium comme efficace.
 
-On va donc tracer l'équilibre $x^*$ en fonction de $\beta$ en considérant que soit $K_x < K_y$ soit $K_x > K_y$ :
+Avec les hyptohèses énoncées plus haut sur la situation de l'augmentorium il n'est pas possible d'obtenir un système inflationiste (indépendamment de si $K_x>K_y$ ou l'inverse). Il est facile de voir ceci grâce à notre animation.
+
+Néanmoins avec des hypothèses plus souples (mais en gardant que $r_x<r_y$), par exemple que les taux de fuites sont plus forts que les taux de migration vers l'augmentorium (dus à une fuite du dispositif par exemple) on va voir que l'augmentorium n'est pas forcément bénéfique.  
+En effet, on peut, sur le plan de phase tracé plus haut voir que dès que nous sommes dans un cas où on a de l'inflation (et même si on revient sur de la déflaton après) alors on a $x^* > K_x$ ce qui est mauvais pour la culture. 
+
+On va tracer l'équilibre $x^*$ en fonction de $\beta$ en considérant un cas où le système était déflationiste et un cas où le système était inflationiste (pour la somme des équilibres) :
 
 ```{python}
 #| code-fold: true
@@ -624,49 +661,89 @@ param1 = np.array([rx1, ry1, Kx1, Ky1, gx1, gy1])
 #2:
 rx2 = 0.5
 ry2 = 1
-Kx2 = 1
-Ky2 = 2
-gx2 = 0.5
-gy2 = 3
+Kx2 = 2
+Ky2 = 1
+gx2 = 5
+gy2 = 1
 
 param2 = np.array([rx2, ry2, Kx2, Ky2, gx2, gy2])
-fig, (ax, ax1) = plt.subplots(1, 2, figsize = (9, 4))
 
-ax.set_title('Equilibre de la culture en fonction du taux de migration avec $K_x>K_y$', fontsize = 7)
-ax1.set_title('Equilibre de la culture en fonction du taux de migration avec $K_x<K_y$', fontsize = 7)
+#2:
+rx3 = 1
+ry3 = 2
+Kx3 = 2
+Ky3 = 1.5
+gx3 = 2
+gy3 = 1
+
+param3 = np.array([rx3, ry3, Kx3, Ky3, gx3, gy3])
+fig, (ax, ax1, ax2) = plt.subplots(1, 3, figsize = (9, 4))
+plt.subplots_adjust(wspace= 0.4)
+
+ax.set_title('Equilibre de la culture ($x^*$) avec déflation des équilibres totaux ($x^* + y^*$)', fontsize = 6)
+ax1.set_title('Equilibre de la culture ($x^*$) avec déflation et inflation des équilibres totaux ($x^* + y^*$)', fontsize = 6)
+ax2.set_title('Equilibre de la culture ($x^*$)  avec inflation des équilibres totaux ($x^* + y^*$)', fontsize = 6)
 
 #Boucle en fonction de beta
 for i in np.arange(0, 4, 0.01):
     s = odeint(aug2, e0, t, args = (param1, i))
     ax.plot(i, s[-1][0], marker = '.', color = 'C0')
+    ax.plot(i, s[-1][0] + s[-1][1], marker = '.', color = "0.8", markersize = '4')
+
     s1 = odeint(aug2, e0, t, args = (param2, i))
     ax1.plot(i, s1[-1][0], marker = '.', color = 'C0')
+    ax1.plot(i, s1[-1][0] + s1[-1][1], marker = '.', color = "0.8", markersize = '4')
+
+    s2 = odeint(aug2, e0, t, args = (param3, i))
+    ax2.plot(i, s2[-1][0], marker = '.', color = 'C0')
+    ax2.plot(i, s2[-1][0] + s2[-1][1], marker = '.', color = "0.8", markersize = '4')
 
 #Droite Kx:
 xt = np.arange(0, 4, 0.01)
 ax.plot(xt, Kx1 * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
-ax.text(3.5, Kx1 - 0.1, '$K_x$')
+ax.text(3.5, Kx1 - 0.15, '$K_x$')
+ax.plot(xt, (Kx1 + Ky1) * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
+ax.text(3.5, Kx1 + Ky1 - 0.15, '$K_x + K_y$')
 
 ax1.plot(xt, Kx2 * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
-ax1.text(3.5, Kx2 - 0.1, '$K_x$')
+ax1.text(3.5, Kx2 - 0.15, '$K_x$')
+ax1.plot(xt, (Kx2 + Ky2) * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
+ax1.text(3.5, Kx2 + Ky2 - 0.15, '$K_x + K_y$')
 
+ax2.plot(xt, Kx3 * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
+ax2.text(3.5, Kx3 - 0.15, '$K_x$')
+ax2.plot(xt, (Kx3 + Ky3) * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
+ax2.text(3.5, Kx3 + Ky3 - 0.15, '$K_x + K_y$')
 
 #Légendes:
 ax.set_xlabel('β')
 ax1.set_xlabel('β')
-ax.plot(0, 0, color = 'C0', label = 'Eq. culture')
-ax1.plot(0, 0, color = 'C0', label = 'Eq. culture')
+ax.plot(0, 0, color = 'C0', label = 'Eq. culture ($x^*$)')
+ax1.plot(0, 0, color = 'C0', label = 'Eq. culture ($x^*$)')
+ax2.plot(0, 0, color = 'C0', label = 'Eq. culture ($x^*$)')
 
-ax.legend()
-ax1.legend()
+ax.plot(0, 0, color = "0.8", label = 'Eq. total ($x^* + y^*$)')
+ax1.plot(0, 0, color = "0.8", label = 'Eq. total ($x^* + y^*$)')
+ax2.plot(0, 0, color = "0.8", label = 'Eq. total ($x^* + y^*$)')
+
+# On limite le cadre :
+ax1.set_ylim(bottom=1)
+ax2.set_ylim(bottom=1)
+
+#On déplace la légende hors de la figure:
+ax.legend(bbox_to_anchor = (1, -0.65, 0.5, 0.5))
 ```
 
-On observe que quelque soit le type de culture on a efficacité de l'augmentorium. 
+En bleu on observe le comportement de l'équilibre dans la culture seulement et en gris on retrouve les courbes tracées juste au dessus. On voit bien que dès que le système subit une inflation des équilibres totaux la situation devient mauvaise pour la culture.  
+En revanche quand on a déflation des équilibres totaux alors la situtaion est bénéfique à la culture.  
+
+Il faut garder en tête que ceci n'est vrai que pour $r_x<r_y$.  
 
 
-Ensuite, comme le taux de fuite est un paramètre clé de notre méthode. On va donc tracer la somme des équilibres et l'équilibre $x^*$ en fonction de $\gamma_y$.  
 
-Attention, un fort taux de fuite correspond à un $\gamma_y$ faible.
+Ensuite, le taux de fuite est un paramètre clé de notre méthode. On va donc tracer la somme des équilibres et l'équilibre $x^*$ en fonction de $\gamma_y$.
+
+Attention ! Un fort taux de fuite correspond à un $\gamma_y$ faible.
 
 ```{python}
 #| code-fold: true
@@ -722,22 +799,21 @@ ax1.plot(0, 0, color = 'C0', label = 'Eq. culture')
 
 ax.set_title('Somme des équilibres en fonction du taux de fuite', fontsize = 7)
 ax1.set_title('Equilibre de la culture en fonction du taux de fuite', fontsize = 7)   
-ax.legend()
-ax1.legend()
-ax.set_ylabel("Densité de pop.")
+ax.legend();
+ax1.legend();
+ax.set_ylabel("Densité de pop.");
 ```
 
-On observe que la somme des équilibres de la population de ravageurs en fonction du taux de fuite a une forme que nous n'avions pas eu.   
-Il est possible en passant par l'animation geogebra de voir ceci en modifiant le taux de fuite. 
-On a pour des fortes fuites un système déflationiste, puis une petite zone inflationiste et enfin de nouveau une zone déflationiste. Ceci est paradoxal car on est entrain de dire que un fort taux de fuite encourage une déflation du système et donc une efficacité de la technique de l'augmentorium. 
-    
-Il faut donc chercher plus en détail et exprimer l'équilibre dans la culture en fonction de la fuite. En effet, c'est ce qui nous intéresse le plus car l'équilibre dans l'augmentorium n'est pas important pour la lutte biologique.  
-On voit que l'équilibre dans la culture est d'abord inflationiste pour des forts taux de fuites et ensuite déflationiste pour des taux de fuites faibles. On a ici le résultat logique auquel on s'attendait qui est que l'augmentorium n'est pas efficace si la fuite est trop forte. 
+Dans la figure gauche on a représenté la somme des équilibres ($x^*+y^*$) de la même manière que précédemment mais cette fois en faisant varier le taux de fuite.  
+On observe alors un nouveau profil qui correspond à une déflation, puis une inflation puis enfin une déflation au fur et à mesure que $\gamma_y$ augmente.
 
-Donc si le taux de fuite est très mal géré l'augmentorium peut être négatif pour la culture. 
+Dans la figure droite on a cette fois uniquement l'équilibre dans la culture ($x^*$). On observe que pour des $\gamma_y$ petits on a inflation puis on retourne à une déflation.  
 
+Pour interpréter ceci il faut comprendre que les des petites valeurs de $\gamma_y$ correspondent à de grandes valeurs de taux de fuite.  
+Ainsi quand $\gamma_y \to 0$ l'augmentorium se vide en ravageurs et on a ainsi toute la population dans la culture et l'équilibre dans culture tend vers sa capacité de charge car on est seulement face à une croissance logistique.  
+C'est pourquoi, lorsque les taux de fuite sont grands on observe une inflation de la culture car on a, des populations de ravageurs qui viennent de l'augmentorium qui s'ajoutent aux ravageurs déjà présents dans la culture.  
+La somme des équilibres est donc trompeuse dans ce cas là, en effet le système subit une déflation car l'augmentorium n'est presque plus occupé pour de forts taux de fuite mais il ne faut pas croire que c'en est bénéfique pour la culture.
 
-## Conclusion
 
 Ce modèle considère uniquement la population de ravageurs. Or, la méthode de l'augmentorium repose énormément sur l'action des prédateurs on va donc considérer [maintenant](modelaug.qmd) un modèle qui prend en compte ces prédateurs.
 

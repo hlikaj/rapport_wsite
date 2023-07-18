@@ -32,4 +32,4 @@ Je tiens à remercier Ludovic Mailleret et son équipe pour m'avoir gentillement
 &nbsp;
 ---
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://upload.wikimedia.org/wikipedia/fr/archive/2/2a/20210420122444%21Logo-INRAE_Transparent.svg){ width=20% }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://upload.wikimedia.org/wikipedia/commons/4/4f/Logo_universit%C3%A9_c%C3%B4te_azur.png){ width=30% }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://www.cnrs.fr/themes/custom/cnrs/logo-footer.svg){ width=25% } 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://upload.wikimedia.org/wikipedia/fr/archive/2/2a/20210420122444%21Logo-INRAE_Transparent.svg){ width=20% }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://upload.wikimedia.org/wikipedia/commons/4/4f/Logo_universit%C3%A9_c%C3%B4te_azur.png){ width=30% }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;![](https://www.cnrs.fr/themes/custom/cnrs/logo-footer.svg){ width=25% } 

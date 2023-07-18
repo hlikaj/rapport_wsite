@@ -26,16 +26,16 @@ avec :
 - $x$ la population dans la première structure,  
 - $y$ la population dans la seconde structure,  
 - $r_x$ et $r_y$ le taux de croissance dans les deux structures,  
-- $K_x$ et $K_y$ les capacités de charges des deux structures,  
+- $K_x$ et $K_y$ les capacités de charge des deux structures,  
 - $\beta$ la force de migration entre les structures.  
 
-Ce modèle est un modèle ressemblant peu à notre situation d'augmentorium car celui est caractérisé par une migration assymétrique mais il permet de situer la démarche et les outils que nous allons utiliser pour étudier des modèles plus complexes.  
+Ce modèle est un modèle ressemblant peu à notre situation d'augmentorium car celui-ci est caractérisé par une migration assymétrique, il permet néanmoins de situer la démarche et les outils que nous allons utiliser pour étudier des modèles plus complexes.  
 
 ## Dynamique du modèle
 
 On va tracer la dynamique de la population en fonction du temps pour se faire une première idée de comment se comporte la population.
 
-On définit le modèle sous [Python](https://www.python.org/) :
+On définit le modèle sous [`Python`](https://www.python.org/) :
 
 ```{python}
 def aug(etat, t, param):
@@ -46,7 +46,7 @@ def aug(etat, t, param):
     return s 
 ```
 
-On va utiliser `odeint` de `Scipy` afin de simuler une solution en fonction du temps. 
+On va utiliser `odeint` de [`Scipy`](https://scipy.org/) afin de simuler une solution en fonction du temps. 
 Il faut donc définir un temps d'intégration, des conditions initiales et les paramètres du modèle : 
 
 ```{python}
@@ -71,27 +71,27 @@ param_aug = np.array([rx, ry, Kx, Ky, b])
 s = odeint(aug, e0, ti, args = (param_aug, ))
 ```
 
-Maintenant qu'on a la simulation on peut réprésenter la figure avec `matplotlib` :
+Maintenant qu'on a la simulation on peut réprésenter la figure avec [`matplotlib`](https://matplotlib.org/) :
 
 ```{python}
-fig,ax = plt.subplots( 1, 1, figsize = ( 7, 4 ))
+fig, ax = plt.subplots(1, 1, figsize = (7, 4 ))
 
 fig.suptitle('Dynamique des ravageurs dans le temps')
-ax.plot( ti, s[ :, 0], color = 'C1', label = 'culture')
-ax.plot( ti, s[ :, 1], color = 'C0', label = 'augmentorium')
+ax.plot(ti, s[:, 0], color = 'C1', label = 'culture')
+ax.plot(ti, s[:, 1], color = 'C0', label = 'augmentorium')
 
 ax.grid() #on ajoute la grille
 ax.legend() #on ajoute la légende
 
-ax.set_xlabel('Temps, t') ;
-ax.set_ylabel('Densité de pop.') ;
+ax.set_xlabel('Temps, t');
+ax.set_ylabel('Densité de pop.');
 ```
 
 
 Cette simulation nous montre une hausse de la population dans l'augmentorium et une baisse de la population dans la culture.  
 Les deux populations atteignent un équilibre qui semble stable (il se maintient dans le temps).  
 
-Dans le cas d'un augmentorium on voit que le simple fait de débarasser les fruits et de les mettre dans un espace séparé de la culture ammène à une baisse de la population de ravageurs dans la culture.
+Dans le cas d'un augmentorium, on voit que le simple fait de débarasser les fruits et de les mettre dans un espace séparé de la culture ammène à une baisse de la population de ravageurs dans la culture.
 
 ## Plan de phase
 
@@ -108,13 +108,13 @@ $$
 \end{array}\right.
 $${#eq-pdpsmig}
 
-avec, $x^*$ et $y^*$ la valeur des équilibres.
+avec $x^*$ et $y^*$ la valeur des équilibres.
 
 Ainsi, les deux isoclines correspondent à des paraboles. Celles-ci se croisent trivialement en $(0,0)$ et dans le quadrant positif en $(x^*,y^*)$. 
 
-Pour calculer $(x^*,y^*)$ on va utiliser l'expression de $x^*$ qu'on va rentrer dans l'équation de $y^*$ :  
+Pour calculer $(x^*,y^*)$ on va utiliser l'expression de $x^*$ trouvée en ([-@eq-pdpsmig]) qu'on va rentrer dans l'équation de $y^*$ :  
 
-Comme $x^* = r_yy^*\left(\frac{1}{r_y}-\frac{1}{\beta}+\frac{y^*}{\beta K_y}\right)$ on a,  
+Comme $x^* = r_yy^*\left(\frac{1}{r_y}-\frac{1}{\beta}+\frac{y^*}{\beta K_y}\right)$ on a :  
 $$
 y^* = r_x\left[r_yy^*\left(\frac{1}{r_y}-\frac{1}{\beta}+\frac{y^*}{\beta K_y}\right)\right]\left(\frac{1}{r_x}-\frac{1}{\beta}+\frac{r_yy^*\left(\frac{1}{r_y}-\frac{1}{\beta}+\frac{y^*}{\beta K_y}\right)}{\beta K_x}\right)
 $$
@@ -145,7 +145,7 @@ y^*\left(\frac{1}{\beta}\left[\frac{r_xr_y}{\beta} - r_y -r_x\right]\right)+ \\[
 {y^*}^4 \frac{r_xr_y^2}{\beta^3K_y^2K_x} = 0
 $${#eq-polsmig}
 
-Ce polynôme est résoluble via `numpy` pour obtenir $y^*$:
+Ce polynôme est résoluble via [`numpy`](https://numpy.org/) pour obtenir $y^*$:
 
 ```{python}
 ## On défnit un monome y, un polynôme p et on prend ses solutions:
@@ -161,7 +161,7 @@ sol = pol.roots()[ (np.isreal( pol.roots() )) * (pol.roots() > 0)]
 yeq=sol[0].real
 ```
 
-On déduit $x^*$ via sa définition par le [système](#eq-pdpsmig):
+On déduit $x^*$ via sa définition par le système [(-@eq-pdpsmig)]:
 
 ```{python}
 xeq = (ry * yeq * ((1/ry) - (1/b) + (yeq/(b * Ky)))).real
@@ -176,11 +176,13 @@ fig.suptitle('Plan de phase du système')
 ## Isocline nulles:
 xt = np.arange(-10, 10, 0.01)
 ## Pour xdot = 0:
-ax.plot(xt,xt * (1/b) * (rx * ((xt/Kx) - 1) + b), color = 'C2', label = '$\dot x=0$')
+ax.plot(xt,xt * (1/b) * (rx * ((xt/Kx) - 1) + b), 
+                    color = 'C2', label = '$\dot x=0$')
 ax.plot(np.zeros_like(xt), xt, color = '0.8', markersize = 6)
 
 ## Pour ydot = 0:
-ax.plot(xt * (1/b) * (ry * ((xt/Ky) - 1) + b), xt, color = 'C3', label = '$\dot y=0$')
+ax.plot(xt * (1/b) * (ry * ((xt/Ky) - 1) + b), xt,
+                    color = 'C3', label = '$\dot y=0$')
 ax.plot(xt, np.zeros_like(xt), color = '0.8', markersize = 6)
 
 ## On réduit la vue à ce qui nous intéresse:
@@ -197,7 +199,8 @@ ax.set_ylabel('$y$', fontsize = '12') ;
 
 ## On plot les deux équilibres:
 ax.plot(xeq.real, yeq.real, label = '$(x^*,y^*)$', marker = '.', markersize = 6, color = 'k')
-ax.plot(0, 0, label = '$(0,0)$', marker = '.', markersize = 6, color = 'k')
+ax.plot(0, 0, label = '$(0,0)$',
+                    marker = '.', markersize = 6, color = 'k')
 
 ## Localisation de la légende:
 ax.legend(loc = 'upper left')
@@ -209,7 +212,8 @@ yg = np.arange(0, 5, 0.6)
 X, Y = np.meshgrid(xg, yg)
 
 dx, dy = aug([X, Y], 0, param_aug)
-ax.quiver(X, Y, dx, dy, angles = 'xy', color = 'grey', scale = 80, width = 0.003) ;
+ax.quiver(X, Y, dx, dy, angles = 'xy', 
+                    color = 'grey', scale = 80, width = 0.003);
 ```
 
 Comme dit plus haut on a bien un croisement dans le quadrant positif qui correspond à l'équilibre $(x^*,y^*)$. 
@@ -231,7 +235,7 @@ $$
 \end{pmatrix}
 $${#eq-jacob}
 
-et donc pour $(0,0)$:  
+et donc **pour $(0,0)$**:  
 
 $$
 \mathbb{J_{\vec{0}}}=\begin{pmatrix}
@@ -278,7 +282,8 @@ $$
 $$
 
 Donc $(0,0)$ est bien instable.  
-Pour $(x^*,y^*)$ on a :
+
+**Pour $(x^*,y^*)$** on a :
 $$ 
 \mathbb{J_{x^*,y^*}}=\begin{pmatrix}
 \ r_x-\frac{2r_xx^*}{K_x}-\beta & \beta \\
@@ -316,11 +321,13 @@ Le déterminant est lui positif, d'après la classification des portaits de plan
 
 ### Analyse du plan de phase
 
-On remarque sur le plan de phase du système tracé précédemment que l'équilibre atteint n'est pas sur la droite $x^*+y^*=K_x+K_y$; on appellera cette droite $d$.   
-Ceci implique que la structuration de l'espace, et les migrations qui en découle, perturbent les équilibres qui auraient dû être la somme des équilires des deux régions (la logistique tend vers la capacité maximale à l'équilibre).     
-Si la somme des équilibres est plus grande que $K_x+K_y$ on dit que le système subit une inflation (voir [contexte](contexte.qmd)).
+On remarque sur le plan de phase du système tracé précédemment que l'équilibre atteint n'est pas sur la droite $x^*+y^*=K_x+K_y$ (en gris), on appellera cette droite $d$.  
+Si le croisement des isoclines est au dessus de cette droite le système ([-@eq-modsmig]) subit une inflation et si le croisement est en dessous de cette droite il subit une déflation (voir [contexte](contexte.qmd)).  
 
-Plus généralement, on peut montrer qu'en cas de mixité parfaite entre les deux patchs ($\beta \to \infty$) on a d'après @arditi2015:
+On voit que la structuration de l'espace, et les migrations qui en découle, perturbent les équilibres qui auraient dû être la somme des équilires des deux régions (la logistique tend vers la capacité maximale à l'équilibre).   
+
+
+Plus généralement, on peut montrer qu'en cas de mixité parfaite entre les deux structures ($\beta \to \infty$) on a d'après @arditi2015:
 
 $$
 x^*+y^* = K_x + K_y + (K_x-K_y)\frac{r_xK_y-r_yK_x}{r_xK_y+r_yK_x}
@@ -329,7 +336,7 @@ $${#eq-inf}
 Ce qui montre qu'en général on a pas $x^*+y^* = K_x + K_x$.  
 De plus par ([-@eq-inf]), si $K_y<K_x$ et si $r_xK_y<r_yK_x$ alors $x^*+y^* < K_x+K_y$ ce qui nous intéresse particulièrement pour la lutte biologique.  
 
-De plus, en faisant $\dot x + \dot y = 0$ dans le cas de l'équilibre on a:
+Ensuite, en faisant $\dot x + \dot y = 0$, dans le cas de l'équilibre, on a:
 $$ 
 r_xx^*\left(1-\frac{x^*}{K_x}\right)+r_yy^*\left(1-\frac{y^*}{K_y}\right) = 0 
 $${#eq-ell}
@@ -350,7 +357,7 @@ ax.contour(X2, Y2, (X + Y), [0], colors = 'C1')
 ax.plot(0, 0, color = 'C1', label = 'Ellipse des solutions')
 
 ## Localisation de la légende:
-ax.legend(loc = 'lower left', fontsize = 8)
+ax.legend(loc = 'upper left', fontsize = 8)
 
 ## On place les différents points d'intérêts...
 xv = np.arange(0, 10)
@@ -361,10 +368,12 @@ ax.plot(Kx, Ky, marker = '.', markersize = 6, color = 'k')
 
 ##...et on les relie aux axes:
 xc = np.arange(0, Kx, 0.01)
-ax.plot(xc, Ky * np.ones_like(xc), linestyle = 'dashed', color = 'k', linewidth = 0.5)
+ax.plot(xc, Ky * np.ones_like(xc), linestyle = 'dashed', 
+                color = 'k', linewidth = 0.5)
 
 yc=np.arange(0,Ky,0.01)
-ax.plot(Kx * np.ones_like(yc), yc, linestyle = 'dashed', color = 'k', linewidth = 0.5)
+ax.plot(Kx * np.ones_like(yc), yc, linestyle = 'dashed', 
+                color = 'k', linewidth = 0.5)
 
 #On nomme les points:
 ax.text(-0.2, Ky, '$K_y$')
@@ -374,8 +383,10 @@ ax.text(Kx, -0.2, '$K_x$')
 ys = np.arange(0, yeq, 0.01)
 xs = np.arange(0, xeq, 0.01)
 
-ax.plot(xeq * np.ones_like(ys), ys, linestyle = 'dashed', color = 'k', linewidth = 0.5)
-ax.plot(xs, yeq * np.ones_like(xs), linestyle = 'dashed', color = 'k', linewidth = 0.5)
+ax.plot(xeq * np.ones_like(ys), ys, linestyle = 'dashed', 
+                color = 'k', linewidth = 0.5)
+ax.plot(xs, yeq * np.ones_like(xs), linestyle = 'dashed', 
+                color = 'k', linewidth = 0.5)
 
 ax.text(-0.2, yeq, '$y^*$')
 ax.text(xeq, -0.2, '$x^*$')
@@ -384,7 +395,7 @@ display(fig)
 ```
 
 #### a) Première condition à un système déflationiste 
-On remarque que le point $(K_x,K_y)$ est en permanence sur la droite $d$ ($x^* + y^* = K_x+K_y$) qui coupe en permanence l'ellipse sauf pour une situation où $d$ est tangente à l'ellipse.  
+On remarque que le point $(K_x,K_y)$ est en permanence sur la droite $d$ qui coupe en permanence l'ellipse (en deux points) sauf pour une situation où $d$ est tangente à l'ellipse.  
 Ce cas nous intéresse car il rend compte d'un système entièrement déflationiste. Représentons le sur le plan de phase :
 
 
@@ -408,11 +419,13 @@ fig2.suptitle('Plan de phase du système')
 ## Isocline nulles:
 xt = np.arange(-10, 10, 0.01)
 ## Pour xdot = 0:
-ax2.plot(xt,xt * (1/b) * (rxnew * ((xt/Kx) - 1) + b), color = 'C2', label = '$\dot x=0$')
+ax2.plot(xt,xt * (1/b) * (rxnew * ((xt/Kx) - 1) + b), color = 'C2', 
+                label = '$\dot x=0$')
 ax2.plot(np.zeros_like(xt), xt, color = '0.8', markersize = 6)
 
 ## Pour ydot = 0:
-ax2.plot(xt * (1/b) * (rynew * ((xt/Ky) - 1) + b), xt, color = 'C3', label = '$\dot y=0$')
+ax2.plot(xt * (1/b) * (rynew * ((xt/Ky) - 1) + b), xt, color = 'C3', 
+                label = '$\dot y=0$')
 ax2.plot(xt, np.zeros_like(xt), color = '0.8', markersize = 6)
 
 ## On réduit la vue à ce qui nous intéresse:
@@ -436,7 +449,8 @@ pol2 = y * (rxnew * rynew * ((1/b) * ((1/b) - (1/rxnew) - (1/rynew)) + 1/(rxnew 
 2 * (y**3) * ((rxnew * rynew)/((b**2) * Kx * Ky)) * (1 - (rynew/b)) + \
 (y**4) * ((rx * (rynew**2))/((b**3) * (Ky**2) * Kx))
 
-## Solution qu'on obtient avec un masque booléen qui sélectionne les racines réelles et strictement positives:
+## Solution qu'on obtient avec un masque booléen qui sélectionne les 
+## racines réelles et strictement positives:
 sol2 = pol2.roots()[ (np.isreal( pol2.roots() )) * (pol2.roots() > 0)]
 yeq2=sol2[0].real
 
@@ -444,8 +458,10 @@ yeq2=sol2[0].real
 xeq2 = (rynew * yeq2 * ((1/rynew) - (1/b) + (yeq2/(b * Ky)))).real
 
 ## On plot les deux équilibres:
-ax2.plot(xeq2.real, yeq2.real, label = '$(x^*,y^*)$', marker = '.', markersize = 6, color = 'k')
-ax2.plot(0, 0, label = '$(0,0)$', marker = '.', markersize = 6, color = 'k')
+ax2.plot(xeq2.real, yeq2.real, label = '$(x^*,y^*)$', marker = '.', 
+                markersize = 6, color = 'k')
+ax2.plot(0, 0, label = '$(0,0)$', marker = '.', markersize = 6, 
+                color = 'k')
 
 ## Localisation de la légende:
 ax2.legend(loc = 'upper left')
@@ -457,7 +473,8 @@ yg = np.arange(0, 5, 0.6)
 X, Y = np.meshgrid(xg, yg)
 
 dx, dy = aug([X, Y], 0, param_aug)
-ax2.quiver(X, Y, dx, dy, angles = 'xy', color = 'grey', scale = 80, width = 0.003) ;
+ax2.quiver(X, Y, dx, dy, angles = 'xy', color = 'grey', 
+                scale = 80, width = 0.003) ;
 
 
 xg2 = np.arange(-5, 5, 0.01)
@@ -484,10 +501,12 @@ ax2.plot(Kx, Ky, marker = '.', markersize = 6, color = 'k')
 
 ##...et on les relie aux axes:
 xc = np.arange(0, Kx, 0.01)
-ax2.plot(xc, Ky * np.ones_like(xc), linestyle = 'dashed', color = 'k', linewidth = 0.5)
+ax2.plot(xc, Ky * np.ones_like(xc), linestyle = 'dashed', 
+                color = 'k', linewidth = 0.5)
 
 yc=np.arange(0,Ky,0.01)
-ax2.plot(Kx * np.ones_like(yc), yc, linestyle = 'dashed', color = 'k', linewidth = 0.5)
+ax2.plot(Kx * np.ones_like(yc), yc, linestyle = 'dashed', 
+                color = 'k', linewidth = 0.5)
 
 #On nomme les points:
 ax2.text(-0.2, Ky, '$K_y$')
@@ -497,11 +516,13 @@ ax2.text(Kx, -0.2, '$K_x$')
 ys = np.arange(0, yeq2, 0.01)
 xs = np.arange(0, xeq2, 0.01)
 
-ax2.plot(xeq2 * np.ones_like(ys), ys, linestyle = 'dashed', color = 'k', linewidth = 0.5)
-ax2.plot(xs, yeq2 * np.ones_like(xs), linestyle = 'dashed', color = 'k', linewidth = 0.5)
+ax2.plot(xeq2 * np.ones_like(ys), ys, linestyle = 'dashed',
+                color = 'k', linewidth = 0.5)
+ax2.plot(xs, yeq2 * np.ones_like(xs), linestyle = 'dashed', 
+                color = 'k', linewidth = 0.5)
 
-ax2.text(-0.2, yeq2, '$y^*$')
-ax2.text(xeq2, -0.2, '$x^*$')
+ax2.text(-0.2, yeq2, '$y^*$');
+ax2.text(xeq2, -0.2, '$x^*$');
 ```
 
 L'ellipse, d'équation $f(x,y)=r_xx\left(1-\frac{x}{K_x}\right)+r_yy\left(1-\frac{y}{K_y}\right) = 0$  , peut être vue comme la ligne de niveau de $f$ en $0$. 
@@ -516,7 +537,7 @@ $$
 \left(r_x - 2\frac{r_xx_0}{K_x}\right)(x-x_0) + \left(r_y -2\frac{r_yy_0}{K_y}\right)(y-y_0) = 0
 $$
 
-Dans le cas où $(x_0=K_x , y_0=K_y)$ on a alors :
+Dans le cas où $x_0=K_x$ et $y_0=K_y$ on a alors :
 $$
 -r_x(x-K_x) -r_y(y-K_y) = 0
 $$
@@ -529,9 +550,9 @@ $${#eq-tang}
 
 qui est donc l'équation de la tangente à l'ellipse au point $(K_x,K_y)$.
 
-Si maintenant on prend $r_x=r_y$ alors on remarque que ([-@eq-tang]) est égale à l'équation de la droite $d$ ce qui implique que le toute l'ellipse est en dessous de $d$ et donc que tous les équilibres sont déflationistes.
+Si maintenant on prend $r_x=r_y$ alors on remarque que ([-@eq-tang]) est égale à l'équation de la droite $d$ ce qui implique que toute l'ellipse est en dessous de $d$ et donc que tous les équilibres sont déflationistes.
 
-Donc : si $r_x=r_y$ on a ([-@eq-modsmig]) qui est déflationiste quelque soit le taux de migration.
+**Donc : si $r_x=r_y$ on a ([-@eq-modsmig]) qui est déflationiste quelque soit le taux de migration.**
 
 On va effectuer une simulation avec les paramètres déduits à l'instant pour confirmer ce qu'on vient de dire.  
 Pour cela on va, pour chaque $\beta$, simuler un temps suffisament large pour atteindre l'équilibre et représenter la somme des deux équilibres.
@@ -551,7 +572,6 @@ def aug2(etat, t, param, h):
 Ainsi qu'un temps d'intégration large, des conditions initiales et des paramètres :
 ```{python}
 ## Temps d'intégration :
-
 t1 = np.arange(0, 400, 0.01)
 
 ## Paramètres : 
@@ -563,26 +583,22 @@ Ky1 = 1
 param1 = np.array([rx1, ry1, Kx1, Ky1])
 
 ## Condition initiale:
-
 c10 = [2, 0]
 ```
 
-Et enfin on simule avec `odeint` et on fait une boucle pour simuler que $\beta$ va de $0$ à $5$ (suffisant pour avoir une courbe intéressante):
+Et enfin on simule avec `odeint` et on fait une boucle pour simuler que $\beta$ va de $0$ à $4$ (suffisant pour avoir une courbe intéressante):
 
 ```{python}
 ## On crée la figure et l'axe:
-
 fig3, ax3 = plt.subplots(1, 1)
-fig3.suptitle("Somme des équilibre en fonction de β quand $r_x = r_y$")
+fig3.suptitle("Somme des équilibres en fonction de β quand $r_x = r_y$")
 
 ## Boucle ou i prend les valeurs de beta:
-
 for i in np.arange(0, 4, 0.01):
     s = odeint(aug2, c10, t1, args = (param1, i)) #On calcule pour chaque beta l'équilibre
     ax3.plot(i, s[-1][0] + s[-1][1], marker = '.', color = 'C0') #On plot un point qui correspond à la valeur de la somme des éq. en fonction de beta
 
 ## Plot de la droite Kx+Ky:
-
 xt = np.arange(0, 4, 0.01)
 
 ax3.plot(xt, (Kx1 + Ky1) * np.ones_like(xt), linestyle = 'dashed', color = 'k',markersize = '6')
@@ -599,7 +615,7 @@ ax3.set_ylim(2.2, 3.2)
 ax3.legend();
 ```
 
-On voit que la courbe bleu représentant la somme des équilibre est en permanence en dessous de la droite $K_x+K_y$. On a bien un système entièrement déflationiste quand $r_x = r_y$.  
+On voit que la courbe bleu représentant la somme des équilibres est en permanence en dessous de la droite $K_x+K_y$. On a bien un système entièrement déflationiste quand $r_x = r_y$.  
 
 
 #### b) Deuxième condition à un système déflationiste
@@ -621,7 +637,7 @@ $$
 x^*=K_x \vee x^* = 0
 $$
 
-Donc lorsque le taux de migration est nul on a que la parabole correspondant à $\dot x = 0$ a pour équation les droites $x^*=0$ et $x^*=K_x$ qu'on appelle respectivement $P_{10}$ et $P_{20}$. 
+Donc lorsque le taux de migration est nul la parabole correspondant à $\dot x = 0$ a pour équation les droites $x^*=0$ et $x^*=K_x$ qu'on appelle respectivement $P_{10}$ et $P_{20}$. 
 
 
 Lorsque $\beta = + \infty$ on a, encore une fois par la première équation de ([-@eq-pdpsmig]):
@@ -630,9 +646,9 @@ $$
 y^* = r_xx^*\frac{1}{r_x} = x^*
 $$ 
 
-Ainsi quand le taux de migration tend vers l'ifini la parabole $\dot x$ correspond à la droite $y^*=x^*$ qu'on appelle $P_\infty$.
+Ainsi quand le taux de migration tend vers l'infini la parabole $\dot x = 0$ correspond à la droite $y^*=x^*$ qu'on appelle $P_\infty$.
 
-On notera dans la suite $A=(K_x,K_y)$; $B$ l'intersection non trivial (pas $(0,0)$) entre $P_\infty$ et l'ellipse et $C$ l'intersection non trivial (pas $(K_x,0)$) entre $P_{20}$ et $P_\infty$. 
+On notera dans la suite $A=(K_x,K_y)$, $B$ l'intersection non trivial (pas $(0,0)$) entre $P_\infty$ et l'ellipse et $C$ l'intersection non trivial (pas $(K_x,0)$) entre $P_{20}$ et $P_\infty$. 
 
 Pour calculer les coordonées de $B$ on utilise que $y^*=x^*$ et on le rentre dans ([-@eq-ell]) ce qui donne :
 $$
@@ -654,7 +670,7 @@ $$
 B = (\frac{r_x+r_y}{\frac{r_x}{K_x}+\frac{r_y}{K_y}},\frac{r_x+r_y}{\frac{r_x}{K_x}+\frac{r_y}{K_y}})
 $$
 
-Pour calculer les coordonées de $C$ on utilise que $y^*=x^*$ dans la définition de $P_{20}$ ie comme $x^* =K_x$ alors $y^*=K_x$ et donc on a :
+Pour calculer les coordonées de $C$ on utilise que $y^*=x^*$ dans la définition de $P_{20}$, ie comme $P_{20}$ est défini par $x^* =K_x$ alors $y^*=K_x$ et donc on a :
 $$
 C=(K_x,K_x)
 $$
@@ -683,7 +699,9 @@ ax.plot(Kx, Ky, marker = '.',color = 'C0', markersize = 7)
 ax.text(Kx + 0.1, Ky + 0.1, "$A$")
 
 ## B :
-ax.plot((rx + ry)/(rx/Kx + ry/Ky), (rx + ry)/(rx/Kx + ry/Ky), marker = '.', color = 'C0', markersize = 7)
+ax.plot((rx + ry)/(rx/Kx + ry/Ky), (rx + ry)/(rx/Kx + ry/Ky), 
+            marker = '.', color = 'C0', markersize = 7)
+
 ax.text((rx + ry)/(rx/Kx + ry/Ky) - 0.1, (rx + ry)/(rx/Kx + ry/Ky) + 0.1, "$B$")
 
 ## C : 
@@ -703,7 +721,7 @@ Mathématiquement on veut donc que $K_x > K_y$.
 
 Ainsi si on a $r_x < r_y$ et $K_x>K_y$ on aura tout le temps un modèle déflationiste pour les ravageurs.
 
-Ceci est intéressant pour l'augmentorium, si on a la capacité de l'augmentorium qui est plus faible que celle de la culture alors le système est toujours négatif pour la population totale de ravageurs. 
+Ceci est intéressant pour l'augmentorium, si on a la capacité de charge l'augmentorium qui est plus faible que celle de la culture alors le système est toujours négatif pour la population totale de ravageurs. 
 
 On peut aussi voir graphiquement que dans ce cas là on a toujours $x^* < K_x$, c'est ce que l'on cherche à obtenir. 
 
@@ -718,7 +736,7 @@ ry2 = 1  #On a bien rx2 < ry2
 Kx2 = 2
 Ky2 = 1  #On a bien Kx2>Ky2
 
-## En l'occurence il s'agit des paramètres de base qu'on avait utilisé pour la simulation du premier plan de phase expliquant qu'on se retrouvait avec un équilibre déflationiste.
+## En l'occurence il s'agit des paramètres de base qu'on avait utilisé ##pour la simulation du premier plan de phase expliquant qu'on se ##retrouvait avec un équilibre déflationiste.
 
 param2 = np.array([rx2, ry2, Kx2, Ky2])
 ```
@@ -815,16 +833,19 @@ Ainsi, $D = (\frac{r_yK_x(K_x+K_y)}{r_xK_y+r_yK_x} , \frac{r_xK_y(K_x+K_y)}{r_xK
 Ajoutons $D$ au plan de phase :
 ```{python}
 ## On ajoute D:
+ax.plot((ry * Kx * (Kx + Ky))/(rx * Ky + ry * Kx), 
+        (rx * Ky * (Kx + Ky))/(rx * Ky + ry * Kx),
+        color = 'C0', marker = '.', markersize = 7)
 
-ax.plot((ry * Kx * (Kx + Ky))/(rx * Ky + ry * Kx), (rx * Ky * (Kx + Ky))/(rx * Ky + ry * Kx), color = 'C0', marker = '.', markersize = 7)
-ax.text((ry * Kx * (Kx + Ky))/(rx * Ky + ry * Kx) + 0.07, 0.08 + (rx * Ky * (Kx + Ky))/(rx * Ky + ry * Kx), "$D$")
+ax.text((ry * Kx * (Kx + Ky))/(rx * Ky + ry * Kx) + 0.07, 
+        0.08 + (rx * Ky * (Kx + Ky))/(rx * Ky + ry * Kx), "$D$")
 
 display(fig)
 ```
 
 On voit maintenant aisément que si $B$ est entre $A$ et $D$ alors les équilibres vont parcourir des valeurs inflationistes seulement (arc orange au dessus de la droite grise).  
 
-Si $B$ est en dessous de $D$ (la coordonnée y de $B$ est plus petite que celle de $D$) alors on a d'abord des équilibres inflationistes (de $A$ à $D$)puis déflationistes (de $D$ à $B$).
+Si $B$ est en dessous de $D$ (la coordonnée y de $B$ est plus petite que celle de $D$) alors on a d'abord des équilibres inflationistes (de $A$ à $D$) puis déflationistes (de $D$ à $B$).
 
 Mathématiquement on a donc : 
 
@@ -909,13 +930,13 @@ On observe qu'on a bien dans la partie gauche tout le temps inflation et dans la
 Pour mieux comprendre comment se déplace le système en fonction des paramètres :
 
 ```{python}
-#| code-fold: True
 #Technique pour utiliser une fenêtre geogebra:
 
 import IPython.display as display
 fig01 = """
 <iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/ajaycvqe" style = "border: 1px solid black"></iframe>
 """
+
 display.HTML(fig01)
 ```   
 

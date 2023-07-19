@@ -573,7 +573,7 @@ y^*=\gamma_y\left(\frac{\gamma_x\left(\frac{y}{\gamma_y}-\frac{r_yy}{\beta}\left
 </section>
 <section id="analyse-du-plan-de-phase" class="level3">
 <h3 class="anchored" data-anchor-id="analyse-du-plan-de-phase">Analyse du plan de phase</h3>
-<p>On va tracer le plan de phase complet et l’analyser d’après la méthode de <span class="citation" data-cites="arditi2018">Arditi (<a href="#ref-arditi2018" role="doc-biblioref">2018</a>)</span> :</p>
+<p>On va tracer le plan de phase complet et l’analyser d’après la méthode d’<span class="citation" data-cites="arditi2018">Arditi (<a href="#ref-arditi2018" role="doc-biblioref">2018</a>)</span> :</p>
 <p>Dans cette analyse on va considérer, sans perte de généralité, que <span class="math inline">r_x &lt; r_y</span> (on prend l’ellipse dans un seul sens, voir l’<a href="@fig-anim">animation</a>).</p>
 <p>Pour cela on trace l’ellipse de la même manière que dans la première figure, l’équation de cette ellipse n’ayant pas de terme de migration dans le premier modèle elle est la même dans celui-ci aussi.</p>
 <p>Ensuite on va tracer la droite <span class="math inline">d</span> correspondant à <span class="math inline">K_x+K_y=x^*+y^*</span> car ceci va permettre de voir si le système subit une <a href="./contexte.html">inflation</a> ou une déflation.</p>
@@ -970,8 +970,8 @@ En effet, on peut, sur le plan de phase tracé plus haut voir que dès que nous 
 <span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a><span class="co">#On déplace la légende hors de la figure:</span></span>
 <span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a>ax.legend(bbox_to_anchor <span class="op">=</span> (<span class="dv">1</span>, <span class="op">-</span><span class="fl">0.65</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="27">
-<pre><code>&lt;matplotlib.legend.Legend at 0x7fd510d86230&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>&lt;matplotlib.legend.Legend at 0x7fbe96a8ef80&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="modeleavecmigrationass_files/figure-html/cell-14-output-2.png" width="805" height="434"></p>
@@ -1049,8 +1049,8 @@ En revanche quand on a déflation des équilibres totaux alors la situtaion est 
 On observe alors un nouveau profil qui correspond à une déflation, puis une inflation puis enfin une déflation au fur et à mesure que <span class="math inline">\gamma_y</span> augmente.</p>
 <p>Dans la figure droite on a cette fois uniquement l’équilibre dans la culture (<span class="math inline">x^*</span>). On observe que pour des <span class="math inline">\gamma_y</span> petits on a inflation puis on retourne à une déflation.</p>
 <p>Pour interpréter ceci il faut comprendre que les des petites valeurs de <span class="math inline">\gamma_y</span> correspondent à de grandes valeurs de taux de fuite.<br>
-Ainsi quand <span class="math inline">\gamme_y \to 0</span> l’augmentorium se vide en ravageurs et on a ainsi toute la population dans la culture et l’équilibre dans culture tend vers sa capacité de charge car on est seulement face à une croissance logistique.<br>
-C’est pourquoi, lorsque les taux de fuite sont grands on observe une inflation de la culture car on a à la fois des populations de ravageurs qui viennent de l’augmentorium qui s’ajoutent aux ravageurs déjà présents dans la culture.<br>
+Ainsi quand <span class="math inline">\gamma_y \to 0</span> l’augmentorium se vide en ravageurs et on a ainsi toute la population dans la culture et l’équilibre dans culture tend vers sa capacité de charge car on est seulement face à une croissance logistique.<br>
+C’est pourquoi, lorsque les taux de fuite sont grands on observe une inflation de la culture car on a, des populations de ravageurs qui viennent de l’augmentorium qui s’ajoutent aux ravageurs déjà présents dans la culture.<br>
 La somme des équilibres est donc trompeuse dans ce cas là, en effet le système subit une déflation car l’augmentorium n’est presque plus occupé pour de forts taux de fuite mais il ne faut pas croire que c’en est bénéfique pour la culture.</p>
 <p>Ce modèle considère uniquement la population de ravageurs. Or, la méthode de l’augmentorium repose énormément sur l’action des prédateurs on va donc considérer <a href="./modelaug.html">maintenant</a> un modèle qui prend en compte ces prédateurs.</p>
 
@@ -1665,7 +1665,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb16-325"><a href="#cb16-325" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-326"><a href="#cb16-326" aria-hidden="true" tabindex="-1"></a><span class="fu">### Analyse du plan de phase</span></span>
 <span id="cb16-327"><a href="#cb16-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-328"><a href="#cb16-328" aria-hidden="true" tabindex="-1"></a>On va tracer le plan de phase complet et l'analyser d'après la méthode de @arditi2018 :  </span>
+<span id="cb16-328"><a href="#cb16-328" aria-hidden="true" tabindex="-1"></a>On va tracer le plan de phase complet et l'analyser d'après la méthode d'@arditi2018 :  </span>
 <span id="cb16-329"><a href="#cb16-329" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-330"><a href="#cb16-330" aria-hidden="true" tabindex="-1"></a>Dans cette analyse on va considérer, sans perte de généralité, que $r_x &lt; r_y$ (on prend l'ellipse dans un seul sens, voir l'<span class="co">[</span><span class="ot">animation</span><span class="co">](@fig-anim)</span>).</span>
 <span id="cb16-331"><a href="#cb16-331" aria-hidden="true" tabindex="-1"></a></span>
@@ -2162,8 +2162,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb16-838"><a href="#cb16-838" aria-hidden="true" tabindex="-1"></a>Dans la figure droite on a cette fois uniquement l'équilibre dans la culture ($x^*$). On observe que pour des $\gamma_y$ petits on a inflation puis on retourne à une déflation.  </span>
 <span id="cb16-839"><a href="#cb16-839" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-840"><a href="#cb16-840" aria-hidden="true" tabindex="-1"></a>Pour interpréter ceci il faut comprendre que les des petites valeurs de $\gamma_y$ correspondent à de grandes valeurs de taux de fuite.  </span>
-<span id="cb16-841"><a href="#cb16-841" aria-hidden="true" tabindex="-1"></a>Ainsi quand $\gamme_y \to 0$ l'augmentorium se vide en ravageurs et on a ainsi toute la population dans la culture et l'équilibre dans culture tend vers sa capacité de charge car on est seulement face à une croissance logistique.  </span>
-<span id="cb16-842"><a href="#cb16-842" aria-hidden="true" tabindex="-1"></a>C'est pourquoi, lorsque les taux de fuite sont grands on observe une inflation de la culture car on a à la fois des populations de ravageurs qui viennent de l'augmentorium qui s'ajoutent aux ravageurs déjà présents dans la culture.  </span>
+<span id="cb16-841"><a href="#cb16-841" aria-hidden="true" tabindex="-1"></a>Ainsi quand $\gamma_y \to 0$ l'augmentorium se vide en ravageurs et on a ainsi toute la population dans la culture et l'équilibre dans culture tend vers sa capacité de charge car on est seulement face à une croissance logistique.  </span>
+<span id="cb16-842"><a href="#cb16-842" aria-hidden="true" tabindex="-1"></a>C'est pourquoi, lorsque les taux de fuite sont grands on observe une inflation de la culture car on a, des populations de ravageurs qui viennent de l'augmentorium qui s'ajoutent aux ravageurs déjà présents dans la culture.  </span>
 <span id="cb16-843"><a href="#cb16-843" aria-hidden="true" tabindex="-1"></a>La somme des équilibres est donc trompeuse dans ce cas là, en effet le système subit une déflation car l'augmentorium n'est presque plus occupé pour de forts taux de fuite mais il ne faut pas croire que c'en est bénéfique pour la culture.</span>
 <span id="cb16-844"><a href="#cb16-844" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-845"><a href="#cb16-845" aria-hidden="true" tabindex="-1"></a></span>

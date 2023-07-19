@@ -313,7 +313,7 @@ xeq = gx * (yeq/gy - ry * yeq/b * (1 - yeq/Ky))
 
 ### Analyse du plan de phase
 
-On va tracer le plan de phase complet et l'analyser d'après la méthode de @arditi2018 :  
+On va tracer le plan de phase complet et l'analyser d'après la méthode d'@arditi2018 :  
 
 Dans cette analyse on va considérer, sans perte de généralité, que $r_x < r_y$ (on prend l'ellipse dans un seul sens, voir l'[animation](@fig-anim)).
 
@@ -512,6 +512,7 @@ Pour cela on va simuler avec `odeint` (pendant un temps assez large pour atteind
 
 On définit une fonction qui dépend de $\beta$ : 
 ```{python}
+#| code-fold: true
 def aug2(etat, t, param, h):
     rx, ry, Kx, Ky, gx, gy = param
     b = h
@@ -524,6 +525,7 @@ def aug2(etat, t, param, h):
 et on pose le temps d'intégration, les paramètres et les conditions initiales :
 
 ```{python}
+#| code-fold: true
 #1:
 rx1 = 0.5
 ry1 = 1
@@ -574,6 +576,7 @@ e0 = [1, 1]
 Et enfin on trace les quatre figures :
 
 ```{python}
+#| code-fold: true
 fig, (ax, ax1, ax2, ax3) = plt.subplots(1, 4, figsize = (9, 4))
 plt.subplots_adjust(wspace = 0.5)
 

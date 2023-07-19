@@ -170,6 +170,7 @@ $${#eq-pdpaug2}
 On se retrouve avec deux surfaces et deux plans dont les intersections seront les équilibres. Voyons ceci avec une animation :
 
 ```{python}
+#| code-fold: true
 import IPython.display as display
 fig01 = """
 <iframe width="700" height="550" src="https://www.geogebra.org/classic/bw3wqnzg" style="border: 1px solid black"></iframe>
@@ -181,15 +182,6 @@ En vert on a l'intersection entre la surface définie par $\dot x =0$ et les pla
 En rouge on a l'intersection entre la surface définie par $\dot y =0$ et les plans $z=0$ et $n_xx+n_yy=m$.
 
 On a donc que l'intersetion des courbes vertes et rouges sont les équilibres. Il est facile de voir qu'il n'en existe que trois différents dont un seul correspond à la coexistence des trois populations.  
-
-On peut aussi plot la trajectoire de la population avec `plotly` :
-
-```{python}
-fig = px.line_3d(x=s3[:,0], y=s3[:,1], z=s3[:,2],title="Coexistence des populations z≠0")
-fig2 = px.line_3d(x=s4[:,0], y=s4[:,1], z=s4[:,2],title="Extinction des prédateurs z=0")
-fig.show()
-fig2.show()
-```
 
 ### Calcul des équilibres 
 

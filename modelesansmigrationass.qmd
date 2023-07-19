@@ -932,6 +932,7 @@ On observe qu'on a bien dans la partie gauche tout le temps inflation et dans la
 Pour mieux comprendre comment se déplace le système en fonction des paramètres :
 
 ```{python}
+#| code-fold: true
 #Technique pour utiliser une fenêtre geogebra:
 
 import IPython.display as display
@@ -951,7 +952,7 @@ On a déja plus ou moins tracé les différents profils de courbe qu'on peut obt
 On va utiliser les mêmes méthodes que précédemment :
 
 ``` {python}
-#| code-fold: true
+#| code-fold: false
 #On redéinit la même fonction:
 def aug2(etat, t, param, h):
     rx, ry, Kx, Ky = param

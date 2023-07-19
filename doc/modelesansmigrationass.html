@@ -1069,6 +1069,8 @@ y^*=\frac{r_xK_y(K_x+K_y)}{r_xK_y+r_yK_x}
 <h2 class="anchored" data-anchor-id="animation">Animation</h2>
 <p>Pour mieux comprendre comment se déplace le système en fonction des paramètres :</p>
 <div class="cell" data-execution_count="20">
+<details>
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Technique pour utiliser une fenêtre geogebra:</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> IPython.display <span class="im">as</span> display</span>
@@ -1077,6 +1079,7 @@ y^*=\frac{r_xK_y(K_x+K_y)}{r_xK_y+r_yK_x}
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>display.HTML(fig01)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display" data-execution_count="20">
 
 <iframe width="700" height="550" src="https://www.geogebra.org/classic/ajaycvqe" style="border: 1px solid black"></iframe>
@@ -1089,8 +1092,6 @@ y^*=\frac{r_xK_y(K_x+K_y)}{r_xK_y+r_yK_x}
 On a déja plus ou moins tracé les différents profils de courbe qu’on peut obtenir pour cette partie (quand on a vérifié les propositions de conditions d’inflation/déflation) mais il existe un quatrième profil de courbe.</p>
 <p>On va utiliser les mêmes méthodes que précédemment :</p>
 <div class="cell" data-execution_count="21">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#On redéinit la même fonction:</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> aug2(etat, t, param, h):</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    rx, ry, Kx, Ky <span class="op">=</span> param</span>
@@ -1203,7 +1204,6 @@ On a déja plus ou moins tracé les différents profils de courbe qu’on peut o
 <span id="cb21-110"><a href="#cb21-110" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-111"><a href="#cb21-111" aria-hidden="true" tabindex="-1"></a><span class="co">#On déplace la légende hors de la figure:</span></span>
 <span id="cb21-112"><a href="#cb21-112" aria-hidden="true" tabindex="-1"></a>ax7.legend(bbox_to_anchor <span class="op">=</span> (<span class="fl">1.75</span>, <span class="op">-</span><span class="fl">0.65</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>))<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <p><img src="modelesansmigrationass_files/figure-html/cell-22-output-1.png" width="738" height="492"></p>
 </div>
@@ -2445,146 +2445,147 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb22-970"><a href="#cb22-970" aria-hidden="true" tabindex="-1"></a>Pour mieux comprendre comment se déplace le système en fonction des paramètres :</span>
 <span id="cb22-971"><a href="#cb22-971" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-974"><a href="#cb22-974" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb22-975"><a href="#cb22-975" aria-hidden="true" tabindex="-1"></a><span class="co">#Technique pour utiliser une fenêtre geogebra:</span></span>
-<span id="cb22-976"><a href="#cb22-976" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-977"><a href="#cb22-977" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> IPython.display <span class="im">as</span> display</span>
-<span id="cb22-978"><a href="#cb22-978" aria-hidden="true" tabindex="-1"></a>fig01 <span class="op">=</span> <span class="st">"""</span></span>
-<span id="cb22-979"><a href="#cb22-979" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/ajaycvqe" style = "border: 1px solid black"&gt;&lt;/iframe&gt;</span></span>
-<span id="cb22-980"><a href="#cb22-980" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
-<span id="cb22-981"><a href="#cb22-981" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-982"><a href="#cb22-982" aria-hidden="true" tabindex="-1"></a>display.HTML(fig01)</span>
-<span id="cb22-983"><a href="#cb22-983" aria-hidden="true" tabindex="-1"></a><span class="in">```</span>   </span>
-<span id="cb22-984"><a href="#cb22-984" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-975"><a href="#cb22-975" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb22-976"><a href="#cb22-976" aria-hidden="true" tabindex="-1"></a><span class="co">#Technique pour utiliser une fenêtre geogebra:</span></span>
+<span id="cb22-977"><a href="#cb22-977" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-978"><a href="#cb22-978" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> IPython.display <span class="im">as</span> display</span>
+<span id="cb22-979"><a href="#cb22-979" aria-hidden="true" tabindex="-1"></a>fig01 <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb22-980"><a href="#cb22-980" aria-hidden="true" tabindex="-1"></a><span class="st">&lt;iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/ajaycvqe" style = "border: 1px solid black"&gt;&lt;/iframe&gt;</span></span>
+<span id="cb22-981"><a href="#cb22-981" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span></span>
+<span id="cb22-982"><a href="#cb22-982" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-983"><a href="#cb22-983" aria-hidden="true" tabindex="-1"></a>display.HTML(fig01)</span>
+<span id="cb22-984"><a href="#cb22-984" aria-hidden="true" tabindex="-1"></a><span class="in">```</span>   </span>
 <span id="cb22-985"><a href="#cb22-985" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-986"><a href="#cb22-986" aria-hidden="true" tabindex="-1"></a><span class="fu">## Inflation et déflation du système en fonction de la migration</span></span>
-<span id="cb22-987"><a href="#cb22-987" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-988"><a href="#cb22-988" aria-hidden="true" tabindex="-1"></a>Dans cette partie on va s'intéresser aux sommes des équilibres en fonction de $\beta$.  </span>
-<span id="cb22-989"><a href="#cb22-989" aria-hidden="true" tabindex="-1"></a>On a déja plus ou moins tracé les différents profils de courbe qu'on peut obtenir pour cette partie (quand on a vérifié les propositions de conditions d'inflation/déflation) mais il existe un quatrième profil de courbe.  </span>
-<span id="cb22-990"><a href="#cb22-990" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-991"><a href="#cb22-991" aria-hidden="true" tabindex="-1"></a>On va utiliser les mêmes méthodes que précédemment :</span>
-<span id="cb22-992"><a href="#cb22-992" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-993"><a href="#cb22-993" aria-hidden="true" tabindex="-1"></a><span class="in">```&nbsp;{python}</span></span>
-<span id="cb22-994"><a href="#cb22-994" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb22-995"><a href="#cb22-995" aria-hidden="true" tabindex="-1"></a><span class="co">#On redéinit la même fonction:</span></span>
-<span id="cb22-996"><a href="#cb22-996" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> aug2(etat, t, param, h):</span>
-<span id="cb22-997"><a href="#cb22-997" aria-hidden="true" tabindex="-1"></a>    rx, ry, Kx, Ky <span class="op">=</span> param</span>
-<span id="cb22-998"><a href="#cb22-998" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> h</span>
-<span id="cb22-999"><a href="#cb22-999" aria-hidden="true" tabindex="-1"></a>    x, y <span class="op">=</span> etat</span>
-<span id="cb22-1000"><a href="#cb22-1000" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> [rx <span class="op">*</span> x <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> x<span class="op">/</span>Kx) <span class="op">+</span> b <span class="op">*</span> (y <span class="op">-</span> x), </span>
-<span id="cb22-1001"><a href="#cb22-1001" aria-hidden="true" tabindex="-1"></a>    ry <span class="op">*</span> y <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> y<span class="op">/</span>Ky) <span class="op">+</span> b <span class="op">*</span> (x <span class="op">-</span> y)]</span>
-<span id="cb22-1002"><a href="#cb22-1002" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s </span>
-<span id="cb22-1003"><a href="#cb22-1003" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1004"><a href="#cb22-1004" aria-hidden="true" tabindex="-1"></a><span class="co">## Temps d'intégration :</span></span>
-<span id="cb22-1005"><a href="#cb22-1005" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1006"><a href="#cb22-1006" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">400</span>, <span class="fl">0.01</span>)</span>
-<span id="cb22-1007"><a href="#cb22-1007" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1008"><a href="#cb22-1008" aria-hidden="true" tabindex="-1"></a><span class="co">## Paramètres : </span></span>
-<span id="cb22-1009"><a href="#cb22-1009" aria-hidden="true" tabindex="-1"></a><span class="co">#Paramètres de la condition b):</span></span>
-<span id="cb22-1010"><a href="#cb22-1010" aria-hidden="true" tabindex="-1"></a>rx1 <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb22-1011"><a href="#cb22-1011" aria-hidden="true" tabindex="-1"></a>ry1 <span class="op">=</span> <span class="dv">1</span>  </span>
-<span id="cb22-1012"><a href="#cb22-1012" aria-hidden="true" tabindex="-1"></a>Kx1 <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb22-1013"><a href="#cb22-1013" aria-hidden="true" tabindex="-1"></a>Ky1 <span class="op">=</span> <span class="dv">1</span>  </span>
-<span id="cb22-1014"><a href="#cb22-1014" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1015"><a href="#cb22-1015" aria-hidden="true" tabindex="-1"></a>param1 <span class="op">=</span> np.array([rx1, ry1, Kx1, Ky1])</span>
-<span id="cb22-1016"><a href="#cb22-1016" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1017"><a href="#cb22-1017" aria-hidden="true" tabindex="-1"></a><span class="co">## Paramètres condition c.1): </span></span>
-<span id="cb22-1018"><a href="#cb22-1018" aria-hidden="true" tabindex="-1"></a>rx2 <span class="op">=</span> <span class="fl">0.4</span></span>
-<span id="cb22-1019"><a href="#cb22-1019" aria-hidden="true" tabindex="-1"></a>ry2 <span class="op">=</span> <span class="dv">1</span>  </span>
-<span id="cb22-1020"><a href="#cb22-1020" aria-hidden="true" tabindex="-1"></a>Kx2 <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb22-1021"><a href="#cb22-1021" aria-hidden="true" tabindex="-1"></a>Ky2 <span class="op">=</span> <span class="dv">2</span>  </span>
-<span id="cb22-1022"><a href="#cb22-1022" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1023"><a href="#cb22-1023" aria-hidden="true" tabindex="-1"></a>param2 <span class="op">=</span> np.array([rx2, ry2, Kx2, Ky2])</span>
-<span id="cb22-1024"><a href="#cb22-1024" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1025"><a href="#cb22-1025" aria-hidden="true" tabindex="-1"></a><span class="co">## Paramètres condition c.2): </span></span>
-<span id="cb22-1026"><a href="#cb22-1026" aria-hidden="true" tabindex="-1"></a>rx3 <span class="op">=</span> <span class="fl">0.6</span></span>
-<span id="cb22-1027"><a href="#cb22-1027" aria-hidden="true" tabindex="-1"></a>ry3 <span class="op">=</span> <span class="dv">1</span>  </span>
-<span id="cb22-1028"><a href="#cb22-1028" aria-hidden="true" tabindex="-1"></a>Kx3 <span class="op">=</span> <span class="dv">1</span>  </span>
-<span id="cb22-1029"><a href="#cb22-1029" aria-hidden="true" tabindex="-1"></a>Ky3 <span class="op">=</span> <span class="dv">2</span>  </span>
-<span id="cb22-1030"><a href="#cb22-1030" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1031"><a href="#cb22-1031" aria-hidden="true" tabindex="-1"></a>param3 <span class="op">=</span> np.array([rx3, ry3, Kx3, Ky3])</span>
-<span id="cb22-1032"><a href="#cb22-1032" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1033"><a href="#cb22-1033" aria-hidden="true" tabindex="-1"></a><span class="co">## Paramètres nouveau profil: </span></span>
-<span id="cb22-1034"><a href="#cb22-1034" aria-hidden="true" tabindex="-1"></a>rx4 <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb22-1035"><a href="#cb22-1035" aria-hidden="true" tabindex="-1"></a>ry4 <span class="op">=</span> <span class="dv">2</span>  </span>
-<span id="cb22-1036"><a href="#cb22-1036" aria-hidden="true" tabindex="-1"></a>Kx4 <span class="op">=</span> <span class="fl">0.5</span>  </span>
-<span id="cb22-1037"><a href="#cb22-1037" aria-hidden="true" tabindex="-1"></a>Ky4 <span class="op">=</span> <span class="dv">1</span>  </span>
-<span id="cb22-1038"><a href="#cb22-1038" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1039"><a href="#cb22-1039" aria-hidden="true" tabindex="-1"></a>param4 <span class="op">=</span> np.array([rx4, ry4, Kx4, Ky4])</span>
-<span id="cb22-1040"><a href="#cb22-1040" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1041"><a href="#cb22-1041" aria-hidden="true" tabindex="-1"></a><span class="co">## Condition initiale:</span></span>
-<span id="cb22-1042"><a href="#cb22-1042" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1043"><a href="#cb22-1043" aria-hidden="true" tabindex="-1"></a>c10 <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">0</span>]</span>
-<span id="cb22-1044"><a href="#cb22-1044" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1045"><a href="#cb22-1045" aria-hidden="true" tabindex="-1"></a><span class="co">## On crée la figure et l'axe:</span></span>
-<span id="cb22-1046"><a href="#cb22-1046" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1047"><a href="#cb22-1047" aria-hidden="true" tabindex="-1"></a>fig6, (ax7, ax8, ax9, ax10) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize <span class="op">=</span> (<span class="dv">9</span>, <span class="dv">5</span>))</span>
-<span id="cb22-1048"><a href="#cb22-1048" aria-hidden="true" tabindex="-1"></a>ax7.set_title(<span class="st">"Déflation"</span>, fontsize <span class="op">=</span> <span class="dv">8</span>)</span>
-<span id="cb22-1049"><a href="#cb22-1049" aria-hidden="true" tabindex="-1"></a>ax8.set_title(<span class="st">"Inflation"</span>, fontsize <span class="op">=</span> <span class="dv">8</span>)</span>
-<span id="cb22-1050"><a href="#cb22-1050" aria-hidden="true" tabindex="-1"></a>ax9.set_title(<span class="st">"Les deux"</span>, fontsize <span class="op">=</span> <span class="dv">8</span>)</span>
-<span id="cb22-1051"><a href="#cb22-1051" aria-hidden="true" tabindex="-1"></a>ax10.set_title(<span class="st">"Inflation"</span>, fontsize <span class="op">=</span> <span class="dv">8</span>)</span>
-<span id="cb22-1052"><a href="#cb22-1052" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1053"><a href="#cb22-1053" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(wspace <span class="op">=</span> <span class="fl">0.45</span>) <span class="co">#On ajuste l'écart entre figures</span></span>
-<span id="cb22-1054"><a href="#cb22-1054" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1055"><a href="#cb22-1055" aria-hidden="true" tabindex="-1"></a><span class="co">## Boucle ou i prend les valeurs de beta:</span></span>
-<span id="cb22-1056"><a href="#cb22-1056" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1057"><a href="#cb22-1057" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> np.arange(<span class="dv">0</span>, <span class="dv">4</span>, <span class="fl">0.01</span>):</span>
-<span id="cb22-1058"><a href="#cb22-1058" aria-hidden="true" tabindex="-1"></a>    s1 <span class="op">=</span> odeint(aug2, c10, t1, args <span class="op">=</span> (param1, i)) </span>
-<span id="cb22-1059"><a href="#cb22-1059" aria-hidden="true" tabindex="-1"></a>    ax7.plot(i, s1[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>] <span class="op">+</span> s1[<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'C0'</span>)</span>
-<span id="cb22-1060"><a href="#cb22-1060" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1061"><a href="#cb22-1061" aria-hidden="true" tabindex="-1"></a>    s2 <span class="op">=</span> odeint(aug2, c10, t1, args <span class="op">=</span> (param2, i))</span>
-<span id="cb22-1062"><a href="#cb22-1062" aria-hidden="true" tabindex="-1"></a>    ax8.plot(i, s2[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>] <span class="op">+</span> s2[<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'C0'</span>)</span>
-<span id="cb22-1063"><a href="#cb22-1063" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1064"><a href="#cb22-1064" aria-hidden="true" tabindex="-1"></a>    s3 <span class="op">=</span> odeint(aug2, c10, t1, args <span class="op">=</span> (param3, i))</span>
-<span id="cb22-1065"><a href="#cb22-1065" aria-hidden="true" tabindex="-1"></a>    ax9.plot(i, s3[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>] <span class="op">+</span> s3[<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'C0'</span>)</span>
-<span id="cb22-1066"><a href="#cb22-1066" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1067"><a href="#cb22-1067" aria-hidden="true" tabindex="-1"></a>    s4 <span class="op">=</span> odeint(aug2, c10, t1, args <span class="op">=</span> (param4, i))</span>
-<span id="cb22-1068"><a href="#cb22-1068" aria-hidden="true" tabindex="-1"></a>    ax10.plot(i, s4[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>] <span class="op">+</span> s4[<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'C0'</span>)</span>
-<span id="cb22-1069"><a href="#cb22-1069" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1070"><a href="#cb22-1070" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot de la droite Kx+Ky:</span></span>
-<span id="cb22-1071"><a href="#cb22-1071" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1072"><a href="#cb22-1072" aria-hidden="true" tabindex="-1"></a>xt <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">4</span>, <span class="fl">0.01</span>)</span>
-<span id="cb22-1073"><a href="#cb22-1073" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1074"><a href="#cb22-1074" aria-hidden="true" tabindex="-1"></a>ax7.plot(xt, (Kx1 <span class="op">+</span> Ky1) <span class="op">*</span> np.ones_like(xt), linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'k'</span>,markersize <span class="op">=</span> <span class="st">'6'</span>)</span>
-<span id="cb22-1075"><a href="#cb22-1075" aria-hidden="true" tabindex="-1"></a>ax7.text(<span class="fl">2.5</span>, Kx1 <span class="op">+</span> Ky1 <span class="op">+</span> <span class="fl">0.01</span>, <span class="st">'$K_x+K_y$'</span>)</span>
-<span id="cb22-1076"><a href="#cb22-1076" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1077"><a href="#cb22-1077" aria-hidden="true" tabindex="-1"></a>ax8.plot(xt, (Kx2 <span class="op">+</span> Ky2) <span class="op">*</span> np.ones_like(xt), linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'k'</span>, markersize <span class="op">=</span> <span class="st">'6'</span>)</span>
-<span id="cb22-1078"><a href="#cb22-1078" aria-hidden="true" tabindex="-1"></a>ax8.text(<span class="fl">2.5</span>, Kx2 <span class="op">+</span> Ky2 <span class="op">+</span> <span class="fl">0.01</span>, <span class="st">'$K_x+K_y$'</span>)</span>
-<span id="cb22-1079"><a href="#cb22-1079" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1080"><a href="#cb22-1080" aria-hidden="true" tabindex="-1"></a>ax9.plot(xt, (Kx3 <span class="op">+</span> Ky3) <span class="op">*</span> np.ones_like(xt), linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'k'</span>, markersize <span class="op">=</span> <span class="st">'6'</span>)</span>
-<span id="cb22-1081"><a href="#cb22-1081" aria-hidden="true" tabindex="-1"></a>ax9.text(<span class="fl">2.5</span>, Kx3 <span class="op">+</span> Ky3 <span class="op">+</span> <span class="fl">0.01</span>, <span class="st">'$K_x+K_y$'</span>)</span>
-<span id="cb22-1082"><a href="#cb22-1082" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1083"><a href="#cb22-1083" aria-hidden="true" tabindex="-1"></a>ax10.plot(xt, (Kx4 <span class="op">+</span> Ky4) <span class="op">*</span> np.ones_like(xt), linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'k'</span>, markersize <span class="op">=</span> <span class="st">'6'</span>)</span>
-<span id="cb22-1084"><a href="#cb22-1084" aria-hidden="true" tabindex="-1"></a>ax10.text(<span class="fl">2.5</span>, Kx4 <span class="op">+</span> Ky4 <span class="op">+</span> <span class="fl">0.01</span>, <span class="st">'$K_x+K_y$'</span>)</span>
-<span id="cb22-1085"><a href="#cb22-1085" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-986"><a href="#cb22-986" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-987"><a href="#cb22-987" aria-hidden="true" tabindex="-1"></a><span class="fu">## Inflation et déflation du système en fonction de la migration</span></span>
+<span id="cb22-988"><a href="#cb22-988" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-989"><a href="#cb22-989" aria-hidden="true" tabindex="-1"></a>Dans cette partie on va s'intéresser aux sommes des équilibres en fonction de $\beta$.  </span>
+<span id="cb22-990"><a href="#cb22-990" aria-hidden="true" tabindex="-1"></a>On a déja plus ou moins tracé les différents profils de courbe qu'on peut obtenir pour cette partie (quand on a vérifié les propositions de conditions d'inflation/déflation) mais il existe un quatrième profil de courbe.  </span>
+<span id="cb22-991"><a href="#cb22-991" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-992"><a href="#cb22-992" aria-hidden="true" tabindex="-1"></a>On va utiliser les mêmes méthodes que précédemment :</span>
+<span id="cb22-993"><a href="#cb22-993" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-994"><a href="#cb22-994" aria-hidden="true" tabindex="-1"></a><span class="in">```&nbsp;{python}</span></span>
+<span id="cb22-995"><a href="#cb22-995" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: false</span></span>
+<span id="cb22-996"><a href="#cb22-996" aria-hidden="true" tabindex="-1"></a><span class="co">#On redéinit la même fonction:</span></span>
+<span id="cb22-997"><a href="#cb22-997" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> aug2(etat, t, param, h):</span>
+<span id="cb22-998"><a href="#cb22-998" aria-hidden="true" tabindex="-1"></a>    rx, ry, Kx, Ky <span class="op">=</span> param</span>
+<span id="cb22-999"><a href="#cb22-999" aria-hidden="true" tabindex="-1"></a>    b <span class="op">=</span> h</span>
+<span id="cb22-1000"><a href="#cb22-1000" aria-hidden="true" tabindex="-1"></a>    x, y <span class="op">=</span> etat</span>
+<span id="cb22-1001"><a href="#cb22-1001" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> [rx <span class="op">*</span> x <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> x<span class="op">/</span>Kx) <span class="op">+</span> b <span class="op">*</span> (y <span class="op">-</span> x), </span>
+<span id="cb22-1002"><a href="#cb22-1002" aria-hidden="true" tabindex="-1"></a>    ry <span class="op">*</span> y <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> y<span class="op">/</span>Ky) <span class="op">+</span> b <span class="op">*</span> (x <span class="op">-</span> y)]</span>
+<span id="cb22-1003"><a href="#cb22-1003" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s </span>
+<span id="cb22-1004"><a href="#cb22-1004" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1005"><a href="#cb22-1005" aria-hidden="true" tabindex="-1"></a><span class="co">## Temps d'intégration :</span></span>
+<span id="cb22-1006"><a href="#cb22-1006" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1007"><a href="#cb22-1007" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">400</span>, <span class="fl">0.01</span>)</span>
+<span id="cb22-1008"><a href="#cb22-1008" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1009"><a href="#cb22-1009" aria-hidden="true" tabindex="-1"></a><span class="co">## Paramètres : </span></span>
+<span id="cb22-1010"><a href="#cb22-1010" aria-hidden="true" tabindex="-1"></a><span class="co">#Paramètres de la condition b):</span></span>
+<span id="cb22-1011"><a href="#cb22-1011" aria-hidden="true" tabindex="-1"></a>rx1 <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb22-1012"><a href="#cb22-1012" aria-hidden="true" tabindex="-1"></a>ry1 <span class="op">=</span> <span class="dv">1</span>  </span>
+<span id="cb22-1013"><a href="#cb22-1013" aria-hidden="true" tabindex="-1"></a>Kx1 <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb22-1014"><a href="#cb22-1014" aria-hidden="true" tabindex="-1"></a>Ky1 <span class="op">=</span> <span class="dv">1</span>  </span>
+<span id="cb22-1015"><a href="#cb22-1015" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1016"><a href="#cb22-1016" aria-hidden="true" tabindex="-1"></a>param1 <span class="op">=</span> np.array([rx1, ry1, Kx1, Ky1])</span>
+<span id="cb22-1017"><a href="#cb22-1017" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1018"><a href="#cb22-1018" aria-hidden="true" tabindex="-1"></a><span class="co">## Paramètres condition c.1): </span></span>
+<span id="cb22-1019"><a href="#cb22-1019" aria-hidden="true" tabindex="-1"></a>rx2 <span class="op">=</span> <span class="fl">0.4</span></span>
+<span id="cb22-1020"><a href="#cb22-1020" aria-hidden="true" tabindex="-1"></a>ry2 <span class="op">=</span> <span class="dv">1</span>  </span>
+<span id="cb22-1021"><a href="#cb22-1021" aria-hidden="true" tabindex="-1"></a>Kx2 <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb22-1022"><a href="#cb22-1022" aria-hidden="true" tabindex="-1"></a>Ky2 <span class="op">=</span> <span class="dv">2</span>  </span>
+<span id="cb22-1023"><a href="#cb22-1023" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1024"><a href="#cb22-1024" aria-hidden="true" tabindex="-1"></a>param2 <span class="op">=</span> np.array([rx2, ry2, Kx2, Ky2])</span>
+<span id="cb22-1025"><a href="#cb22-1025" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1026"><a href="#cb22-1026" aria-hidden="true" tabindex="-1"></a><span class="co">## Paramètres condition c.2): </span></span>
+<span id="cb22-1027"><a href="#cb22-1027" aria-hidden="true" tabindex="-1"></a>rx3 <span class="op">=</span> <span class="fl">0.6</span></span>
+<span id="cb22-1028"><a href="#cb22-1028" aria-hidden="true" tabindex="-1"></a>ry3 <span class="op">=</span> <span class="dv">1</span>  </span>
+<span id="cb22-1029"><a href="#cb22-1029" aria-hidden="true" tabindex="-1"></a>Kx3 <span class="op">=</span> <span class="dv">1</span>  </span>
+<span id="cb22-1030"><a href="#cb22-1030" aria-hidden="true" tabindex="-1"></a>Ky3 <span class="op">=</span> <span class="dv">2</span>  </span>
+<span id="cb22-1031"><a href="#cb22-1031" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1032"><a href="#cb22-1032" aria-hidden="true" tabindex="-1"></a>param3 <span class="op">=</span> np.array([rx3, ry3, Kx3, Ky3])</span>
+<span id="cb22-1033"><a href="#cb22-1033" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1034"><a href="#cb22-1034" aria-hidden="true" tabindex="-1"></a><span class="co">## Paramètres nouveau profil: </span></span>
+<span id="cb22-1035"><a href="#cb22-1035" aria-hidden="true" tabindex="-1"></a>rx4 <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb22-1036"><a href="#cb22-1036" aria-hidden="true" tabindex="-1"></a>ry4 <span class="op">=</span> <span class="dv">2</span>  </span>
+<span id="cb22-1037"><a href="#cb22-1037" aria-hidden="true" tabindex="-1"></a>Kx4 <span class="op">=</span> <span class="fl">0.5</span>  </span>
+<span id="cb22-1038"><a href="#cb22-1038" aria-hidden="true" tabindex="-1"></a>Ky4 <span class="op">=</span> <span class="dv">1</span>  </span>
+<span id="cb22-1039"><a href="#cb22-1039" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1040"><a href="#cb22-1040" aria-hidden="true" tabindex="-1"></a>param4 <span class="op">=</span> np.array([rx4, ry4, Kx4, Ky4])</span>
+<span id="cb22-1041"><a href="#cb22-1041" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1042"><a href="#cb22-1042" aria-hidden="true" tabindex="-1"></a><span class="co">## Condition initiale:</span></span>
+<span id="cb22-1043"><a href="#cb22-1043" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1044"><a href="#cb22-1044" aria-hidden="true" tabindex="-1"></a>c10 <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">0</span>]</span>
+<span id="cb22-1045"><a href="#cb22-1045" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1046"><a href="#cb22-1046" aria-hidden="true" tabindex="-1"></a><span class="co">## On crée la figure et l'axe:</span></span>
+<span id="cb22-1047"><a href="#cb22-1047" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1048"><a href="#cb22-1048" aria-hidden="true" tabindex="-1"></a>fig6, (ax7, ax8, ax9, ax10) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize <span class="op">=</span> (<span class="dv">9</span>, <span class="dv">5</span>))</span>
+<span id="cb22-1049"><a href="#cb22-1049" aria-hidden="true" tabindex="-1"></a>ax7.set_title(<span class="st">"Déflation"</span>, fontsize <span class="op">=</span> <span class="dv">8</span>)</span>
+<span id="cb22-1050"><a href="#cb22-1050" aria-hidden="true" tabindex="-1"></a>ax8.set_title(<span class="st">"Inflation"</span>, fontsize <span class="op">=</span> <span class="dv">8</span>)</span>
+<span id="cb22-1051"><a href="#cb22-1051" aria-hidden="true" tabindex="-1"></a>ax9.set_title(<span class="st">"Les deux"</span>, fontsize <span class="op">=</span> <span class="dv">8</span>)</span>
+<span id="cb22-1052"><a href="#cb22-1052" aria-hidden="true" tabindex="-1"></a>ax10.set_title(<span class="st">"Inflation"</span>, fontsize <span class="op">=</span> <span class="dv">8</span>)</span>
+<span id="cb22-1053"><a href="#cb22-1053" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1054"><a href="#cb22-1054" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(wspace <span class="op">=</span> <span class="fl">0.45</span>) <span class="co">#On ajuste l'écart entre figures</span></span>
+<span id="cb22-1055"><a href="#cb22-1055" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1056"><a href="#cb22-1056" aria-hidden="true" tabindex="-1"></a><span class="co">## Boucle ou i prend les valeurs de beta:</span></span>
+<span id="cb22-1057"><a href="#cb22-1057" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1058"><a href="#cb22-1058" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> np.arange(<span class="dv">0</span>, <span class="dv">4</span>, <span class="fl">0.01</span>):</span>
+<span id="cb22-1059"><a href="#cb22-1059" aria-hidden="true" tabindex="-1"></a>    s1 <span class="op">=</span> odeint(aug2, c10, t1, args <span class="op">=</span> (param1, i)) </span>
+<span id="cb22-1060"><a href="#cb22-1060" aria-hidden="true" tabindex="-1"></a>    ax7.plot(i, s1[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>] <span class="op">+</span> s1[<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'C0'</span>)</span>
+<span id="cb22-1061"><a href="#cb22-1061" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1062"><a href="#cb22-1062" aria-hidden="true" tabindex="-1"></a>    s2 <span class="op">=</span> odeint(aug2, c10, t1, args <span class="op">=</span> (param2, i))</span>
+<span id="cb22-1063"><a href="#cb22-1063" aria-hidden="true" tabindex="-1"></a>    ax8.plot(i, s2[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>] <span class="op">+</span> s2[<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'C0'</span>)</span>
+<span id="cb22-1064"><a href="#cb22-1064" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1065"><a href="#cb22-1065" aria-hidden="true" tabindex="-1"></a>    s3 <span class="op">=</span> odeint(aug2, c10, t1, args <span class="op">=</span> (param3, i))</span>
+<span id="cb22-1066"><a href="#cb22-1066" aria-hidden="true" tabindex="-1"></a>    ax9.plot(i, s3[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>] <span class="op">+</span> s3[<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'C0'</span>)</span>
+<span id="cb22-1067"><a href="#cb22-1067" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1068"><a href="#cb22-1068" aria-hidden="true" tabindex="-1"></a>    s4 <span class="op">=</span> odeint(aug2, c10, t1, args <span class="op">=</span> (param4, i))</span>
+<span id="cb22-1069"><a href="#cb22-1069" aria-hidden="true" tabindex="-1"></a>    ax10.plot(i, s4[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>] <span class="op">+</span> s4[<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'C0'</span>)</span>
+<span id="cb22-1070"><a href="#cb22-1070" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1071"><a href="#cb22-1071" aria-hidden="true" tabindex="-1"></a><span class="co">## Plot de la droite Kx+Ky:</span></span>
+<span id="cb22-1072"><a href="#cb22-1072" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1073"><a href="#cb22-1073" aria-hidden="true" tabindex="-1"></a>xt <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">4</span>, <span class="fl">0.01</span>)</span>
+<span id="cb22-1074"><a href="#cb22-1074" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1075"><a href="#cb22-1075" aria-hidden="true" tabindex="-1"></a>ax7.plot(xt, (Kx1 <span class="op">+</span> Ky1) <span class="op">*</span> np.ones_like(xt), linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'k'</span>,markersize <span class="op">=</span> <span class="st">'6'</span>)</span>
+<span id="cb22-1076"><a href="#cb22-1076" aria-hidden="true" tabindex="-1"></a>ax7.text(<span class="fl">2.5</span>, Kx1 <span class="op">+</span> Ky1 <span class="op">+</span> <span class="fl">0.01</span>, <span class="st">'$K_x+K_y$'</span>)</span>
+<span id="cb22-1077"><a href="#cb22-1077" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1078"><a href="#cb22-1078" aria-hidden="true" tabindex="-1"></a>ax8.plot(xt, (Kx2 <span class="op">+</span> Ky2) <span class="op">*</span> np.ones_like(xt), linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'k'</span>, markersize <span class="op">=</span> <span class="st">'6'</span>)</span>
+<span id="cb22-1079"><a href="#cb22-1079" aria-hidden="true" tabindex="-1"></a>ax8.text(<span class="fl">2.5</span>, Kx2 <span class="op">+</span> Ky2 <span class="op">+</span> <span class="fl">0.01</span>, <span class="st">'$K_x+K_y$'</span>)</span>
+<span id="cb22-1080"><a href="#cb22-1080" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1081"><a href="#cb22-1081" aria-hidden="true" tabindex="-1"></a>ax9.plot(xt, (Kx3 <span class="op">+</span> Ky3) <span class="op">*</span> np.ones_like(xt), linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'k'</span>, markersize <span class="op">=</span> <span class="st">'6'</span>)</span>
+<span id="cb22-1082"><a href="#cb22-1082" aria-hidden="true" tabindex="-1"></a>ax9.text(<span class="fl">2.5</span>, Kx3 <span class="op">+</span> Ky3 <span class="op">+</span> <span class="fl">0.01</span>, <span class="st">'$K_x+K_y$'</span>)</span>
+<span id="cb22-1083"><a href="#cb22-1083" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1084"><a href="#cb22-1084" aria-hidden="true" tabindex="-1"></a>ax10.plot(xt, (Kx4 <span class="op">+</span> Ky4) <span class="op">*</span> np.ones_like(xt), linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'k'</span>, markersize <span class="op">=</span> <span class="st">'6'</span>)</span>
+<span id="cb22-1085"><a href="#cb22-1085" aria-hidden="true" tabindex="-1"></a>ax10.text(<span class="fl">2.5</span>, Kx4 <span class="op">+</span> Ky4 <span class="op">+</span> <span class="fl">0.01</span>, <span class="st">'$K_x+K_y$'</span>)</span>
 <span id="cb22-1086"><a href="#cb22-1086" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1087"><a href="#cb22-1087" aria-hidden="true" tabindex="-1"></a><span class="co">## Légendes:</span></span>
-<span id="cb22-1088"><a href="#cb22-1088" aria-hidden="true" tabindex="-1"></a>ax7.set_xlabel(<span class="st">'β'</span>)</span>
-<span id="cb22-1089"><a href="#cb22-1089" aria-hidden="true" tabindex="-1"></a>ax7.set_ylabel(<span class="st">'Population'</span>)</span>
-<span id="cb22-1090"><a href="#cb22-1090" aria-hidden="true" tabindex="-1"></a>ax7.plot(Kx1 <span class="op">+</span> Ky1, <span class="dv">0</span>, color <span class="op">=</span> <span class="st">'C0'</span>, label <span class="op">=</span> <span class="st">'Somme des équilibres'</span>) <span class="co">#Si on avait mis label dans la boucle la légende aurait été trop grande</span></span>
-<span id="cb22-1091"><a href="#cb22-1091" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1092"><a href="#cb22-1092" aria-hidden="true" tabindex="-1"></a>ax8.set_xlabel(<span class="st">'β'</span>)</span>
-<span id="cb22-1093"><a href="#cb22-1093" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1094"><a href="#cb22-1094" aria-hidden="true" tabindex="-1"></a>ax9.set_xlabel(<span class="st">'β'</span>)</span>
-<span id="cb22-1095"><a href="#cb22-1095" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1096"><a href="#cb22-1096" aria-hidden="true" tabindex="-1"></a>ax10.set_xlabel(<span class="st">'β'</span>)</span>
-<span id="cb22-1097"><a href="#cb22-1097" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1087"><a href="#cb22-1087" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1088"><a href="#cb22-1088" aria-hidden="true" tabindex="-1"></a><span class="co">## Légendes:</span></span>
+<span id="cb22-1089"><a href="#cb22-1089" aria-hidden="true" tabindex="-1"></a>ax7.set_xlabel(<span class="st">'β'</span>)</span>
+<span id="cb22-1090"><a href="#cb22-1090" aria-hidden="true" tabindex="-1"></a>ax7.set_ylabel(<span class="st">'Population'</span>)</span>
+<span id="cb22-1091"><a href="#cb22-1091" aria-hidden="true" tabindex="-1"></a>ax7.plot(Kx1 <span class="op">+</span> Ky1, <span class="dv">0</span>, color <span class="op">=</span> <span class="st">'C0'</span>, label <span class="op">=</span> <span class="st">'Somme des équilibres'</span>) <span class="co">#Si on avait mis label dans la boucle la légende aurait été trop grande</span></span>
+<span id="cb22-1092"><a href="#cb22-1092" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1093"><a href="#cb22-1093" aria-hidden="true" tabindex="-1"></a>ax8.set_xlabel(<span class="st">'β'</span>)</span>
+<span id="cb22-1094"><a href="#cb22-1094" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1095"><a href="#cb22-1095" aria-hidden="true" tabindex="-1"></a>ax9.set_xlabel(<span class="st">'β'</span>)</span>
+<span id="cb22-1096"><a href="#cb22-1096" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1097"><a href="#cb22-1097" aria-hidden="true" tabindex="-1"></a>ax10.set_xlabel(<span class="st">'β'</span>)</span>
 <span id="cb22-1098"><a href="#cb22-1098" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1099"><a href="#cb22-1099" aria-hidden="true" tabindex="-1"></a><span class="co">## On adapte la fenêtre:</span></span>
-<span id="cb22-1100"><a href="#cb22-1100" aria-hidden="true" tabindex="-1"></a>ax7.set_ylim(<span class="fl">2.4</span>, <span class="fl">3.1</span>)</span>
-<span id="cb22-1101"><a href="#cb22-1101" aria-hidden="true" tabindex="-1"></a>ax8.set_ylim(<span class="fl">2.95</span>, <span class="fl">3.15</span>)</span>
-<span id="cb22-1102"><a href="#cb22-1102" aria-hidden="true" tabindex="-1"></a>ax9.set_ylim(<span class="fl">2.9</span>, <span class="fl">3.1</span>)</span>
-<span id="cb22-1103"><a href="#cb22-1103" aria-hidden="true" tabindex="-1"></a>ax10.set_ylim(<span class="fl">1.25</span>, <span class="fl">1.75</span>)</span>
-<span id="cb22-1104"><a href="#cb22-1104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1105"><a href="#cb22-1105" aria-hidden="true" tabindex="-1"></a><span class="co">#On déplace la légende hors de la figure:</span></span>
-<span id="cb22-1106"><a href="#cb22-1106" aria-hidden="true" tabindex="-1"></a>ax7.legend(bbox_to_anchor <span class="op">=</span> (<span class="fl">1.75</span>, <span class="op">-</span><span class="fl">0.65</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>))<span class="op">;</span></span>
-<span id="cb22-1107"><a href="#cb22-1107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-1108"><a href="#cb22-1108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1109"><a href="#cb22-1109" aria-hidden="true" tabindex="-1"></a>On observe quatre profils différents. Les trois premiers ont déjà été obtenus précédemment.   </span>
-<span id="cb22-1110"><a href="#cb22-1110" aria-hidden="true" tabindex="-1"></a>Le quatrième correspond à un système inflationiste où le maximum d'inflation est atteint pour $\beta = +\infty$ contrairement à l'autre profil d'inflation.</span>
-<span id="cb22-1111"><a href="#cb22-1111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1112"><a href="#cb22-1112" aria-hidden="true" tabindex="-1"></a><span class="dv">&amp;nbsp;</span>     </span>
-<span id="cb22-1113"><a href="#cb22-1113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-1114"><a href="#cb22-1114" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Passons</span><span class="co">](modeleavecmigrationass.qmd)</span> mainenant à un modèle qui prend en compte que les migrations peuvent êtres assymétriques.</span>
+<span id="cb22-1099"><a href="#cb22-1099" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1100"><a href="#cb22-1100" aria-hidden="true" tabindex="-1"></a><span class="co">## On adapte la fenêtre:</span></span>
+<span id="cb22-1101"><a href="#cb22-1101" aria-hidden="true" tabindex="-1"></a>ax7.set_ylim(<span class="fl">2.4</span>, <span class="fl">3.1</span>)</span>
+<span id="cb22-1102"><a href="#cb22-1102" aria-hidden="true" tabindex="-1"></a>ax8.set_ylim(<span class="fl">2.95</span>, <span class="fl">3.15</span>)</span>
+<span id="cb22-1103"><a href="#cb22-1103" aria-hidden="true" tabindex="-1"></a>ax9.set_ylim(<span class="fl">2.9</span>, <span class="fl">3.1</span>)</span>
+<span id="cb22-1104"><a href="#cb22-1104" aria-hidden="true" tabindex="-1"></a>ax10.set_ylim(<span class="fl">1.25</span>, <span class="fl">1.75</span>)</span>
+<span id="cb22-1105"><a href="#cb22-1105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1106"><a href="#cb22-1106" aria-hidden="true" tabindex="-1"></a><span class="co">#On déplace la légende hors de la figure:</span></span>
+<span id="cb22-1107"><a href="#cb22-1107" aria-hidden="true" tabindex="-1"></a>ax7.legend(bbox_to_anchor <span class="op">=</span> (<span class="fl">1.75</span>, <span class="op">-</span><span class="fl">0.65</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>))<span class="op">;</span></span>
+<span id="cb22-1108"><a href="#cb22-1108" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-1109"><a href="#cb22-1109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1110"><a href="#cb22-1110" aria-hidden="true" tabindex="-1"></a>On observe quatre profils différents. Les trois premiers ont déjà été obtenus précédemment.   </span>
+<span id="cb22-1111"><a href="#cb22-1111" aria-hidden="true" tabindex="-1"></a>Le quatrième correspond à un système inflationiste où le maximum d'inflation est atteint pour $\beta = +\infty$ contrairement à l'autre profil d'inflation.</span>
+<span id="cb22-1112"><a href="#cb22-1112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1113"><a href="#cb22-1113" aria-hidden="true" tabindex="-1"></a><span class="dv">&amp;nbsp;</span>     </span>
+<span id="cb22-1114"><a href="#cb22-1114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-1115"><a href="#cb22-1115" aria-hidden="true" tabindex="-1"></a><span class="co">[</span><span class="ot">Passons</span><span class="co">](modeleavecmigrationass.qmd)</span> mainenant à un modèle qui prend en compte que les migrations peuvent êtres assymétriques.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

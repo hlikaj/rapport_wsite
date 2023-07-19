@@ -40,12 +40,14 @@ avec:
 
 On a donc maintenant un espace structuré en deux zones, s'échangeant assymétriquement de la population (qui grandit logisitiquement), le tout controlé par une population de prédateurs ne chassant et ne se reproduisant pas de la même manière dans les deux zones. 
 
-### Nouvelles hypothèses 
+### Hypothèses propres à l'augmentorium 
 
-On pose $p_y > p_x$ et $n_y>n_x$.
+Si on veut simuler une condition d'augmentorium alors on posera $p_y > p_x$ et $n_y>n_x$.
 
 En effet l'augmentorium est un lieu propice au développement des individus que ce soit les prédateurs ou les ravageurs.   
 Ainsi la prédation exercé sur les ravageurs est plus forte dans l'augmentorium et les naissances des prédateurs sont plus fortes dans l'augmentorium que dans la culture.
+
+Dans la suite on restera général pour analyser le modèle.
 
 ## Dynamique des populations
 
@@ -108,7 +110,7 @@ s3=odeint(a,c0,t3,args=(param_a1,))
 s4=odeint(a,c0,t4,args=(param_a2,))
 
 #Plot de la figure: 
-fig,ax = plt.subplots(1,2,figsize=(14,5))
+fig,ax = plt.subplots(1,2,figsize=(9,5))
 fig.suptitle('Simulation du modèle d\'augmentorium')
 plt.subplots_adjust(hspace=0.4)
 
@@ -137,18 +139,18 @@ ax[1].legend(fontsize=8)
 ax[1].grid()
 ax[1].set_ylim(top=2,bottom=-0.05)
 
-ax[1].set_title('Disparition des prédateurs, maintien des ravageurs',fontsize=7.5)
+ax[1].set_title('Disparition des prédateurs, maintien des ravageurs',fontsize=7.5);
 ```
 
-Les profils de dynamique se répartissent en deux grandes catégories. Ceux où la population de prédateurs survit et celle où elle disparaît. Il semble donc il y a voir deux équilibres stables dans ce système.  
+Les profils de dynamique se répartissent en deux grandes catégories. Ceux où la population de prédateurs survit et celle où elle disparaît. Il semble donc que le système possède un équilibre stable qui varie selon les paramètres du système. 
 
 Pour de faibles temps t on observe des oscillations à la Lotka-Volterra.  
 
 Le profil de la dynamique de la population sans prédateurs est similaire au modèle avec seulement les proies et la migration assymétrique. On verra dans la suite que ces deux modèles sont complètement confondus (sans prédateurs). 
 
-## Plan de phase
+## Espace d'état
 
-Pour tracer le plan de phase on pose toutes les variations égales à $0$ (situation d'équilibre) :   
+Pour tracer l'espace d'état on pose toutes les variations égales à $0$ (situation d'équilibre) :   
 
 $$
 \left\{\begin{array}{l}
@@ -181,7 +183,7 @@ display.HTML(fig01)
 En vert on a l'intersection entre la surface définie par $\dot x =0$ et les plans $z=0$ et $n_xx+n_yy=m$.  
 En rouge on a l'intersection entre la surface définie par $\dot y =0$ et les plans $z=0$ et $n_xx+n_yy=m$.
 
-On a donc que l'intersetion des courbes vertes et rouges sont les équilibres. Il est facile de voir qu'il n'en existe que trois différents dont un seul correspond à la coexistence des trois populations.  
+On a donc que l'intersection des courbes vertes et rouges sont les équilibres. Il est facile de voir qu'il n'en existe que trois différents dont un seul correspond à la coexistence des trois populations.  
 
 ### Calcul des équilibres 
 
@@ -197,11 +199,28 @@ qui est exactement le système considéré précedemment. Pour l'analyse de ses 
 
 On va donc s'intéresser uniquement à l'équilibre de coexistence qu'on notera $(x^* , y^* , z^*)$.
 
-Nous allons calculer pour différentes valeurs de $\beta$ les valeurs de l'équilibre.
+Nous allons calculer pour différentes valeurs de $\beta$ les valeurs de l'équilibre et leur stabilité.  
+
+En effet le calcul exact de l'équilibre pour un $\beta$ quelconque est difficile, et on va donc partir de cas plus simple avant d'effectuer des simulations Python pour le cas quelconque.
 
 #### Lorsque $\beta = 0$
 
-([-@eq-pdpaug]) devient :
+On définit le système ([-@eq-pdpaug]) par $\mathbb{F(x,y,z,\beta)}$ :
+$$
+\mathbb{F(x,y,z,\beta)} = \left\{\begin{array}{l}
+\dot x = r_xx\left(1-\frac{x}{K_x}\right)+\beta\left(\frac{y}{\gamma_y}-\frac{x}{\gamma_x}\right)-p_xxz \\
+\dot y = r_yy\left(1-\frac{y}{K_y}\right)+\beta\left(\frac{x}{\gamma_x}-\frac{y}{\gamma_y}\right)-p_yyz \\
+\dot z = z\left(n_xx+n_yy - m\right)
+\end{array}\right.
+$$
+
+de telle sorte que si on cherche l'équilibre pour $\beta =0$ alors on a:
+$$
+\mathbb{F(x^*,y^*,z^*,0)} = 0
+$$
+$$
+\Leftrightarrow
+$$
 $$
 \left\{\begin{array}{l}
 0 = r_xx^*\left(1-\frac{x^*}{K_x}\right)-p_xx^*z^* \\
@@ -254,7 +273,7 @@ $$
 n_xK_x+n_yK_y > m 
 $${#eq-app2}
 
-On verra dans la suite que la condition ([-@eq-app2]) est l'invasion des prédateurs.
+On verra dans la suite que ([-@eq-app2]) est la condition permettant l'invasion des prédateurs lorsque les proies sont à leur équilibre.
 
 #### Lorsque $\beta \ne 0$ et petit
 
@@ -588,7 +607,7 @@ param41=np.array([rx4,Kx4,ry4,Ky4,gx4,gy4,p4,n41,m41])
 param42=np.array([rx4,Kx4,ry4,Ky4,gx4,gy4,p4,n42,m42])
 
 #Temps d'intégration suffisament large pour atteindre l'équilibre:
-t=np.arange(0,1000,0.01)
+t=np.arange(0,800,0.01)
 
 #Condition initiale:
 e0=[1,1,1]
@@ -788,7 +807,7 @@ m4=0.5
 param_a4=np.array([rx4,Kx4,ry4,Ky4,gx4,b4,p4,n4,m4])
 
 #Temps d'intégration:
-t1=np.arange(0,500,0.01)
+t1=np.arange(0,300,0.01)
 
 #Conditions initiales:
 x0=1
@@ -1070,7 +1089,7 @@ param42p=np.array([rx4,Kx4,ry4,Ky4,gx4,gy4,px4,py4,nx4,ny4,m42])
 param42sp=param42p[0:6]
 
 #Temps d'intégration suffisament large pour atteindre l'équilibre:
-t=np.arange(0,800,0.01)
+t=np.arange(0,600,0.01)
 
 #Condition initiale:
 e0p=[1,1,1]
@@ -1279,7 +1298,7 @@ m4=0.5
 param_a4=np.array([rx4,Kx4,ry4,Ky4,gx4,b4,px4,py4,nx4,ny4,m4])
 
 #Temps d'intégration:
-t1=np.arange(0,500,0.01)
+t1=np.arange(0,300,0.01)
 
 #Conditions initiales:
 x0=1

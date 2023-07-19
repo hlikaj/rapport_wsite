@@ -19,10 +19,8 @@ Le rapport se structure ainsi :
 
 - Une partie sur un [modèle d'augmentorium](modelaug.qmd) qui permet de prendre en compte la présence de prédateurs des ravageurs.
 
-- Une partie sur le [modèle final](modfinal.qmd), qui permet de considérer que la mixité des prédateurs est imparfaite entre les deux structures.
 
-
-Enfin, nous discuterons de l'efficacité théorique de l'augmentorium en [conclusion](conclusion.qmd).
+Enfin, nous discuterons d'un dernier modèle et de l'efficacité théorique de l'augmentorium en [conclusion](conclusion.qmd).
 
 
 Tous les articles utilisés sont [ici](ref.qmd).

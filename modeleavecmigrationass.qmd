@@ -254,7 +254,7 @@ ax4.quiver(X, Y, dx, dy, angles = 'xy', color = 'grey', scale = 10, width = 0.00
 ax4.legend();
 ```
 
-En fonction des valeurs de $\beta$ on observe des profils différents de plan de phase. Pour mieux le visualiser on pourra utiliser l'animation [Geogebra](@fig-anim) mise à disposition à la fin de l'analyse.
+En fonction des valeurs de $\beta$ on observe des profils différents de plan de phase. Pour mieux le visualiser on pourra utiliser l'animation Geogebra mise à disposition à la fin de l'analyse.
 
 D'après le champ de vecteurs on voit clairement que l'équilibre en $(0,0)$ est instable et l'équilibre $(x^*,y^*)$ est stable.  
 
@@ -315,7 +315,7 @@ xeq = gx * (yeq/gy - ry * yeq/b * (1 - yeq/Ky))
 
 On va tracer le plan de phase complet et l'analyser d'après la méthode d'@arditi2018 :  
 
-Dans cette analyse on va considérer, sans perte de généralité, que $r_x < r_y$ (on prend l'ellipse dans un seul sens, voir l'[animation](@fig-anim)).
+Dans cette analyse on va considérer, sans perte de généralité, que $r_x < r_y$ (on prend l'ellipse dans un seul sens, voir l'animation).
 
 Pour cela on trace l'ellipse de la même manière que dans la première figure, l'équation de cette ellipse n'ayant pas de terme de migration dans le premier modèle elle est la même dans celui-ci aussi.  
 
@@ -432,13 +432,13 @@ ax2.text(3, 5.5, "$P_\infty$")
 ax2.legend(loc="upper left");
 ```
 
-#### a) Première condition de déflation
+#### Première condition de déflation
 
 La première condition d'inflation est exactement la même que dans le modèle précédent et la preuve est en tout point égale (elle repose sur une analyse de l'équation de l'ellipse qui est la même dans les deux modèles). On ne détaillera pas ici cette preuve mais on sait donc que :
 
 **Si $r_x = r_y$ alors le système est tout le temps déflationiste.**
 
-#### b) Deuxième condition de déflation
+#### Deuxième condition de déflation
 
 Nous allons faire une preuve graphique de cette condition similaire à l'ancien modèle.  
 
@@ -459,7 +459,7 @@ La condition mathématique qui en découle est donc que le système est déflati
 
 **Si $\frac{\gamma_y}{\gamma_x} > \frac{K_y}{K_x}$ alors le système ([-@eq-modamig]) est toujours déflationiste.**
 
-#### c) Conditions d'inflation et/ou de déflation
+#### Conditions d'inflation et/ou de déflation
 
 Similairement à la première partie on va avoir des conditions sur l'inflation.  
 En effet, on voit bien sur le plan de phase que si $B$ est entre $A$ et $D$ alors l'arc d'ellipse que parcourt les équilibres en fonction de $\beta$ est constamment inflationiste.  
@@ -494,12 +494,11 @@ La condition mathématique est donc la suivante :
 ### Animation
 ```{python}
 #| code-fold: True
-#| label: fig-anim
-#| fig-cap: Animation Geogebra permettant de voir quels paramètres influencent le système.
 import IPython.display as display
 fig01 = """
-<iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/bhhpgtqv" style = " style="border: 1px solid black"></iframe>
+<iframe width = "700" height = "550" src = "https://www.geogebra.org/classic/bhhpgtqv" style = "border: 1px solid black"></iframe>
 """
+
 display.HTML(fig01)
 ```
 
@@ -742,8 +741,6 @@ En revanche quand on a déflation des équilibres totaux alors la situtaion est 
 
 Il faut garder en tête que ceci n'est vrai que pour $r_x<r_y$.  
 
-
-
 Ensuite, le taux de fuite est un paramètre clé de notre méthode. On va donc tracer la somme des équilibres et l'équilibre $x^*$ en fonction de $\gamma_y$.
 
 Attention ! Un fort taux de fuite correspond à un $\gamma_y$ faible.
@@ -762,9 +759,9 @@ def aug3(etat, t, param, h):
 #Définition des paramètres:
 #1:
 rx1 = 0.5
-ry1 = 1
-Kx1 = 2
-Ky1 = 1
+ry1 = 1  
+Kx1 = 1
+Ky1 = 2
 gx1 = 0.5
 b = 1
 
@@ -797,8 +794,8 @@ for i in np.arange(0.01, 4, 0.01):
 #Légendes:
 ax1.set_xlabel('Ɣy, Fuite')
 ax.set_xlabel('Ɣy, Fuite')
-ax.plot(0, 0, color = 'C0', label = 'Somme des équilibres')
-ax1.plot(0, 0, color = 'C0', label = 'Eq. culture')
+ax.plot(0, Kx1 + Ky1, color = 'C0', label = 'Somme des équilibres')
+ax1.plot(0, Kx1, color = 'C0', label = 'Eq. culture')
 
 ax.set_title('Somme des équilibres en fonction du taux de fuite', fontsize = 7)
 ax1.set_title('Equilibre de la culture en fonction du taux de fuite', fontsize = 7)   
@@ -811,6 +808,8 @@ Dans la figure gauche on a représenté la somme des équilibres ($x^*+y^*$) de 
 On observe alors un nouveau profil qui correspond à une déflation, puis une inflation puis enfin une déflation au fur et à mesure que $\gamma_y$ augmente.
 
 Dans la figure droite on a cette fois uniquement l'équilibre dans la culture ($x^*$). On observe que pour des $\gamma_y$ petits on a inflation puis on retourne à une déflation.  
+
+Pour représenter cette figure on a considéré que $r_x<r_y$ et $K_x<K_y$ sans perte de généralité.
 
 Pour interpréter ceci il faut comprendre que les des petites valeurs de $\gamma_y$ correspondent à de grandes valeurs de taux de fuite.  
 Ainsi quand $\gamma_y \to 0$ l'augmentorium se vide en ravageurs et on a ainsi toute la population dans la culture et l'équilibre dans culture tend vers sa capacité de charge car on est seulement face à une croissance logistique.  

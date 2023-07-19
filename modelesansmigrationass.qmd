@@ -396,7 +396,7 @@ display(fig)
 
 Les conditions d'inflations et de déflations suivantes proviennent de l'article d'@arditi2018.
 
-#### a) Première condition à un système déflationiste 
+#### Première condition à un système déflationiste 
 On remarque que le point $(K_x,K_y)$ est en permanence sur la droite $d$ qui coupe en permanence l'ellipse (en deux points) sauf pour une situation où $d$ est tangente à l'ellipse.  
 Ce cas nous intéresse car il rend compte d'un système entièrement déflationiste. Représentons le sur le plan de phase :
 
@@ -620,7 +620,7 @@ ax3.legend();
 On voit que la courbe bleu représentant la somme des équilibres est en permanence en dessous de la droite $K_x+K_y$. On a bien un système entièrement déflationiste quand $r_x = r_y$.  
 
 
-#### b) Deuxième condition à un système déflationiste
+#### Deuxième condition à un système déflationiste
 
 On va maintenant considérer le cas où $r_x < r_y$ c'est à dire qu'on va prendre l'ellipse dans un seul sens (voir sur l'animation Geogebra).
 
@@ -778,7 +778,7 @@ ax4.legend();
 
 On observe qu'on a bien une déflation du système quelque soit le taux de migration.
 
-#### c) Conditions pour une inflation et/ou une déflation
+#### Conditions pour une inflation et/ou une déflation
 
 Sur la base de la @fig-pdp on peut aussi déduire quand est-ce qu'on peut avoir inflation selon les paramètres.  
 

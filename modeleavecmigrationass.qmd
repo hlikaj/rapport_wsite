@@ -1,5 +1,5 @@
 ---
-title: Modèle logistique structuré avec migration assymétrique
+title: Modèle logistique structuré avec migration asymétrique
 ---
 *Modules à importer :*
 
@@ -13,7 +13,7 @@ from scipy.integrate import odeint
 ## Définition du modèle
 
 Le but d'un augmentorium est de confiner les ravageurs dans un espace clos qui ne laisse pas (ou peu) s'échapper ceux-ci.  
-Ainsi, il s'établit une migration assymétrique entre les deux structures qu'on peut modéliser en établissant le modèle suivant d'après @arditi2018 : 
+Ainsi, il s'établit une migration asymétrique entre les deux structures que nous pouvons modéliser en établissant le modèle suivant d'après @arditi2018 : 
 
 $$ 
 \left\{\begin{array}{l}
@@ -28,20 +28,20 @@ avec :
 - $r_x$ et $r_y$ le taux de croissance dans la culture et dans l'augmentorium,  
 - $K_x$ et $K_y$ les capacités de charges de la culture de de l'augmentorium,  
 - $\beta$ la force de migration entre les structures,  
-- $\gamma_x$ et $\gamma_y$ caractérisant l'assymétrie de migration.
+- $\gamma_x$ et $\gamma_y$ caractérisant l'asymétrie de migration.
 
 ### Nouvelles hypothèses propres à l'augmentorium
 
 Ce modèle est plus proche de celui d'un augmentorium.  
-Comme les ravageurs se reproduisent mieux dans l'augmentorium que dans la culture on peut dire que $r_x<r_y$.  
-On peut aussi dire que le taux de fuite des ravageurs ($\frac{1}{\gamma_y}$) se doit d'être beaucoup plus petit que le taux de migration ($\frac{1}{\gamma_x}$).  
-On a donc $\gamma_x << \gamma_y$.
+Comme les ravageurs se reproduisent mieux dans l'augmentorium que dans la culture nous pouvons dire que $r_x<r_y$.  
+Nous pouvons aussi dire que le taux de fuite des ravageurs ($\frac{1}{\gamma_y}$) se doit d'être beaucoup plus petit que le taux de migration ($\frac{1}{\gamma_x}$).  
+Nous avons donc $\gamma_x << \gamma_y$.
 
 ## Dynamique du modèle
 
-Encore une fois on simule la dynamique des deux populations en fonction du temps en codant comme dans la première partie
+Encore une fois nous simulons la dynamique des deux populations en fonction du temps en codant comme dans la première partie
 
-On définit le système sous [Python](https://www.python.org/):
+Nous définissons le système sous [Python](https://www.python.org/):
 ```{python}
 #| code-fold: True
 def aug(etat, t, param):
@@ -52,7 +52,7 @@ def aug(etat, t, param):
     return s
 ```
 
-Et on définit les paramètres, le temps d'intégration etc. :
+Et nous définissons les paramètres, le temps d'intégration etc. :
 ```{python}
 #| code-fold: True
 # Temps d'intégration:
@@ -79,9 +79,11 @@ param_aug = np.array([rx, ry, Kx, Ky, b, gx, gy])
 s = odeint(aug, e0, ti, args = (param_aug, ))
 ```
 
-On trace la figure :
+Nous traçons la figure :
 ```{python}
 #| code-fold: True
+#| label: figdyn
+#| fig-cap: Dynamique du modèle
 fig,ax = plt.subplots(1, 1)
 fig.suptitle('Dynamique des ravageurs dans le temps avec augmentorium')
 
@@ -96,14 +98,14 @@ ax.set_ylabel('Densité de pop.');
 ```
 
 Cette dynamique, comme en première partie, présente un équilibre de maintien de la population.  
-Néanmoins on observe que, pour les mêmes paramètres que dans la première partie, la population dans la culture est bien plus faible.    
-La migration assymétrique vers l'augmentorium semble être bénéfique à la culture.
+Néanmoins nous observons que, pour les mêmes paramètres que dans la première partie, la population dans la culture est bien plus faible.    
+La migration asymétrique vers l'augmentorium semble être bénéfique à la culture.
 
 ## Plan de phase 
 
 ### Equilibres et leur stabilité 
 
-A l'équilibre on a le système suivant :
+A l'équilibre nous avons le système suivant :
 
 $$ 
 \left\{\begin{array}{l}
@@ -121,14 +123,14 @@ x^*=\gamma_x\left(\frac{y}{\gamma_y}-\frac{r_yy}{\beta}\left(1-\frac{y}{K_y}\rig
 \end{array}\right.
 $${#eq-pdpamig}
 
-On voit tout de suite qu'on a deux paraboles qui se croisent en $(0,0)$ et en $(x^*,y^*)$.  
-On va donc avoir deux équilibres, ceux-ci vivent sur une ellipse de même équation qu'en première partie.   
+Nous voyons tout de suite que nous avons deux paraboles qui se croisent en $(0,0)$ et en $(x^*,y^*)$.  
+Nous allons donc avoir deux équilibres, ceux-ci vivent sur une ellipse de même équation qu'en première partie.   
 
-En fonction des racines des paraboles on va avoir des plans de phases différents qu'on va tracer via les mêmes techniques qu'en première partie :
+En fonction des racines des paraboles nous allons avoir des plans de phases différents que nous allons tracer via les mêmes techniques qu'en première partie :
 
 ```{python}
 #| code-fold: True
-#On crée la figure avec les 3 sous figures:
+#Nous créons la figure avec les 3 sous figures:
 fig2, (ax2, ax3, ax4) = plt.subplots(1, 3, figsize = (9, 4))
 
 fig2.suptitle('Plan de phase de la population')
@@ -172,7 +174,7 @@ xg = np.arange(-0.5, 3, 0.08)
 yg = np.arange(-0.5, 3, 0.08)
 X, Y = np.meshgrid(xg, yg)
 
-#On utilise quiver:
+#Nous utilisons quiver:
 dx, dy = aug([X, Y], 0, param_aug1)
 ax2.quiver(X, Y, dx, dy, angles = 'xy', color = 'grey', scale = 15, width = 0.0035);
 
@@ -210,7 +212,7 @@ yg = np.arange(-0.5, 3, 0.08)
 
 X, Y = np.meshgrid(xg, yg)
 
-#On utilise quiver:
+#Nous utilisons quiver:
 dx, dy = aug([X, Y], 0, param_aug2)
 ax3.quiver(X, Y, dx, dy, angles = 'xy', color = 'grey', scale = 40, width = 0.003);
 
@@ -250,16 +252,16 @@ X, Y = np.meshgrid(xg, yg)
 dx, dy = aug([X, Y], 0, param_aug3)
 ax4.quiver(X, Y, dx, dy, angles = 'xy', color = 'grey', scale = 10, width = 0.0035);
 
-#On légende:
+#Nous légendons:
 ax4.legend();
 ```
 
-En fonction des valeurs de $\beta$ on observe des profils différents de plan de phase. Pour mieux le visualiser on pourra utiliser l'animation Geogebra mise à disposition à la fin de l'analyse.
+En fonction des valeurs de $\beta$ nous observons des profils différents de plan de phase. Pour mieux le visualiser nous pourrons utiliser l'animation Geogebra mise à disposition à la fin de l'analyse.
 
-D'après le champ de vecteurs on voit clairement que l'équilibre en $(0,0)$ est instable et l'équilibre $(x^*,y^*)$ est stable.  
+D'après le champ de vecteurs nous voyons clairement que l'équilibre en $(0,0)$ est instable et l'équilibre $(x^*,y^*)$ est stable.  
 
-Pour calculer l'équilibre on procède de la même manière que dans la première partie, c'est à dire en croisant les deux paraboles $\dot =0 $ et $\dot y =0$ :
-On a $x^*=\gamma_x\left(\frac{y}{\gamma_y}-\frac{r_yy}{\beta}\left(1-\frac{y}{K_y}\right)\right)$.  
+Pour calculer l'équilibre nous procédons de la même manière que dans la première partie, c'est à dire en croisant les deux paraboles $\dot =0 $ et $\dot y =0$ :
+Nous avons $x^*=\gamma_x\left(\frac{y}{\gamma_y}-\frac{r_yy}{\beta}\left(1-\frac{y}{K_y}\right)\right)$.  
 Donc :
 $$\small
 y^*=\gamma_y\left(\frac{\gamma_x\left(\frac{y}{\gamma_y}-\frac{r_yy}{\beta}\left(1-\frac{y}{K_y}\right)\right)}{\gamma_x}-\frac{r_x\gamma_x\left(\frac{y}{\gamma_y}-\frac{r_yy}{\beta}\left(1-\frac{y}{K_y}\right)\right)}{\beta}\left[1-\frac{\gamma_x\left(\frac{y}{\gamma_y}-\frac{r_yy}{\beta}\left(1-\frac{y}{K_y}\right)\right)}{K_x}\right]\right)
@@ -313,32 +315,32 @@ xeq = gx * (yeq/gy - ry * yeq/b * (1 - yeq/Ky))
 
 ### Analyse du plan de phase
 
-On va tracer le plan de phase complet et l'analyser d'après la méthode d'@arditi2018 :  
+Nous allons tracer le plan de phase complet et l'analyser d'après la méthode d'@arditi2018 :  
 
-Dans cette analyse on va considérer, sans perte de généralité, que $r_x < r_y$ (on prend l'ellipse dans un seul sens, voir l'animation).
+Dans cette analyse nous allons considérer, sans perte de généralité, que $r_x < r_y$ (nous prenons l'ellipse dans un seul sens, voir l'animation).
 
-Pour cela on trace l'ellipse de la même manière que dans la première figure, l'équation de cette ellipse n'ayant pas de terme de migration dans le premier modèle elle est la même dans celui-ci aussi.  
+Pour cela nous traçons l'ellipse de la même manière que dans la première figure, l'équation de cette ellipse n'ayant pas de terme de migration dans le premier modèle elle est la même dans celui-ci aussi.  
 
-Ensuite on va tracer la droite $d$ correspondant à $K_x+K_y=x^*+y^*$ car ceci va permettre de voir si le système subit une [inflation](contexte.qmd) ou une déflation.  
+Ensuite nous allons tracer la droite $d$ correspondant à $K_x+K_y=x^*+y^*$ car ceci va permettre de voir si le système subit une [inflation](contexte.qmd) ou une déflation.  
 
-Enfin, similairement à la partie prédédente on va tracer les droites données par $\beta = 0$ et $\beta = +\infty$ dans la parabole définie par $\dot x =0$ (parabole verte sur le plan de phase).  
-Les droites sont différentes du modèle précédent donc on va les recalculer :
+Enfin, similairement à la partie prédédente nous allons tracer les droites données par $\beta = 0$ et $\beta \to +\infty$ dans la parabole définie par $\dot x =0$ (parabole verte sur le plan de phase).  
+Les droites sont différentes du modèle précédent donc nous allons les recalculer :
 
-Lorsque $\beta = 0$ on a exactement les mêmes deux droites que dans le modèle précédent en $x^* =0$ et en $x^*=K_x$ car le fait que le nouveau modèle ajoute de l'assymétrie dans les migrations est effacé par une migration nulle. On les appelle respectivement $P_{10}$ et $P_{20}$.
+Lorsque $\beta = 0$ nous avons exactement les mêmes deux droites que dans le modèle précédent en $x^* =0$ et en $x^*=K_x$ car le fait que le nouveau modèle ajoute de l'asymétrie dans les migrations est effacé par une migration nulle. Nous les appellerons respectivement $P_{10}$ et $P_{20}$.
 
-Lorsque $\beta = +\infty$ on a d'après ([-@eq-pdpamig]) : 
+Lorsque $\beta \to +\infty$ nous avons d'après ([-@eq-pdpamig]) : 
 $$
 y^* = \frac{\gamma_y}{\gamma_x}x^*
 $$
 
-On appellera cette droite $P_{\infty}$.  
+Nous appellerons cette droite $P_{\infty}$.  
 
 
 Introduisons les mêmes points que précédemment c'est à dire : 
 
 - $A$, l'intersection entre $P_{20}$  et l'ellipse, c'est à dire la valeur de l'équilibre quand $\beta = 0$.
 
-- $B$, l'intersection entre $P_{\infty}$ et l'ellipse, c'est à dire la valeur de l'équilibre quand $\beta = +\infty$.
+- $B$, l'intersection entre $P_{\infty}$ et l'ellipse, c'est à dire la valeur de l'équilibre quand $\beta \to +\infty$.
 
 - $C$, l'intersection entre $P_{20}$ et $P_{\infty}$.
 
@@ -349,7 +351,7 @@ Représentons le plan de phase avec ces éléments :
 ```{python}
 #| code-fold: True
 
-#On crée la figure:
+#Nous créons la figure:
 fig2, ax2 = plt.subplots(1, 1, figsize = (8, 5))
 fig2.suptitle('Plan de phase de la population')
 
@@ -423,7 +425,7 @@ ax2.text(((gx/gy) * rx + ry)/((gx/gy) * rx/Kx + (gy/gx) * ry/Ky) - 0.1, ((gy/gx)
 ax2.plot(ry * Kx * (Kx + Ky)/(rx * Ky + ry * Kx), rx * Ky * (Kx + Ky)/(rx * Ky + ry * Kx), color = 'black', marker = '.')
 ax2.text(ry * Kx * (Kx + Ky)/(rx * Ky + ry * Kx) - 0.1, rx * Ky * (Kx + Ky)/(rx * Ky + ry * Kx) + 0.1, '$D$')
 
-## On place des textes indiquant les trois droites:
+## Nous plaçons des textes indiquant les trois droites:
 ax2.text(0.1, yeq, "$P_{10}$")
 ax2.text(Kx + 0.05, 4, "$P_{20}$")
 ax2.text(3, 5.5, "$P_\infty$")
@@ -434,40 +436,40 @@ ax2.legend(loc="upper left");
 
 #### Première condition de déflation
 
-La première condition d'inflation est exactement la même que dans le modèle précédent et la preuve est en tout point égale (elle repose sur une analyse de l'équation de l'ellipse qui est la même dans les deux modèles). On ne détaillera pas ici cette preuve mais on sait donc que :
+La première condition d'inflation est exactement la même que dans le modèle précédent et la preuve est en tout point égale (elle repose sur une analyse de l'équation de l'ellipse qui est la même dans les deux modèles). Nous ne détaillerons pas ici cette preuve mais nous savons donc que :
 
-**Si $r_x = r_y$ alors le système est tout le temps déflationiste.**
+**Si $r_x = r_y$ alors le système est tout le temps déflationniste.**
 
 #### Deuxième condition de déflation
 
 Nous allons faire une preuve graphique de cette condition similaire à l'ancien modèle.  
 
 L'équilibre vit sur l'ellipse et parcourt l'arc orange entre $A$ et $B$ au fur et à mesure que $\beta$ augmente.   
-Ainsi pour avoir déflation on va vouloir avoir cet arc entièrement sous la droite $d$ en gris.  
-Il est alors facile de voir que pour cela on veut que la coordonnée en $y$ de $C$ soit plus grande que celle de $A$ ($C$ est plus haut sur la droite cyan que $A$), entraînant que la coordonnée en $x$ de $B$ est plus petite que celle de $A$ ($B$ se trouve plus à gauche sur l'ellipse que $A$).  
+Ainsi pour avoir déflation nous allons vouloir avoir cet arc entièrement sous la droite $d$ en gris.  
+Il est alors facile de voir que pour cela nous voulons que la coordonnée en $y$ de $C$ soit plus grande que celle de $A$ ($C$ est plus haut sur la droite cyan que $A$), entraînant que la coordonnée en $x$ de $B$ est plus petite que celle de $A$ ($B$ se trouve plus à gauche sur l'ellipse que $A$).  
 
-Pour cela on a besoin de connaître les coordonnées de $A$ et $C$.  
+Pour cela nous avons besoin de connaître les coordonnées de $A$ et $C$.  
 
 Le point $A$ est défini comme la valeur de l'équilibre sans migration. Il est alors facile de constater que dans ce cas nous sommes face à un système avec une croissance logistique seulement et donc l'équilibre est atteint pour les capacités de charge.  
-On a donc $A = (K_x,K_y)$.
+Nous avons donc $A = (K_x,K_y)$.
 
-Pour $C$ on sait que c'est l'intersection entre $P_{20}$ et $P_{\infty}$, ainsi comme $P_{20}$ est défini par $x^* = K_x$ et $P_{\infty}$ par $y^* =\frac{\gamma_y}{\gamma_x}x^*$ on a :
+Pour $C$ nous savons que c'est l'intersection entre $P_{20}$ et $P_{\infty}$, ainsi comme $P_{20}$ est défini par $x^* = K_x$ et $P_{\infty}$ par $y^* =\frac{\gamma_y}{\gamma_x}x^*$ nous avons :
 
 $C = (K_x,\frac{\gamma_yK_x}{\gamma_x})$.
 
-La condition mathématique qui en découle est donc que le système est déflationiste si $\frac{\gamma_yK_x}{\gamma_x} > K_y$.
+La condition mathématique qui en découle est donc que le système est déflationniste si $\frac{\gamma_yK_x}{\gamma_x} > K_y$.
 
-**Si $\frac{\gamma_y}{\gamma_x} > \frac{K_y}{K_x}$ alors le système ([-@eq-modamig]) est toujours déflationiste.**
+**Si $\frac{\gamma_y}{\gamma_x} > \frac{K_y}{K_x}$ alors le système ([-@eq-modamig]) est toujours déflationniste.**
 
 #### Conditions d'inflation et/ou de déflation
 
-Similairement à la première partie on va avoir des conditions sur l'inflation.  
-En effet, on voit bien sur le plan de phase que si $B$ est entre $A$ et $D$ alors l'arc d'ellipse que parcourt les équilibres en fonction de $\beta$ est constamment inflationiste.  
+Similairement à la première partie nous allons avoir des conditions sur l'inflation.  
+En effet, nous voyons bien sur le plan de phase que si $B$ est entre $A$ et $D$ alors l'arc d'ellipse que parcourt les équilibres en fonction de $\beta$ est constamment inflationiste.  
 
-Ainsi on veut que $B$ soit à droite de $A$ ce qui revient à prendre la condition inverse de celle énoncée plus haut (c'est à dire la coordonées $y$ de $C$ plus petite que celle de $A$), c'est à dire $\frac{\gamma_y}{\gamma_x} < \frac{K_y}{K_x}$.  
+Ainsi nous voulons que $B$ soit à droite de $A$ ce qui revient à prendre la condition inverse de celle énoncée plus haut (c'est à dire la coordonnées $y$ de $C$ plus petite que celle de $A$), c'est à dire $\frac{\gamma_y}{\gamma_x} < \frac{K_y}{K_x}$.  
 
-Ensuite pour avoir $B$ entre $A$ et $D$ on va vouloir que la pente de $P_{\infty}$ soit plus haute que celle de la droite passant par $(0,0)$ et $D$ qu'on appellera $\aleph$.  
-Pour voir ceci on va ajouter la droite $\aleph$ au plan de phase précédent :
+Ensuite pour avoir $B$ entre $A$ et $D$ nous allons vouloir que la pente de $P_{\infty}$ soit plus haute que celle de la droite passant par $(0,0)$ et $D$ que nous appellerons $\aleph$.  
+Pour voir ceci nous allons ajouter la droite $\aleph$ au plan de phase précédent :
 
 ```{python}
 #| code-fold: true
@@ -479,17 +481,17 @@ ax2.legend(loc="upper left")
 display(fig2)
 ```
 
-Nous avons calculé dans la partie précédente que $D = (\frac{r_yK_x(K_x+K_y)}{r_xK_y+r_yK_x} , \frac{r_xK_y(K_x+K_y)}{r_xK_y+r_yK_x} )$ ce qui ne change pas dans cette partie car on considère des quantités indépendantes des taux de migration.  
+Nous avons calculé dans la partie précédente que $D = (\frac{r_yK_x(K_x+K_y)}{r_xK_y+r_yK_x} , \frac{r_xK_y(K_x+K_y)}{r_xK_y+r_yK_x} )$ ce qui ne change pas dans cette partie car nous considérons des quantités indépendantes des taux de migration.  
 
 La pente de la droite passant par $D$ et $(0,0)$ est donc égale à $\frac{r_xK_y}{r_yK_x}$ ce qui donne la condition suivante $\frac{\gamma_y}{\gamma_x} > \frac{r_xK_y}{r_yK_x}$.
 
-**Si $\frac{r_xK_y}{r_yK_x} < \frac{\gamma_y}{\gamma_x} < \frac{K_y}{K_x}$ on a un système inflationiste.**
+**Si $\frac{r_xK_y}{r_yK_x} < \frac{\gamma_y}{\gamma_x} < \frac{K_y}{K_x}$ nous avons un système inflationiste.**
 
-Il est alors aisé de voir que si la pente de $P_{\infty}$ est plus petite que celle de $\aleph$ on a les équilibres qui parcourent d'abord des valeurs au dessus de $d$ puis en dessous (pour aller de $A$ à $C$). 
+Il est alors aisé de voir que si la pente de $P_{\infty}$ est plus petite que celle de $\aleph$ nous avons les équilibres qui parcourent d'abord des valeurs au dessus de $d$ puis en dessous (pour aller de $A$ à $C$). 
 
 La condition mathématique est donc la suivante :
 
-**Si $\frac{\gamma_y}{\gamma_x} < \frac{r_xK_y}{r_yK_x}$ alors le système est d'abord inflationiste puis déflationiste.**  
+**Si $\frac{\gamma_y}{\gamma_x} < \frac{r_xK_y}{r_yK_x}$ alors le système est d'abord inflationiste puis déflationniste.**  
 
 ### Animation
 ```{python}
@@ -506,10 +508,10 @@ display.HTML(fig01)
 
 ### Illustration des propositions précédentes
 
-On va illustrer les propositions précédentes en traçant la somme des équilibres en fonction de $\beta$.
-Pour cela on va simuler avec `odeint` (pendant un temps assez large pour atteindre l'équilibre) pour chaque valeur de $\beta$. 
+Nous allons illustrer les propositions précédentes en traçant la somme des équilibres en fonction de $\beta$.
+Pour cela nous allons simuler avec `odeint` (pendant un temps assez large pour atteindre l'équilibre) pour chaque valeur de $\beta$. 
 
-On définit une fonction qui dépend de $\beta$ : 
+Nous définissons une fonction qui dépend de $\beta$ : 
 ```{python}
 #| code-fold: true
 def aug2(etat, t, param, h):
@@ -521,7 +523,7 @@ def aug2(etat, t, param, h):
     return s 
 ```
 
-et on pose le temps d'intégration, les paramètres et les conditions initiales :
+et nous posons le temps d'intégration, les paramètres et les conditions initiales :
 
 ```{python}
 #| code-fold: true
@@ -572,7 +574,7 @@ t = np.arange(0, 100, 0.01)
 e0 = [1, 1]
 ```
 
-Et enfin on trace les quatre figures :
+Et enfin nous traçons les quatre figures :
 
 ```{python}
 #| code-fold: true
@@ -581,8 +583,8 @@ plt.subplots_adjust(wspace = 0.5)
 
 #Boucle pour plot en fonction de beta:
 for i in np.arange(0, 4, 0.01):
-    s = odeint(aug2, e0, t, args = (param1, i)) #On calcule pour chaque beta l'équilibre
-    ax.plot(i, s[-1][0] + s[-1][1], marker = '.', color = 'C0') #On plot un point qui correspond à la valeur de la somme des éq. en fonction de beta
+    s = odeint(aug2, e0, t, args = (param1, i)) #Nous calculons pour chaque beta l'équilibre
+    ax.plot(i, s[-1][0] + s[-1][1], marker = '.', color = 'C0') #Nous représentons un point qui correspond à la valeur de la somme des éq. en fonction de beta
     s2 = odeint(aug2, e0, t, args = (param3, i))
     ax2.plot(i, s2[-1][0] + s2[-1][1], marker = '.', color = 'C0')
 
@@ -617,7 +619,7 @@ ax3.set_xlabel('β')
 ax.set_ylabel('Population')
 ax.plot(0, 0, color = 'C0', label = 'Somme des équilibres')
 
-#On déplace la légende hors de la figure:
+#Nous déplaçons la légende hors de la figure:
 ax.legend(bbox_to_anchor = (1.75, -0.65, 0.5, 0.5))
 
 #Titres:
@@ -627,25 +629,25 @@ ax2.set_title('Inflation');
 ax3.set_title('Inflation');
 ```
 
-On obtient 4 profils de courbe. Le premier profil montre une déflation du système et a été obtenu pour la condition décrite plus haut de $\frac{\gamma_y}{\gamma_x} > \frac{K_y}{K_x}$.  
+Nous obtenons 4 profils de courbe. Le premier profil montre une déflation du système et a été obtenu pour la condition décrite plus haut de $\frac{\gamma_y}{\gamma_x} > \frac{K_y}{K_x}$.  
 
 Le deuxième profil correspond à une inflation du système puis une déflation quand $\beta$ augmente, cette courbe a bien été obtenue en respectant la condition de $\frac{\gamma_y}{\gamma_x} < \frac{r_xK_y}{r_yK_x}$.  
 
-Les deux derniers profils, correspondant à une inflation permanente du système, sont obtenus en respectant les conditions décrites plus haut. On obtient deux profils différents, un avec une inflation croissante quand $\beta$ augmente et l'autre avec une inflation croissante puis décroissante (et qui atteint un plateau).  
-Ce phénomène se voit graphiquement sur l'animation ou le plan de phase. En effet, on a dans le premier cas 
+Les deux derniers profils, correspondant à une inflation permanente du système, sont obtenus en respectant les conditions décrites plus haut. Nous obtenons deux profils différents, un avec une inflation croissante quand $\beta$ augmente et l'autre avec une inflation croissante puis décroissante (et qui atteint un plateau).  
+Ce phénomène se voit graphiquement sur l'animation ou le plan de phase. En effet, nous avons dans le premier cas 
 $P_{\infty}$ qui coupe l'ellipse dans sa phase montante (l'écart entre l'ellipse et la droite $d$ augmente) alors que dans le second cas $P_{\infty}$ coupe l'ellipse alors que l'écart entre celle-ci et $d$ diminue.
 
 ### Cas de l'augmentorium 
   
 Dans le cas de l'augmentorium il est important de considérer l'équilibre $x^*$ seule par rapport à $K_x$ (sa valeur s'il n'y a pas de migration).  
-En effet même si on a inflation dans le système, si $x^*<K_x$ alors on considère l'augmentorium comme efficace.
+En effet même si nous avons inflation dans le système, si $x^*<K_x$ alors nous considérons l'augmentorium comme efficace.
 
 Avec les hyptohèses énoncées plus haut sur la situation de l'augmentorium il n'est pas possible d'obtenir un système inflationiste (indépendamment de si $K_x>K_y$ ou l'inverse). Il est facile de voir ceci grâce à notre animation.
 
-Néanmoins avec des hypothèses plus souples (mais en gardant que $r_x<r_y$), par exemple que les taux de fuites sont plus forts que les taux de migration vers l'augmentorium (dus à une fuite du dispositif par exemple) on va voir que l'augmentorium n'est pas forcément bénéfique.  
-En effet, on peut, sur le plan de phase tracé plus haut voir que dès que nous sommes dans un cas où on a de l'inflation (et même si on revient sur de la déflaton après) alors on a $x^* > K_x$ ce qui est mauvais pour la culture. 
+Néanmoins avec des hypothèses plus souples (mais en gardant que $r_x<r_y$), par exemple que les taux de fuites sont plus forts que les taux de migration vers l'augmentorium (dus à une fuite du dispositif par exemple) nous allons voir que l'augmentorium n'est pas forcément bénéfique.  
+En effet, nous pouvons, sur le plan de phase tracé plus haut, voir que dès que nous sommes dans un cas où nous avons de l'inflation (et même si nous revenons sur de la déflation après) alors nous avons $x^* > K_x$ ce qui est mauvais pour la culture. 
 
-On va tracer l'équilibre $x^*$ en fonction de $\beta$ en considérant un cas où le système était déflationiste et un cas où le système était inflationiste (pour la somme des équilibres) :
+Nous allons tracer l'équilibre $x^*$ en fonction de $\beta$ en considérant un cas où le système était déflationniste et un cas où le système était inflationiste (pour la somme des équilibres) :
 
 ```{python}
 #| code-fold: true
@@ -728,20 +730,20 @@ ax.plot(0, 0, color = "0.8", label = 'Eq. total ($x^* + y^*$)')
 ax1.plot(0, 0, color = "0.8", label = 'Eq. total ($x^* + y^*$)')
 ax2.plot(0, 0, color = "0.8", label = 'Eq. total ($x^* + y^*$)')
 
-# On limite le cadre :
+# Nous limitons le cadre :
 ax1.set_ylim(bottom=1)
 ax2.set_ylim(bottom=1)
 
-#On déplace la légende hors de la figure:
+#Nous déplaçons la légende hors de la figure:
 ax.legend(bbox_to_anchor = (1, -0.65, 0.5, 0.5))
 ```
 
-En bleu on observe le comportement de l'équilibre dans la culture seulement et en gris on retrouve les courbes tracées juste au dessus. On voit bien que dès que le système subit une inflation des équilibres totaux la situation devient mauvaise pour la culture.  
-En revanche quand on a déflation des équilibres totaux alors la situtaion est bénéfique à la culture.  
+En bleu nous observons le comportement de l'équilibre dans la culture seulement et en gris nous retrouvons les courbes tracées juste au dessus. Nous voyons bien que dès que le système subit une inflation des équilibres totaux la situation devient mauvaise pour la culture.  
+En revanche quand nous avons déflation des équilibres totaux alors la situtaion est bénéfique à la culture.  
 
 Il faut garder en tête que ceci n'est vrai que pour $r_x<r_y$.  
 
-Ensuite, le taux de fuite est un paramètre clé de notre méthode. On va donc tracer la somme des équilibres et l'équilibre $x^*$ en fonction de $\gamma_y$.
+Ensuite, le taux de fuite est un paramètre clé de notre méthode. Nous allons donc tracer la somme des équilibres et l'équilibre $x^*$ en fonction de $\gamma_y$.
 
 Attention ! Un fort taux de fuite correspond à un $\gamma_y$ faible.
 
@@ -804,18 +806,18 @@ ax1.legend();
 ax.set_ylabel("Densité de pop.");
 ```
 
-Dans la figure gauche on a représenté la somme des équilibres ($x^*+y^*$) de la même manière que précédemment mais cette fois en faisant varier le taux de fuite.  
-On observe alors un nouveau profil qui correspond à une déflation, puis une inflation puis enfin une déflation au fur et à mesure que $\gamma_y$ augmente.
+Dans la figure gauche nous avons représenté la somme des équilibres ($x^*+y^*$) de la même manière que précédemment mais cette fois en faisant varier le taux de fuite.  
+Nous observons alors un nouveau profil qui correspond à une déflation, puis une inflation puis enfin une déflation au fur et à mesure que $\gamma_y$ augmente.
 
-Dans la figure droite on a cette fois uniquement l'équilibre dans la culture ($x^*$). On observe que pour des $\gamma_y$ petits on a inflation puis on retourne à une déflation.  
+Dans la figure droite nous avons cette fois uniquement l'équilibre dans la culture ($x^*$). Nous observons que pour des $\gamma_y$ petits nous avons inflation puis nous retournons à une déflation.  
 
-Pour représenter cette figure on a considéré que $r_x<r_y$ et $K_x<K_y$ sans perte de généralité.
+Pour représenter cette figure nous avons considéré que $r_x<r_y$ et $K_x<K_y$ sans perte de généralité.
 
 Pour interpréter ceci il faut comprendre que les des petites valeurs de $\gamma_y$ correspondent à de grandes valeurs de taux de fuite.  
-Ainsi quand $\gamma_y \to 0$ l'augmentorium se vide en ravageurs et on a ainsi toute la population dans la culture et l'équilibre dans culture tend vers sa capacité de charge car on est seulement face à une croissance logistique.  
-C'est pourquoi, lorsque les taux de fuite sont grands on observe une inflation de la culture car on a, des populations de ravageurs qui viennent de l'augmentorium qui s'ajoutent aux ravageurs déjà présents dans la culture.  
+Ainsi quand $\gamma_y \to 0$ l'augmentorium se vide en ravageurs et nous avons ainsi toute la population dans la culture et l'équilibre dans culture tend vers sa capacité de charge car nous sommes seulement face à une croissance logistique.  
+C'est pourquoi, lorsque les taux de fuite sont grands nous observons une inflation de la culture car nous avons, des populations de ravageurs qui viennent de l'augmentorium qui s'ajoutent aux ravageurs déjà présents dans la culture.  
 La somme des équilibres est donc trompeuse dans ce cas là, en effet le système subit une déflation car l'augmentorium n'est presque plus occupé pour de forts taux de fuite mais il ne faut pas croire que c'en est bénéfique pour la culture.
 
 
-Ce modèle considère uniquement la population de ravageurs. Or, la méthode de l'augmentorium repose énormément sur l'action des prédateurs on va donc considérer [maintenant](modelaug.qmd) un modèle qui prend en compte ces prédateurs.
+Ce modèle considère uniquement la population de ravageurs. Or, la méthode de l'augmentorium repose énormément sur l'action des prédateurs nous allons donc considérer [maintenant](modelaug.qmd) un modèle qui prend en compte ces prédateurs.
 

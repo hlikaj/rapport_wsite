@@ -12,7 +12,7 @@ from scipy.integrate import odeint
 
 ## Perspectives:
 
-Ce stage a permis de préciser certaines propriétés du modèle proie-prédateur de L-V en deux classes (uniquement pour les ravageurs) avec migration assymétrique.
+Ce stage a permis de préciser certaines propriétés du modèle proie-prédateur de L-V en deux classes (uniquement pour les ravageurs) avec migration asymétrique.
 
 Par manque de temps nous n'avons pas pu traiter une de nos premières idées qui était de traiter le modèle susnommé avec les prédateurs aussi répartis en deux classes. Ce modèle est plus général mais surtout plus difficile à traiter.  
 
@@ -20,7 +20,7 @@ Nous allons rapidement avancer quelques idées en perspectives pour des hypothé
 
 ### Définition du modèle
 
-Dans ce modèle on va considérer 4 populations correspondant aux proies et aux prédateurs dans l'augmentorium et dans la culture.  
+Dans ce modèle nous allons considérer 4 populations correspondant aux proies et aux prédateurs dans l'augmentorium et dans la culture.  
 Voici le modèle:
 
 $$ \left\{\begin{array}{l}
@@ -33,7 +33,7 @@ $$ {#eq-model}
 
 ### Réduction du modèle 
 
-L'augmentorium permet aux prédateurs de circuler presque librement entre les l'intérieur et l'extérieur. On va donc considérer que $\delta \to +\infty$ et voir si on peut se rapporter à un modèle plus simple.
+L'augmentorium permet aux prédateurs de circuler presque librement entre les l'intérieur et l'extérieur. Nous allons donc considérer que $\delta \to +\infty$ et voir si nous pouvons se rapporter à un modèle plus simple.
 
 On considère $\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2}$:   
 
@@ -41,14 +41,14 @@ $$
 \frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2} = \frac{z_1}{\mu _1}(n_1x-m_1)-\frac{z_2}{\mu_2}(n_2y-m_2) - \delta\left(\frac{1}{\mu _1} + \frac{1}{\mu _2}\right)\left(\frac{z_1}{\mu _1}-\frac{z_2}{\mu _2}\right)
 $$
 
-Lorsque $\delta = +\infty$ on a $\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2}$ qui devient:
+Lorsque $\delta \to +\infty$ nous avons $\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2}$ qui devient:
 $$
 \frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2} = - \delta\left(\frac{1}{\mu _1} + \frac{1}{\mu _2}\right)\left(\frac{z_1}{\mu _1}-\frac{z_2}{\mu _2}\right)
 $$
 
-et donc on a $\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2} \to 0 \Leftrightarrow  \frac{z_1}{\mu _1} = \frac{z_2}{\mu _2}$.
+et donc nous avons $\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2} \to 0 \Leftrightarrow  \frac{z_1}{\mu _1} = \frac{z_2}{\mu _2}$.
 
-Si on pose $z=z_1+z_2$ alors par la proposition précédente on a : 
+En posant $z=z_1+z_2$ alors par la proposition précédente nous avons : 
 $$
 \frac{z}{\mu _1+\mu _2} = \frac{\frac{z_1\mu _1}{\mu _1}+\frac{z_2\mu _2}{\mu _2}}{\mu _1 +\mu _2}=\frac{z_1}{\mu _1} = \frac{z_2}{\mu _2}
 $$
@@ -70,7 +70,7 @@ $$
 \dot z = z \left(\underbrace{\frac{\mu _1n_1}{\mu _1 +\mu _2}}_{n_x}x + \underbrace{\frac{\mu _2n_2}{\mu _1 +\mu _2}}_{n_y}y - \underbrace{\frac{\mu _1m_1 + \mu _2m_2}{\mu _1 +\mu _2}}_{m}\right)
 $$
 
-On a alors :
+Nous avons alors :
 $$
 \dot z = z(n_xx+n_yy-m)
 $$
@@ -107,8 +107,7 @@ L'analyse de ce modèle est faite [ici](modelaug.qmd) et toutes les propositions
 Nous allons faire quelques simulations pour voir si le modèle suit les modèles précédents et voir son comportement pour des $\delta \ne \infty$. 
 
 ### Dynamique du modèle non réduit :
-
-On va voir la dynamique des 4 populations dans un premier temps :
+Nous allons voir la dynamique des 4 populations dans un premier temps :
 
 ```{python}
 #| code-fold: true
@@ -208,7 +207,7 @@ ax1.set_xlabel('Temps, t')
 ax1.set_title('Disparition des prédateurs',fontsize=7.5)
 ```
 
-On observe deux situations, l'une avec un équilibre de coexistence des quatres populations et l'autre avec disparition des preédateurs. 
+Nous observons deux situations, l'une avec un équilibre de coexistence des quatres populations et l'autre avec disparition des preédateurs. 
 
 ### Comparaison du modèle réduit et non réduit
 

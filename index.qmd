@@ -13,9 +13,9 @@ Le rapport se structure ainsi :
 
 - Une partie [contexte](contexte.qmd) afin de poser un cadre biologique à notre modélisation.
 
-- Une partie sur un [modèle](modelesansmigrationass.qmd) structuré en espace avec deux classes dont on fera une analyse rapide et qui servira à poser les bases sur la partie Python (qui sera moins détaillée dans la suite des parties).
+- Une partie sur un [modèle](modelesansmigrationass.qmd) structuré en espace avec deux classes dont nous ferons une analyse rapide et qui servira à poser les bases sur la partie Python (qui sera moins détaillée dans la suite des parties).
 
-- Une partie sur un [modèle](modeleavecmigrationass.qmd) structuré en espace avec deux classes et avec migration assymétrique qui décrit plus précisément notre situation biologique.
+- Une partie sur un [modèle](modeleavecmigrationass.qmd) structuré en espace avec deux classes et avec migration asymétrique qui décrit plus précisément notre situation biologique.
 
 - Une partie sur un [modèle d'augmentorium](modelaug.qmd) qui permet de prendre en compte la présence de prédateurs des ravageurs.
 

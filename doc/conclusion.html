@@ -182,13 +182,13 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modelesansmigrationass.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Modèle logistique structuré avec migration symétrique</span></a>
+ <span class="menu-text">Modèle logistique structuré sans migration asymétrique</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./modeleavecmigrationass.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Modèle logistique structuré avec migration assymétrique</span></a>
+ <span class="menu-text">Modèle logistique structuré avec migration asymétrique</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -260,12 +260,12 @@ div.csl-indent {
 </div>
 <section id="perspectives" class="level2">
 <h2 class="anchored" data-anchor-id="perspectives">Perspectives:</h2>
-<p>Ce stage a permis de préciser certaines propriétés du modèle proie-prédateur de L-V en deux classes (uniquement pour les ravageurs) avec migration assymétrique.</p>
+<p>Ce stage a permis de préciser certaines propriétés du modèle proie-prédateur de L-V en deux classes (uniquement pour les ravageurs) avec migration asymétrique.</p>
 <p>Par manque de temps nous n’avons pas pu traiter une de nos premières idées qui était de traiter le modèle susnommé avec les prédateurs aussi répartis en deux classes. Ce modèle est plus général mais surtout plus difficile à traiter.</p>
 <p>Nous allons rapidement avancer quelques idées en perspectives pour des hypothétiques travaux futurs.</p>
 <section id="définition-du-modèle" class="level3">
 <h3 class="anchored" data-anchor-id="définition-du-modèle">Définition du modèle</h3>
-<p>Dans ce modèle on va considérer 4 populations correspondant aux proies et aux prédateurs dans l’augmentorium et dans la culture.<br>
+<p>Dans ce modèle nous allons considérer 4 populations correspondant aux proies et aux prédateurs dans l’augmentorium et dans la culture.<br>
 Voici le modèle:</p>
 <p><span id="eq-model"><span class="math display"> \left\{\begin{array}{l}
 \dot x = r_xx\left(1-\frac{x}{K_x}\right)+\beta\left(\frac{y}{\gamma_y}-\frac{x}{\gamma_x}\right)-p_1xz_1 \\
@@ -277,16 +277,16 @@ Voici le modèle:</p>
 </section>
 <section id="réduction-du-modèle" class="level3">
 <h3 class="anchored" data-anchor-id="réduction-du-modèle">Réduction du modèle</h3>
-<p>L’augmentorium permet aux prédateurs de circuler presque librement entre les l’intérieur et l’extérieur. On va donc considérer que <span class="math inline">\delta \to +\infty</span> et voir si on peut se rapporter à un modèle plus simple.</p>
+<p>L’augmentorium permet aux prédateurs de circuler presque librement entre les l’intérieur et l’extérieur. Nous allons donc considérer que <span class="math inline">\delta \to +\infty</span> et voir si nous pouvons se rapporter à un modèle plus simple.</p>
 <p>On considère <span class="math inline">\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2}</span>:</p>
 <p><span class="math display">
 \frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2} = \frac{z_1}{\mu _1}(n_1x-m_1)-\frac{z_2}{\mu_2}(n_2y-m_2) - \delta\left(\frac{1}{\mu _1} + \frac{1}{\mu _2}\right)\left(\frac{z_1}{\mu _1}-\frac{z_2}{\mu _2}\right)
 </span></p>
-<p>Lorsque <span class="math inline">\delta = +\infty</span> on a <span class="math inline">\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2}</span> qui devient: <span class="math display">
+<p>Lorsque <span class="math inline">\delta \to +\infty</span> nous avons <span class="math inline">\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2}</span> qui devient: <span class="math display">
 \frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2} = - \delta\left(\frac{1}{\mu _1} + \frac{1}{\mu _2}\right)\left(\frac{z_1}{\mu _1}-\frac{z_2}{\mu _2}\right)
 </span></p>
-<p>et donc on a <span class="math inline">\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2} \to 0 \Leftrightarrow \frac{z_1}{\mu _1} = \frac{z_2}{\mu _2}</span>.</p>
-<p>Si on pose <span class="math inline">z=z_1+z_2</span> alors par la proposition précédente on a : <span class="math display">
+<p>et donc nous avons <span class="math inline">\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2} \to 0 \Leftrightarrow \frac{z_1}{\mu _1} = \frac{z_2}{\mu _2}</span>.</p>
+<p>En posant <span class="math inline">z=z_1+z_2</span> alors par la proposition précédente nous avons : <span class="math display">
 \frac{z}{\mu _1+\mu _2} = \frac{\frac{z_1\mu _1}{\mu _1}+\frac{z_2\mu _2}{\mu _2}}{\mu _1 +\mu _2}=\frac{z_1}{\mu _1} = \frac{z_2}{\mu _2}
 </span></p>
 <p>et donc : <span class="math display">
@@ -300,7 +300,7 @@ Voici le modèle:</p>
 </span> <span class="math display">
 \dot z = z \left(\underbrace{\frac{\mu _1n_1}{\mu _1 +\mu _2}}_{n_x}x + \underbrace{\frac{\mu _2n_2}{\mu _1 +\mu _2}}_{n_y}y - \underbrace{\frac{\mu _1m_1 + \mu _2m_2}{\mu _1 +\mu _2}}_{m}\right)
 </span></p>
-<p>On a alors : <span class="math display">
+<p>Nous avons alors : <span class="math display">
 \dot z = z(n_xx+n_yy-m)
 </span></p>
 <p>Maintenant considérons les proies :</p>
@@ -328,7 +328,7 @@ Voici le modèle:</p>
 </section>
 <section id="dynamique-du-modèle-non-réduit" class="level3">
 <h3 class="anchored" data-anchor-id="dynamique-du-modèle-non-réduit">Dynamique du modèle non réduit :</h3>
-<p>On va voir la dynamique des 4 populations dans un premier temps :</p>
+<p>Nous allons voir la dynamique des 4 populations dans un premier temps :</p>
 <div class="cell" data-execution_count="2">
 <details>
 <summary>Code</summary>
@@ -434,11 +434,11 @@ Voici le modèle:</p>
 <p><img src="conclusion_files/figure-html/cell-3-output-2.png" width="1118" height="477"></p>
 </div>
 </div>
-<p>On observe deux situations, l’une avec un équilibre de coexistence des quatres populations et l’autre avec disparition des preédateurs.</p>
+<p>Nous observons deux situations, l’une avec un équilibre de coexistence des quatres populations et l’autre avec disparition des preédateurs.</p>
 </section>
 <section id="comparaison-du-modèle-réduit-et-non-réduit" class="level3">
 <h3 class="anchored" data-anchor-id="comparaison-du-modèle-réduit-et-non-réduit">Comparaison du modèle réduit et non réduit</h3>
-<p>Sur une idée d’<span class="citation" data-cites="arditi2015">Arditi (<a href="#ref-arditi2015" role="doc-biblioref">2015</a>)</span> nous allons représenter….</p>
+<p>Sur une idée d’<span class="citation" data-cites="arditi2015">Arditi R. (<a href="#ref-arditi2015" role="doc-biblioref">2015</a>)</span> nous allons représenter….</p>
 
 
 <!-- -->
@@ -449,7 +449,7 @@ Voici le modèle:</p>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-arditi2015" class="csl-entry" role="listitem">
-Arditi, Lobry, R. 2015. <span>“Is Dispersal Always Beneficial to Carrying Capacity ? New Insights from the Multi-Patch Logistic Equation.”</span> <em>Theor. Popul. Biol.</em> 106: 45–59.
+Arditi R., Sari T., Lobry C. 2015. <span>“Is Dispersal Always Beneficial to Carrying Capacity ? New Insights from the Multi-Patch Logistic Equation.”</span> <em>Theor. Popul. Biol.</em> 106: 45–59.
 </div>
 </div></section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div id="quarto-reuse" class="quarto-appendix-contents"><div><a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">https://creativecommons.org/licenses/by-nc/4.0/</a></div></div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -750,7 +750,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Perspectives:</span></span>
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>Ce stage a permis de préciser certaines propriétés du modèle proie-prédateur de L-V en deux classes (uniquement pour les ravageurs) avec migration assymétrique.</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>Ce stage a permis de préciser certaines propriétés du modèle proie-prédateur de L-V en deux classes (uniquement pour les ravageurs) avec migration asymétrique.</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>Par manque de temps nous n'avons pas pu traiter une de nos premières idées qui était de traiter le modèle susnommé avec les prédateurs aussi répartis en deux classes. Ce modèle est plus général mais surtout plus difficile à traiter.  </span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
@@ -758,7 +758,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">### Définition du modèle</span></span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>Dans ce modèle on va considérer 4 populations correspondant aux proies et aux prédateurs dans l'augmentorium et dans la culture.  </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>Dans ce modèle nous allons considérer 4 populations correspondant aux proies et aux prédateurs dans l'augmentorium et dans la culture.  </span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>Voici le modèle:</span>
 <span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>$$ \left<span class="sc">\{</span>\begin{array}{l}</span>
@@ -771,7 +771,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="fu">### Réduction du modèle </span></span>
 <span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>L'augmentorium permet aux prédateurs de circuler presque librement entre les l'intérieur et l'extérieur. On va donc considérer que $\delta \to +\infty$ et voir si on peut se rapporter à un modèle plus simple.</span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>L'augmentorium permet aux prédateurs de circuler presque librement entre les l'intérieur et l'extérieur. Nous allons donc considérer que $\delta \to +\infty$ et voir si nous pouvons se rapporter à un modèle plus simple.</span>
 <span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>On considère $\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2}$:   </span>
 <span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a></span>
@@ -779,14 +779,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2} = \frac{z_1}{\mu _1}(n_1x-m_1)-\frac{z_2}{\mu_2}(n_2y-m_2) - \delta\left(\frac{1}{\mu _1} + \frac{1}{\mu _2}\right)\left(\frac{z_1}{\mu _1}-\frac{z_2}{\mu _2}\right)</span>
 <span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>Lorsque $\delta = +\infty$ on a $\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2}$ qui devient:</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>Lorsque $\delta \to +\infty$ nous avons $\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2}$ qui devient:</span>
 <span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a>\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2} = - \delta\left(\frac{1}{\mu _1} + \frac{1}{\mu _2}\right)\left(\frac{z_1}{\mu _1}-\frac{z_2}{\mu _2}\right)</span>
 <span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>et donc on a $\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2} \to 0 \Leftrightarrow  \frac{z_1}{\mu _1} = \frac{z_2}{\mu _2}$.</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>et donc nous avons $\frac{\dot z_1}{\mu _1} - \frac{\dot z_2}{\mu _2} \to 0 \Leftrightarrow  \frac{z_1}{\mu _1} = \frac{z_2}{\mu _2}$.</span>
 <span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>Si on pose $z=z_1+z_2$ alors par la proposition précédente on a : </span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a>En posant $z=z_1+z_2$ alors par la proposition précédente nous avons : </span>
 <span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>\frac{z}{\mu _1+\mu _2} = \frac{\frac{z_1\mu _1}{\mu _1}+\frac{z_2\mu _2}{\mu _2}}{\mu _1 +\mu _2}=\frac{z_1}{\mu _1} = \frac{z_2}{\mu _2}</span>
 <span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>$$</span>
@@ -808,7 +808,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>\dot z = z \left(\underbrace{\frac{\mu _1n_1}{\mu _1 +\mu _2}}_{n_x}x + \underbrace{\frac{\mu _2n_2}{\mu _1 +\mu _2}}_{n_y}y - \underbrace{\frac{\mu _1m_1 + \mu _2m_2}{\mu _1 +\mu _2}}_{m}\right)</span>
 <span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>On a alors :</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>Nous avons alors :</span>
 <span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>\dot z = z(n_xx+n_yy-m)</span>
 <span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a>$$</span>
@@ -845,112 +845,111 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a>Nous allons faire quelques simulations pour voir si le modèle suit les modèles précédents et voir son comportement pour des $\delta \ne \infty$. </span>
 <span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="fu">### Dynamique du modèle non réduit :</span></span>
-<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a>On va voir la dynamique des 4 populations dans un premier temps :</span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a><span class="co">#Définition du modèle avec prédateurs:</span></span>
-<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> aug3(etat, t, param):</span>
-<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>    x, y, z1, z2 <span class="op">=</span> etat</span>
-<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>    rx,Kx,ry,Ky,gx,gy,b,px,py,nx,ny,mx,my,d,mux,muy <span class="op">=</span> param</span>
-<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>    s<span class="op">=</span>[rx<span class="op">*</span>x<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x<span class="op">/</span>Kx)<span class="op">+</span>b<span class="op">*</span>(y<span class="op">/</span>gy<span class="op">-</span>x<span class="op">/</span>gx)<span class="op">-</span>px<span class="op">*</span>z1<span class="op">*</span>x,</span>
-<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>    ry<span class="op">*</span>y<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>y<span class="op">/</span>Ky)<span class="op">+</span>b<span class="op">*</span>(x<span class="op">/</span>gx<span class="op">-</span>y<span class="op">/</span>gy)<span class="op">-</span>py<span class="op">*</span>y<span class="op">*</span>z2,</span>
-<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>    z1<span class="op">*</span>(nx<span class="op">*</span>x<span class="op">-</span>mx)<span class="op">+</span>d<span class="op">*</span>(z2<span class="op">/</span>muy<span class="op">-</span>z1<span class="op">/</span>mux),</span>
-<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>    z2<span class="op">*</span>(ny<span class="op">*</span>x<span class="op">-</span>my)<span class="op">+</span>d<span class="op">*</span>(z1<span class="op">/</span>mux<span class="op">-</span>z2<span class="op">/</span>muy)]</span>
-<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span>
-<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a><span class="co">#Paramètres Simulation 1 : </span></span>
-<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>rx1<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>ry1<span class="op">=</span><span class="fl">1.5</span></span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>Kx1<span class="op">=</span><span class="dv">3</span></span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>Ky1<span class="op">=</span><span class="dv">2</span></span>
-<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>gx1<span class="op">=</span><span class="fl">0.5</span></span>
-<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>gy1<span class="op">=</span><span class="dv">3</span></span>
-<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>b1<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>px1<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>py1<span class="op">=</span><span class="fl">1.5</span></span>
-<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>nx1<span class="op">=</span><span class="fl">1.5</span></span>
-<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>ny1<span class="op">=</span><span class="dv">2</span></span>
-<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>mx1<span class="op">=</span><span class="fl">0.5</span></span>
-<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a>my1<span class="op">=</span><span class="fl">0.5</span></span>
-<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>d1<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>mux1<span class="op">=</span><span class="fl">1.5</span></span>
-<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a>muy1<span class="op">=</span><span class="fl">0.5</span></span>
-<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>param_a1<span class="op">=</span>np.array([rx1,Kx1,ry1,Ky1,gx1,gy1,b1,px1,py1,nx1,ny1,mx1,my1,d1,mux1,muy1])</span>
-<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a><span class="co">#Paramètres Simulation 2 : </span></span>
-<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>rx2<span class="op">=</span><span class="fl">0.5</span></span>
-<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>ry2<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>Kx2<span class="op">=</span><span class="dv">3</span></span>
-<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>Ky2<span class="op">=</span><span class="dv">2</span></span>
-<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>gx2<span class="op">=</span><span class="fl">0.5</span></span>
-<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>gy2<span class="op">=</span><span class="dv">3</span></span>
-<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a>b2<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>px2<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a>py2<span class="op">=</span><span class="fl">1.5</span></span>
-<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a>nx2<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>ny2<span class="op">=</span><span class="fl">1.5</span></span>
-<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a>mx2<span class="op">=</span><span class="fl">0.5</span></span>
-<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>my2<span class="op">=</span><span class="fl">0.5</span></span>
-<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>d2<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>mux2<span class="op">=</span><span class="fl">1.5</span></span>
-<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>muy2<span class="op">=</span><span class="fl">0.5</span></span>
-<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>param_a2<span class="op">=</span>np.array([rx2,Kx2,ry2,Ky2,gx2,gy2,b2,px2,py2,nx2,ny2,mx2,my2,d2,mux2,muy2])</span>
-<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a><span class="co">#Temps d'intégration 1:</span></span>
-<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.arange(<span class="dv">0</span>,<span class="dv">100</span>,<span class="fl">0.01</span>)</span>
-<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a><span class="co">#Condition initiale de 1:</span></span>
-<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>x0<span class="op">=</span><span class="dv">2</span></span>
-<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>y0<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>z10<span class="op">=</span><span class="fl">0.5</span></span>
-<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>z20<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a>c0<span class="op">=</span>np.array([x0,y0,z10,z20])</span>
-<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a><span class="co">#Simulation 1:</span></span>
-<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>s1<span class="op">=</span>odeint(aug3,c0,t,args<span class="op">=</span>(param_a1,))</span>
-<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a>s2<span class="op">=</span>odeint(aug3,c0,t,args<span class="op">=</span>(param_a2,))</span>
-<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot de la figure: </span></span>
-<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>fig,(ax,ax1) <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">14</span>,<span class="dv">5</span>))</span>
-<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'Simulation du modèle final d</span><span class="ch">\'</span><span class="st">augmentorium'</span>)</span>
-<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(wspace<span class="op">=</span><span class="fl">0.2</span>)</span>
-<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot de l'axe 1:</span></span>
-<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a>ax.plot(t,s1[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'C0'</span>,label<span class="op">=</span><span class="st">'Ravageurs dans la culture'</span>)</span>
-<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>ax.plot(t,s1[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'C1'</span>,label<span class="op">=</span><span class="st">'Ravageurs dans l</span><span class="ch">\'</span><span class="st">augmentorium'</span>)</span>
-<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a>ax.plot(t,s1[:,<span class="dv">2</span>],color<span class="op">=</span><span class="st">'C6'</span>,label<span class="op">=</span><span class="st">'Prédateurs dans la culture'</span>)</span>
-<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>ax.plot(t,s1[:,<span class="dv">3</span>],color<span class="op">=</span><span class="st">'C9'</span>,label<span class="op">=</span><span class="st">'Prédateurs dans l</span><span class="ch">\'</span><span class="st">augmentorium'</span>)</span>
-<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot de l'axe 1:</span></span>
-<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>ax1.plot(t,s2[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'C0'</span>,label<span class="op">=</span><span class="st">'Ravageurs dans la culture'</span>)</span>
-<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>ax1.plot(t,s2[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'C1'</span>,label<span class="op">=</span><span class="st">'Ravageurs dans l</span><span class="ch">\'</span><span class="st">augmentorium'</span>)</span>
-<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>ax1.plot(t,s2[:,<span class="dv">2</span>],color<span class="op">=</span><span class="st">'C6'</span>,label<span class="op">=</span><span class="st">'Prédateurs dans la culture'</span>)</span>
-<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>ax1.plot(t,s2[:,<span class="dv">3</span>],color<span class="op">=</span><span class="st">'C9'</span>,label<span class="op">=</span><span class="st">'Prédateurs dans l</span><span class="ch">\'</span><span class="st">augmentorium'</span>)</span>
-<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a><span class="co">#Légendes et titres:</span></span>
-<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Population, x,y,z1,z2'</span>)</span>
-<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>ax.grid()</span>
-<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Temps, t'</span>)</span>
-<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Coexistence des quatres populations'</span>,fontsize<span class="op">=</span><span class="fl">7.5</span>)</span>
-<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Population, x,y,z1,z2'</span>)</span>
-<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>ax1.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
-<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>ax1.grid()</span>
-<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Temps, t'</span>)</span>
-<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Disparition des prédateurs'</span>,fontsize<span class="op">=</span><span class="fl">7.5</span>)</span>
-<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>On observe deux situations, l'une avec un équilibre de coexistence des quatres populations et l'autre avec disparition des preédateurs. </span>
-<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a><span class="fu">### Comparaison du modèle réduit et non réduit</span></span>
-<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a>Sur une idée d'@arditi2015 nous allons représenter....</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>Nous allons voir la dynamique des 4 populations dans un premier temps :</span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="co">#Définition du modèle avec prédateurs:</span></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> aug3(etat, t, param):</span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a>    x, y, z1, z2 <span class="op">=</span> etat</span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>    rx,Kx,ry,Ky,gx,gy,b,px,py,nx,ny,mx,my,d,mux,muy <span class="op">=</span> param</span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>    s<span class="op">=</span>[rx<span class="op">*</span>x<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>x<span class="op">/</span>Kx)<span class="op">+</span>b<span class="op">*</span>(y<span class="op">/</span>gy<span class="op">-</span>x<span class="op">/</span>gx)<span class="op">-</span>px<span class="op">*</span>z1<span class="op">*</span>x,</span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>    ry<span class="op">*</span>y<span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>y<span class="op">/</span>Ky)<span class="op">+</span>b<span class="op">*</span>(x<span class="op">/</span>gx<span class="op">-</span>y<span class="op">/</span>gy)<span class="op">-</span>py<span class="op">*</span>y<span class="op">*</span>z2,</span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>    z1<span class="op">*</span>(nx<span class="op">*</span>x<span class="op">-</span>mx)<span class="op">+</span>d<span class="op">*</span>(z2<span class="op">/</span>muy<span class="op">-</span>z1<span class="op">/</span>mux),</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>    z2<span class="op">*</span>(ny<span class="op">*</span>x<span class="op">-</span>my)<span class="op">+</span>d<span class="op">*</span>(z1<span class="op">/</span>mux<span class="op">-</span>z2<span class="op">/</span>muy)]</span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> s</span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="co">#Paramètres Simulation 1 : </span></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>rx1<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>ry1<span class="op">=</span><span class="fl">1.5</span></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>Kx1<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>Ky1<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>gx1<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>gy1<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>b1<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>px1<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>py1<span class="op">=</span><span class="fl">1.5</span></span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>nx1<span class="op">=</span><span class="fl">1.5</span></span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>ny1<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>mx1<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>my1<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a>d1<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>mux1<span class="op">=</span><span class="fl">1.5</span></span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>muy1<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>param_a1<span class="op">=</span>np.array([rx1,Kx1,ry1,Ky1,gx1,gy1,b1,px1,py1,nx1,ny1,mx1,my1,d1,mux1,muy1])</span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a><span class="co">#Paramètres Simulation 2 : </span></span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>rx2<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a>ry2<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>Kx2<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a>Ky2<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>gx2<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>gy2<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>b2<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a>px2<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>py2<span class="op">=</span><span class="fl">1.5</span></span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a>nx2<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a>ny2<span class="op">=</span><span class="fl">1.5</span></span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>mx2<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a>my2<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a>d2<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>mux2<span class="op">=</span><span class="fl">1.5</span></span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a>muy2<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>param_a2<span class="op">=</span>np.array([rx2,Kx2,ry2,Ky2,gx2,gy2,b2,px2,py2,nx2,ny2,mx2,my2,d2,mux2,muy2])</span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a><span class="co">#Temps d'intégration 1:</span></span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a>t<span class="op">=</span>np.arange(<span class="dv">0</span>,<span class="dv">100</span>,<span class="fl">0.01</span>)</span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a><span class="co">#Condition initiale de 1:</span></span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>x0<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>y0<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a>z10<span class="op">=</span><span class="fl">0.5</span></span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a>z20<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>c0<span class="op">=</span>np.array([x0,y0,z10,z20])</span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a><span class="co">#Simulation 1:</span></span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a>s1<span class="op">=</span>odeint(aug3,c0,t,args<span class="op">=</span>(param_a1,))</span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>s2<span class="op">=</span>odeint(aug3,c0,t,args<span class="op">=</span>(param_a2,))</span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot de la figure: </span></span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>fig,(ax,ax1) <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">14</span>,<span class="dv">5</span>))</span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>fig.suptitle(<span class="st">'Simulation du modèle final d</span><span class="ch">\'</span><span class="st">augmentorium'</span>)</span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(wspace<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot de l'axe 1:</span></span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>ax.plot(t,s1[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'C0'</span>,label<span class="op">=</span><span class="st">'Ravageurs dans la culture'</span>)</span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a>ax.plot(t,s1[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'C1'</span>,label<span class="op">=</span><span class="st">'Ravageurs dans l</span><span class="ch">\'</span><span class="st">augmentorium'</span>)</span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>ax.plot(t,s1[:,<span class="dv">2</span>],color<span class="op">=</span><span class="st">'C6'</span>,label<span class="op">=</span><span class="st">'Prédateurs dans la culture'</span>)</span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a>ax.plot(t,s1[:,<span class="dv">3</span>],color<span class="op">=</span><span class="st">'C9'</span>,label<span class="op">=</span><span class="st">'Prédateurs dans l</span><span class="ch">\'</span><span class="st">augmentorium'</span>)</span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot de l'axe 1:</span></span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>ax1.plot(t,s2[:,<span class="dv">0</span>],color<span class="op">=</span><span class="st">'C0'</span>,label<span class="op">=</span><span class="st">'Ravageurs dans la culture'</span>)</span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>ax1.plot(t,s2[:,<span class="dv">1</span>],color<span class="op">=</span><span class="st">'C1'</span>,label<span class="op">=</span><span class="st">'Ravageurs dans l</span><span class="ch">\'</span><span class="st">augmentorium'</span>)</span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>ax1.plot(t,s2[:,<span class="dv">2</span>],color<span class="op">=</span><span class="st">'C6'</span>,label<span class="op">=</span><span class="st">'Prédateurs dans la culture'</span>)</span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>ax1.plot(t,s2[:,<span class="dv">3</span>],color<span class="op">=</span><span class="st">'C9'</span>,label<span class="op">=</span><span class="st">'Prédateurs dans l</span><span class="ch">\'</span><span class="st">augmentorium'</span>)</span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a><span class="co">#Légendes et titres:</span></span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Population, x,y,z1,z2'</span>)</span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>ax.grid()</span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Temps, t'</span>)</span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Coexistence des quatres populations'</span>,fontsize<span class="op">=</span><span class="fl">7.5</span>)</span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">'Population, x,y,z1,z2'</span>)</span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>ax1.legend(fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>ax1.grid()</span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">'Temps, t'</span>)</span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">'Disparition des prédateurs'</span>,fontsize<span class="op">=</span><span class="fl">7.5</span>)</span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>Nous observons deux situations, l'une avec un équilibre de coexistence des quatres populations et l'autre avec disparition des preédateurs. </span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a><span class="fu">### Comparaison du modèle réduit et non réduit</span></span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a>Sur une idée d'@arditi2015 nous allons représenter....</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

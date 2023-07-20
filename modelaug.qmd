@@ -56,6 +56,8 @@ Le code commenté est acessible dans la boite cachée ci dessous:
 
 ```{python}
 #| code-fold: true
+#| label: fig-dyn
+#| fig-cap: "Simulation de la dynamique de la population"
 #Définition du modèle avec prédateurs:
 def a(etat, t, param):
     x, y, z = etat
@@ -173,6 +175,8 @@ Nous nous retrouvons avec deux surfaces et deux plans dont les intersections ser
 
 ```{python}
 #| code-fold: true
+#| label: fig-pdp
+#| fig-cap: "Animation Geogebra représentant l'espace de phase"
 import IPython.display as display
 
 fig01 = """
@@ -525,7 +529,7 @@ L'intuition biologique est donc confirmée par des preuves mathématiques pour $
 
 Nous allons donc tracer les graphes de la somme des équilibres du système ([-@eq-modelau]) avec et sans prédateurs et constater cette saturation à \frac{m}{n} lorsque la condition $x_0^* + y_0^* > \frac{m}{n}$ est validée.
 
-Pour cela nous nous appuierons sur 3 cas selon le comportement du système sans prédateurs. Nous prendrons en premier le cas où le système était déja déflationniste, en deuxième le cas où le système était à la fois inflationiste et déflationniste puis le cas où le système est tout le temps inflationiste.
+Pour cela nous nous appuierons sur 3 cas selon le comportement du système sans prédateurs. Nous prendrons en premier le cas où le système était déja déflationniste, en deuxième le cas où le système était à la fois inflationniste et déflationniste puis le cas où le système est tout le temps inflationniste.
 
 Ceci va permettre de comprendre le rôle de l'ajout de prédateurs.
 
@@ -537,7 +541,7 @@ Pour plot nous allons simuler avec `odeint` pendant un temps assez large pour at
 ```{python}
 #| code-fold: True 
 #| label: fig-1
-#| fig-cap : Somme des équilibres du système avec prédateurs avec inflation et déflation du système sans prédateurs
+#| fig-cap : "Somme des équilibres du système avec prédateurs avec inflation et déflation du système sans prédateurs"
 
 #Définition d'une fonction qui prend en compte le changement de migration:
 def a(etat, t, param, i):
@@ -659,7 +663,7 @@ Nous utilisons le même code python en changeant les paramètres:
 ```{python}
 #| code-fold: true
 #| label: fig-2
-#| fig-cap : Somme des équilibres du système avec prédateurs avec inflation et déflation du système sans prédateurs
+#| fig-cap : "Somme des équilibres du système avec prédateurs avec inflation et déflation du système sans prédateurs"
 
 #Paramètres:
 #2:
@@ -714,9 +718,9 @@ ax[0].plot(0, Kx2 + Ky2, linestyle = 'dashed', color = 'C1', markersize = '6', l
 ax[0].plot(0, Kx2 + Ky2, linestyle = 'dashed', color = 'k', markersize = '6', label = 'Kx+Ky')
 
 #Nous déplaçons la légende hors de la figure:
-ax[0].legend(bbox_to_anchor = (0.5, -0.6, 0.5, 0.5), fontsize = 10)
+ax[0].legend(bbox_to_anchor = (0.5, -0.6, 0.5, 0.5), fontsize = 10);
 
-ax[0].set_title('Les deux')
+ax[0].set_title('Les deux');
 ax[1].set_title('Déflation');
 ```
 
@@ -735,7 +739,7 @@ Nous utilisons encore le même code python en changeant les paramètres:
 ```{python}
 #| code-fold: true
 #| label: fig-3
-#| fig-cap : Somme des équilibres du système avec prédateurs avec inflation du système sans prédateurs
+#| fig-cap : "Somme des équilibres du système avec prédateurs avec inflation du système sans prédateurs"
 
 #Paramètres:
 #3:
@@ -790,10 +794,10 @@ ax[0].plot(0, Kx3 + Ky3, linestyle = 'dashed', color = 'C1', markersize = '6', l
 ax[0].plot(0, Kx3 + Ky3, linestyle = 'dashed', color = 'k', markersize = '6', label = 'Kx+Ky')
 
 #Nous déplaçons la légende hors de la figure:
-ax[0].legend(bbox_to_anchor = (0.5, -0.6, 0.5, 0.5), fontsize = 10)
+ax[0].legend(bbox_to_anchor = (0.5, -0.6, 0.5, 0.5), fontsize = 10);
 
 #Titres
-ax[0].set_title('Inflation')
+ax[0].set_title('Inflation');
 ax[1].set_title('Déflation');
 ```
 
@@ -811,16 +815,16 @@ C'est le cas que nous observons dans la @fig-1 à droite pour des valeurs de $\b
 
 
 
-Ces graphiques traduisent bien l'effet de l'ajout des prédateurs dans un système : si celui ci est déja déflationniste il le reste, si celui ci était inflationiste et déflationniste ou complètement inflationiste alors son inflation est limitée par les prédateurs (jusqu'à même pouvoir devenir délfationiste, voir figure 3 à droite).
+Ces graphiques traduisent bien l'effet de l'ajout des prédateurs dans un système : si celui ci est déja déflationniste il le reste, si celui ci était inflationniste et déflationniste ou complètement inflationniste alors son inflation est limitée par les prédateurs (jusqu'à même pouvoir devenir délfationiste, voir figure 3 à droite).
 
 Si nous reprenons les [conditions](modeleavecmigrationass.qmd) d'inflations et déflations posées précédemment peut les adapter à ce modèle :
 
 - Si le système sans prédateurs est de base déflationniste alors le système avec prédateurs est aussi déflationniste (avec survie ou pas des prédateurs).  
 Ainsi d'après les conditions du [modèle précédent](modeleavecmigrationass.qmd) nous avons que si $\frac{\gamma_y}{\gamma_x}>\frac{K_y}{K_x}$ (condition de déflation du modèle précédent) alors le système avec prédateurs est toujours déflationniste.  
 
-- Si $\frac{\gamma_y}{\gamma_x}<\frac{K_y}{K_x}$ (condition d'inflation et de déflation du modèle précédent) alors nous avons soit un système inflationiste si $\frac{m}{n} < K_x+K_y$ soit un système inflationiste et déflationniste mais moins inflationiste que sans les prédateurs si $\frac{m}{n} < (x^*_0+y^*_0)_{max}$ (autrement dit la courbe grise est au dessus de la droite orange).  
+- Si $\frac{\gamma_y}{\gamma_x}<\frac{K_y}{K_x}$ (condition d'inflation et de déflation du modèle précédent) alors nous avons soit un système inflationniste si $\frac{m}{n} < K_x+K_y$ soit un système inflationniste et déflationniste mais moins inflationniste que sans les prédateurs si $\frac{m}{n} < (x^*_0+y^*_0)_{max}$ (autrement dit la courbe grise est au dessus de la droite orange).  
   
-- Si $\frac{r_xK_y}{r_yK_x} < \frac{\gamma_y}{\gamma_x} < \frac{K_y}{K_x}$ (conditions d'inflation du modèle précédent) alors si nous avons $x^*(\infty)+y^*(\infty) > \frac{m}{n} > K_x+K_y$ alors le système est inflationiste mais moins que son [pendant sans prédateurs](modeleavecmigrationass.qmd).
+- Si $\frac{r_xK_y}{r_yK_x} < \frac{\gamma_y}{\gamma_x} < \frac{K_y}{K_x}$ (conditions d'inflation du modèle précédent) alors si nous avons $x^*(\infty)+y^*(\infty) > \frac{m}{n} > K_x+K_y$ alors le système est inflationniste mais moins que son [pendant sans prédateurs](modeleavecmigrationass.qmd).
 
 ### Equilibre de la culture en fonction de $\gamma_y$
 
@@ -828,6 +832,8 @@ Nous allons maintenant voir l'évolution de l'équilibre dans la culture en fonc
 
 ``` {python}
 #| code-fold: true
+#| label: fig-5
+#| fig-cap: "Equilibres en fonction du taux de fuite sur un modèle simplifié"
 #Nous définissons du nouveau modèle qui prend en compte le changement de gy :
 def a2(etat, t, param, h):
     x, y, z = etat
@@ -1038,6 +1044,9 @@ Nous allons simuler numériquement la somme des équilibres des proies du systè
 
 ```{python}
 #| code-fold: true
+#| label: fig-6
+#| fig-cap: "Somme des équilibres du système avec et sans prédateurs dans des conditions de déflation sans prédateurs"
+
 #Définition du modèle avec prédateurs:
 def a(etat, t, param, i):
     x, y, z = etat
@@ -1096,16 +1105,20 @@ for i in np.arange(0, 4, 0.01):
     s1sp = odeint(aug2, e0sp, t, args = (param11sp, i))
 
     ax.plot(i, s1p[-1][0] + s1p[-1][1], marker = '.', markersize = 2, color = 'C0') #Nous représentons un point qui correspond à la valeur de la somme des éq. en fonction de beta
+
     ax.plot(i, nx1 * s1sp[-1][0] + ny1 * s1sp[-1][1], marker = '.', markersize = 1, color = 'r')
-    ax.plot(xt, m11 * np.ones_like(xt), linestyle = "dashed", color = 'g')
+
     ax.plot(i, s1sp[-1][0] + s1sp[-1][1], marker = '.', markersize = 1, color = '0.8')
     
+
+
     s1p = odeint(a, e0p, t, args = (param12p, i)) #Nous calculons pour chaque beta l'équilibre
     s1sp = odeint(aug2, e0sp, t, args = (param12sp, i))
     
     ax1.plot(i, s1p[-1][0] + s1p[-1][1], marker = '.', markersize = 2, color = 'C0') #Nous représentons un point qui correspond à la valeur de la somme des éq. en fonction de beta
+
     ax1.plot(i, nx1 * s1sp[-1][0] + ny1 * s1sp[-1][1], marker = '.', markersize = 1, color = 'r')
-    ax1.plot(xt, m12 * np.ones_like(xt), linestyle = "dashed", color = 'g')
+
     ax1.plot(i, s1sp[-1][0] + s1sp[-1][1], marker = '.', markersize = 1,color = '0.8')
 
     
@@ -1113,6 +1126,10 @@ for i in np.arange(0, 4, 0.01):
 #Plot de la droite Kx+Ky:    
 ax.plot(xt, (Kx1 + Ky1) * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
 ax1.plot(xt, (Kx1 + Ky1) * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
+
+#Plot de la droite m
+ax.plot(xt, m11 * np.ones_like(xt), linestyle = "dashed", color = 'C1')
+ax1.plot(xt, m12 * np.ones_like(xt), linestyle = "dashed", color = 'C1')
 
 #Légendes:
 ax.set_xlabel('β')
@@ -1122,22 +1139,42 @@ ax1.set_xlabel('β')
 ax.set_ylabel('Population')
 ax.plot(0, Kx1 + Ky1, color = '0.8', label = 'Somme des équilibres sans prédateurs')
 ax.plot(0, Kx1 + Ky1, color = 'C0', label = 'Somme des équilibres avec prédateurs')
-ax.plot(0, Kx1 + Ky1, linestyle = 'dashed', color = 'r', markersize = '6', label = 'nx*x+ny*y')
-ax.plot(0, Kx1 + Ky1, linestyle = 'dashed', color = 'g', markersize = '6', label = 'm')
+ax.plot(0, Kx1 + Ky1, linestyle = 'dashed', color = 'r', markersize = '6', label = 'nx*x0+ny*y0')
+ax.plot(0, Kx1 + Ky1, linestyle = 'dashed', color = 'C1', markersize = '6', label = 'm')
 ax.plot(0, Kx1 + Ky1, linestyle = 'dashed', color = 'k', markersize = '6', label = 'Kx+Ky')
 
 #Nous déplaçons la légende hors de la figure:
-ax.legend(bbox_to_anchor = (5.2, -0.5, 0.5, 0.5), fontsize = 10)
+ax.legend(bbox_to_anchor = (0.5, -0.6, 0.5, 0.5), fontsize = 10);
 
 #Titres:
-ax.set_title('Déflation')
-ax1.set_title('Déflation')
+ax.set_title('Déflation');
+ax1.set_title('Déflation');
 ```
+
+Nous observons sur cette figure un profil relativement différent du modèle simplifié.  
+L'analyse des figures est néanmoins assez similaire.  La majeure différence entre le modèle complet et simplifié est que la condition sur la somme des équilibres n'est plus présente car elle se complexifie.  
+
+Dans notre modèle actuel nous avons représenté encore une fois en gris la somme des équilibres du modèle sans prédateurs ($x^*_0 + y^*_0$) et en bleu la somme des équilibres du modèle avec prédateurs ($x^* + y^*$).  Cette fois ci, en rouge, nous avons représenté la courbe $n_xx^*_0+n_yy^*_0$ et en orange la droite constante égale à $m$.  
+
+Dans le modèle simplifié la condition d'invasion des prédateurs était donnée par le fait que graphiquement la courbe grise était au dessus (ou en dessous) de la droite verte.  
+Maintenant la condition d'invasion des prédateurs est équivalente à ce que la droite rouge soit au dessus de la droite orange.
+Enfin dans notre nouveau modèle nous n'observons pas le phénomène de saturation quand les prédateurs envahissent.  
+
+Pour ces deux figures nous avons pris des valeurs de paramètres qui provoquent une déflation dans le système sans prédateurs comme en témoignent les courbes grises. Nous nous intéressons donc à l'effet des prédateurs sur un système déjà déflationniste.
+
+Sur la figure à gauche nous observons que la courbe rouge est en permanence au dessus de la droite orange. Donc les prédateurs restent en vie et nous observons que la courbe bleue et grise ne sont pas confondues. La courbe bleue est plus basse que la courbe grise montrant que les prédateurs augmente la déflation du système.  
+
+Sur la figure à droite nous avons cette fois la courbe rouge qui coupe la droite orange. Nous avons d'abord la courbe rouge au dessus et donc présence de prédateurs dans le système et quand $\beta$ augmente nous avons la courbe rouge qui passe en dessous de la courbe orange impliquant que les prédateurs disparaissent. Nous voyons bien dans ce cas là que les courbes bleue et grise se rejoignent.
+
+Ainsi, similairement au modèle simplifié, nous savons que si le système est déjà déflationniste sans prédateurs il le reste avec des prédateurs et ceux-ci peuvent accentuer la déflation selon leur présence ou non en fonction des paramètres.  
 
 #### Inflation/déflation du système sans prédateurs
 
+Passons maintenant à une condition d'inflation et de déflation du système sans prédateurs pour voir l'effet des prédateurs sur les ravageurs : 
 ```{python}
 #| code-fold: true
+#| label: fig-7
+#| fig-cap: "Somme des équilibres du système avec et sans prédateurs dans des conditions d'inflation et de déflation sans prédateurs"
 #Définition des paramètres
 #2:
 rx2 = 0.5
@@ -1150,7 +1187,7 @@ px2 = 0.5
 py2 = 3
 nx2 = 0.5
 ny2 = 1
-m21 = 1
+m21 = 1.5
 m22 = 1.9
 
 param21p = np.array([rx2, Kx2, ry2, Ky2, gx2, gy2, px2, py2, nx2, ny2, m21])
@@ -1168,22 +1205,30 @@ for i in np.arange(0, 4, 0.01):
     s2sp = odeint(aug2, e0sp, t, args = (param21sp, i))
     
     ax.plot(i, s2p[-1][0] + s2p[-1][1], marker = '.', markersize = 2, color = 'C0') #Nous représentons un point qui correspond à la valeur de la somme des éq. en fonction de beta
+
     ax.plot(i, nx2 * s2sp[-1][0] + ny2 * s2sp[-1][1], marker = '.', markersize = 1, color = 'r')
-    ax.plot(xt, m21 * np.ones_like(xt), linestyle = "dashed", color = 'g')
+
     ax.plot(i, s2sp[-1][0] + s2sp[-1][1], marker = '.', markersize = 1,color = '0.8')
     
+
+
     s2p = odeint(a, e0p, t, args = (param22p, i)) #Nous calculons pour chaque beta l'équilibre
     s2sp = odeint(aug2, e0sp, t, args = (param22sp, i))
     
     ax1.plot(i, s2p[-1][0] + s2p[-1][1], marker = '.', markersize = 2, color = 'C0') #Nous représentons un point qui correspond à la valeur de la somme des éq. en fonction de beta
+
     ax1.plot(i, nx2 * s2sp[-1][0] + ny2 * s2sp[-1][1], marker = '.', markersize = 1, color = 'r')
-    ax1.plot(xt, m22 * np.ones_like(xt), linestyle = "dashed", color = 'g')
+    
     ax1.plot(i, s2sp[-1][0] + s2sp[-1][1], marker = '.', markersize = 1, color = '0.8')
 
 
 #Plot de la droite Kx+Ky: 
 ax.plot(xt, (Kx2 + Ky2) * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
 ax1.plot(xt, (Kx2 + Ky2) * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
+
+#Plot de m:
+ax.plot(xt, m21 * np.ones_like(xt), linestyle = "dashed", color = 'C1')
+ax1.plot(xt, m22 * np.ones_like(xt), linestyle = "dashed", color = 'C1')
 
 #Légendes:
 ax.set_xlabel('β')
@@ -1193,95 +1238,36 @@ ax1.set_xlabel('β')
 ax.set_ylabel('Population')
 ax.plot(0, Kx2 + Ky2, color = '0.8', label = 'Somme des équilibres sans prédateurs')
 ax.plot(0, Kx2 + Ky2, color = 'C0', label = 'Somme des équilibres avec prédateurs')
-ax.plot(0, Kx2 + Ky2, linestyle = 'dashed', color = 'r', markersize = '6', label = 'nx*x+ny*y')
-ax.plot(0, Kx2 + Ky2, linestyle = 'dashed', color = 'g', markersize = '6', label = 'm')
+ax.plot(0, Kx2 + Ky2, linestyle = 'dashed', color = 'r', markersize = '6', label = 'nx*x0+ny*y0')
+ax.plot(0, Kx2 + Ky2, linestyle = 'dashed', color = 'C1', markersize = '6', label = 'm')
 ax.plot(0, Kx2 + Ky2, linestyle = 'dashed', color = 'k', markersize = '6', label = 'Kx+Ky')
 
 #Nous déplaçons la légende hors de la figure:
-ax.legend(bbox_to_anchor = (5.2, -0.5, 0.5, 0.5), fontsize = 10)
+ax.legend(bbox_to_anchor = (0.5, -0.6, 0.5, 0.5), fontsize = 10);
 
 #Titres:
-ax.set_title('Déflation')
-ax1.set_title('Les deux')
+ax.set_title('Déflation');
+ax1.set_title('Les deux');
 ```
 
+Les légendes sont les mêmes que sur la figure précédente.  
+
+Cette fois ci nous voyons bien avec la courbe grise que nous avons d'abord inflation puis déflation du système sans prédateurs, et nous allons essayer de voir quel peut être l'effet de l'invasion de prédateurs sur cette la population totale de ravageurs ($x^*+y^*$).  
+
+Sur la figure à gauche nous observons qu'avec $m$ en dessous de $n_xx^*_0+n_yy^*_0$ nous avons constamment présence de prédateurs et nous observons que la courbe bleue est toujours en dessous de $K_x+K_y$ (en noir) impliquant que le système est déflationniste.  
+Ensuite sur la figure à droite nous remarquons une situation similaire à la figure 1 à droite.  On a d'abord présence des prédateurs puis disparaition quand la courbe rouge passe en dessous de la droite orange.  
+En fonction de où coupe la courbe rouge par rapport à la droite orange nous pourrions avoir une déflation constante du système.  
+
+Nous pouvons observer des résultats assez différents du modèle simplifié, mais qui illustre bien l'effet attendu d'un prédateur sur un système inflationniste (une baisse de cet effet et éventuellement un passage à une déflation).
 
 #### Inflation du système sans prédateurs
 
-Nous allons montrer deux cas, l'un avec $n_xx^*_0 + n_yy^*_0 = m$ décroissant et l'autre avec $n_xx^*_0 + n_yy^*_0 = m$ croissant :
-```{python}
-#| code-fold: true
-#Définition des paramètres
-#3:
-rx3 = 1
-ry3 = 2
-Kx3 = 2
-Ky3 = 1.5
-gx3 = 2
-gy3 = 1
-px3 = 1
-py3 = 0.5
-nx3 = 0.5
-ny3 = 1
-m31 = 1.5
-m32 = 2.45
-
-param31p = np.array([rx3, Kx3, ry3, Ky3, gx3, gy3, px3, py3, nx3, ny3, m31])
-param31sp = param31p[0:6]
-param32p = np.array([rx3, Kx3, ry3, Ky3, gx3, gy3, px3, py3, nx3, ny3, m32])
-param32sp = param32p[0:6]
-
-
-#Figure:
-fig, (ax, ax1) = plt.subplots(1, 2, figsize = (8, 5))
-plt.subplots_adjust(wspace = 0.3)
-
-#Boucle pour plot en fonction de beta:
-for i in np.arange(0, 4, 0.01):
-    s3p = odeint(a, e0p, t, args = (param31p, i)) #Nous calculons pour chaque beta l'équilibre
-    s3sp = odeint(aug2, e0sp, t, args = (param31sp, i))
-    
-    ax.plot(i, s3p[-1][0] + s3p[-1][1], marker = '.', markersize = 2, color = 'C0') #Nous représentons un point qui correspond à la valeur de la somme des éq. en fonction de beta
-    ax.plot(i, nx3 * s3sp[-1][0] + ny3 * s3sp[-1][1], marker = '.', markersize = 1, color = 'r')
-    ax.plot(xt, m31 * np.ones_like(xt), linestyle = "dashed", color = 'g')
-    ax.plot(i, s3sp[-1][0] + s3sp[-1][1], marker = '.', markersize = 1, color = '0.8')
-    
-    s3p = odeint(a, e0p, t, args = (param32p, i)) #Nous calculons pour chaque beta l'équilibre
-    s3sp = odeint(aug2, e0sp, t, args = (param32sp, i))
-    
-    ax1.plot(i, s3p[-1][0] + s3p[-1][1], marker = '.', markersize = 2, color = 'C0') #Nous représentons un point qui correspond à la valeur de la somme des éq. en fonction de beta
-    ax1.plot(i, nx3 * s3sp[-1][0] + ny3 * s3sp[-1][1], marker = '.', markersize = 1, color = 'r')
-    ax1.plot(xt, m32 * np.ones_like(xt), linestyle = "dashed", color = 'g')
-    ax1.plot(i, s3sp[-1][0] + s3sp[-1][1], marker = '.', markersize = 1, color = '0.8')
-
-
-#Plot de la droite Kx+Ky: 
-ax.plot(xt, (Kx3 + Ky3) * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
-ax1.plot(xt, (Kx3 + Ky3) * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
-
-
-#Légendes:
-ax.set_xlabel('β')
-ax1.set_xlabel('β')
-
-ax.set_ylabel('Population')
-ax.plot(0, Kx3 + Ky3, color = '0.8', label = 'Somme des équilibres sans prédateurs')
-ax.plot(0, Kx3 + Ky3, color = 'C0', label = 'Somme des équilibres avec prédateurs')
-ax.plot(0, Kx3 + Ky3, linestyle = 'dashed', color = 'r', markersize = '6', label = 'nx*x+ny*y')
-ax.plot(0, Kx3 + Ky3, linestyle = 'dashed', color = 'g', markersize = '6', label = 'm')
-ax.plot(0, Kx3 + Ky3, linestyle = 'dashed', color = 'k', markersize = '6', label = 'Kx+Ky')
-
-#Nous déplaçons la légende hors de la figure:
-ax.legend(bbox_to_anchor = (5.2, -0.5, 0.5, 0.5), fontsize = 10)
-
-#Titres:
-ax.set_title('Déflation')
-ax1.set_title('Les deux')
-```
-
+Intéressons nous maitenant à un cas d'inflation constante du modèle sans prédateurs pour voir l'effet de ceux-ci:
 
 ```{python}
 #| code-fold: true
+#| label: fig-8
+#| fig-cap: "Somme des équilibres du système avec et sans prédateurs dans des conditions d'inflation sans prédateurs"
 #Définition des paramètres
 #4:
 rx4 = 2
@@ -1315,8 +1301,9 @@ for i in np.arange(0, 4, 0.01):
     s4sp = odeint(aug2, e0sp, t, args = (param41sp, i))
    
     ax.plot(i, s4p[-1][0] + s4p[-1][1], marker = '.', markersize = 2, color = 'C0') #Nous représentons un point qui correspond à la valeur de la somme des éq. en fonction de beta
+
     ax.plot(i, nx4 * s4sp[-1][0] + ny4 * s4sp[-1][1], marker = '.', markersize = 1, color = 'r')
-    ax.plot(xt, m41 * np.ones_like(xt), linestyle = "dashed", color = 'g')
+    
     ax.plot(i, s4sp[-1][0] + s4sp[-1][1], marker = '.', markersize = 1, color = '0.8')
     
 
@@ -1324,12 +1311,18 @@ for i in np.arange(0, 4, 0.01):
     s4sp = odeint(aug2, e0sp, t, args = (param42sp, i))
     
     ax1.plot(i, s4p[-1][0] + s4p[-1][1], marker = '.', markersize = 2, color = 'C0') #Nous représentons un point qui correspond à la valeur de la somme des éq. en fonction de beta
+
     ax1.plot(i, nx4 * s4sp[-1][0] + ny4 * s4sp[-1][1], marker = '.', markersize = 1, color = 'r')
-    ax1.plot(xt, m42 * np.ones_like(xt), linestyle = "dashed", color = 'g')
+    
     ax1.plot(i, s4sp[-1][0] + s4sp[-1][1], marker = '.', markersize = 1, color = '0.8')
 
+#Plot de Kx+Ky:
 ax.plot(xt, (Kx4 + Ky4) * np.ones_like(xt), linestyle = 'dashed',  color = 'k', markersize = '6')
 ax1.plot(xt, (Kx4 + Ky4) * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
+
+#Plot de m:
+ax.plot(xt, m41 * np.ones_like(xt), linestyle = "dashed", color = 'C1')
+ax1.plot(xt, m42 * np.ones_like(xt), linestyle = "dashed", color = 'C1')
 
 #Légendes:
 ax.set_xlabel('β')
@@ -1338,32 +1331,39 @@ ax1.set_xlabel('β')
 ax.set_ylabel('Population')
 ax.plot(0, Kx4 + Ky4, color = '0.8', label = 'Somme des équilibres sans prédateurs')
 ax.plot(0, Kx4 + Ky4, color = 'C0', label = 'Somme des équilibres avec prédateurs')
-ax.plot(0, Kx4 + Ky4, linestyle = 'dashed', color = 'r', markersize = '6', label = 'nx*x+ny*y')
-ax.plot(0, Kx4 + Ky4, linestyle = 'dashed', color = 'g', markersize = '6', label = 'm')
+ax.plot(0, Kx4 + Ky4, linestyle = 'dashed', color = 'r', markersize = '6', label = 'nx*x0+ny*y0')
+ax.plot(0, Kx4 + Ky4, linestyle = 'dashed', color = 'C1', markersize = '6', label = 'm')
 ax.plot(0, Kx4 + Ky4, linestyle = 'dashed', color = 'k', markersize = '6', label = 'Kx+Ky')
 
 #Nous déplaçons la légende hors de la figure:
-ax.legend(bbox_to_anchor = (5.2, -0.5, 0.5, 0.5), fontsize = 10)
+ax.legend(bbox_to_anchor = (0.5, -0.6, 0.5, 0.5), fontsize = 10);
 
 #Titres:
-ax.set_title('Déflation')
-ax1.set_title('Les deux')
+ax.set_title('Déflation');
+ax1.set_title('Les deux');
 ```
 
+Cette fois nous observons que la courbe rouge est croissante.  
 
+A gauche nous avons encore une fois que pour un $m$ constamment en dessous de $n_xx^*_0+n_yy^*_0$ nous avons un système déflationiste.
 
-Nous observons que si $m$ est toujours plus grand que $n_xx_0^*+n_yy_0^*$ alors les prédateurs disparaissent et nous avons que la somme des équilibres est égale à $x_0^*+y_0^*$ (la courbe bleu est tout le temps confondue avec la courbe grise).  
+A droite cette fois ci comme la courbe rouge est croissante nous allons d'abord avoir celle-ci en dessous de $m$ et donc pas de présence de prédateurs alors que quand $\beta$ augmente nous avons invasion des prédateurs.  Cette invasion est caractérisé dans notre cas par une population totale qui devient déflationniste contrairement au modèle sans prédateurs.  
 
-Ensuite, quand $m$ est toujours plus petit que $n_xx_0^*+n_yy_0^*$ alors les prédateurs sont toujours en vie et nous avons que la somme des équilibres est égale à $x^*+y^*$.  
+On voit à travers ces 3 figures que l'analyse est plus complexe. En fonction de si $n_xx^*_0+n_yy^*_0$ est croissante ou décroissante nous allons avoir (si $m$ croise $n_xx^*_0+n_yy^*_0$) une invasion puis une disparition ou inversement.  
+La position des courbes devient très dépendante des paramètres. En particulier le taux de mortalité des prédateurs joue un rôle crucial et il serait intéressant de l'analyser plus en détail.  
 
-Enfin, quand $m$ croise $n_xx_0^*+n_yy_0^*$ nous observons que la somme des équilibres est à la fois $x^*+y^*$ et $x_0^*+y_0^*$. Si $n_xx_0^*+n_yy_0^*$ est croissant alors nous avons d'abord que la somme des équilibres est égale à $x_0^*+y_0^*$ puis $x^*+y^*$ et inversement si $n_xx_0^*+n_yy_0^*$ est décroissante.  
+Néanmoins, et de manière similaire à précédemment, les prédateurs semblent jouer un rôle clair sur la population totale de ravageur dans le système en la faisant baisser. Ceci peut faire passer un système infaltionniste sans prédateurs à déflationniste avec.  
 
-### Equilibre de la culture en fonction de $\gamma_x$ et $\gamma_y$
+### Equilibre de la culture en fonction de $\gamma_y$
 
-Nous allons maintenant tracer l'équilibre dans la culture en fonction du taux de migration et de fuite.  
+Nous allons, en tracant la somme des équilibres dans la culture puis l'équilibre dans la culture seul, voir si les résultats coincindent avec ceux trouvés précédemment pour le modèle simplifié.
+
+Le taux de fuite est crucial dans la question de l'augmentorium.
 
 ```{python}
 #| code-fold: true
+#| label: fig-9
+#| fig-cap: "Equilibres en fonction du taux de fuite sur modèle complet"
 #Nous définissons un nouveau modèle qui prend en compte le changement de gy
 def a2(etat, t, param, i):
     x, y, z = etat
@@ -1395,7 +1395,7 @@ px = 0.75
 py = 1
 nx = 0.75
 ny = 1
-m = 0.5
+m = 2.5
 
 param1 = np.array([rx1, ry1, Kx1, Ky1, gx1, b, px, py, nx, ny, m])
 
@@ -1417,9 +1417,9 @@ ax.text(3.15, Kx1 + Ky1 - 0.1, '$K_x+K_y$')
 ax1.plot(xt, Kx1 * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
 ax1.text(3.5, Kx1 - 0.1, '$K_x$')
 
-#Plot de m/n:
+#Plot de m:
 ax.plot(xt, m * np.ones_like(xt), linestyle = 'dashed', color = 'C1', markersize = '6')
-ax.text(3.15, m/n - 0.1, 'm/n')
+ax.text(3.15, m - 0.1, 'm/n')
 
 
 #Boucle qui calcule l'équilibre et qui plot un point en fonction des valeurs du taux de fuite:
@@ -1429,15 +1429,25 @@ for i in np.arange(0.01, 4, 0.001):
     ax1.plot(i, s[-1][0], marker = '.', color = 'C0')
 
     s = odeint(aug3, e0[0:2], t, args = (param1[0:6], i))
-    ax.plot(i, s[-1][0] + s[-1][1], marker = '.', color = '0.8', markersize = 3)
-    ax.plot(i, nx * s[-1][0] + ny * s[-1][1], marker = '.', color = 'r', markersize = 3)
-    ax1.plot(i, s[-1][0], marker = '.', color = '0.8', markersize = 3)
+    ax.plot(i, s[-1][0] + s[-1][1], marker = '.', color = '0.8', markersize = 1)
+    ax.plot(i, nx * s[-1][0] + ny * s[-1][1], marker = '.', color = 'r', markersize = 1)
+    ax1.plot(i, s[-1][0], marker = '.', color = '0.8', markersize = 1)
 
 #Légendes:
 ax1.set_xlabel('Ɣy, Fuite')
 ax.set_xlabel('Ɣy, Fuite')
 ax.plot(0, Kx1 + Ky1, color = 'C0', label = 'Somme des équilibres avec prédateurs')
 ax1.plot(0, Kx1, color = 'C0', label = 'Eq. culture avec prédateurs ($x^*$)')
+
+ax.plot(0, Kx1 + Ky1, color = '0.8', label = 'Somme des équilibres sans prédateurs')
+ax1.plot(0, Kx1, color = '0.8', label = 'Somme des équilibres sans prédateurs')
+
+ax.plot(0, Kx1 + Ky1, linestyle = 'dashed', color = 'r', markersize = '6', label = 'nx*x0+ny*y0')
+ax.plot(0, Kx1 + Ky1, linestyle = 'dashed', color = 'C1', markersize = '6', label = 'm')
+ax.plot(0, Kx4 + Ky4, linestyle = 'dashed', color = 'k', markersize = '6', label = 'Kx+Ky')
+
+
+
 
 ax.set_title('Somme des équilibres en fonction du taux de fuite', fontsize = 7)
 ax1.set_title('Equilibre de la culture en fonction du taux de fuite', fontsize = 7)   
@@ -1446,11 +1456,16 @@ ax1.legend(fontsize = 7, loc = "upper right");
 ax.set_ylabel("Densité de pop."); 
 ```
 
-Nous observons des résultats similaires au système simplifié. L'analyse qui en résulte est la même.  
+Nous observons des résultats similaires au système simplifié. On voit bien sur les figures quand est-ce que les prédateurs envahissent le système ou pas (si la courbe bleue est confondue avec la courbe grise nous avons disparition des prédateurs et inversement).  
 
-D'après les graphiques, l'effet de l'augmentorium sur l'équilibre dans la culture a l'air largement diminué dans tous les types de culture.
+A gauche nous observons que quelque soit le taux de fuite la somme des équilibres est déflationniste grâce à l'invasion de prédateurs qui baisse la population totale de ravageurs.  
+Néanmoins nous observons qu'en repésentant l'équilibre dans la culture seul, c'est à dire $x^*$ nous avons enfaite une inflation par rapport à $K_x$. Cette inflation est réduite plus rapidement avec prédateurs que sans prédateurs comme nous le montre la scission entre la courbe bleue et grise.
 
-## Conclusion
 
-Ce modèle nous permet d'entrevoir mathématiquement pourquoi l'augmentorium est une technique efficace dans les cultures.
+Nous avons donc obtenus des résultats intéressants qui peuvent mettre en lumière le rôle des prédateurs sur un système de ravageurs.  
+Néanmoins par manque de temps nous n'avons pas pu exploiter pleinement le potentiel des équilibres en fonction des paramètres du modèle complet.  
+Une analyse plus poussée nous paraîtrait intéressante.
+
+Nous allons maintenant [terminer](conclusion.qmd) ce rapport avec des perspectives sur un modèle à quatres populations et discuter des arguments qui pourraient appuyer une efficacité de l'augmentorium.
+
 

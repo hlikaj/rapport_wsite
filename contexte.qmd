@@ -46,9 +46,9 @@ Les premiers modèles ont déja été [analysés](ref.qmd), peu à peu les étud
 
 Pour mieux comprendre les analyses faites dans ce rapport il faut comprendre le concept d'inflation d'un système biologique.  
 
-Dans les années 70 certains articles (@freedman1977) mentionnent que lorsque nous considèrons un modèle avec deux zones et dans chaque zone une population qui échange avec l'autre librement des individus, alors la somme des équilibres est le plus souvent différente de celle qu'elle serait si il n'y avait qu'une zone.
+Dans les années 70 certains articles (@freedman1977) mentionnent que lorsqu'on considère un modèle avec deux zones et dans chaque zone une population qui échange avec l'autre librement des individus, alors la somme des équilibres est le plus souvent différente de celle qu'elle serait si il n'y avait qu'une zone.
 
-C'est ce que nous appellons le débat [SLOSS](https://en.wikipedia.org/wiki/SLOSS_debate) (Single Large Or Several Small). Nous diront qu'une population structurée est caractérisée par un phénomène d'inflation si la somme de ses équilibres est plus grande que l'équilibre s'il n'y avait qu'une structure (et l'inverse pour la déflation).
+C'est ce qu'on appelle le débat [SLOSS](https://en.wikipedia.org/wiki/SLOSS_debate) (Single Large Or Several Small). On dit qu'une population structurée est caractérisée par un phénomène d'inflation si la somme de ses équilibres est plus grande que l'équilibre s'il n'y avait qu'une structure (et l'inverse pour la déflation).
 
 L'objectif de l'augmentorium est de provoquer une déflation du système chez les ravageurs.
 

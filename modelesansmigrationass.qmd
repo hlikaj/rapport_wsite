@@ -29,7 +29,7 @@ avec :
 - $K_x$ et $K_y$ les capacités de charge des deux structures,  
 - $\beta$ la force de migration entre les structures.  
 
-Ce modèle est un modèle ressemblant peu à notre situation d'augmentorium car celui-ci est caractérisé par une migration asymétrique, il permet néanmoins de situer la démarche et les outils que nous allons utiliser pour étudier des modèles plus complexes.  
+Ce modèle ressemble peu à notre situation d'augmentorium car celui-ci est caractérisé par une migration asymétrique, il permet néanmoins de situer la démarche et les outils que nous allons utiliser pour étudier des modèles plus complexes.  
 
 ## Dynamique du modèle
 
@@ -142,7 +142,7 @@ $$
 Ce qui donne après réarrangement : 
 $$ 
 y^*\left(\frac{1}{\beta}\left[\frac{r_xr_y}{\beta} - r_y -r_x\right]\right)+ \\[.2cm]
-{y^*}^2\left(\frac{r_y}{\beta K_y}\left[1-\frac{r_x}{\beta}\right]+\frac{r_x}{\beta K_x}\left[1-2\frac{r_y}{\beta}+\frac{r_xr_y}{\beta^2}\right]\right)+\\[.2cm]
+{y^*}^2\left(\frac{r_y}{\beta K_y}\left[1-\frac{r_x}{\beta}\right]+\frac{r_x}{\beta K_x}\left[1-2\frac{r_y}{\beta}+\frac{r_y^2}{\beta^2}\right]\right)+\\[.2cm]
 2{y^*}^3\left(\frac{r_xr_y}{\beta^2 K_xK_y}\left[1-\frac{r_y}{\beta}\right]\right) + 
 {y^*}^4 \frac{r_xr_y^2}{\beta^3K_y^2K_x} = 0
 $${#eq-polsmig}
@@ -153,8 +153,8 @@ Ce polynôme est résoluble via [`numpy`](https://numpy.org/) pour obtenir $y^*$
 ## Nous définissons un monome y, un polynôme p et nous prenons ses solutions:
 y = np.polynomial.Polynomial([0, 1])
 
-pol = y * (rx * ry * ((1/b) * ((1/b) - (1/rx) - (1/ry)) + 1/(rx * ry)) - 1) + \
-(y**2) * ((rx*ry)/b) * ((1/Ky) * ((1/rx) - (1/b)) + (1/Kx) * ((1/ry) - (2/b) + (ry/(b**2)))) + \
+pol = y * ((1/b) * (-rx - ry + rx*ry/b)) + \
+(y**2) * (ry/(Ky * b) * (1 - (rx/b)) + rx/(b * Kx) * (1 - (2*ry/b) + ry**2 /(b**2))) + \
 2 * (y**3) * ((rx * ry)/((b**2) * Kx * Ky)) * (1 - (ry/b)) + \
 (y**4) * ((rx * (ry**2))/((b**3) * (Ky**2) * Kx))
 
@@ -456,10 +456,10 @@ ax2.set_ylabel('$y$', fontsize = '12') ;
 ## Nous définissons un monome y, un polynôme p et nous prenons ses solutions:
 y = np.polynomial.Polynomial([0, 1])
 
-pol2 = y * (rxnew * rynew * ((1/b) * ((1/b) - (1/rxnew) - (1/rynew)) + 1/(rxnew * rynew)) - 1) + \
-(y**2) * ((rxnew*rynew)/b) * ((1/Ky) * ((1/rxnew) - (1/b)) + (1/Kx) * ((1/rynew) - (2/b) + (rynew/(b**2)))) + \
+pol2 =  y * ((1/b) * (-rxnew - rynew + rxnew * rynew/b)) + \
+(y**2) * (rynew/(Ky * b) * (1 - (rxnew/b)) + rxnew/(b * Kx) * (1 - (2*rynew/b) + rynew**2 /(b**2))) + \
 2 * (y**3) * ((rxnew * rynew)/((b**2) * Kx * Ky)) * (1 - (rynew/b)) + \
-(y**4) * ((rx * (rynew**2))/((b**3) * (Ky**2) * Kx))
+(y**4) * ((rxnew * (rynew**2))/((b**3) * (Ky**2) * Kx))
 
 ## Solution que nous obtenons avec un masque booléen qui sélectionne les 
 ## racines réelles et strictement positives:
@@ -855,11 +855,12 @@ t1 = np.arange(0, 400, 0.01)
 
 ## Paramètres : 
 rx = 0.5
-ry = 1 
+ry = 1.5
 Kx = 1
 Ky = 2
+b = 1
 
-param1 = np.array([rx1, ry1, Kx1, Ky1])
+param1 = np.array([rx, ry, Kx, Ky, b])
 
 ## Condition initiale:
 c10 = [2, 0]
@@ -867,14 +868,43 @@ c10 = [2, 0]
 ## Nous définissons un monome y, un polynôme p et nous prenons ses solutions:
 y = np.polynomial.Polynomial([0, 1])
 
-pol = y * (rx * ry * ((1/b) * ((1/b) - (1/rx) - (1/ry)) + 1/(rx * ry)) - 1) + \
-(y**2) * ((rx*ry)/b) * ((1/Ky) * ((1/rx) - (1/b)) + (1/Kx) * ((1/ry) - (2/b) + (ry/(b**2)))) + \
+pol = y * ((1/b) * (-rx - ry + rx*ry/b)) + \
+(y**2) * (ry/(Ky * b) * (1 - (rx/b)) + rx/(b * Kx) * (1 - (2*ry/b) + ry**2 /(b**2))) + \
 2 * (y**3) * ((rx * ry)/((b**2) * Kx * Ky)) * (1 - (ry/b)) + \
 (y**4) * ((rx * (ry**2))/((b**3) * (Ky**2) * Kx))
 
 ## Solution que nous obtenons avec un masque booléen qui sélectionne les racines réelles et strictement positives:
 sol = pol.roots()[ (np.isreal( pol.roots() )) * (pol.roots() > 0)]
-yeq=sol[0].real
+yeq = sol[0].real
+
+xeq = (ry * yeq * ((1/ry) - (1/b) + (yeq/(b * Ky)))).real
+
+fig2, ax = plt.subplots(1, 1, figsize = (8,5))
+fig2.suptitle('Plan de phase du système')
+
+## Isocline nulles:
+xt = np.arange(-10, 10, 0.01)
+## Pour xdot = 0:
+ax.plot(xt,xt * (1/b) * (rx * ((xt/Kx) - 1) + b), 
+                    color = 'C2', label = '$\dot x=0$')
+ax.plot(np.zeros_like(xt), xt, color = '0.8', markersize = 6)
+
+## Pour ydot = 0:
+ax.plot(xt * (1/b) * (ry * ((xt/Ky) - 1) + b), xt,
+                    color = 'C3', label = '$\dot y=0$')
+ax.plot(xt, np.zeros_like(xt), color = '0.8', markersize = 6)
+
+## Nous réduisons la vue à ce qui nous intéresse:
+ax.set_xlim(left = -.3, right = 3)
+ax.set_ylim(top = 3, bottom = -.3)
+
+## Nous traçons la droite la somme des capacités:
+x = np.arange(0, 10, 0.01)
+ax.plot(x, -x + Kx + Ky, label = '$K_x+K_y$', color = '0.8')
+
+## Nous nommons les axes:
+ax.set_xlabel('$x$', fontsize = '12') ;
+ax.set_ylabel('$y$', fontsize = '12') ;
 
 xg2 = np.arange(-5, 5, 0.01)
 yg2 = np.arange(-5, 5, 0.01)
@@ -944,7 +974,7 @@ ax.text(Kx + 0.1, Ky + 0.1, "$A$")
 ax.plot((rx + ry)/(rx/Kx + ry/Ky), (rx + ry)/(rx/Kx + ry/Ky), 
             marker = '.', color = 'C0', markersize = 7)
 
-ax.text((rx + ry)/(rx/Kx + ry/Ky) - 0.1, (rx + ry)/(rx/Kx + ry/Ky) + 0.1, "$B$")
+ax.text((rx + ry)/(rx/Kx + ry/Ky), (rx + ry)/(rx/Kx + ry/Ky) + 0.1, "$B$")
 
 ## C : 
 ax.plot(Kx, Kx, marker = '.', color = 'C0', markersize = 7)
@@ -958,9 +988,12 @@ ax.plot((ry * Kx * (Kx + Ky))/(rx * Ky + ry * Kx),
 ax.text((ry * Kx * (Kx + Ky))/(rx * Ky + ry * Kx) + 0.07, 
         0.08 + (rx * Ky * (Kx + Ky))/(rx * Ky + ry * Kx), "$D$")
 
-ax.legend(loc = "upper left", fontsize = 6.5)
+## Nous représentons les deux équilibres:
+ax.plot(xeq.real, yeq.real, label = '$(x^*,y^*)$', marker = '.', markersize = 6, color = 'k')
+ax.plot(0, 0, label = '$(0,0)$',
+                    marker = '.', markersize = 6, color = 'k')
 
-display(fig)
+ax.legend(loc = "lower right", fontsize = 6.5);
 ```
 
 Nous voyons maintenant aisément que si $B$ est entre $A$ et $D$ alors les équilibres vont parcourir des valeurs inflationistes seulement (arc orange au dessus de la droite grise).  
@@ -969,9 +1002,9 @@ Si $B$ est en dessous de $D$ (la coordonnée y de $B$ est plus petite que celle 
 
 Mathématiquement nous avons donc : 
 
-Si $K_y > K_x$ (la coordonnée $y$ de $B$ est plus grande que celle de $A$) et $K_xr_y > K_yr_x$ (la coordonnée $y$ de $B$ est plus grande que celle de $D$) alors le système est toujours inflationiste.
+Si $K_y > K_x$ (la coordonnée $y$ de $B$ est plus grande que celle de $A$) et $K_xr_y > K_yr_x$ (la coordonnée $y$ de $B$ est plus grande que celle de $D$) alors le système est toujours inflationniste.
 
-Si $K_xr_y < K_yr_x$ (la coordonnée $y$ de $B$ est plus petite que celle de $D$) alors le système est d'abord inflationiste puis déflationniste.
+Si $K_xr_y < K_yr_x$ (la coordonnée $y$ de $B$ est plus petite que celle de $D$) alors le système est d'abord inflationniste puis déflationniste.
 
 Nous pouvons vérifier ces deux assertions avec des simulations similaires à la partie précédente : 
 
@@ -1194,14 +1227,9 @@ ax7.legend(bbox_to_anchor = (1.75, -0.65, 0.5, 0.5));
 ```
 
 Nous observons quatre profils différents. Les trois premiers ont déjà été obtenus précédemment.   
-Le quatrième correspond à un système inflationiste où le maximum d'inflation est atteint pour $\beta \to +\infty$ contrairement à l'autre profil d'inflation.  
+Le quatrième correspond à un système inflationniste où le maximum d'inflation est atteint pour $\beta \to +\infty$ contrairement à l'autre profil d'inflation.  
 
 Nous pouvons donc observer quatres profils mais en réalité il n'existe que trois possibilités : Déflation, inflation puis déflation et enfin inflation.  Les deux profils d'inflations correspondent au même cas mais avec le point $B$ qui croise l'ellipse à des endroits différents (cette remarque sera détaillée plus tard dans le rapport).
 
 Ce modèle nous a permis de poser les bases de la modélisation que nous allons utiliser.  
-Nous allons [maintenant passer](modeleavecmigrationass.qmd) à un modèle qui prend en compte que les migrations peuvent être assymétriques et donc on va se rapprocher du cas de l'augmentorium.   
-
-&nbsp;     
-
-
-
+Nous allons [maintenant passer](modeleavecmigrationass.qmd) à un modèle qui prend en compte que les migrations peuvent être assymétriques et donc nous allons nous rapprocher du cas de l'augmentorium.      

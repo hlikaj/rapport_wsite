@@ -808,13 +808,14 @@ ax.plot(xt, Kx1 * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersiz
 ax.text(3.5, Kx1 - 0.1, '$K_x$')
 
 # Nous plaçons une droite gx en pointillé:
-ax.plot(gx1 * np.ones_like(xt), xt, linestyle = 'dashed', color = '0.8')
+ax.plot(gx1 * np.ones_like(xt), xt, linestyle = 'dashed', color = '0.5')
+ax.text(gx, 0.2, "Ɣx")
 
 #Boucle qui calcule l'équilibre et qui plot un point en fonction des valeurs du taux de fuite:
 for i in np.arange(0.01, 4, 0.01):
     s = odeint(aug3, e0, t, args = (param1, i))
     ax.plot(i, s[-1][0] + s[-1][1], marker = '.', color = 'C0')
-    ax.plot(i, s[-1][0], marker = '.', color = 'k')
+    ax.plot(i, s[-1][0], marker = '.', color = '0.8')
 
 #Légendes:
 ax.set_xlabel('Ɣy, Fuite')
@@ -837,8 +838,9 @@ Pour représenter cette figure nous avons considéré que $r_x<r_y$ et $K_x<K_y$
 Pour interpréter ceci il faut comprendre que les des petites valeurs de $\gamma_y$ correspondent à de grandes valeurs de taux de fuite.  
 Ainsi quand $\gamma_y \to 0$ l'augmentorium se vide en ravageurs et nous avons ainsi toute la population dans la culture et l'équilibre dans la culture tend vers sa capacité de charge car nous sommes seulement face à une croissance logistique.  
 
-Nous 
-C'est pourquoi, lorsque les taux de fuite sont grands nous observons une inflation de la culture car nous avons, des populations de ravageurs qui viennent de l'augmentorium qui s'ajoutent aux ravageurs déjà présents dans la culture.  
+Nous sommes face à une situation un peu paradoxale. La population globale à l'équilibre subit une déflation pour des taux de fuite élevés alors qu'on observe une inflation de la population dans la culture par rapport à sa capacité de charge.  
+
+En effet, lorsque les taux de fuite sont grands nous observons une inflation de la culture car nous avons des populations de ravageurs qui viennent de l'augmentorium qui s'ajoutent aux ravageurs déjà présents dans la culture.  
 La somme des équilibres est donc trompeuse dans ce cas là, en effet le système subit une déflation car l'augmentorium n'est presque plus occupé pour de forts taux de fuite mais il ne faut pas croire que c'en est bénéfique pour la culture.
 
 

@@ -1074,23 +1074,24 @@ Note
 <span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.5</span>, Kx1 <span class="op">-</span> <span class="fl">0.1</span>, <span class="st">'$K_x$'</span>)</span>
 <span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Nous plaçons une droite gx en pointillé:</span></span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>ax.plot(gx1 <span class="op">*</span> np.ones_like(xt), xt, linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'0.8'</span>)</span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a><span class="co">#Boucle qui calcule l'équilibre et qui plot un point en fonction des valeurs du taux de fuite:</span></span>
-<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> np.arange(<span class="fl">0.01</span>, <span class="dv">4</span>, <span class="fl">0.01</span>):</span>
-<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> odeint(aug3, e0, t, args <span class="op">=</span> (param1, i))</span>
-<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>    ax.plot(i, s[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>] <span class="op">+</span> s[<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'C0'</span>)</span>
-<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>    ax.plot(i, s[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'k'</span>)</span>
-<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a><span class="co">#Légendes:</span></span>
-<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Ɣy, Fuite'</span>)</span>
-<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, Kx1 <span class="op">+</span> Ky1, color <span class="op">=</span> <span class="st">'C0'</span>, label <span class="op">=</span> <span class="st">'Somme des équilibres ($x^*+y^*$)'</span>)</span>
-<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, Kx1, color <span class="op">=</span> <span class="st">'k'</span>, label <span class="op">=</span> <span class="st">'Eq. culture ($x^*$)'</span>)</span>
-<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'$x^* + y^*$ et $x^*$ en fonction du taux de fuite'</span>, fontsize <span class="op">=</span> <span class="dv">7</span>)</span>
-<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize <span class="op">=</span> <span class="st">'7'</span>)<span class="op">;</span></span>
-<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Densité de pop."</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>ax.plot(gx1 <span class="op">*</span> np.ones_like(xt), xt, linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'0.5'</span>)</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>ax.text(gx, <span class="fl">0.2</span>, <span class="st">"Ɣx"</span>)</span>
+<span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="co">#Boucle qui calcule l'équilibre et qui plot un point en fonction des valeurs du taux de fuite:</span></span>
+<span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> np.arange(<span class="fl">0.01</span>, <span class="dv">4</span>, <span class="fl">0.01</span>):</span>
+<span id="cb14-45"><a href="#cb14-45" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> odeint(aug3, e0, t, args <span class="op">=</span> (param1, i))</span>
+<span id="cb14-46"><a href="#cb14-46" aria-hidden="true" tabindex="-1"></a>    ax.plot(i, s[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>] <span class="op">+</span> s[<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'C0'</span>)</span>
+<span id="cb14-47"><a href="#cb14-47" aria-hidden="true" tabindex="-1"></a>    ax.plot(i, s[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'0.8'</span>)</span>
+<span id="cb14-48"><a href="#cb14-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a><span class="co">#Légendes:</span></span>
+<span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Ɣy, Fuite'</span>)</span>
+<span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, Kx1 <span class="op">+</span> Ky1, color <span class="op">=</span> <span class="st">'C0'</span>, label <span class="op">=</span> <span class="st">'Somme des équilibres ($x^*+y^*$)'</span>)</span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, Kx1, color <span class="op">=</span> <span class="st">'k'</span>, label <span class="op">=</span> <span class="st">'Eq. culture ($x^*$)'</span>)</span>
+<span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'$x^* + y^*$ et $x^*$ en fonction du taux de fuite'</span>, fontsize <span class="op">=</span> <span class="dv">7</span>)</span>
+<span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-56"><a href="#cb14-56" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize <span class="op">=</span> <span class="st">'7'</span>)<span class="op">;</span></span>
+<span id="cb14-57"><a href="#cb14-57" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Densité de pop."</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-fuite" class="quarto-figure quarto-figure-center anchored">
@@ -1107,7 +1108,8 @@ Nous observons alors un nouveau profil qui correspond à une déflation, puis un
 <p>Pour représenter cette figure nous avons considéré que <span class="math inline">r_x&lt;r_y</span> et <span class="math inline">K_x&lt;K_y</span> sans perte de généralité.</p>
 <p>Pour interpréter ceci il faut comprendre que les des petites valeurs de <span class="math inline">\gamma_y</span> correspondent à de grandes valeurs de taux de fuite.<br>
 Ainsi quand <span class="math inline">\gamma_y \to 0</span> l’augmentorium se vide en ravageurs et nous avons ainsi toute la population dans la culture et l’équilibre dans la culture tend vers sa capacité de charge car nous sommes seulement face à une croissance logistique.</p>
-<p>Nous C’est pourquoi, lorsque les taux de fuite sont grands nous observons une inflation de la culture car nous avons, des populations de ravageurs qui viennent de l’augmentorium qui s’ajoutent aux ravageurs déjà présents dans la culture.<br>
+<p>Nous sommes face à une situation un peu paradoxale. La population globale à l’équilibre subit une déflation pour des taux de fuite élevés alors qu’on observe une inflation de la population dans la culture par rapport à sa capacité de charge.</p>
+<p>En effet, lorsque les taux de fuite sont grands nous observons une inflation de la culture car nous avons des populations de ravageurs qui viennent de l’augmentorium qui s’ajoutent aux ravageurs déjà présents dans la culture.<br>
 La somme des équilibres est donc trompeuse dans ce cas là, en effet le système subit une déflation car l’augmentorium n’est presque plus occupé pour de forts taux de fuite mais il ne faut pas croire que c’en est bénéfique pour la culture.</p>
 <p>Ce modèle considère uniquement la population de ravageurs. Or, la méthode de l’augmentorium repose énormément sur l’action des prédateurs nous allons donc considérer <a href="./modelaug.html">maintenant</a> un modèle qui prend en compte ces prédateurs.</p>
 
@@ -2217,41 +2219,43 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb15-836"><a href="#cb15-836" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.5</span>, Kx1 <span class="op">-</span> <span class="fl">0.1</span>, <span class="st">'$K_x$'</span>)</span>
 <span id="cb15-837"><a href="#cb15-837" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-838"><a href="#cb15-838" aria-hidden="true" tabindex="-1"></a><span class="co"># Nous plaçons une droite gx en pointillé:</span></span>
-<span id="cb15-839"><a href="#cb15-839" aria-hidden="true" tabindex="-1"></a>ax.plot(gx1 <span class="op">*</span> np.ones_like(xt), xt, linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'0.8'</span>)</span>
-<span id="cb15-840"><a href="#cb15-840" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-841"><a href="#cb15-841" aria-hidden="true" tabindex="-1"></a><span class="co">#Boucle qui calcule l'équilibre et qui plot un point en fonction des valeurs du taux de fuite:</span></span>
-<span id="cb15-842"><a href="#cb15-842" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> np.arange(<span class="fl">0.01</span>, <span class="dv">4</span>, <span class="fl">0.01</span>):</span>
-<span id="cb15-843"><a href="#cb15-843" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> odeint(aug3, e0, t, args <span class="op">=</span> (param1, i))</span>
-<span id="cb15-844"><a href="#cb15-844" aria-hidden="true" tabindex="-1"></a>    ax.plot(i, s[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>] <span class="op">+</span> s[<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'C0'</span>)</span>
-<span id="cb15-845"><a href="#cb15-845" aria-hidden="true" tabindex="-1"></a>    ax.plot(i, s[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'k'</span>)</span>
-<span id="cb15-846"><a href="#cb15-846" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-847"><a href="#cb15-847" aria-hidden="true" tabindex="-1"></a><span class="co">#Légendes:</span></span>
-<span id="cb15-848"><a href="#cb15-848" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Ɣy, Fuite'</span>)</span>
-<span id="cb15-849"><a href="#cb15-849" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, Kx1 <span class="op">+</span> Ky1, color <span class="op">=</span> <span class="st">'C0'</span>, label <span class="op">=</span> <span class="st">'Somme des équilibres ($x^*+y^*$)'</span>)</span>
-<span id="cb15-850"><a href="#cb15-850" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, Kx1, color <span class="op">=</span> <span class="st">'k'</span>, label <span class="op">=</span> <span class="st">'Eq. culture ($x^*$)'</span>)</span>
-<span id="cb15-851"><a href="#cb15-851" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-852"><a href="#cb15-852" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'$x^* + y^*$ et $x^*$ en fonction du taux de fuite'</span>, fontsize <span class="op">=</span> <span class="dv">7</span>)</span>
-<span id="cb15-853"><a href="#cb15-853" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-854"><a href="#cb15-854" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize <span class="op">=</span> <span class="st">'7'</span>)<span class="op">;</span></span>
-<span id="cb15-855"><a href="#cb15-855" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Densité de pop."</span>)<span class="op">;</span></span>
-<span id="cb15-856"><a href="#cb15-856" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb15-857"><a href="#cb15-857" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-858"><a href="#cb15-858" aria-hidden="true" tabindex="-1"></a>Dans la figure gauche nous avons représenté la somme des équilibres ($x^*+y^*$) de la même manière que précédemment mais cette fois en faisant varier le taux de fuite.  </span>
-<span id="cb15-859"><a href="#cb15-859" aria-hidden="true" tabindex="-1"></a>Nous observons alors un nouveau profil qui correspond à une déflation, puis une inflation puis enfin une déflation au fur et à mesure que $\gamma_y$ augmente.</span>
-<span id="cb15-860"><a href="#cb15-860" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-861"><a href="#cb15-861" aria-hidden="true" tabindex="-1"></a>Dans la figure droite nous avons cette fois uniquement l'équilibre dans la culture ($x^*$). Nous observons que pour des $\gamma_y$ petits nous avons inflation puis nous retournons à une déflation.  </span>
-<span id="cb15-862"><a href="#cb15-862" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-863"><a href="#cb15-863" aria-hidden="true" tabindex="-1"></a>Pour représenter cette figure nous avons considéré que $r_x&lt;r_y$ et $K_x&lt;K_y$ sans perte de généralité.</span>
-<span id="cb15-864"><a href="#cb15-864" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-865"><a href="#cb15-865" aria-hidden="true" tabindex="-1"></a>Pour interpréter ceci il faut comprendre que les des petites valeurs de $\gamma_y$ correspondent à de grandes valeurs de taux de fuite.  </span>
-<span id="cb15-866"><a href="#cb15-866" aria-hidden="true" tabindex="-1"></a>Ainsi quand $\gamma_y \to 0$ l'augmentorium se vide en ravageurs et nous avons ainsi toute la population dans la culture et l'équilibre dans la culture tend vers sa capacité de charge car nous sommes seulement face à une croissance logistique.  </span>
-<span id="cb15-867"><a href="#cb15-867" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-868"><a href="#cb15-868" aria-hidden="true" tabindex="-1"></a>Nous </span>
-<span id="cb15-869"><a href="#cb15-869" aria-hidden="true" tabindex="-1"></a>C'est pourquoi, lorsque les taux de fuite sont grands nous observons une inflation de la culture car nous avons, des populations de ravageurs qui viennent de l'augmentorium qui s'ajoutent aux ravageurs déjà présents dans la culture.  </span>
-<span id="cb15-870"><a href="#cb15-870" aria-hidden="true" tabindex="-1"></a>La somme des équilibres est donc trompeuse dans ce cas là, en effet le système subit une déflation car l'augmentorium n'est presque plus occupé pour de forts taux de fuite mais il ne faut pas croire que c'en est bénéfique pour la culture.</span>
-<span id="cb15-871"><a href="#cb15-871" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-872"><a href="#cb15-872" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-873"><a href="#cb15-873" aria-hidden="true" tabindex="-1"></a>Ce modèle considère uniquement la population de ravageurs. Or, la méthode de l'augmentorium repose énormément sur l'action des prédateurs nous allons donc considérer <span class="co">[</span><span class="ot">maintenant</span><span class="co">](modelaug.qmd)</span> un modèle qui prend en compte ces prédateurs.</span>
+<span id="cb15-839"><a href="#cb15-839" aria-hidden="true" tabindex="-1"></a>ax.plot(gx1 <span class="op">*</span> np.ones_like(xt), xt, linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'0.5'</span>)</span>
+<span id="cb15-840"><a href="#cb15-840" aria-hidden="true" tabindex="-1"></a>ax.text(gx, <span class="fl">0.2</span>, <span class="st">"Ɣx"</span>)</span>
+<span id="cb15-841"><a href="#cb15-841" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-842"><a href="#cb15-842" aria-hidden="true" tabindex="-1"></a><span class="co">#Boucle qui calcule l'équilibre et qui plot un point en fonction des valeurs du taux de fuite:</span></span>
+<span id="cb15-843"><a href="#cb15-843" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> np.arange(<span class="fl">0.01</span>, <span class="dv">4</span>, <span class="fl">0.01</span>):</span>
+<span id="cb15-844"><a href="#cb15-844" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> odeint(aug3, e0, t, args <span class="op">=</span> (param1, i))</span>
+<span id="cb15-845"><a href="#cb15-845" aria-hidden="true" tabindex="-1"></a>    ax.plot(i, s[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>] <span class="op">+</span> s[<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'C0'</span>)</span>
+<span id="cb15-846"><a href="#cb15-846" aria-hidden="true" tabindex="-1"></a>    ax.plot(i, s[<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>], marker <span class="op">=</span> <span class="st">'.'</span>, color <span class="op">=</span> <span class="st">'0.8'</span>)</span>
+<span id="cb15-847"><a href="#cb15-847" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-848"><a href="#cb15-848" aria-hidden="true" tabindex="-1"></a><span class="co">#Légendes:</span></span>
+<span id="cb15-849"><a href="#cb15-849" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Ɣy, Fuite'</span>)</span>
+<span id="cb15-850"><a href="#cb15-850" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, Kx1 <span class="op">+</span> Ky1, color <span class="op">=</span> <span class="st">'C0'</span>, label <span class="op">=</span> <span class="st">'Somme des équilibres ($x^*+y^*$)'</span>)</span>
+<span id="cb15-851"><a href="#cb15-851" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, Kx1, color <span class="op">=</span> <span class="st">'k'</span>, label <span class="op">=</span> <span class="st">'Eq. culture ($x^*$)'</span>)</span>
+<span id="cb15-852"><a href="#cb15-852" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-853"><a href="#cb15-853" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'$x^* + y^*$ et $x^*$ en fonction du taux de fuite'</span>, fontsize <span class="op">=</span> <span class="dv">7</span>)</span>
+<span id="cb15-854"><a href="#cb15-854" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-855"><a href="#cb15-855" aria-hidden="true" tabindex="-1"></a>ax.legend(fontsize <span class="op">=</span> <span class="st">'7'</span>)<span class="op">;</span></span>
+<span id="cb15-856"><a href="#cb15-856" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Densité de pop."</span>)<span class="op">;</span></span>
+<span id="cb15-857"><a href="#cb15-857" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb15-858"><a href="#cb15-858" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-859"><a href="#cb15-859" aria-hidden="true" tabindex="-1"></a>Dans la figure gauche nous avons représenté la somme des équilibres ($x^*+y^*$) de la même manière que précédemment mais cette fois en faisant varier le taux de fuite.  </span>
+<span id="cb15-860"><a href="#cb15-860" aria-hidden="true" tabindex="-1"></a>Nous observons alors un nouveau profil qui correspond à une déflation, puis une inflation puis enfin une déflation au fur et à mesure que $\gamma_y$ augmente.</span>
+<span id="cb15-861"><a href="#cb15-861" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-862"><a href="#cb15-862" aria-hidden="true" tabindex="-1"></a>Dans la figure droite nous avons cette fois uniquement l'équilibre dans la culture ($x^*$). Nous observons que pour des $\gamma_y$ petits nous avons inflation puis nous retournons à une déflation.  </span>
+<span id="cb15-863"><a href="#cb15-863" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-864"><a href="#cb15-864" aria-hidden="true" tabindex="-1"></a>Pour représenter cette figure nous avons considéré que $r_x&lt;r_y$ et $K_x&lt;K_y$ sans perte de généralité.</span>
+<span id="cb15-865"><a href="#cb15-865" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-866"><a href="#cb15-866" aria-hidden="true" tabindex="-1"></a>Pour interpréter ceci il faut comprendre que les des petites valeurs de $\gamma_y$ correspondent à de grandes valeurs de taux de fuite.  </span>
+<span id="cb15-867"><a href="#cb15-867" aria-hidden="true" tabindex="-1"></a>Ainsi quand $\gamma_y \to 0$ l'augmentorium se vide en ravageurs et nous avons ainsi toute la population dans la culture et l'équilibre dans la culture tend vers sa capacité de charge car nous sommes seulement face à une croissance logistique.  </span>
+<span id="cb15-868"><a href="#cb15-868" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-869"><a href="#cb15-869" aria-hidden="true" tabindex="-1"></a>Nous sommes face à une situation un peu paradoxale. La population globale à l'équilibre subit une déflation pour des taux de fuite élevés alors qu'on observe une inflation de la population dans la culture par rapport à sa capacité de charge.  </span>
+<span id="cb15-870"><a href="#cb15-870" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-871"><a href="#cb15-871" aria-hidden="true" tabindex="-1"></a>En effet, lorsque les taux de fuite sont grands nous observons une inflation de la culture car nous avons des populations de ravageurs qui viennent de l'augmentorium qui s'ajoutent aux ravageurs déjà présents dans la culture.  </span>
+<span id="cb15-872"><a href="#cb15-872" aria-hidden="true" tabindex="-1"></a>La somme des équilibres est donc trompeuse dans ce cas là, en effet le système subit une déflation car l'augmentorium n'est presque plus occupé pour de forts taux de fuite mais il ne faut pas croire que c'en est bénéfique pour la culture.</span>
+<span id="cb15-873"><a href="#cb15-873" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-874"><a href="#cb15-874" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-875"><a href="#cb15-875" aria-hidden="true" tabindex="-1"></a>Ce modèle considère uniquement la population de ravageurs. Or, la méthode de l'augmentorium repose énormément sur l'action des prédateurs nous allons donc considérer <span class="co">[</span><span class="ot">maintenant</span><span class="co">](modelaug.qmd)</span> un modèle qui prend en compte ces prédateurs.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

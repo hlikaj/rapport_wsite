@@ -537,7 +537,7 @@ ax2.text(-0.2, yeq2, '$y^*$');
 ax2.text(xeq2, -0.2, '$x^*$');
 ```
 
-L'ellipse, d'équation $f(x,y)=r_xx\left(1-\frac{x}{K_x}\right)+r_yy\left(1-\frac{y}{K_y}\right) = 0$  , peut être vue comme la ligne de niveau de $f$ en $0$. 
+L'ellipse, d'équation $f(x,y)=r_xx\left(1-\frac{x}{K_x}\right)+r_yy\left(1-\frac{y}{K_y}\right) = 0$  ,peut être vue comme la ligne de niveau de $f$ en $0$. 
 
 Ainsi, une équation de la tangente au point $(x_0,y_0)$ est donnée par:   
 $$
@@ -643,6 +643,9 @@ Nous allons maintenant considérer le cas où $r_x < r_y$ c'est à dire nous all
 Nous allons analyser graphiquement le plan de phase.  Nous aurons besoin de tracer les droites définies par $\beta = 0$ et $\beta \to +\infty$ dans l'équation $y^*=r_xx^*\left(\frac{1}{r_x}-\frac{1}{\beta}+\frac{x^*}{\beta K_x}\right)$  (la parabole verte dans le plan de phase définie par $\dot x =0$).
 
 En effet, ceci va permettre d'encadrer l'équilibre $(x^*,y^*)$ en fonction du taux de migration.
+:::{.callout-note}
+L'équilibre est encadré car nous voyons que graphiquement, en déterminant l'équilibre sur l'ellipse pour $\beta = 0$ et pour $\beta \to +\infty$, alors si $\beta$ augmente nous restons entre ces deux points (voir animation).
+:::
 
 Lorsque $\beta = 0$ nous avons, par la première équation de ([-@eq-pdpsmig]) :
 $$
@@ -695,7 +698,7 @@ Représentons le tout sur le premier plan de phase:
 #| fig-cap: "Plan de phase complet"
 
 ## Parabole xdot=0 b=0:
-ax.plot(Kx * np.ones_like(xt), xt, color = 'C9', label = 'Parabole b=0')
+ax.plot(Kx * np.ones_like(xt), xt, color = 'C9', label = 'Parabole $b=0$')
 ax.plot(np.zeros_like(xt), xt, color = 'C9')
 
 ## Parabole xdot=0 b=+inf:
@@ -954,7 +957,7 @@ ax.text(-0.2, yeq, '$y^*$')
 ax.text(xeq, -0.2, '$x^*$')
 
 ## Parabole xdot=0 b=0:
-ax.plot(Kx * np.ones_like(xt), xt, color = 'C9', label = 'Parabole b=0')
+ax.plot(Kx * np.ones_like(xt), xt, color = 'C9', label = 'Parabole $b=0$')
 ax.plot(np.zeros_like(xt), xt, color = 'C9')
 
 ## Parabole xdot=0 b=+inf:
@@ -1223,7 +1226,7 @@ ax9.set_ylim(2.9, 3.1)
 ax10.set_ylim(1.25, 1.75)
 
 #Nous déplaçons la légende hors de la figure:
-ax7.legend(bbox_to_anchor = (1.75, -0.65, 0.5, 0.5));
+ax7.legend(bbox_to_anchor = (1, -0.65, 0.5, 0.5));
 ```
 
 Nous observons quatre profils différents. Les trois premiers ont déjà été obtenus précédemment.   

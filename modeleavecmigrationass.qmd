@@ -92,7 +92,7 @@ ax.plot(ti, s[ :, 1], color = 'C0', label = 'augmentorium')
 
 # Ajout d'élements:
 ax.grid()
-ax.legend()
+ax.legend(bbox_to_anchor = (0.7, -0.65, 0.5, 0.5))
 ax.set_xlabel('Temps, t');
 ax.set_ylabel('Densité de pop.');
 ```
@@ -802,14 +802,14 @@ fig, ax = plt.subplots(1, 1, figsize = (8, 4))
 xt = np.arange(0, 4, 0.01)
 
 ax.plot(xt, (Kx1 + Ky1) * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
-ax.text(3.15, Kx1 + Ky1 - 0.1, '$K_x+K_y$')
+ax.text(3.15, Kx1 + Ky1 - 0.15, '$K_x+K_y$')
 
 ax.plot(xt, Kx1 * np.ones_like(xt), linestyle = 'dashed', color = 'k', markersize = '6')
-ax.text(3.5, Kx1 - 0.1, '$K_x$')
+ax.text(3.5, Kx1 - 0.15, '$K_x$')
 
 # Nous plaçons une droite gx en pointillé:
-ax.plot(gx1 * np.ones_like(xt), xt, linestyle = 'dashed', color = '0.5')
-ax.text(gx, 0.2, "Ɣx")
+ax.plot(gx1 * np.ones_like(xt), xt, linestyle = 'dashed', color = '0.8')
+ax.text(gx1, 0.2, "Ɣx")
 
 #Boucle qui calcule l'équilibre et qui plot un point en fonction des valeurs du taux de fuite:
 for i in np.arange(0.01, 4, 0.01):
@@ -820,7 +820,7 @@ for i in np.arange(0.01, 4, 0.01):
 #Légendes:
 ax.set_xlabel('Ɣy, Fuite')
 ax.plot(0, Kx1 + Ky1, color = 'C0', label = 'Somme des équilibres ($x^*+y^*$)')
-ax.plot(0, Kx1, color = 'k', label = 'Eq. culture ($x^*$)')
+ax.plot(0, Kx1, color = '0.8', label = 'Eq. culture ($x^*$)')
 
 ax.set_title('$x^* + y^*$ et $x^*$ en fonction du taux de fuite', fontsize = 7)
 

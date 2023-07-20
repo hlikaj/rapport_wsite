@@ -355,14 +355,14 @@ Nous avons donc <span class="math inline">\gamma_x &lt;&lt; \gamma_y</span>.</p>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout d'élements:</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>ax.grid()</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>ax.legend(bbox_to_anchor <span class="op">=</span> (<span class="fl">0.7</span>, <span class="op">-</span><span class="fl">0.65</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Temps, t'</span>)<span class="op">;</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Densité de pop.'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
 <div id="fig-dyn" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="modeleavecmigrationass_files/figure-html/fig-dyn-output-1.png" width="598" height="477" class="figure-img"></p>
+<p><img src="modeleavecmigrationass_files/figure-html/fig-dyn-output-1.png" width="696" height="542" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;1: Simulation de la dynamique du modèle</figcaption>
 </figure>
 </div>
@@ -1068,14 +1068,14 @@ Note
 <span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>xt <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">4</span>, <span class="fl">0.01</span>)</span>
 <span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>ax.plot(xt, (Kx1 <span class="op">+</span> Ky1) <span class="op">*</span> np.ones_like(xt), linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'k'</span>, markersize <span class="op">=</span> <span class="st">'6'</span>)</span>
-<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.15</span>, Kx1 <span class="op">+</span> Ky1 <span class="op">-</span> <span class="fl">0.1</span>, <span class="st">'$K_x+K_y$'</span>)</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.15</span>, Kx1 <span class="op">+</span> Ky1 <span class="op">-</span> <span class="fl">0.15</span>, <span class="st">'$K_x+K_y$'</span>)</span>
 <span id="cb14-35"><a href="#cb14-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-36"><a href="#cb14-36" aria-hidden="true" tabindex="-1"></a>ax.plot(xt, Kx1 <span class="op">*</span> np.ones_like(xt), linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'k'</span>, markersize <span class="op">=</span> <span class="st">'6'</span>)</span>
-<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.5</span>, Kx1 <span class="op">-</span> <span class="fl">0.1</span>, <span class="st">'$K_x$'</span>)</span>
+<span id="cb14-37"><a href="#cb14-37" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.5</span>, Kx1 <span class="op">-</span> <span class="fl">0.15</span>, <span class="st">'$K_x$'</span>)</span>
 <span id="cb14-38"><a href="#cb14-38" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-39"><a href="#cb14-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Nous plaçons une droite gx en pointillé:</span></span>
-<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>ax.plot(gx1 <span class="op">*</span> np.ones_like(xt), xt, linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'0.5'</span>)</span>
-<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>ax.text(gx, <span class="fl">0.2</span>, <span class="st">"Ɣx"</span>)</span>
+<span id="cb14-40"><a href="#cb14-40" aria-hidden="true" tabindex="-1"></a>ax.plot(gx1 <span class="op">*</span> np.ones_like(xt), xt, linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'0.8'</span>)</span>
+<span id="cb14-41"><a href="#cb14-41" aria-hidden="true" tabindex="-1"></a>ax.text(gx1, <span class="fl">0.2</span>, <span class="st">"Ɣx"</span>)</span>
 <span id="cb14-42"><a href="#cb14-42" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-43"><a href="#cb14-43" aria-hidden="true" tabindex="-1"></a><span class="co">#Boucle qui calcule l'équilibre et qui plot un point en fonction des valeurs du taux de fuite:</span></span>
 <span id="cb14-44"><a href="#cb14-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> np.arange(<span class="fl">0.01</span>, <span class="dv">4</span>, <span class="fl">0.01</span>):</span>
@@ -1086,7 +1086,7 @@ Note
 <span id="cb14-49"><a href="#cb14-49" aria-hidden="true" tabindex="-1"></a><span class="co">#Légendes:</span></span>
 <span id="cb14-50"><a href="#cb14-50" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Ɣy, Fuite'</span>)</span>
 <span id="cb14-51"><a href="#cb14-51" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, Kx1 <span class="op">+</span> Ky1, color <span class="op">=</span> <span class="st">'C0'</span>, label <span class="op">=</span> <span class="st">'Somme des équilibres ($x^*+y^*$)'</span>)</span>
-<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, Kx1, color <span class="op">=</span> <span class="st">'k'</span>, label <span class="op">=</span> <span class="st">'Eq. culture ($x^*$)'</span>)</span>
+<span id="cb14-52"><a href="#cb14-52" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, Kx1, color <span class="op">=</span> <span class="st">'0.8'</span>, label <span class="op">=</span> <span class="st">'Eq. culture ($x^*$)'</span>)</span>
 <span id="cb14-53"><a href="#cb14-53" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-54"><a href="#cb14-54" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'$x^* + y^*$ et $x^*$ en fonction du taux de fuite'</span>, fontsize <span class="op">=</span> <span class="dv">7</span>)</span>
 <span id="cb14-55"><a href="#cb14-55" aria-hidden="true" tabindex="-1"></a></span>
@@ -1503,7 +1503,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb15-100"><a href="#cb15-100" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-101"><a href="#cb15-101" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout d'élements:</span></span>
 <span id="cb15-102"><a href="#cb15-102" aria-hidden="true" tabindex="-1"></a>ax.grid()</span>
-<span id="cb15-103"><a href="#cb15-103" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb15-103"><a href="#cb15-103" aria-hidden="true" tabindex="-1"></a>ax.legend(bbox_to_anchor <span class="op">=</span> (<span class="fl">0.7</span>, <span class="op">-</span><span class="fl">0.65</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
 <span id="cb15-104"><a href="#cb15-104" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Temps, t'</span>)<span class="op">;</span></span>
 <span id="cb15-105"><a href="#cb15-105" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Densité de pop.'</span>)<span class="op">;</span></span>
 <span id="cb15-106"><a href="#cb15-106" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
@@ -2213,14 +2213,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb15-830"><a href="#cb15-830" aria-hidden="true" tabindex="-1"></a>xt <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">4</span>, <span class="fl">0.01</span>)</span>
 <span id="cb15-831"><a href="#cb15-831" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-832"><a href="#cb15-832" aria-hidden="true" tabindex="-1"></a>ax.plot(xt, (Kx1 <span class="op">+</span> Ky1) <span class="op">*</span> np.ones_like(xt), linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'k'</span>, markersize <span class="op">=</span> <span class="st">'6'</span>)</span>
-<span id="cb15-833"><a href="#cb15-833" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.15</span>, Kx1 <span class="op">+</span> Ky1 <span class="op">-</span> <span class="fl">0.1</span>, <span class="st">'$K_x+K_y$'</span>)</span>
+<span id="cb15-833"><a href="#cb15-833" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.15</span>, Kx1 <span class="op">+</span> Ky1 <span class="op">-</span> <span class="fl">0.15</span>, <span class="st">'$K_x+K_y$'</span>)</span>
 <span id="cb15-834"><a href="#cb15-834" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-835"><a href="#cb15-835" aria-hidden="true" tabindex="-1"></a>ax.plot(xt, Kx1 <span class="op">*</span> np.ones_like(xt), linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'k'</span>, markersize <span class="op">=</span> <span class="st">'6'</span>)</span>
-<span id="cb15-836"><a href="#cb15-836" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.5</span>, Kx1 <span class="op">-</span> <span class="fl">0.1</span>, <span class="st">'$K_x$'</span>)</span>
+<span id="cb15-836"><a href="#cb15-836" aria-hidden="true" tabindex="-1"></a>ax.text(<span class="fl">3.5</span>, Kx1 <span class="op">-</span> <span class="fl">0.15</span>, <span class="st">'$K_x$'</span>)</span>
 <span id="cb15-837"><a href="#cb15-837" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-838"><a href="#cb15-838" aria-hidden="true" tabindex="-1"></a><span class="co"># Nous plaçons une droite gx en pointillé:</span></span>
-<span id="cb15-839"><a href="#cb15-839" aria-hidden="true" tabindex="-1"></a>ax.plot(gx1 <span class="op">*</span> np.ones_like(xt), xt, linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'0.5'</span>)</span>
-<span id="cb15-840"><a href="#cb15-840" aria-hidden="true" tabindex="-1"></a>ax.text(gx, <span class="fl">0.2</span>, <span class="st">"Ɣx"</span>)</span>
+<span id="cb15-839"><a href="#cb15-839" aria-hidden="true" tabindex="-1"></a>ax.plot(gx1 <span class="op">*</span> np.ones_like(xt), xt, linestyle <span class="op">=</span> <span class="st">'dashed'</span>, color <span class="op">=</span> <span class="st">'0.8'</span>)</span>
+<span id="cb15-840"><a href="#cb15-840" aria-hidden="true" tabindex="-1"></a>ax.text(gx1, <span class="fl">0.2</span>, <span class="st">"Ɣx"</span>)</span>
 <span id="cb15-841"><a href="#cb15-841" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-842"><a href="#cb15-842" aria-hidden="true" tabindex="-1"></a><span class="co">#Boucle qui calcule l'équilibre et qui plot un point en fonction des valeurs du taux de fuite:</span></span>
 <span id="cb15-843"><a href="#cb15-843" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> np.arange(<span class="fl">0.01</span>, <span class="dv">4</span>, <span class="fl">0.01</span>):</span>
@@ -2231,7 +2231,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb15-848"><a href="#cb15-848" aria-hidden="true" tabindex="-1"></a><span class="co">#Légendes:</span></span>
 <span id="cb15-849"><a href="#cb15-849" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Ɣy, Fuite'</span>)</span>
 <span id="cb15-850"><a href="#cb15-850" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, Kx1 <span class="op">+</span> Ky1, color <span class="op">=</span> <span class="st">'C0'</span>, label <span class="op">=</span> <span class="st">'Somme des équilibres ($x^*+y^*$)'</span>)</span>
-<span id="cb15-851"><a href="#cb15-851" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, Kx1, color <span class="op">=</span> <span class="st">'k'</span>, label <span class="op">=</span> <span class="st">'Eq. culture ($x^*$)'</span>)</span>
+<span id="cb15-851"><a href="#cb15-851" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="dv">0</span>, Kx1, color <span class="op">=</span> <span class="st">'0.8'</span>, label <span class="op">=</span> <span class="st">'Eq. culture ($x^*$)'</span>)</span>
 <span id="cb15-852"><a href="#cb15-852" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-853"><a href="#cb15-853" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'$x^* + y^*$ et $x^*$ en fonction du taux de fuite'</span>, fontsize <span class="op">=</span> <span class="dv">7</span>)</span>
 <span id="cb15-854"><a href="#cb15-854" aria-hidden="true" tabindex="-1"></a></span>

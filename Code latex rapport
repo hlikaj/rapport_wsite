@@ -1,0 +1,303 @@
+\documentclass[a4paper,11pt]{report}
+% Pour les rapports, le type report est plus adapté.
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{layout}
+\usepackage[french]{babel}
+\usepackage{amsthm} 
+\usepackage{amsmath} 
+\usepackage{stmaryrd}
+
+
+
+\usepackage{tikz}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\newtheorem{prop}{Proposition}
+\newtheorem{define}{Definition}
+
+\newtheorem{examp}{Exemple}[section]
+
+
+
+
+\begin{document}
+
+\title{Étude de la non-réciprocité d'un système modulé en temps et en espace}
+\author{LIKAJ Hugo}
+
+\maketitle
+
+
+\tableofcontents
+\vspace{0.5cm}
+
+\clearpage
+
+
+\paragraph{Introduction}
+
+\paragraph{Présentation du LMA} 
+	
+	
+	
+	
+	
+	Présentez très clairement le contexte et la problématique de votre sujet. Précisez ensuite vos objectifs et la démarche scientifique que vous avez suivie pour les atteindre
+
+
+L'objectif principal du stage était de modéliser, comprendre les
+
+
+Réciprocité d'un milieu, voir rapport marius
+
+\clearpage
+
+
+
+\section{Méthode de discrétisation}
+\subsection{Présentation des différentes méthodes d'intégrations numériques, de la méthode des différences finies}
+Pour introduire les 3 méthodes d'intégrations numériques, nous allons utiliser l'équation différentielle ordinaire d'ordre 1:
+\begin{align*}
+\begin{cases}
+    \dot{u} = -\lambda u \\
+    u(0) = u_0
+\end{cases}
+\end{align*} \\
+avec $\lambda\ > 0 $ . On subdivise le temps avec un pas constant tel que: $\triangle t  = \frac{t_n}{n} $, et, $\forall x \in [t_n, t_{n+1}[\ : u_n = u(x)$.\\
+
+On intègre ce système entre $t_n$ et $t_n+1 $ et on obtient:
+
+
+\begin{align*}
+u_{n+1} = u_n - \int_{t_n}^{t_n+1}\lambda u dt
+\end{align*} \\
+
+Différentes approximations sont faites pour calculer cette dernière intégrale (celle d'un rectangle pour les 2 schémas d'Euler et d'un trapèze pour le troisième schéma) ce qui conduit à 3 relations de récurrences: \\
+
+
+\begin{align*}
+\begin{cases}
+    Euler\ implicite: \quad u_{n+1} = \frac{u_n}{1+\lambda \triangle t} \\
+	\vphantom{} & \\    
+    Euler\ explicite: \quad u_{n+1} = u_n (1-\lambda \triangle t)\\
+	\vphantom{} & \\
+	M$$\text{é}$$thode\ des\ trap$$\text{è}$$zes: \quad u_{n+1} = \frac{2-\lambda \triangle t}{2+\lambda \triangle t}u_n
+\end{cases}
+\end{align*} \\
+
+
+
+
+
+
+\subsection{Calcul d'erreur des méthodes d'intégrations numériques}
+Erreur locale, global
+
+La convergence d’un schéma numérique est une propriété théorique globale assurant que l’écart entre la solution approchée et la solution exacte tend vers 0 lorsque le pas de discrétisation tend vers 0 (ou lorsque chacun des pas globaux associés aux différentes directions tend vers 0). 
+"
+La solution approchée d’un schéma numérique reste peu crédible tant que sa convergence n'a pas été montrée.
+
+Conceptuellement, les écarts entre solution approchée et solution exacte se manifestent par une combinaison de deux phénomènes :
+
+L’écart induit localement par les approximations inhérentes à l’opérateur discrétisé. C’est la notion de consistance ou de robustesse du schéma. On le définit par: $\epsilon_n = u(t_{n+1}) - u_{n+1}$, c'est donc bien l'erreur que l'on commet à la n-ème itération. \\
+
+On peut montrer, en appliquant le théorème de Taylor, que les 2 schémas d'Euler sont d'ordre 1 et que la méthode des trapèze est d'ordre 1.
+
+La notion de stabilité est relatif à la propagation des écarts qui, au cours des étapes du calcul, se combinent aux écarts précédents et peuvent progressivement s'amplifier et diverger. Rigoureusement, on dit qu'un schéma est stable si la solution numérique est bornée à tout instant, indépendamment de $\triangle t$.
+
+Pour le schéma d'Euler implicite, on peut réécrire la relation de récurrence en: $u_{n+1} = (\frac{1}{1+\lambda t})^n u_0 $, donc $\lim_{n \to +\infty} u_n = 0$. De même, pour la méthode des trapèzes, on a : $\frac{2-\lambda \triangle t}{2+\lambda \triangle t} < 1$ donc $u_n$ ne diverge pas vers l'infini. Ainsi, le schéma d'Euler implicite et la méthode des trapèzes sont inconditionnellement stables. Cependant, le schéma d'Euler implicite est stable que si $\triangle t < 2/\lambda$    
+
+
+
+
+
+\section{Aucune modulation}
+\subsection{Système à un degré de liberté}
+On considère un système constitué d'un ressort de raideur k fixé horizontalement au mur auquel est attaché à son autre extrémité une masse m. A $ t = t_{0} $, on perturbe l'état d'équilibre du système en lui imposant un déplacement et une vitesse initiale. Cette dernière ne peut se déplacer  que selon l'axe horizontal. On parle ici d'un système à un degré de liberté car son état peut être entièrement décrit par une variable, ici la position de la masse.
+
+
+\paragraph{Résolution analytique:}
+En posant $\omega_0 = \frac{k}{m} $ et $\beta = \frac{\alpha}{2m\omega_0}$, on obtient grâce au principe fondamental de la dynamique:
+\begin{align*}
+		\ddot{u} + 2\beta \omega_0 \dot{u} + \omega_0^2 u = 0 \\
+\end{align*}
+
+avec u(t) qui représente le déplacement horizontale de la masse en fonction du temps. \\
+
+
+Les solutions de cette équation différentielle sont: \\
+\begin{align*}
+u(t) = \begin{cases}
+    A e^{\omega_0 (-\beta + \sqrt{\beta^2 - 1})t} + B e^{\omega_0 (-\beta - \sqrt{\beta^2 - 1})t} & \text{si } \beta > 1, \\
+    (At+B) e^{-\beta \omega_0 t} & \text{si } \beta = 1, \\
+    [A\cos(\omega_0 \sqrt{1- \beta^2} t) + B \sin(\omega_0 \sqrt{1- \beta^2} t)] \ e^{-\beta \omega_0 t} & \text{si } \beta < 1. \\
+\end{cases}
+\end{align*}
+où A et B sont des constantes à déterminer en fonction des conditions initiales.\\
+
+\paragraph{Résolution numérique:}
+En posant  U = 
+$\begin{pmatrix} 
+u \\ 
+\dot{u} 
+\end{pmatrix} $ 
+et M = 
+$\begin{pmatrix} 
+0 & 1 \\
+-\omega_0^2 &  -2 \beta \omega_0
+\end{pmatrix} $,
+on obtient l'égalité: $\dot{\text{U}} = \text{M} \text{U}$.\\
+Or d'après ... , on a donc:
+
+
+\begin{align*}
+U_{n+1} = \begin{cases}
+    (I_2 + M \triangle t ) U_n  & \text{Euler implicite}  \\
+    \vphantom{} & \\
+    (I_2 - M \triangle t)^{-1} U_n  & \text{Euler explicite}   \\
+    \vphantom{} & \\
+	\frac{I_2+ M \frac{\triangle t}{2}}{I_2- M \frac{\triangle t}{2}} U_n  & \text{Trapèzes}  \\
+\end{cases}
+\end{align*}
+où $I_2$ est la matrice identité d'ordre 2. 
+
+En annexe, j'analyse la stabilité des différents schémas, soit théori
+
+
+
+
+
+
+
+
+
+
+\subsubsection{Ajout d'un forçage} 
+On ajoute maintenant une force $\vec{F}$ qui agit sur la masse, de norme : $F = A \cos(\omega_1 t)$, et pour simplifier on prend $u(0) = 0$, $\dot{u}(0) = 0$ et $\alpha = 0$, ce qui, grâce au principe fondamental de la dynamique, nous permet d'obtenir l'équation différentielle: \\
+\begin{center}
+$\ddot{u} + 2 \beta \omega_0 \dot{u} + \omega_0^2 u = \frac{1}{m} A \cos(\omega_1 t)$\\
+\end{center}
+
+\paragraph{Solution analytique}
+
+D'après la démonstration en annexe..., la solution analytique est:\\
+
+
+\begin{align*}
+u(t) = \begin{cases}
+\frac{1}{(\omega_0^2 - \omega_1^2) m} (\cos(\omega_1 t) - \cos(\omega_0 t)) & \text{si}\   \omega_0 \neq \omega_1    \\
+\vphantom{} & \\
+\frac{t \sin(\omega_0 t)}{2\omega_0 m} & \text{si}\    \omega_0 = \omega_1 \\
+\end{cases}
+\end{align*}
+Ainsi, en cas d'égalité, la solution explose comme nous le montre le graphique ... Sinon ...
+
+
+\paragraph{Résolution graphique}
+Avec  U = 
+$\begin{pmatrix} 
+u \\ 
+\dot{u} 
+\end{pmatrix} $ 
+, M = 
+$\begin{pmatrix} 
+0 & 1 \\
+-\omega_0^2 &  -2 \beta \omega_0
+\end{pmatrix} $
+et F = 
+$\begin{pmatrix}
+0\\
+\frac{1}{m} A \cos(\omega_1 t). \\
+\end{pmatrix}$
+On a : $\dot{U} = M U + F(t) $
+
+Ainsi, en intégrant entre $t_n$ et $t_{n+1}$  comme dans le ... , on obtient:\\
+\begin{align*}
+U_{n+1} = \begin{cases}
+    (I_2 - \triangle t \ M )^{-1} *  (U_n + \triangle t \ F(t_{n+1})  & \text{,   Euler implicite}  \\
+    \vphantom{} & \\
+    (I_2 + \triangle t \ M  ) U_n  + \triangle t \  F(t_n)  & \text{,   Euler explicite}   \\
+    \vphantom{} & \\
+	(I_2 - \frac{\triangle t}{ 2} \ M )^{-1}  (I_2 + \frac{\triangle t}{2} \ M ) U_n + (I_2 - \frac{\triangle t}{2} \ M) ^{-1} \ (\frac{F(t_n)+F(t_{n+1})}{2})    & \text{,  Trapèzes}  
+\end{cases}
+\end{align*}
+\\
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+\subsection{Système à N degré de liberté}
+Dernier ressort fixé au mur
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\paragraph{forçage}
+
+
+
+
+
+
+
+
+
+
+\section{Modulation}
+ff
+\subsection{Système à un degré de liberté}
+
+
+
+
+\subsection{Annexe}
+
+ 
+
+\subsection{Conclusion}
+
+
+\subsection{Bibliographie}
+https://fr.wikipedia.org/wiki/M%C3%A9thode_des_diff%C3%A9rences_finies#:~:text=En%20analyse%20num%C3%A9rique%2C%20la%20m%C3%A9thode,suffisamment%20proches%20les%20uns%20des
+
+
+\end{document}
+
